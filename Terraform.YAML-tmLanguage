@@ -1,0 +1,51 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Terraform
+scopeName: source.terraform
+fileTypes: ['tf']
+uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
+
+patterns:
+
+# Comments
+- captures:
+    '1':
+      name: punctuation.definition.comment.terraform
+  match: ^(\s)*(#).*$\n?
+  name: comment.line.hash.ini
+
+# Resource blocks (two variables)
+- captures:
+    '1':
+      name: storage.type.function.terraform
+    '2':
+      name: string.value.terraform
+    '3':
+      name: string.value.terraform
+    '4':
+      name: punctuation.definition.tag.terraform
+  match: (resource) "(\w+)" "(\w+)" ({)
+
+# Provider-like blocks (one variable)
+- captures:
+    '1':
+      name: storage.type.function.terraform
+    '2':
+      name: string.value.terraform
+    '3':
+      name: punctuation.definition.tag.terraform
+  match: (provider|provisioner|variable|output|module|atlas) "([\w-]+)" ({)
+
+# Basic x = "y" matching
+- captures:
+    '1':
+      name: variable.assignment.terraform
+    '2':
+      name: keyword.operator.terraform
+    '3':
+      name: punctuation.quote.double.terraform
+    '4':
+      name: string.value.terraform
+    '5':
+      name: punctuation.quote.double.terraform
+  match: ([\w_-]+)\s+(=)\s(")(.+)(\3)
