@@ -18,6 +18,6 @@ Or:
 
     - OS X: ~/Library/Application Support/Sublime Text 3/Packages/
     - Windows: %APPDATA%/Sublime Text 3/Packages/
-    - Linux: ~/.Sublime Text 3/Packages/
+    - Linux (Ubuntu/Debian): ~/.config/sublime-text-3/Packages/
 
 2. clone this repo
