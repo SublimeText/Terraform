@@ -24,7 +24,7 @@ patterns:
       name: string.value.terraform
     '4':
       name: punctuation.definition.tag.terraform
-  match: (resource) "(\w+)" "(\w+)" ({)
+  match: (resource) "(\w+)" "(.+)" ({)
 
 # Provider-like blocks (one variable)
 - captures:
