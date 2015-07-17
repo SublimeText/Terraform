@@ -53,10 +53,14 @@ patterns:
     '1':
       name: storage.type.function.terraform
     '2':
-      name: string.value.terraform
+      name: punctuation.definition.string.begin.terraform
     '3':
+      name: string.value.terraform
+    '4':
+      name: punctuation.definition.string.end.terraform
+    '5':
       name: punctuation.definition.tag.terraform
-  match: (provider|provisioner|variable|output|module|atlas) "([\w-]+)" ({)
+  match: (provider|provisioner|variable|output|module|atlas)\s+(")([\w-]+)(")\s+({)
 
 # Basic x = "y" matching
 - captures:
