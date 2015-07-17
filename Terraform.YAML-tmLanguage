@@ -6,13 +6,14 @@ fileTypes: ['tf']
 uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 
 patterns:
-
 # Comments
-- captures:
-    '1':
+- comment: Comments
+  name: comment.line.number-sign.terraform
+  begin: "#"
+  end: $\n?
+  captures:
+    "0":
       name: punctuation.definition.comment.terraform
-  match: ^(\s)*(#).*$\n?
-  name: comment.line.hash.ini
 
 # Language constants
 - comment: Language constants (true, false, yes, no, on, off)
