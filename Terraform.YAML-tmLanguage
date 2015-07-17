@@ -14,6 +14,19 @@ patterns:
   match: ^(\s)*(#).*$\n?
   name: comment.line.hash.ini
 
+# Language constants
+- comment: Language constants (true, false, yes, no, on, off)
+  match: \b(true|false|yes|no|on|off)\b
+  name: constant.language.terraform
+
+# Numeric types
+- comment: Numbers
+  match: \b([0-9]+)([kKmMgG]b?)?\b
+  name: constant.numeric.terraform
+- comment: Hex numbers
+  match: \b(0x[0-9A-Fa-f]+)([kKmMgG]b?)?\b
+  name: constant.numeric.terraform
+
 # Resource blocks (two variables)
 - captures:
     '1':
