@@ -82,3 +82,15 @@ patterns:
     '4':
       name: keyword.operator.terraform
   match: (")([\w_-]+)(")\s*(=)\s*
+
+# Strings
+- comment: Strings
+  name: string.quoted.double.terraform
+  begin: \"
+  end: \"
+  beginCaptures:
+    "0":
+      name: punctuation.definition.string.begin.terraform
+  endCaptures:
+    "0":
+      name: punctuation.definition.string.end.terraform
