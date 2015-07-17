@@ -2,7 +2,7 @@
 ---
 name: Terraform
 scopeName: source.terraform
-fileTypes: ['tf']
+fileTypes: ['tf', 'tfvars']
 uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 
 patterns:
