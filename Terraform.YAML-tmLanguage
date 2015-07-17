@@ -83,6 +83,15 @@ patterns:
       name: keyword.operator.terraform
   match: (")([\w_-]+)(")\s*(=)\s*
 
+# Maps
+- comment: Maps
+  captures:
+    '1':
+      name: entity.name.section.terraform
+    '2':
+      name: punctuation.definition.tag.terraform
+  match: ([\w\-_]+)\s+({)
+
 # Strings
 - comment: Strings
   name: string.quoted.double.terraform
