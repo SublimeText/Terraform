@@ -32,12 +32,21 @@ patterns:
     '1':
       name: storage.type.function.terraform
     '2':
-      name: string.value.terraform
+      name: punctuation.definition.string.begin.terraform
     '3':
       name: string.value.terraform
     '4':
+      name: punctuation.definition.string.end.terraform
+    '5':
+      name: punctuation.definition.string.begin.terraform
+    '6':
+      name: string.value.terraform
+    '7':
+      name: punctuation.definition.string.end.terraform
+    '8':
       name: punctuation.definition.tag.terraform
-  match: (resource) "(\w+)" "(.+)" ({)
+  match: (resource)\s+(")(\w+)(")\s+(")(.+)(")\s+({)
+  name: meta.resource.terraform
 
 # Provider-like blocks (one variable)
 - captures:
