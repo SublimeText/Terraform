@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+provider "${1:name}" {
+	${2}
+}
+]]></content>
+	<tabTrigger>provider</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>provider block</description>
+</snippet>

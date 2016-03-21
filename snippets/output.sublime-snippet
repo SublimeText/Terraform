@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+output "${1:name}" {
+	value = "\${${2}}"
+}
+]]></content>
+	<tabTrigger>output</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>output block</description>
+</snippet>
