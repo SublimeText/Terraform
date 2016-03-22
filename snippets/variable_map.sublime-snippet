@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+variable "${1:name}" {
+	type = "map"
+	${2:description = "${3:describe your variable}"}
+	default = {
+		${4:key1} = "${5:val1}"
+		${6:key2} = "${7:val2}"
+	}
+}
+]]></content>
+	<tabTrigger>variableM</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>variable (map)</description>
+</snippet>

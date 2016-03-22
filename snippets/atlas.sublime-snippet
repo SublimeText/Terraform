@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+atlas {
+	name = "${1:name}"
+}
+]]></content>
+	<tabTrigger>atlas</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>atlas block</description>
+</snippet>

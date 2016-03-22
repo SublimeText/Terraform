@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+variable "${1:name}" {
+	type = "string"
+	${2:description = "${3:describe your variable}"}
+	default = "${4:default_value}"
+}
+]]></content>
+	<tabTrigger>variableS</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>variable (string)</description>
+</snippet>
