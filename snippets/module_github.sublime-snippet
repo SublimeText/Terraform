@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+module "${1:name}" {
+	source = "github.com/${2:owner}/${3:repo}?${4:ref=}"
+	${5}
+}
+]]></content>
+	<tabTrigger>moduleG</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>module (github public)</description>
+</snippet>
