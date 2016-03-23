@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+module "${1:name}" {
+	source = "git::ssh://git@github.com/${2:owner}/${3:repo}.git${4:?ref=}"
+	${5}
+}
+]]></content>
+	<tabTrigger>moduleGS</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>module (github ssh)</description>
+</snippet>

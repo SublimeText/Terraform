@@ -1,10 +1,11 @@
-Terraform Syntax Highlighting
-===============================
+Terraform Syntax Highlighting And Snippets
+==========================================
 
-Basic support for Terraform's [custom .tf file type](http://www.terraform.io/docs/configuration/syntax.html)
+Basic support for Terraform's [custom .tf file type](http://www.terraform.io/docs/configuration/syntax.html), along with snippets for each of the basic Terraform resource types.
 
 
 ![screenshot](screenshot.png)
+![screenshot](screenshot2.png)
 
 
 Installation
