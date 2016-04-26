@@ -35,20 +35,20 @@ patterns:
   match: (resource)\s+(")(\w+)(")\s+(")([\w-]+)(")\s+({)
   captures:
     '1': {name: storage.type.function.terraform}
-    '2': {name: punctuation.definition.string.begin.terraform}
+    '2': {name: string.terraform punctuation.definition.string.begin.terraform}
     '3': {name: string.value.terraform}
-    '4': {name: punctuation.definition.string.end.terraform}
-    '5': {name: punctuation.definition.string.begin.terraform}
+    '4': {name: string.terraform punctuation.definition.string.end.terraform}
+    '5': {name: string.terraform punctuation.definition.string.begin.terraform}
     '6': {name: string.value.terraform}
-    '7': {name: punctuation.definition.string.end.terraform}
+    '7': {name: string.terraform punctuation.definition.string.end.terraform}
     '8': {name: punctuation.definition.tag.terraform}
 
 - match: (provider|provisioner|variable|output|module|atlas)\s+(")([\w-]+)(")\s+({)
   captures:
     '1': {name: storage.type.function.terraform}
-    '2': {name: punctuation.definition.string.begin.terraform}
+    '2': {name: string.terraform punctuation.definition.string.begin.terraform}
     '3': {name: string.value.terraform}
-    '4': {name: punctuation.definition.string.end.terraform}
+    '4': {name: string.terraform punctuation.definition.string.end.terraform}
     '5': {name: punctuation.definition.tag.terraform}
 
 - comment: Value assignments (left hand side not in double quotes)
@@ -75,7 +75,7 @@ patterns:
   name: string.quoted.double.terraform
   begin: \"
   beginCaptures:
-    '0': {name: punctuation.definition.string.begin.terraform}
+    '0': {name: string.terraform punctuation.definition.string.begin.terraform}
   end: \"
   endCaptures:
-    '0': {name: punctuation.definition.string.end.terraform}
+    '0': {name: string.terraform punctuation.definition.string.end.terraform}

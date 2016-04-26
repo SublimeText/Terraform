@@ -82,7 +82,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.terraform</string>
+					<string>string.terraform punctuation.definition.string.begin.terraform</string>
 				</dict>
 				<key>3</key>
 				<dict>
@@ -92,12 +92,12 @@
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.end.terraform</string>
+					<string>string.terraform punctuation.definition.string.end.terraform</string>
 				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.terraform</string>
+					<string>string.terraform punctuation.definition.string.begin.terraform</string>
 				</dict>
 				<key>6</key>
 				<dict>
@@ -107,7 +107,7 @@
 				<key>7</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.end.terraform</string>
+					<string>string.terraform punctuation.definition.string.end.terraform</string>
 				</dict>
 				<key>8</key>
 				<dict>
@@ -116,7 +116,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(resource)\s+(")(\w+)(")\s+(")(.+)(")\s+({)</string>
+			<string>(resource)\s+(")(\w+)(")\s+(")([\w-]+)(")\s+({)</string>
 			<key>name</key>
 			<string>meta.resource.terraform</string>
 		</dict>
@@ -131,7 +131,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.terraform</string>
+					<string>string.terraform punctuation.definition.string.begin.terraform</string>
 				</dict>
 				<key>3</key>
 				<dict>
@@ -141,7 +141,7 @@
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.end.terraform</string>
+					<string>string.terraform punctuation.definition.string.end.terraform</string>
 				</dict>
 				<key>5</key>
 				<dict>
@@ -227,7 +227,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.terraform</string>
+					<string>string.terraform punctuation.definition.string.begin.terraform</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -239,7 +239,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.end.terraform</string>
+					<string>string.terraform punctuation.definition.string.end.terraform</string>
 				</dict>
 			</dict>
 			<key>name</key>
