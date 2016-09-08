@@ -32,7 +32,7 @@ patterns:
   match: \b(0x[0-9A-Fa-f]+)([kKmMgG]b?)?\b
 
 - name: meta.resource.terraform
-  match: (resource)\s+(")(\w+)(")\s+(")([\w-]+)(")\s+({)
+  match: (resource|data)\s+(")(\w+)(")\s+(")([\w-]+)(")\s+({)
   captures:
     '1': {name: storage.type.function.terraform}
     '2': {name: string.terraform punctuation.definition.string.begin.terraform}
