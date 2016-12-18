@@ -5,6 +5,7 @@ Basic support for Terraform's [custom .tf file type](http://www.terraform.io/doc
 
 
 ![screenshot](screenshot.png)
+
 ![screenshot](screenshot2.png)
 
 
