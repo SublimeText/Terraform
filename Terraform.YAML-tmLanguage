@@ -7,7 +7,7 @@ uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 patterns:
 - comment: Comments
   name: comment.line.number-sign.terraform
-  begin: '#'
+  begin: '#|//'
   end: $\n?
   captures:
     '0': {name: punctuation.definition.comment.terraform}
