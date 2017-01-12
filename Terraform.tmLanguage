@@ -281,7 +281,7 @@
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>meta.embedded.terraform</string>
+					<string>source.terraform.embedded.source</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -290,7 +290,7 @@
 								<key>0</key>
 								<dict>
 									<key>name</key>
-									<string>punctuation.delimiter.period.terraform</string>
+									<string>keyword.control.period.terraform</string>
 								</dict>
 							</dict>
 							<key>match</key>
