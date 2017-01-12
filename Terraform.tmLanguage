@@ -244,8 +244,63 @@
 			</dict>
 			<key>name</key>
 			<string>string.quoted.double.terraform</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string_interpolation</string>
+				</dict>
+			</array>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>string_interpolation</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\$\{</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.end.terraform</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\}</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.end.terraform</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.embedded.terraform</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.delimiter.period.terraform</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(\.)</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>source.terraform</string>
 	<key>uuid</key>

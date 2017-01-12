@@ -79,3 +79,20 @@ patterns:
   end: \"
   endCaptures:
     '0': {name: string.terraform punctuation.definition.string.end.terraform}
+  patterns:
+  - include: '#string_interpolation'
+
+repository:
+  string_interpolation:
+    patterns:
+    - name: source.terraform.embedded.source
+      begin: \$\{
+      beginCaptures:
+        '0': {name: punctuation.section.embedded.end.terraform}
+      end: \}
+      endCaptures:
+        '0': {name: punctuation.section.embedded.end.terraform}
+      patterns:
+      - match: (\.)
+        captures:
+          '0': {name: keyword.control.period.terraform}
