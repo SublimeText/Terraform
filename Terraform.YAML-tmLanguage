@@ -54,7 +54,7 @@ patterns:
 - comment: Value assignments (left hand side not in double quotes)
   match: ([\w_-]+)\s*(=)\s*
   captures:
-    '1': {name: variable.assignment.terraform}
+    '1': {name: variable.other.assignment.terraform}
     '2': {name: keyword.operator.terraform}
 
 - comment: Value assignments (left hand side in double quotes)

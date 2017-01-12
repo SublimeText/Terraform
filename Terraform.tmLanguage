@@ -158,7 +158,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>variable.assignment.terraform</string>
+					<string>variable.other.assignment.terraform</string>
 				</dict>
 				<key>2</key>
 				<dict>
