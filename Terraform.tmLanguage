@@ -296,6 +296,10 @@
 							<key>match</key>
 							<string>(\.)</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#string_interpolation</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
