@@ -1,7 +1,7 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
 name: Terraform
 scopeName: source.terraform
-fileTypes: [tf, tfvars]
+fileTypes: [tf, tfvars, hcl]
 uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 
 patterns:
