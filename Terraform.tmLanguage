@@ -6,6 +6,7 @@
 	<array>
 		<string>tf</string>
 		<string>tfvars</string>
+		<string>hcl</string>
 	</array>
 	<key>name</key>
 	<string>Terraform</string>
