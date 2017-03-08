@@ -82,6 +82,16 @@ patterns:
   patterns:
   - include: '#string_interpolation'
 
+- name: string.unquoted.heredoc.terraform
+  begin: (?>\s*<<(\w+))
+  beginCaptures:
+    '0': {name: punctuation.definition.string.begin.terraform}
+    '1': {name: keyword.operator.heredoc.terraform}
+  end: ^\1$
+  endCaptures:
+    '0': {name: punctuation.definition.string.end.terraform}
+    '0': {name: keyword.operator.heredoc.terraform}
+
 repository:
   string_interpolation:
     patterns:
