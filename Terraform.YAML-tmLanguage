@@ -71,16 +71,7 @@ patterns:
     '1': {name: entity.name.section.terraform}
     '2': {name: punctuation.definition.tag.terraform}
 
-- comment: Strings
-  name: string.quoted.double.terraform
-  begin: \"
-  beginCaptures:
-    '0': {name: string.terraform punctuation.definition.string.begin.terraform}
-  end: \"
-  endCaptures:
-    '0': {name: string.terraform punctuation.definition.string.end.terraform}
-  patterns:
-  - include: '#string_interpolation'
+- include: '#strings'
 
 - name: string.unquoted.heredoc.terraform
   begin: (?>\s*<<(\w+))
@@ -89,21 +80,59 @@ patterns:
     '1': {name: keyword.operator.heredoc.terraform}
   end: ^\1$
   endCaptures:
-    '0': {name: punctuation.definition.string.end.terraform}
-    '0': {name: keyword.operator.heredoc.terraform}
+    '0': {name: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform}
+
 
 repository:
+
+  strings:
+    comment: Strings
+    begin: \"
+    beginCaptures:
+      '0': {name: string.terraform punctuation.definition.string.begin.terraform}
+    end: \"
+    endCaptures:
+      '0': {name: string.terraform punctuation.definition.string.end.terraform}
+    patterns:
+    - include: '#string_interpolation'
+    - match: ([\w-\/\._\\%]+)
+      name: "string.quoted.double.terraform"
+
   string_interpolation:
     patterns:
     - name: source.terraform.embedded.source
       begin: \$\{
       beginCaptures:
-        '0': {name: punctuation.section.embedded.end.terraform}
+        '0': {name: entity.tag.embedded.start.terraform}
       end: \}
       endCaptures:
-        '0': {name: punctuation.section.embedded.end.terraform}
+        '0': {name: entity.tag.embedded.end.terraform}
       patterns:
+      - include: '$self'
+
       - match: (\.)
         captures:
           '0': {name: keyword.control.period.terraform}
-      - include: '#string_interpolation'
+
+      - begin: (replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values)(\()
+        comment: Builtin functions
+        beginCaptures:
+          '1': {name: keyword.other.function.inline.terraform}
+          '2': {name: keyword.other.section.begin.terraform}
+        end: (\))
+        endCaptures:
+          '1': {name: keyword.other.section.end.terraform}
+        patterns:
+        - include: '#string_interpolation'
+
+        # TODO handle functions with multiple arguments
+
+        - include: '#strings'
+
+      - match: (terraform|var|self|count|module|path|data)(\.[\w\*]+)+
+        captures:
+          '0': {name: entity.other.attribute-name.terraform}
+
+
+# TODO terraform configuration blocks
+# https://www.terraform.io/docs/configuration/terraform.html

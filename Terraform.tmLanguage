@@ -221,37 +221,8 @@
 			<string>([\w\-_]+)\s+({)</string>
 		</dict>
 		<dict>
-			<key>begin</key>
-			<string>\"</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>string.terraform punctuation.definition.string.begin.terraform</string>
-				</dict>
-			</dict>
-			<key>comment</key>
-			<string>Strings</string>
-			<key>end</key>
-			<string>\"</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>string.terraform punctuation.definition.string.end.terraform</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.quoted.double.terraform</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#string_interpolation</string>
-				</dict>
-			</array>
+			<key>include</key>
+			<string>#strings</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -276,7 +247,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>keyword.operator.heredoc.terraform</string>
+					<string>punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform</string>
 				</dict>
 			</dict>
 			<key>name</key>
@@ -297,7 +268,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.section.embedded.end.terraform</string>
+							<string>entity.tag.embedded.start.terraform</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -307,13 +278,17 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.section.embedded.end.terraform</string>
+							<string>entity.tag.embedded.end.terraform</string>
 						</dict>
 					</dict>
 					<key>name</key>
 					<string>source.terraform.embedded.source</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
 						<dict>
 							<key>captures</key>
 							<dict>
@@ -327,10 +302,96 @@
 							<string>(\.)</string>
 						</dict>
 						<dict>
-							<key>include</key>
-							<string>#string_interpolation</string>
+							<key>begin</key>
+							<string>(replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values)(\()</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.other.function.inline.terraform</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.other.section.begin.terraform</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>Builtin functions</string>
+							<key>end</key>
+							<string>(\))</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.other.section.end.terraform</string>
+								</dict>
+							</dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#string_interpolation</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#strings</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>entity.other.attribute-name.terraform</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(terraform|var|self|count|module|path|data)(\.[\w\*]+)+</string>
 						</dict>
 					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>strings</key>
+		<dict>
+			<key>begin</key>
+			<string>\"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>string.terraform punctuation.definition.string.begin.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Strings</string>
+			<key>end</key>
+			<string>\"</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>string.terraform punctuation.definition.string.end.terraform</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string_interpolation</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([\w-\/\._\\%]+)</string>
+					<key>name</key>
+					<string>string.quoted.double.terraform</string>
 				</dict>
 			</array>
 		</dict>
