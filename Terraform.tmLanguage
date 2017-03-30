@@ -116,6 +116,10 @@
 					<string>punctuation.definition.tag.terraform</string>
 				</dict>
 			</dict>
+			<key>foldingStartMarker</key>
+			<string>\{\s*$</string>
+			<key>foldingStopMarker</key>
+			<string>^\s*\}</string>
 			<key>match</key>
 			<string>(resource|data)\s+(")?(\w+)(")?\s+(")?([\w-]+)(")?\s+({)</string>
 			<key>name</key>
@@ -150,6 +154,10 @@
 					<string>punctuation.definition.tag.terraform</string>
 				</dict>
 			</dict>
+			<key>foldingStartMarker</key>
+			<string>\{\s*$</string>
+			<key>foldingStopMarker</key>
+			<string>^\s*\}</string>
 			<key>match</key>
 			<string>(provider|provisioner|variable|output|module|atlas)\s+(")?([\w-]+)(")?\s+({)</string>
 		</dict>

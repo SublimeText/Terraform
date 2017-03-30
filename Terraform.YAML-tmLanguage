@@ -33,6 +33,8 @@ patterns:
 
 - name: meta.resource.terraform
   match: (resource|data)\s+(")?(\w+)(")?\s+(")?([\w-]+)(")?\s+({)
+  foldingStartMarker: '\{\s*$'
+  foldingStopMarker: '^\s*\}'
   captures:
     '1': {name: storage.type.function.terraform}
     '2': {name: string.terraform punctuation.definition.string.begin.terraform}
@@ -44,6 +46,8 @@ patterns:
     '8': {name: punctuation.definition.tag.terraform}
 
 - match: (provider|provisioner|variable|output|module|atlas)\s+(")?([\w-]+)(")?\s+({)
+  foldingStartMarker: '\{\s*$'
+  foldingStopMarker: '^\s*\}'
   captures:
     '1': {name: storage.type.function.terraform}
     '2': {name: string.terraform punctuation.definition.string.begin.terraform}
