@@ -102,6 +102,24 @@ repository:
     - match: ([\w-\/\._\\%]+)
       name: "string.quoted.double.terraform"
 
+  string_interpolation_functions:
+    comment: Builtin functions
+    begin: (replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values|cidrhost|cidrsubnet|coalesce|concat|element|format|formatlist|from|index|join|jsonencode|length|list|lookup|map|max|merge|min|slice|split|substr|zipmap)(\()
+    beginCaptures:
+      '1': {name: keyword.other.function.inline.terraform}
+      '2': {name: keyword.other.section.begin.terraform}
+    end: (\))
+    endCaptures:
+      '1': {name: keyword.other.section.end.terraform}
+    patterns:
+    - include: '$self'
+    - include: '#string_interpolation_keywords'
+
+  string_interpolation_keywords:
+    match: (terraform|var|self|count|module|path|data)(\.[\w\*]+)+
+    captures:
+      '0': {name: entity.other.attribute-name.terraform}
+
   string_interpolation:
     patterns:
     - name: source.terraform.embedded.source
@@ -113,29 +131,12 @@ repository:
         '0': {name: entity.tag.embedded.end.terraform}
       patterns:
       - include: '$self'
-
+      - include: '#string_interpolation_functions'
+      - include: '#string_interpolation_keywords'
       - match: (\.)
         captures:
           '0': {name: keyword.control.period.terraform}
-
-      - begin: (replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values)(\()
-        comment: Builtin functions
-        beginCaptures:
-          '1': {name: keyword.other.function.inline.terraform}
-          '2': {name: keyword.other.section.begin.terraform}
-        end: (\))
-        endCaptures:
-          '1': {name: keyword.other.section.end.terraform}
-        patterns:
-        - include: '#string_interpolation'
-
-        # TODO handle functions with multiple arguments
-
-        - include: '#strings'
-
-      - match: (terraform|var|self|count|module|path|data)(\.[\w\*]+)+
-        captures:
-          '0': {name: entity.other.attribute-name.terraform}
+      - include: '#strings'
 
 
 # TODO terraform configuration blocks

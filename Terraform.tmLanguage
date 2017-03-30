@@ -298,6 +298,14 @@
 							<string>$self</string>
 						</dict>
 						<dict>
+							<key>include</key>
+							<string>#string_interpolation_functions</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#string_interpolation_keywords</string>
+						</dict>
+						<dict>
 							<key>captures</key>
 							<dict>
 								<key>0</key>
@@ -310,60 +318,66 @@
 							<string>(\.)</string>
 						</dict>
 						<dict>
-							<key>begin</key>
-							<string>(replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values)(\()</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>keyword.other.function.inline.terraform</string>
-								</dict>
-								<key>2</key>
-								<dict>
-									<key>name</key>
-									<string>keyword.other.section.begin.terraform</string>
-								</dict>
-							</dict>
-							<key>comment</key>
-							<string>Builtin functions</string>
-							<key>end</key>
-							<string>(\))</string>
-							<key>endCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>keyword.other.section.end.terraform</string>
-								</dict>
-							</dict>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#string_interpolation</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#strings</string>
-								</dict>
-							</array>
-						</dict>
-						<dict>
-							<key>captures</key>
-							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>entity.other.attribute-name.terraform</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>(terraform|var|self|count|module|path|data)(\.[\w\*]+)+</string>
+							<key>include</key>
+							<string>#strings</string>
 						</dict>
 					</array>
 				</dict>
 			</array>
+		</dict>
+		<key>string_interpolation_functions</key>
+		<dict>
+			<key>begin</key>
+			<string>(replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values|cidrhost|cidrsubnet|coalesce|concat|element|format|formatlist|from|index|join|jsonencode|length|list|lookup|map|max|merge|min|slice|split|substr|zipmap)(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.function.inline.terraform</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.section.begin.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Builtin functions</string>
+			<key>end</key>
+			<string>(\))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.section.end.terraform</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string_interpolation_keywords</string>
+				</dict>
+			</array>
+		</dict>
+		<key>string_interpolation_keywords</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>entity.other.attribute-name.terraform</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(terraform|var|self|count|module|path|data)(\.[\w\*]+)+</string>
 		</dict>
 		<key>strings</key>
 		<dict>
