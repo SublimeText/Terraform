@@ -32,7 +32,7 @@ patterns:
   match: \b(0x[0-9A-Fa-f]+)([kKmMgG]b?)?\b
 
 - name: meta.resource.terraform
-  match: (resource|data)\s+(")?(\w+)(")?\s+(")?([\w-]+)(")?\s+({)
+  match: (resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)
   foldingStartMarker: '\{\s*$'
   foldingStopMarker: '^\s*\}'
   captures:
@@ -45,7 +45,7 @@ patterns:
     '7': {name: string.terraform punctuation.definition.string.end.terraform}
     '8': {name: punctuation.definition.tag.terraform}
 
-- match: (provider|provisioner|variable|output|module|atlas)\s+(")?([\w-]+)(")?\s+({)
+- match: (provider|provisioner|variable|output|module|atlas)\s+(")?([\w\-]+)(")?\s+({)
   foldingStartMarker: '\{\s*$'
   foldingStopMarker: '^\s*\}'
   captures:
@@ -99,12 +99,12 @@ repository:
       '0': {name: string.terraform punctuation.definition.string.end.terraform}
     patterns:
     - include: '#string_interpolation'
-    - match: ([\w-\/\._\\%]+)
+    - match: ([\w\-\/\._\\%]+)
       name: "string.quoted.double.terraform"
 
   string_interpolation_functions:
     comment: Builtin functions
-    begin: (replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values|cidrhost|cidrsubnet|coalesce|concat|element|format|formatlist|from|index|join|jsonencode|length|list|lookup|map|max|merge|min|slice|split|substr|zipmap)(\()
+    begin: (base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values|cidrhost|cidrsubnet|coalesce|concat|element|format|formatlist|from|index|join|jsonencode|length|list|lookup|map|max|merge|min|slice|split|substr|zipmap)(\()
     beginCaptures:
       '1': {name: keyword.other.function.inline.terraform}
       '2': {name: keyword.other.section.begin.terraform}

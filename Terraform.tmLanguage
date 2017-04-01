@@ -121,7 +121,7 @@
 			<key>foldingStopMarker</key>
 			<string>^\s*\}</string>
 			<key>match</key>
-			<string>(resource|data)\s+(")?(\w+)(")?\s+(")?([\w-]+)(")?\s+({)</string>
+			<string>(resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)</string>
 			<key>name</key>
 			<string>meta.resource.terraform</string>
 		</dict>
@@ -159,7 +159,7 @@
 			<key>foldingStopMarker</key>
 			<string>^\s*\}</string>
 			<key>match</key>
-			<string>(provider|provisioner|variable|output|module|atlas)\s+(")?([\w-]+)(")?\s+({)</string>
+			<string>(provider|provisioner|variable|output|module|atlas)\s+(")?([\w\-]+)(")?\s+({)</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -328,7 +328,7 @@
 		<key>string_interpolation_functions</key>
 		<dict>
 			<key>begin</key>
-			<string>(replace|base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values|cidrhost|cidrsubnet|coalesce|concat|element|format|formatlist|from|index|join|jsonencode|length|list|lookup|map|max|merge|min|slice|split|substr|zipmap)(\()</string>
+			<string>(base64decode|base64encode|base64sha256|ceil|cidrnetmask|compact|distinct|file|floor|keys|length|lower|md5|pathexpand|replace|sha1|sha256|signum|sort|timestamp|title|trimspace|upper|uuid|values|cidrhost|cidrsubnet|coalesce|concat|element|format|formatlist|from|index|join|jsonencode|length|list|lookup|map|max|merge|min|slice|split|substr|zipmap)(\()</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -411,7 +411,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([\w-\/\._\\%]+)</string>
+					<string>([\w\-\/\._\\%]+)</string>
 					<key>name</key>
 					<string>string.quoted.double.terraform</string>
 				</dict>
