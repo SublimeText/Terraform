@@ -82,7 +82,7 @@ patterns:
   beginCaptures:
     '0': {name: punctuation.definition.string.begin.terraform}
     '1': {name: keyword.operator.heredoc.terraform}
-  end: ^\1$
+  end: ^\s*\1$
   endCaptures:
     '0': {name: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform}
 
