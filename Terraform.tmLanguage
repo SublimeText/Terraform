@@ -358,7 +358,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>$self</string>
+					<string>#string_interpolation_functions</string>
 				</dict>
 				<dict>
 					<key>include</key>

@@ -112,7 +112,7 @@ repository:
     endCaptures:
       '1': {name: keyword.other.section.end.terraform}
     patterns:
-    - include: '$self'
+    - include: '#string_interpolation_functions'
     - include: '#string_interpolation_keywords'
 
   string_interpolation_keywords:
