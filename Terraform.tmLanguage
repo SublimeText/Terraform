@@ -377,7 +377,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(terraform|var|self|count|module|path|data)(\.[\w\*]+)+</string>
+			<string>(terraform|var|self|count|module|path|data|local)(\.[\w\*]+)+</string>
 		</dict>
 		<key>strings</key>
 		<dict>
