@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+data "${1:type}" "${2:name}" {
+	${3}
+}
+]]></content>
+	<tabTrigger>data</tabTrigger>
+	<scope>source.terraform</scope>
+	<description>data block</description>
+</snippet>
