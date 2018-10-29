@@ -364,6 +364,10 @@
 					<key>include</key>
 					<string>#string_interpolation_keywords</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#strings</string>
+				</dict>
 			</array>
 		</dict>
 		<key>string_interpolation_keywords</key>
