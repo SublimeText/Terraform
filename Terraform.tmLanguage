@@ -411,7 +411,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([\w\-\/\._\\%]+)</string>
+					<string>([\w\-\/\._\\%\(\)]+)</string>
 					<key>name</key>
 					<string>string.quoted.double.terraform</string>
 				</dict>
