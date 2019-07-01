@@ -115,7 +115,7 @@ contexts:
         - include: string_interpolation_functions
         - include: string_interpolation_keywords
   string_interpolation_keywords:
-    - match: '(terraform|var|self|count|module|path|data|local)(\.[\w\*]+)+'
+    - match: '(terraform|var|self|count|module|path|data|local)(\.[\w\-\*]+)+'
       captures:
         0: entity.other.attribute-name.terraform
   strings:
