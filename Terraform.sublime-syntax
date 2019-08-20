@@ -50,6 +50,7 @@ contexts:
         7: string.terraform punctuation.definition.string.end.terraform
         8: punctuation.definition.tag.terraform
     - match: '(provider|provisioner|variable|output|module|atlas)\s+(")?([\w\-]+)(")?\s+({)'
+      scope: meta.block.terraform
       captures:
         1: storage.type.function.terraform
         2: string.terraform punctuation.definition.string.begin.terraform
