@@ -68,15 +68,7 @@ contexts:
       comment: Language Constants
       scope: constant.language.terraform
 
-    - include: match-floats
-
-    # Numbers: Integers
-    # 
-    # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
-    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
-    - match: \d+
-      comment: Integers
-      scope: constant.numeric.integer.terraform
+    - include: match-numbers
 
   #   - match: '(resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)'
   #     scope: meta.resource.terraform
@@ -126,22 +118,25 @@ contexts:
   #           0: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform
   #         pop: true
 
-  # Numbers: Fractions and exponents
+  # Numbers: Integers, fractions and exponents
   # 
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
-  match-floats:
-    # Integer, no fraction, exponent.
+  match-numbers:
     - match: \d+([Ee][+-]?)\d+
+      comment: Integer, no fraction, optional exponent
       scope: constant.numeric.float.terraform
       captures:
         1: punctuation.separator.exponent.terraform
-    # Integer, fraction, optional exponent.
     - match: \d+(\.)\d+(?:([Ee][+-]?)\d+)?
+      comment: Integer, fraction, optional exponent
       scope: constant.numeric.float.terraform
       captures:
         1: punctuation.separator.decimal.terraform
         2: punctuation.separator.exponent.terraform
+    - match: \d+
+      comment: Integers
+      scope: constant.numeric.integer.terraform
 
   # string_interpolation:
   #   - match: '\$\{'
