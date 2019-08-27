@@ -111,3 +111,39 @@
 #   ^^^^ constant.language.terraform
 #         ^ -constant
 
+
+/////////////////////////////////////////////////////////////////////
+// INTEGER CONSTANTS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches integers.
+/////
+
+    444
+# ^ -constant -numeric
+#   ^^^ constant.numeric.integer.terraform
+
+/////
+// Matches zero.
+/////
+
+      0
+# ^ -constant -numeric
+#     ^ constant.numeric.integer.terraform
+
+/////
+// Matches one.
+/////
+
+      1
+# ^ -constant -numeric
+#     ^ constant.numeric.integer.terraform
+
+/////
+// Matches large integers.
+/////
+
+      26345645634561
+# ^ -constant -numeric
+#     ^^^^^^^^^^^^^^ constant.numeric.integer.terraform

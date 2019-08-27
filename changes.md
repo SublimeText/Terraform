@@ -15,11 +15,23 @@ The following changes have been made in order to either more closely follow the 
 
 ### Language Constants
 
-- *FIXED*: removed invalid constants `yes`, `no`, `on`, `off`.
+- *REMOVED*: invalid constants `yes`, `no`, `on`, `off`.
 - *ADDED*: `null` value from v0.12
 - *ADDED*: syntax tests
 
+### Numbers
 
-[terraform]: https://www.terraform.io/docs/configuration/index.html
+- Separated into `Integers` and `Floats`
+- *REMOVED*: [unit of measurement suffixes][uom-suffixes].
+- *REMOVED*: [hexadecimal literals][hex-literals].
+
+### Integers
+
+- *CHANGED*: scope `constant.numeric.terraform` is now `constant.numeric.integer.terraform`
+    - Better reflects scoping conventions
+
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
+[hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [st3-scopes]: https://www.sublimetext.com/docs/3/scope_naming.html
+[terraform]: https://www.terraform.io/docs/configuration/index.html
+[uom-suffixes]: https://github.com/hashicorp/terraform/issues/3287#issuecomment-241560576

@@ -37,6 +37,7 @@ contexts:
     # Inline Comments: begin at the operator, end at the end of the line.
     #
     # https://www.terraform.io/docs/configuration/syntax.html#comments
+    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
     - match: "#|//"
       comment: Inline Comments
       scope: punctuation.definition.comment.terraform
@@ -49,6 +50,7 @@ contexts:
     # Block comments: start and end delimiters for multi-line comments.
     # 
     # https://www.terraform.io/docs/configuration/syntax.html#comments
+    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
     - match: /\*
       comment: Block comments
       scope: punctuation.definition.comment.terraform
@@ -61,16 +63,19 @@ contexts:
     # Language Constants: booleans and `null`.
     # 
     # https://www.terraform.io/docs/configuration/expressions.html#literal-expressions
+    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
     - match: \b(true|false|null)\b
       comment: Language Constants
       scope: constant.language.terraform
 
-  #   - match: '\b([0-9]+)([kKmMgG]b?)?\b'
-  #     comment: Numbers
-  #     scope: constant.numeric.terraform
-  #   - match: '\b(0x[0-9A-Fa-f]+)([kKmMgG]b?)?\b'
-  #     comment: Hex numbers
-  #     scope: constant.numeric.terraform
+    # Numbers: Integers, fractional, and exponent part
+    # 
+    # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
+    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
+    - match: '\b\d+\b'
+      comment: Integers
+      scope: constant.numeric.integer.terraform
+
   #   - match: '(resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)'
   #     scope: meta.resource.terraform
   #     captures:
