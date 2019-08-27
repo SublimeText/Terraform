@@ -78,3 +78,36 @@
 #                 ^^^ -comment -punctuation
 #                     ^^ punctuation.definition.comment.terraform
 #                     ^^^^^^^^ comment.line.terraform
+
+/////////////////////////////////////////////////////////////////////
+// LANGUAGE CONSTANTS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches `true`.
+/////
+
+    true
+# ^ -constant
+#   ^^^^ constant.language.terraform
+#         ^ -constant
+
+/////
+// Matches `false`.
+/////
+
+    false
+# ^ -constant
+#   ^^^^^ constant.language.terraform
+#         ^ -constant
+
+
+/////
+// Matches `null`.
+/////
+
+    null
+# ^ -constant
+#   ^^^^ constant.language.terraform
+#         ^ -constant
+

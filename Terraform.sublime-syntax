@@ -38,7 +38,7 @@ contexts:
     #
     # https://www.terraform.io/docs/configuration/syntax.html#comments
     - match: "#|//"
-      comment: Comments
+      comment: Inline Comments
       scope: punctuation.definition.comment.terraform
       push:
         - meta_scope: comment.line.terraform
@@ -58,9 +58,13 @@ contexts:
           scope: punctuation.definition.comment.terraform
           pop: true
 
-  #   - match: \b(true|false|yes|no|on|off)\b
-  #     comment: Language constants (true, false, yes, no, on, off)
-  #     scope: constant.language.terraform
+    # Language Constants: booleans and `null`.
+    # 
+    # https://www.terraform.io/docs/configuration/expressions.html#literal-expressions
+    - match: \b(true|false|null)\b
+      comment: Language Constants
+      scope: constant.language.terraform
+
   #   - match: '\b([0-9]+)([kKmMgG]b?)?\b'
   #     comment: Numbers
   #     scope: constant.numeric.terraform
