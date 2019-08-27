@@ -42,11 +42,13 @@ contexts:
       captures:
         0: punctuation.definition.comment.terraform
       push:
-        - meta_scope: comment.line.number-sign.terraform
+        - meta_scope: comment.line.terraform
         - match: $\n?
           captures:
             0: punctuation.definition.comment.terraform
           pop: true
+
+    # Block comments: 
   #   - match: /\*
   #     comment: Block comments
   #     captures:
