@@ -6,9 +6,12 @@ The following changes have been made in order to either more closely follow the 
 
 - *CHANGED:* scope `comment.line.number-sign.terraform` to `comment.line.terraform`
     - Better reflects scoping conventions
-- *FIXED:* previously incorrect used `number-sign` even for `//` inline comments
+- *FIXED:* used `number-sign` even for `//` inline comments
 - *ADDED:* syntax tests
 
+### Block Comments
+
+- *ADDED:* syntax tests
 
 [terraform]: https://www.terraform.io/docs/configuration/index.html
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md

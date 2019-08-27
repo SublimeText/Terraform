@@ -36,3 +36,45 @@
 #   ^^ punctuation.definition.comment.terraform
 #   ^^^^^^^^^^^^^ comment.line.terraform
 
+/////////////////////////////////////////////////////////////////////
+// BLOCK COMMENTS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches for a single line.
+/////
+
+    /* foo */
+# ^ -comment -punctuation
+#   ^^ punctuation.definition.comment.terraform
+#   ^^^^^^^^ comment.block.terraform
+#          ^^ punctuation.definition.comment.terraform
+
+/////
+// Matches over multiple lines.
+/////
+
+    /*
+# ^ -comment -punctuation
+#   ^^ punctuation.definition.comment.terraform
+#   ^^^^ comment.block.terraform
+
+  foo
+# ^^^^ comment.block.terraform
+
+    */
+# ^^^^ comment.block.terraform
+#   ^^ punctuation.definition.comment.terraform
+
+/////
+// Matches inline comments after block ends.
+/////
+
+     /* comment */    // inline
+# ^ -comment -punctuation
+#    ^^ punctuation.definition.comment.terraform
+#    ^^^^^^^^^^^^ comment.block.terraform
+#               ^^ punctuation.definition.comment.terraform
+#                 ^^^ -comment -punctuation
+#                     ^^ punctuation.definition.comment.terraform
+#                     ^^^^^^^^ comment.line.terraform

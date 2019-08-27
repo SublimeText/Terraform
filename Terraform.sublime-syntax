@@ -39,26 +39,25 @@ contexts:
     # https://www.terraform.io/docs/configuration/syntax.html#comments
     - match: "#|//"
       comment: Comments
-      captures:
-        0: punctuation.definition.comment.terraform
+      scope: punctuation.definition.comment.terraform
       push:
         - meta_scope: comment.line.terraform
         - match: $\n?
-          captures:
-            0: punctuation.definition.comment.terraform
+          scope: punctuation.definition.comment.terraform
           pop: true
 
-    # Block comments: 
-  #   - match: /\*
-  #     comment: Block comments
-  #     captures:
-  #       0: punctuation.definition.comment.terraform
-  #     push:
-  #       - meta_scope: comment.block.terraform
-  #       - match: \*/
-  #         captures:
-  #           0: punctuation.definition.comment.terraform
-  #         pop: true
+    # Block comments: start and end delimiters for multi-line comments.
+    # 
+    # https://www.terraform.io/docs/configuration/syntax.html#comments
+    - match: /\*
+      comment: Block comments
+      scope: punctuation.definition.comment.terraform
+      push:
+        - meta_scope: comment.block.terraform
+        - match: \*/
+          scope: punctuation.definition.comment.terraform
+          pop: true
+
   #   - match: \b(true|false|yes|no|on|off)\b
   #     comment: Language constants (true, false, yes, no, on, off)
   #     scope: constant.language.terraform
