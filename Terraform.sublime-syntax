@@ -68,11 +68,13 @@ contexts:
       comment: Language Constants
       scope: constant.language.terraform
 
-    # Numbers: Integers, fractional, and exponent part
+    - include: match-floats
+
+    # Numbers: Integers
     # 
     # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
     # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
-    - match: '\b\d+\b'
+    - match: \d+
       comment: Integers
       scope: constant.numeric.integer.terraform
 
@@ -123,6 +125,24 @@ contexts:
   #         captures:
   #           0: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform
   #         pop: true
+
+  # Numbers: Fractions and exponents
+  # 
+  # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
+  match-floats:
+    # Integer, no fraction, exponent.
+    - match: \d+([Ee][+-]?)\d+
+      scope: constant.numeric.float.terraform
+      captures:
+        1: punctuation.separator.exponent.terraform
+    # Integer, fraction, optional exponent.
+    - match: \d+(\.)\d+(?:([Ee][+-]?)\d+)?
+      scope: constant.numeric.float.terraform
+      captures:
+        1: punctuation.separator.decimal.terraform
+        2: punctuation.separator.exponent.terraform
+
   # string_interpolation:
   #   - match: '\$\{'
   #     captures:

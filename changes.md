@@ -16,7 +16,7 @@ The following changes have been made in order to either more closely follow the 
 ### Language Constants
 
 - *REMOVED*: invalid constants `yes`, `no`, `on`, `off`.
-- *ADDED*: `null` value from v0.12
+- *ADDED*: `null` value
 - *ADDED*: syntax tests
 
 ### Numbers
@@ -29,6 +29,14 @@ The following changes have been made in order to either more closely follow the 
 
 - *CHANGED*: scope `constant.numeric.terraform` is now `constant.numeric.integer.terraform`
     - Better reflects scoping conventions
+- *ADDED*: syntax tests
+
+### Floats
+
+- *CHANGED*: scope `constant.numeric.terraform` is now `constant.numeric.float.terraform`
+    - Better reflects scoping conventions
+- *ADDED*: exponents in float literals
+- *ADDED*: syntax tests
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
