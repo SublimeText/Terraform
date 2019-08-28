@@ -47,7 +47,7 @@ contexts:
     - include: block-comments
     - include: inline-comments
     - include: language-constants
-    - include: numeric-constants
+    - include: numeric-literals
 
   #   - match: '(resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)'
   #     scope: meta.resource.terraform
@@ -138,7 +138,7 @@ contexts:
   # 
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
-  numeric-constants:
+  numeric-literals:
     - match: \d+({{exponent}})\d+
       comment: Integer, no fraction, optional exponent
       scope: constant.numeric.float.terraform
