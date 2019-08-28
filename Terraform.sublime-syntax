@@ -32,43 +32,11 @@ file_extensions:
 scope: source.terraform
 
 contexts:
-
   main:
-    # Inline Comments: begin at the operator, end at the end of the line.
-    #
-    # https://www.terraform.io/docs/configuration/syntax.html#comments
-    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
-    - match: "#|//"
-      comment: Inline Comments
-      scope: punctuation.definition.comment.terraform
-      push:
-        - meta_scope: comment.line.terraform
-        - match: $\n?
-          scope: punctuation.definition.comment.terraform
-          pop: true
-
-    # Block comments: start and end delimiters for multi-line comments.
-    # 
-    # https://www.terraform.io/docs/configuration/syntax.html#comments
-    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
-    - match: /\*
-      comment: Block comments
-      scope: punctuation.definition.comment.terraform
-      push:
-        - meta_scope: comment.block.terraform
-        - match: \*/
-          scope: punctuation.definition.comment.terraform
-          pop: true
-
-    # Language Constants: booleans and `null`.
-    # 
-    # https://www.terraform.io/docs/configuration/expressions.html#literal-expressions
-    # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
-    - match: \b(true|false|null)\b
-      comment: Language Constants
-      scope: constant.language.terraform
-
-    - include: match-numbers
+    - include: block-comments
+    - include: inline-comments
+    - include: language-constants
+    - include: numeric-constants
 
   #   - match: '(resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)'
   #     scope: meta.resource.terraform
@@ -118,11 +86,48 @@ contexts:
   #           0: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform
   #         pop: true
 
+  # Inline Comments: begin at the operator, end at the end of the line.
+  #
+  # https://www.terraform.io/docs/configuration/syntax.html#comments
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
+  inline-comments:
+    - match: "#|//"
+      comment: Inline Comments
+      scope: punctuation.definition.comment.terraform
+      push:
+        - meta_scope: comment.line.terraform
+        - match: $\n?
+          scope: punctuation.definition.comment.terraform
+          pop: true
+
+  # Block comments: start and end delimiters for multi-line comments.
+  # 
+  # https://www.terraform.io/docs/configuration/syntax.html#comments
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
+  block-comments:
+    - match: /\*
+      comment: Block comments
+      scope: punctuation.definition.comment.terraform
+      push:
+        - meta_scope: comment.block.terraform
+        - match: \*/
+          scope: punctuation.definition.comment.terraform
+          pop: true
+
+  # Language Constants: booleans and `null`.
+  # 
+  # https://www.terraform.io/docs/configuration/expressions.html#literal-expressions
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
+  language-constants:
+    - match: \b(true|false|null)\b
+      comment: Language Constants
+      scope: constant.language.terraform
+
   # Numbers: Integers, fractions and exponents
   # 
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
-  match-numbers:
+  numeric-constants:
     - match: \d+([Ee][+-]?)\d+
       comment: Integer, no fraction, optional exponent
       scope: constant.numeric.float.terraform
