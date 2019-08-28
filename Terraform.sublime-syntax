@@ -46,8 +46,7 @@ contexts:
   main:
     - include: block-comments
     - include: inline-comments
-    - include: language-constants
-    - include: numeric-literals
+    - include: literal-values
 
   #   - match: '(resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)'
   #     scope: meta.resource.terraform
@@ -96,6 +95,18 @@ contexts:
   #         captures:
   #           0: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform
   #         pop: true
+
+  # Literal Values: Numbers, Language Constants, and Strings
+  #
+  #   TODO: add strings
+  # 
+  #   Strings are _technically_ part of the "expression sub-language",
+  #   but make the most sense to be part of this stack.
+  # 
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
+  literal-values:
+    - include: numeric-literals
+    - include: language-constants
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
