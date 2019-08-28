@@ -31,6 +31,17 @@ file_extensions:
   - hcl
 scope: source.terraform
 
+variables:
+  # Identifiers: (UTF-8) (ID_Continue | '-')*;
+  # 
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#identifiers
+  identifer: \b[[:alpha:]][[:alnum:]_]*\b
+
+  # Exponent: "e" or "E" followed by an optional sign
+  # 
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
+  exponent: ([Ee][+-]?)
+
 contexts:
   main:
     - include: block-comments
@@ -128,12 +139,12 @@ contexts:
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
   numeric-constants:
-    - match: \d+([Ee][+-]?)\d+
+    - match: \d+({{exponent}})\d+
       comment: Integer, no fraction, optional exponent
       scope: constant.numeric.float.terraform
       captures:
         1: punctuation.separator.exponent.terraform
-    - match: \d+(\.)\d+(?:([Ee][+-]?)\d+)?
+    - match: \d+(\.)\d+(?:({{exponent}})\d+)?
       comment: Integer, fraction, optional exponent
       scope: constant.numeric.float.terraform
       captures:
