@@ -35,7 +35,7 @@ variables:
   # Identifiers: (UTF-8) (ID_Continue | '-')*;
   # 
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#identifiers
-  identifer: \b[[:alpha:]][[:alnum:]_]*\b
+  identifer: \b[[:alpha:]][[:alnum:]_-]*\b
 
   # Exponent: "e" or "E" followed by an optional sign
   # 
