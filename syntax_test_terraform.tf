@@ -248,3 +248,35 @@
 #                            ^^^^^ constant.character.escape.terraform
 #                                     ^^^^^^^^^^ constant.character.escape.terraform
 #                                               ^ punctuation.definition.string.end.terraform
+
+/////////////////////////////////////////////////////////////////////
+// STRING INTERPOLATION
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Correct scopes during interpolation.
+/////
+
+      "some ${interpolation} string"
+#   ^ -punctuation -string
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^ string.quoted.double.terraform
+#           ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#             ^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                          ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                            ^^^^^^^ string.quoted.double.terraform
+#                                  ^ punctuation.definition.string.end.terraform
+#                                   ^ -punctuation -string
+
+/////
+// Matches left-trim and right-trim.
+/////
+
+      "${~ fff ~}"
+#     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#        ^^ meta.interpolation.terraform keyword.operator.template.left.trim.terraform
+#          ^^^^^^ meta.interpolation.terraform
+#             ^^ meta.interpolation.terraform keyword.operator.template.right.trim.terraform
+#               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform

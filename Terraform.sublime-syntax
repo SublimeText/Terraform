@@ -52,7 +52,7 @@ variables:
   #   - \uNNNN: unicode char (NNNN is 4 hex digits)
   #   - \uNNNNNNNN: unicode char (NNNNNNNN us 8 digits)
   #
-  # URL
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   char_escapes: \\[nrt"\\]|\\u(\h{8}|\h{4})
 
 contexts:
@@ -179,7 +179,6 @@ contexts:
 
   # Strings:
   #
-  #   TODO: add interpolation
   #   TODO: add heredocs
   #
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
@@ -192,53 +191,30 @@ contexts:
         - match: '"'
           scope: punctuation.definition.string.end.terraform
           pop: true
+        - include: string-interpolation
         - match: '{{char_escapes}}'
+          comment: Character Escapes
           scope: constant.character.escape.terraform
 
-  # string_interpolation:
-  #   - match: '\$\{'
-  #     captures:
-  #       0: entity.tag.embedded.start.terraform
-  #     push:
-  #       - meta_scope: source.terraform.embedded.source
-  #       - match: '\}'
-  #         captures:
-  #           0: entity.tag.embedded.end.terraform
-  #         pop: true
-  #       - include: main
-  #       - include: string_interpolation_functions
-  #       - include: string_interpolation_keywords
-  #       - match: (\.)
-  #         captures:
-  #           0: keyword.control.period.terraform
-  #       - include: strings
-  # string_interpolation_functions:
-  #   - match: (abs|base64decode|base64encode|base64gzip|base64sha256|base64sha512|basename|bcrypt|ceil|chomp|chunklist|cidrhost|cidrnetmask|cidrsubnet|coalesce|coalescelist|compact|concat|contains|csvdecode|dirname|distinct|element|file|filebase64|filebase64sha256|filebase64sha512|fileexists|filemd5|filesha1|filesha256|filesha512|flatten|floor|format|formatdate|formatlist|indent|index|join|jsondecode|jsonencode|keys|length|list|log|lookup|lower|map|matchkeys|max|md5|merge|min|pathexpand|pow|range|replace|reverse|rsadecrypt|setintersection|setproduct|setunion|sha1|sha256|sha512|signum|slice|sort|split|strrev|substr|templatefile|timeadd|timestamp|title|tobool|tolist|tomap|tonumber|toset|tostring|transpose|trimspace|upper|urlencode|uuid|uuidv5|values|yamldecode|yamlencode|zipmap)(\()
-  #     comment: Builtin functions
-  #     captures:
-  #       1: keyword.other.function.inline.terraform
-  #       2: keyword.other.section.begin.terraform
-  #     push:
-  #       - match: (\))
-  #         captures:
-  #           1: keyword.other.section.end.terraform
-  #         pop: true
-  #       - include: string_interpolation_functions
-  #       - include: string_interpolation_keywords
-  # string_interpolation_keywords:
-  #   - match: '(terraform|var|self|count|module|path|data|local)(\.[\w\-\*]+)+'
-  #     captures:
-  #       0: entity.other.attribute-name.terraform
-  # strings:
-  #   - match: \"
-  #     comment: Strings
-  #     captures:
-  #       0: string.terraform punctuation.definition.string.begin.terraform
-  #     push:
-  #       - match: \"
-  #         captures:
-  #           0: string.terraform punctuation.definition.string.end.terraform
-  #         pop: true
-  #       - include: string_interpolation
-  #       - match: '([\w\-\/\._\\%]+)'
-  #         scope: string.quoted.double.terraform
+  # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
+  #
+  #   TODO: add directives (%{})
+  #   TODO: allow literals?
+  #   TODO:
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-interpolations
+  string-interpolation:
+    - match: \$\{
+      scope: punctuation.section.interpolation.begin.terraform
+      push:
+        - meta_scope: meta.interpolation.terraform
+        - clear_scopes: 1 # Clear the string.* scope.
+        - match: \}
+          scope: punctuation.section.interpolation.end.terraform
+          pop: true
+        - match: \~\s
+          comment: Trim left whitespace
+          scope: keyword.operator.template.left.trim.terraform
+        - match: \s\~
+          comment: Trim right whitespace
+          scope: keyword.operator.template.right.trim.terraform

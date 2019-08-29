@@ -42,10 +42,15 @@ The following changes have been made in order to either more closely follow the 
 
 - *ADDED*: allow `-` after first alpha character
 
-### Strings
+### Strings, Interpolation
 
 - *REMOVED*: the extra `string.terraform` scope
 - *ADDED*: character escapes for newline, carriage return, backslash, quote, and unicode points
+- *CHANGED*: scope `entity.tag.embedded.[begin|end]` is now `punctuation.section.interpolation.[begin|end]`
+    - Better reflects scoping conventions
+- *FIXED*: use `clear_scopes` to remove the `string.*` scope inside interpolation
+- *ADDED*: the trim-left and trim-right operators inside interpolation
+- *ADDED*: syntax tests
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
