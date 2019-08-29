@@ -1,28 +1,28 @@
 %YAML 1.2
-# 
+#
 # This syntax definition is based on the Terraform guide:
 # https://www.terraform.io/docs/configuration/index.html
-# 
+#
 # As well as the HCL Native Syntax Spec:
 # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
-# 
+#
 # For documentation on the .subline-syntax format:
 # https://www.sublimetext.com/docs/3/syntax.html
-# 
+#
 # Regex's in this file support the Oniguruma regex engine:
 # https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
-# 
+#
 ---
 name: Terraform
 
 # File Extensions:
-# 
+#
 # - ".tf": the standard file extension
 #   https://www.terraform.io/docs/configuration/index.html#code-organization
-# 
+#
 # - ".tfvars": variables definitions file
 #   https://www.terraform.io/docs/configuration/variables.html#variable-definitions-tfvars-files
-# 
+#
 # - ".hcl": non-terraform tools often use this HCL syntax, i.e. Vault
 #   https://www.vaultproject.io/docs/configuration/
 file_extensions:
@@ -33,17 +33,17 @@ scope: source.terraform
 
 variables:
   # Identifiers: (UTF-8) (ID_Continue | '-')*;
-  # 
+  #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#identifiers
   identifer: \b[[:alpha:]][[:alnum:]_-]*\b
 
   # Exponent: "e" or "E" followed by an optional sign
-  # 
+  #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
   exponent: ([Ee][+-]?)
 
   # Character Escapes:
-  # 
+  #
   #   - \n: newline
   #   - \r: carriage return
   #   - \t: tab
@@ -51,7 +51,7 @@ variables:
   #   - \\: backslash
   #   - \uNNNN: unicode char (NNNN is 4 hex digits)
   #   - \uNNNNNNNN: unicode char (NNNNNNNN us 8 digits)
-  # 
+  #
   # URL
   char_escapes: \\[nrt"\\]|\\u(\h{8}|\h{4})
 
@@ -110,10 +110,10 @@ contexts:
   #         pop: true
 
   # Literal Values: Numbers, Language Constants, and Strings
-  # 
+  #
   #   Strings are _technically_ part of the "expression sub-language",
   #   but make the most sense to be part of this stack.
-  # 
+  #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
   literal-values:
     - include: numeric-literals
@@ -125,7 +125,7 @@ contexts:
   # https://www.terraform.io/docs/configuration/syntax.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
   inline-comments:
-    - match: "#|//"
+    - match: '#|//'
       comment: Inline Comments
       scope: punctuation.definition.comment.terraform
       push:
@@ -135,7 +135,7 @@ contexts:
           pop: true
 
   # Block comments: start and end delimiters for multi-line comments.
-  # 
+  #
   # https://www.terraform.io/docs/configuration/syntax.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
   block-comments:
@@ -149,7 +149,7 @@ contexts:
           pop: true
 
   # Language Constants: booleans and `null`.
-  # 
+  #
   # https://www.terraform.io/docs/configuration/expressions.html#literal-expressions
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
   language-constants:
@@ -158,7 +158,7 @@ contexts:
       scope: constant.language.terraform
 
   # Numbers: Integers, fractions and exponents
-  # 
+  #
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
   numeric-literals:
@@ -178,10 +178,10 @@ contexts:
       scope: constant.numeric.integer.terraform
 
   # Strings:
-  # 
+  #
   #   TODO: add interpolation
   #   TODO: add heredocs
-  # 
+  #
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   string-literals:
