@@ -42,6 +42,19 @@ variables:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
   exponent: ([Ee][+-]?)
 
+  # Character Escapes:
+  # 
+  #   - \n: newline
+  #   - \r: carriage return
+  #   - \t: tab
+  #   - \": quote
+  #   - \\: backslash
+  #   - \uNNNN: unicode char (NNNN is 4 hex digits)
+  #   - \uNNNNNNNN: unicode char (NNNNNNNN us 8 digits)
+  # 
+  # URL
+  char_escapes: \\[nrt"\\]|\\u(\h{8}|\h{4})
+
 contexts:
   main:
     - include: block-comments
@@ -97,8 +110,6 @@ contexts:
   #         pop: true
 
   # Literal Values: Numbers, Language Constants, and Strings
-  #
-  #   TODO: add strings
   # 
   #   Strings are _technically_ part of the "expression sub-language",
   #   but make the most sense to be part of this stack.
@@ -107,6 +118,7 @@ contexts:
   literal-values:
     - include: numeric-literals
     - include: language-constants
+    - include: string-literals
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
@@ -164,6 +176,24 @@ contexts:
     - match: \d+
       comment: Integers
       scope: constant.numeric.integer.terraform
+
+  # Strings:
+  # 
+  #   TODO: add interpolation
+  #   TODO: add heredocs
+  # 
+  # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
+  string-literals:
+    - match: '"'
+      scope: punctuation.definition.string.begin.terraform
+      push:
+        - meta_scope: string.quoted.double.terraform
+        - match: '"'
+          scope: punctuation.definition.string.end.terraform
+          pop: true
+        - match: '{{char_escapes}}'
+          scope: constant.character.escape.terraform
 
   # string_interpolation:
   #   - match: '\$\{'

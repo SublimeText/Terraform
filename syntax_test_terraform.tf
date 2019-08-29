@@ -217,3 +217,34 @@
 #       ^ constant.numeric.float.terraform
 #        ^^ punctuation.separator.exponent.terraform
 #          ^^ constant.numeric.float.terraform
+
+/////////////////////////////////////////////////////////////////////
+// STRINGS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches punctuation and assigns meta_scope.
+/////
+
+      "a string"
+#   ^ -punctuation -string
+#     ^ punctuation.definition.string.begin.terraform
+#     ^^^^^^^^^^ string.quoted.double.terraform
+#              ^ punctuation.definition.string.end.terraform
+#                 ^ -punctuation -string
+
+/////
+// Matches character escapes.
+/////
+
+      "a \n b \r c \t d \" e \udead f \udeadbeef"
+#   ^ -punctuation -string
+#     ^ punctuation.definition.string.begin.terraform
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform
+#        ^^ constant.character.escape.terraform
+#             ^^ constant.character.escape.terraform
+#                  ^^ constant.character.escape.terraform
+#                       ^^ constant.character.escape.terraform
+#                            ^^^^^ constant.character.escape.terraform
+#                                     ^^^^^^^^^^ constant.character.escape.terraform
+#                                               ^ punctuation.definition.string.end.terraform
