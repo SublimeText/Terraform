@@ -198,11 +198,9 @@ contexts:
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
-  #   TODO: add directives (%{})
-  #   TODO: allow literals?
-  #   TODO:
+  #   TODO: allow literals
   #
-  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-interpolations
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
   string-interpolation:
     - match: \$\{
       scope: punctuation.section.interpolation.begin.terraform
@@ -218,3 +216,6 @@ contexts:
         - match: \s\~
           comment: Trim right whitespace
           scope: keyword.operator.template.right.trim.terraform
+        - match: \b(if|else|endif|for|in|endfor)\b
+          comment: if/else/endif and for/in/endfor directives
+          scope: keyword.control.terraform
