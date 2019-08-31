@@ -272,7 +272,7 @@
 // Matches left-trim and right-trim.
 /////
 
-      "${~ fff ~}"
+      "%{~ fff ~}"
 #     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #        ^^ meta.interpolation.terraform keyword.operator.template.left.trim.terraform
@@ -311,7 +311,7 @@
 // TODO: add checks for literal strings
 /////
 
-      "${ if name == "Mary" }${name}${ else }${ "Mary" }${ endif ~}"
+      "%{ if name == "Mary" }${name}%{ else }${ "Mary" }%{ endif ~}"
 #    ^ -string -punctuation
 #     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
@@ -337,7 +337,7 @@
 // TODO: add checks for var.*
 /////
 
-      "${ for name in var.names ~}${name}${ endfor ~}"
+      "%{ for name in var.names ~}${name}%{ endfor ~}"
 #   ^ -string -punctuation      
 #     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform

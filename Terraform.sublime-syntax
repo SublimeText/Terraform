@@ -202,7 +202,7 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
   string-interpolation:
-    - match: \$\{
+    - match: (\$|\%)\{
       scope: punctuation.section.interpolation.begin.terraform
       push:
         - meta_scope: meta.interpolation.terraform
