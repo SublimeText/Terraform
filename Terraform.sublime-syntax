@@ -198,7 +198,8 @@ contexts:
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
-  #   TODO: allow literals
+  #   TODO: include built-in function
+  #   TODO: include operators
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
   string-interpolation:
@@ -219,3 +220,4 @@ contexts:
         - match: \b(if|else|endif|for|in|endfor)\b
           comment: if/else/endif and for/in/endfor directives
           scope: keyword.control.terraform
+        - include: literal-values

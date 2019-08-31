@@ -52,6 +52,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: the trim-left and trim-right operators inside interpolation
 - *ADDED*: template if/for directives
 - *ADDED*: syntax tests
+- *ADDED*: match literals inside string interpolation
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478

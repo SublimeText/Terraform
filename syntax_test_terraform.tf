@@ -308,7 +308,6 @@
 
 /////
 // Matches if/else/endif directives.
-// TODO: add checks for literal strings
 /////
 
       "%{ if name == "Mary" }${name}%{ else }${ "Mary" }%{ endif ~}"
@@ -317,6 +316,9 @@
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
 #         ^^ meta.interpolation.terraform keyword.control.terraform
+#                    ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^^^^^ source.terraform meta.interpolation.terraform string.quoted.double.terraform
+#                         ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                           ^ punctuation.section.interpolation.end.terraform
 #                            ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #                                  ^ punctuation.section.interpolation.end.terraform 
@@ -324,6 +326,9 @@
 #                                      ^^^^ meta.interpolation.terraform keyword.control.terraform
 #                                           ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                            ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                                               ^ meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                ^^^^^ meta.interpolation.terraform string.quoted.double.terraform
+#                                                      ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                      ^ punctuation.section.interpolation.end.terraform
 #                                                       ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #                                                          ^^^^^ meta.interpolation.terraform keyword.control.terraform
