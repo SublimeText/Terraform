@@ -66,6 +66,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches index operations
 - *ADDED*: [full splat][splat] operator
 - *ADDED*: `punctuation.separator` on commas
+- *ADDED*: support for nested array literals
 - *ADDED*: syntax tests
 
 ### Attribute-Access

@@ -251,6 +251,7 @@ contexts:
         - include: inline-comments
         - include: literal-values
         - include: operators
+        - include: brackets
 
   # Attribute Access: "." Identifier
   #
@@ -287,6 +288,7 @@ contexts:
   # Function Calls: Identifier "(" arguments ")"
   #
   # TODO: match built-in functions
+  # TODO: handle nested function calls: list(map(string))
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
   # https://www.terraform.io/docs/configuration/expressions.html#function-calls
