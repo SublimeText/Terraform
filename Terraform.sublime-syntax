@@ -183,7 +183,7 @@ contexts:
   #   TODO: commas
   #   TODO: dot access operator
   #   TODO: parenthesis
-  #   TODO: asterisk in ".*" and "[*]"
+  #   TODO: asterisk in ".*"
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operators-and-delimiters
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operations
@@ -227,7 +227,6 @@ contexts:
 
   # Brackets: include any expression + asterisk
   #
-  #   TODO: include splat
   #   TODO: include for-expression
   #   TODO: include commas
   #
@@ -238,6 +237,12 @@ contexts:
       push:
         - match: \]
           scope: punctuation.section.brackets.end.terraform
+          pop: true
+        - match: (\*)\]
+          comment: Full-splat operator
+          scope: punctuation.section.brackets.end.terraform
+          captures:
+            1: keyword.operator.splat.terraform
           pop: true
         - include: block-comments
         - include: inline-comments

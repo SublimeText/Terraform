@@ -60,14 +60,18 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: arithmetic operators `+`, `-`, `*`, `/`, `%`
 - *ADDED*: logic operators `&&`, `||`, `!`
 - *ADDED*: conditional operator `predicate ? expression : expression`
+- *ADDED*: syntax tests
 
 ### Arrays
 
 - *ADDED*: first-class array syntax
-- *ADDED*: also matches index operations
+- *ADDED*: matches index operations
+- *ADDED*: [full splat][splat] operator
+- *ADDED*: syntax tests
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
+[splat]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#splat-operators
 [st3-scopes]: https://www.sublimetext.com/docs/3/scope_naming.html
 [terraform]: https://www.terraform.io/docs/configuration/index.html
 [uom-suffixes]: https://github.com/hashicorp/terraform/issues/3287#issuecomment-241560576

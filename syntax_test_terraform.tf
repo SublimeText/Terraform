@@ -555,3 +555,16 @@
 #       ^ keyword.operator.arithmetic.terraform
 #         ^ constant.numeric.integer.terraform
 #           ^ punctuation.section.brackets.end.terraform
+
+/////
+// Splat operator
+// TODO: match get-attr dot access
+/////
+
+    tuple[*].foo.bar[0]
+#        ^ punctuation.section.brackets.begin.terraform
+#         ^ punctuation.section.brackets.end.terraform keyword.operator.splat.terraform
+#          ^ punctuation.section.brackets.end.terraform
+#                   ^ punctuation.section.brackets.begin.terraform
+#                    ^ constant.numeric.integer.terraform
+#                     ^ punctuation.section.brackets.end.terraform
