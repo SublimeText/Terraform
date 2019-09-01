@@ -64,6 +64,7 @@ contexts:
     - include: brackets
     - include: attribute-definition
     - include: attribute-access
+    - include: function-calls
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -181,6 +182,7 @@ contexts:
         - include: literal-values
         - include: attribute-access
         - include: operators
+        - include: function-calls
 
   # Operators:
   #
@@ -281,3 +283,34 @@ contexts:
         2: variable.other.readwrite.terraform
         3: punctuation.section.parens.end.terraform
         4: keyword.operator.assignment.terraform
+
+  # Function Calls: Identifier "(" arguments ")"
+  #
+  # TODO: match built-in functions
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
+  # https://www.terraform.io/docs/configuration/expressions.html#function-calls
+  function-calls:
+    - match: ({{identifer}})(\()
+      comment: Function calls
+      captures:
+        1: variable.function.terraform
+        2: punctuation.section.parens.begin.terraform
+      push:
+        - meta_scope: meta.function-call.terraform
+        - match: \)
+          scope: punctuation.section.parens.end.terraform
+          pop: true
+        - include: block-comments
+        - include: inline-comments
+        - include: literal-values
+        - include: operators
+        - include: brackets
+        - include: attribute-access
+        - match: "{{identifer}}"
+          comment: Parameters
+          scope: variable.parameter.terraform
+        - match: \,
+          comment: Commas
+          scope: punctuation.separator.terraform
+

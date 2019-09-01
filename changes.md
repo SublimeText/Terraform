@@ -84,6 +84,17 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: paren-matching for computed attr names
 - *CHANGED* `keyword.operator` to `keyword.operator.assignment` for `=`
     - Better reflects scoping conventions
+- *ADDED*: syntax tests
+
+### Function Calls
+
+- *ADDED*: match outside of string interpolation
+- *CHANGED*: `keyword.other.function.inline` to `variable.function`
+    - Better reflects scoping conventions
+- *ADDED*: match operators, literals, comments, attributes, etc inside parameter list
+- *ADDED*: match variable parameters as `variable.parameter`
+- *ADDED*: match commas in parameter list
+- *ADDED*: syntax tests
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
