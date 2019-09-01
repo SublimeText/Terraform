@@ -62,6 +62,7 @@ contexts:
     - include: literal-values
     - include: operators
     - include: brackets
+    - include: attribute-access
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -176,14 +177,13 @@ contexts:
           comment: if/else/endif and for/in/endfor directives
           scope: keyword.control.terraform
         - include: literal-values
+        - include: attribute-access
 
   # Operators:
   #
   #   TODO: curly braces
   #   TODO: commas
-  #   TODO: dot access operator
   #   TODO: parenthesis
-  #   TODO: asterisk in ".*"
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operators-and-delimiters
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operations
@@ -248,3 +248,19 @@ contexts:
         - include: inline-comments
         - include: literal-values
         - include: operators
+
+  # Attribute Access: "." Identifier
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-access-operator
+  attribute-access:
+    - match: \.
+      scope: punctuation.accessor.dot.terraform
+      push:
+        - match: "{{identifer}}"
+          comment: Attribute access
+          scope: variable.other.member.terraform
+          pop: true
+        - match: \*
+          comment: Attribute-only splat
+          scope: keyword.operator.splat.terraform
+          pop: true

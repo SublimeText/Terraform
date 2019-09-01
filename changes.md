@@ -69,6 +69,14 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: [full splat][splat] operator
 - *ADDED*: syntax tests
 
+### Attribute-Access
+
+- *ADDED*: `variable.other.member` scope on attribute access
+- *ADDED*: `punctuation.accessor.dot` scope on dot-operator
+- *ADDED*: [attribute-only splat][splat] operator
+- *ADDED*: matches attribute-access inside string interpolation
+- *ADDED*: syntax-tests
+
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [splat]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#splat-operators
