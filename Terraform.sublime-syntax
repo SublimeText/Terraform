@@ -182,7 +182,6 @@ contexts:
   # Operators:
   #
   #   TODO: curly braces
-  #   TODO: commas
   #   TODO: parenthesis
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operators-and-delimiters
@@ -228,7 +227,6 @@ contexts:
   # Brackets: include any expression + asterisk
   #
   #   TODO: include for-expression
-  #   TODO: include commas
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#index-operator
   brackets:
@@ -244,6 +242,8 @@ contexts:
           captures:
             1: keyword.operator.splat.terraform
           pop: true
+        - match: \,
+          scope: punctuation.separator.terraform
         - include: block-comments
         - include: inline-comments
         - include: literal-values

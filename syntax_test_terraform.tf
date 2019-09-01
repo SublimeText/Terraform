@@ -473,13 +473,14 @@
 /////
 // Ellipsis
 // TODO: match function call
-// TODO: match commas
 /////
 
     min([55, 2453, 2]...)
 #       ^ punctuation.section.brackets.begin.terraform
 #        ^^ constant.numeric.integer.terraform
+#          ^ punctuation.separator.terraform
 #            ^^^^ constant.numeric.integer.terraform
+#                ^ punctuation.separator.terraform
 #                  ^ constant.numeric.integer.terraform
 #                   ^ punctuation.section.brackets.end.terraform
 #                    ^^^ keyword.operator.terraform 
@@ -492,7 +493,6 @@
 
 /////
 // Index Operations
-// TODO: match commas
 /////
 
     thing[1]
@@ -504,7 +504,6 @@
 
 /////
 // Arrays of literals
-// TODO: match commas
 /////
 
     ["a", "b", "c"]
@@ -512,9 +511,11 @@
 #    ^ punctuation.definition.string.begin.terraform
 #    ^^^ string.quoted.double.terraform
 #      ^ punctuation.definition.string.end.terraform
+#       ^ punctuation.separator.terraform
 #         ^ punctuation.definition.string.begin.terraform
 #         ^^^ string.quoted.double.terraform
 #           ^ punctuation.definition.string.end.terraform
+#            ^ punctuation.separator.terraform
 #              ^ punctuation.definition.string.begin.terraform
 #              ^^^ string.quoted.double.terraform
 #                ^ punctuation.definition.string.end.terraform
@@ -522,12 +523,12 @@
 
 /////
 // Allows inline comments
-// TODO: match commas
 /////
 
     [1, /* inline */ 2]
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^ constant.numeric.integer.terraform
+#     ^ punctuation.separator.terraform
 #       ^^ punctuation.definition.comment.terraform
 #       ^^^^^^^^^^^^ comment.block.terraform
 #                 ^^ punctuation.definition.comment.terraform
@@ -536,13 +537,13 @@
 
 /////
 // Allows expression over multiple lines
-// TODO: match commas
 /////
 
     [
 #   ^ punctuation.section.brackets.begin.terraform
       1,
 #     ^ constant.numeric.integer.terraform
+#      ^ punctuation.separator.terraform
       2
 #     ^ constant.numeric.integer.terraform
     ]
