@@ -51,8 +51,15 @@ The following changes have been made in order to either more closely follow the 
 - *FIXED*: use `clear_scopes` to remove the `string.*` scope inside interpolation
 - *ADDED*: the trim-left and trim-right operators inside interpolation
 - *ADDED*: template if/for directives
-- *ADDED*: syntax tests
 - *ADDED*: match literals inside string interpolation
+- *ADDED*: syntax tests
+
+### Operators
+
+- *ADDED*: comparison operators `==`, `!=`, `<`, `>`, `<=`, `>=`
+- *ADDED*: arithmetic operators `+`, `-`, `*`, `/`, `%`
+- *ADDED*: logic operators `&&`, `||`, `!`
+- *ADDED*: conditional operator `predicate ? expression : expression`
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478

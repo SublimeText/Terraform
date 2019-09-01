@@ -361,3 +361,121 @@
 #                                                   ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                    ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                                                     ^ -string -punctuation
+
+/////////////////////////////////////////////////////////////////////
+// Operators
+// TODO: add tests for variable assignment "="
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Comparison
+/////
+
+    a == b
+#   ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#         ^ -keyword -operator 
+
+    a != b
+#   ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#         ^ -keyword -operator 
+
+    a < b
+#    ^ -keyword -operator
+#     ^ keyword.operator.terraform
+#      ^ -keyword -operator
+
+    a <= b
+#    ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#       ^ -keyword -operator
+
+    a > b
+#    ^ -keyword -operator 
+#     ^ keyword.operator.terraform
+#      ^ -keyword -operator
+
+    a >= b
+#    ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#       ^ -keyword -operator
+
+/////
+// Arithmetic
+/////
+
+    a + b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a - b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a * b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a / b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a % b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    -a
+#  ^ -keyword -operator
+#   ^ keyword.operator.arithmetic.terraform 
+#    ^ -keyword -operator 
+
+/////
+// Logic
+/////
+
+    a && b
+#   ^^ -keyword -operator
+#     ^^ keyword.operator.logical.terraform
+#       ^^ -keyword -operator
+
+    a || b
+#   ^^ -keyword -operator
+#     ^^ keyword.operator.logical.terraform
+#       ^^ -keyword -operator
+
+    !a
+# ^^ -keyword -operator
+#   ^ keyword.operator.logical.terraform
+#    ^^ -keyword -operator
+
+/////
+// Conditional
+// TODO: match brackets
+// TODO: match function call
+/////
+
+    length(some_list) > 0 ? some_list[0] : default
+#                     ^ keyword.operator.terraform
+#                       ^ constant.numeric.integer.terraform
+#                         ^ keyword.operator.terraform
+#                                     ^ constant.numeric.integer.terraform
+#                                        ^ keyword.operator.terraform
+
+/////
+// Ellipsis
+// TODO: match brackets
+// TODO: match function call
+// TODO: match commas
+/////
+
+    min([55, 2453, 2]...)
+#        ^^ constant.numeric.integer.terraform
+#            ^^^^ constant.numeric.integer.terraform
+#                  ^ constant.numeric.integer.terraform
+#                    ^^^ keyword.operator.terraform 
