@@ -395,7 +395,6 @@
 
 /////////////////////////////////////////////////////////////////////
 // Operators
-// TODO: add tests for variable assignment "="
 /////////////////////////////////////////////////////////////////////
 
 /////
@@ -606,7 +605,7 @@
 #                     ^ punctuation.section.brackets.end.terraform
 
 /////////////////////////////////////////////////////////////////////
-// Attribute Access (Operator)
+// Attribute Access
 /////////////////////////////////////////////////////////////////////
 
 /////
@@ -657,3 +656,32 @@
 #                  ^ punctuation.section.brackets.begin.terraform
 #                   ^ constant.numeric.integer.terraform
 #                    ^ punctuation.section.brackets.end.terraform
+
+/////////////////////////////////////////////////////////////////////
+// Attribute Definition
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Basic definition
+// TODO: match var keyword
+// TODO: match function call
+/////
+
+    count = length(var.availability_zones)
+#   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#         ^ variable.declaration.terraform keyword.operator.assignment.terraform
+#                     ^ punctuation.accessor.dot.terraform
+#                      ^^^^^^^^^^^^^^^^^^ variable.other.member.terraform
+
+/////
+// Populate an attribute from a variable value
+/////
+
+    (foo) = "baz"
+#   ^ variable.declaration.terraform punctuation.section.parens.begin.terraform
+#    ^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#       ^ variable.declaration.terraform punctuation.section.parens.end.terraform
+#         ^ variable.declaration.terraform keyword.operator.assignment.terraform
+#           ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#           ^^^^^ string.quoted.double.terraform
+#               ^ string.quoted.double.terraform punctuation.definition.string.end.terraform 

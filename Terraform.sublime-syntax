@@ -62,6 +62,7 @@ contexts:
     - include: literal-values
     - include: operators
     - include: brackets
+    - include: attribute-definition
     - include: attribute-access
 
   # Literal Values: Numbers, Language Constants, and Strings
@@ -140,6 +141,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   string-literals:
     - match: '"'
+      comment: Strings
       scope: punctuation.definition.string.begin.terraform
       push:
         - meta_scope: string.quoted.double.terraform
@@ -159,6 +161,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
   string-interpolation:
     - match: (\$|\%)\{
+      comment: String interpolation
       scope: punctuation.section.interpolation.begin.terraform
       push:
         - meta_scope: meta.interpolation.terraform
@@ -195,8 +198,6 @@ contexts:
       scope: keyword.operator.terraform
     - match: \!\=
       scope: keyword.operator.terraform
-    - match: \=
-      scope: keyword.operator.assignment.terraform
     - match: \+
       scope: keyword.operator.arithmetic.terraform
     - match: \-
@@ -264,3 +265,19 @@ contexts:
           comment: Attribute-only splat
           scope: keyword.operator.splat.terraform
           pop: true
+
+  # Attribute Definition: Identifier "=" Expression Newline
+  #
+  # The "=" operator cannot be immediately followed by "="
+  # ">", as those are other operators, not attr definitions.
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-definitions
+  attribute-definition:
+    - match: (\()?({{identifer}})(\))?\s*(\=[^\=|\>])\s*
+      comment: Identifier "=" with optional parens
+      scope: variable.declaration.terraform
+      captures:
+        1: punctuation.section.parens.begin.terraform
+        2: variable.other.readwrite.terraform
+        3: punctuation.section.parens.end.terraform
+        4: keyword.operator.assignment.terraform

@@ -38,10 +38,6 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: exponents in float literals
 - *ADDED*: syntax tests
 
-### Identifiers
-
-- *ADDED*: allow `-` after first alpha character
-
 ### Strings, Interpolation
 
 - *REMOVED*: the extra `string.terraform` scope
@@ -79,6 +75,15 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: [attribute-only splat][splat] operator
 - *ADDED*: matches attribute-access inside string interpolation
 - *ADDED*: syntax-tests
+
+### Attribute-Definition
+
+- *ADDED*: allow `-` after first alpha character in identifiers
+- *CHANGED*: `variable.assignment` to `variable.other.readwrite`
+    - Better reflects scoping conventions
+- *ADDED*: paren-matching for computed attr names
+- *CHANGED* `keyword.operator` to `keyword.operator.assignment` for `=`
+    - Better reflects scoping conventions
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
