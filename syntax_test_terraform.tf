@@ -456,7 +456,6 @@
 
 /////
 // Conditional
-// TODO: match brackets
 // TODO: match function call
 /////
 
@@ -464,18 +463,95 @@
 #                     ^ keyword.operator.terraform
 #                       ^ constant.numeric.integer.terraform
 #                         ^ keyword.operator.terraform
+#                                    ^ punctuation.section.brackets.begin.terraform
 #                                     ^ constant.numeric.integer.terraform
+#                                      ^ punctuation.section.brackets.end.terraform
 #                                        ^ keyword.operator.terraform
 
 /////
 // Ellipsis
-// TODO: match brackets
 // TODO: match function call
 // TODO: match commas
 /////
 
     min([55, 2453, 2]...)
+#       ^ punctuation.section.brackets.begin.terraform
 #        ^^ constant.numeric.integer.terraform
 #            ^^^^ constant.numeric.integer.terraform
 #                  ^ constant.numeric.integer.terraform
+#                   ^ punctuation.section.brackets.end.terraform
 #                    ^^^ keyword.operator.terraform 
+
+/////////////////////////////////////////////////////////////////////
+// Brackets: Index Operations and Arrays
+// TODO: add for-expressions
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Index Operations
+// TODO: match commas
+/////
+
+    thing[1]
+#       ^ -punctuation 
+#        ^ punctuation.section.brackets.begin.terraform
+#         ^ constant.numeric.integer.terraform
+#          ^ punctuation.section.brackets.end.terraform
+#           ^ -punctuation
+
+/////
+// Arrays of literals
+// TODO: match commas
+/////
+
+    ["a", "b", "c"]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^ punctuation.definition.string.begin.terraform
+#    ^^^ string.quoted.double.terraform
+#      ^ punctuation.definition.string.end.terraform
+#         ^ punctuation.definition.string.begin.terraform
+#         ^^^ string.quoted.double.terraform
+#           ^ punctuation.definition.string.end.terraform
+#              ^ punctuation.definition.string.begin.terraform
+#              ^^^ string.quoted.double.terraform
+#                ^ punctuation.definition.string.end.terraform
+#                 ^ punctuation.section.brackets.end.terraform
+
+/////
+// Allows inline comments
+// TODO: match commas
+/////
+
+    [1, /* inline */ 2]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^ constant.numeric.integer.terraform
+#       ^^ punctuation.definition.comment.terraform
+#       ^^^^^^^^^^^^ comment.block.terraform
+#                 ^^ punctuation.definition.comment.terraform
+#                    ^ constant.numeric.integer.terraform
+#                     ^ punctuation.section.brackets.end.terraform
+
+/////
+// Allows expression over multiple lines
+// TODO: match commas
+/////
+
+    [
+#   ^ punctuation.section.brackets.begin.terraform
+      1,
+#     ^ constant.numeric.integer.terraform
+      2
+#     ^ constant.numeric.integer.terraform
+    ]
+#   ^ punctuation.section.brackets.end.terraform
+
+/////
+// Allows operators
+/////
+
+    [ 1 + 2 ]
+#   ^ punctuation.section.brackets.begin.terraform
+#     ^ constant.numeric.integer.terraform
+#       ^ keyword.operator.arithmetic.terraform
+#         ^ constant.numeric.integer.terraform
+#           ^ punctuation.section.brackets.end.terraform

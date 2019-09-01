@@ -61,53 +61,7 @@ contexts:
     - include: inline-comments
     - include: literal-values
     - include: operators
-
-  #   - match: '(resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)'
-  #     scope: meta.resource.terraform
-  #     captures:
-  #       1: storage.type.function.terraform
-  #       2: string.terraform punctuation.definition.string.begin.terraform
-  #       3: string.value.terraform
-  #       4: string.terraform punctuation.definition.string.end.terraform
-  #       5: string.terraform punctuation.definition.string.begin.terraform
-  #       6: string.value.terraform
-  #       7: string.terraform punctuation.definition.string.end.terraform
-  #       8: punctuation.definition.tag.terraform
-  #   - match: '(provider|provisioner|variable|output|module|atlas)\s+(")?([\w\-]+)(")?\s+({)'
-  #     scope: meta.block.terraform
-  #     captures:
-  #       1: storage.type.function.terraform
-  #       2: string.terraform punctuation.definition.string.begin.terraform
-  #       3: string.value.terraform
-  #       4: string.terraform punctuation.definition.string.end.terraform
-  #       5: punctuation.definition.tag.terraform
-  #   - match: '([\w_-]+)\s*(=)\s*'
-  #     comment: Value assignments (left hand side not in double quotes)
-  #     captures:
-  #       1: variable.other.assignment.terraform
-  #       2: keyword.operator.terraform
-  #   - match: '(")([\w_-]+)(")\s*(=)\s*'
-  #     comment: Value assignments (left hand side in double quotes)
-  #     captures:
-  #       1: punctuation.quote.double.terraform
-  #       2: variable.assignment.terraform
-  #       3: punctuation.quote.double.terraform
-  #       4: keyword.operator.terraform
-  #   - match: '([\w\-_]+)\s+({)'
-  #     comment: Maps
-  #     captures:
-  #       1: entity.name.section.terraform
-  #       2: punctuation.definition.tag.terraform
-  #   - match: (?>\s*<<(\w+))
-  #     captures:
-  #       0: punctuation.definition.string.begin.terraform
-  #       1: keyword.operator.heredoc.terraform
-  #     push:
-  #       - meta_scope: string.unquoted.heredoc.terraform
-  #       - match: ^\s*\1$
-  #         captures:
-  #           0: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform
-  #         pop: true
+    - include: brackets
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -226,7 +180,6 @@ contexts:
   # Operators:
   #
   #   TODO: curly braces
-  #   TODO: array brackets
   #   TODO: commas
   #   TODO: dot access operator
   #   TODO: parenthesis
@@ -267,7 +220,26 @@ contexts:
       scope: keyword.operator.terraform
     - match: \?
       scope: keyword.operator.terraform
-    - match: "\\:"
-      scope: keyword.operator.terraform
     - match: \.\.\.
       scope: keyword.operator.terraform
+    - match: "\\:"
+      scope: keyword.operator.terraform
+
+  # Brackets: include any expression + asterisk
+  #
+  #   TODO: include splat
+  #   TODO: include for-expression
+  #   TODO: include commas
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#index-operator
+  brackets:
+    - match: \[
+      scope: punctuation.section.brackets.begin.terraform
+      push:
+        - match: \]
+          scope: punctuation.section.brackets.end.terraform
+          pop: true
+        - include: block-comments
+        - include: inline-comments
+        - include: literal-values
+        - include: operators

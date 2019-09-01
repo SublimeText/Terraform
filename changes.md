@@ -61,6 +61,11 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: logic operators `&&`, `||`, `!`
 - *ADDED*: conditional operator `predicate ? expression : expression`
 
+### Arrays
+
+- *ADDED*: first-class array syntax
+- *ADDED*: also matches index operations
+
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [st3-scopes]: https://www.sublimetext.com/docs/3/scope_naming.html
