@@ -281,6 +281,35 @@
 #               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
+/////
+// Matches operators
+/////
+
+    "${ something ? true : false }"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#    ^^ punctuation.section.interpolation.begin.terraform
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                 ^ keyword.operator.terraform
+#                   ^^^^ meta.interpolation.terraform constant.language.terraform
+#                        ^ meta.interpolation.terraform keyword.operator.terraform
+#                          ^^^^^ meta.interpolation.terraform constant.language.terraform
+#                                ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                 ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+
+/////
+// Dot-access attributes in string interpolation
+/////
+
+    "hello ${aws_instance.ubuntu}"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#   ^^^^^^^ string.quoted.double.terraform
+#          ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#            ^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                        ^ meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                         ^^^^^^ meta.interpolation.terraform variable.other.member.terraform
+#                               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+
 /////////////////////////////////////////////////////////////////////
 // Template If Directives
 /////////////////////////////////////////////////////////////////////
@@ -602,21 +631,6 @@
 #   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                ^ -variable
 #   ^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform
-
-/////
-// Dot-access attributes in string interpolation
-/////
-
-    "hello ${aws_instance.ubuntu}"
-#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#   ^^^^^^^ string.quoted.double.terraform
-#          ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#            ^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
-#                        ^ meta.interpolation.terraform punctuation.accessor.dot.terraform
-#                         ^^^^^^ meta.interpolation.terraform variable.other.member.terraform
-#                               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
-
 
 /////
 // Matches inside for-expressions

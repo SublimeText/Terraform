@@ -154,7 +154,6 @@ contexts:
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
   #   TODO: include built-in function
-  #   TODO: include operators
   #   TODO: include builtin variables
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
@@ -178,6 +177,7 @@ contexts:
           scope: keyword.control.terraform
         - include: literal-values
         - include: attribute-access
+        - include: operators
 
   # Operators:
   #

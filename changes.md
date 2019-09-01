@@ -52,6 +52,8 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: the trim-left and trim-right operators inside interpolation
 - *ADDED*: template if/for directives
 - *ADDED*: match literals inside string interpolation
+- *ADDED*: match operators inside string interpolation
+- *ADDED*: match attribute access inside string interpolation
 - *ADDED*: syntax tests
 
 ### Operators
