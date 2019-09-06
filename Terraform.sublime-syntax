@@ -69,7 +69,7 @@ contexts:
     - include: brackets
     - include: attribute-definition
     - include: attribute-access
-    - include: built_in_functions
+    - include: functions
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -186,7 +186,7 @@ contexts:
         - include: literal-values
         - include: attribute-access
         - include: operators
-        - include: built_in_functions
+        - include: functions
 
   # Operators:
   #
@@ -294,32 +294,27 @@ contexts:
   # https://www.terraform.io/docs/configuration/functions.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
   # https://www.terraform.io/docs/configuration/expressions.html#function-calls
-  built_in_functions:
+  functions:
     - match: (({{predeclared_funcs}})|\b({{identifer}})\b)(\()
       comment: Built-in function calls
       captures:
-        # 1: support.function.builtin.terraform
-        # 2: punctuation.section.parens.begin.terraform
         2: support.function.builtin.terraform
         3: variable.function.terraform
         4: punctuation.section.parens.begin.terraform
-      push: function_calls_pop
-
-  # Function Call Syntax: matches the parameter list
-  function_calls_pop:
-    - meta_scope: meta.function-call.terraform
-    - match: \)
-      scope: punctuation.section.parens.end.terraform
-      pop: true
-    - include: block-comments
-    - include: inline-comments
-    - include: literal-values
-    - include: operators
-    - include: brackets
-    - include: attribute-access
-    - match: "{{identifer}}"
-      comment: Parameters
-      scope: variable.parameter.terraform
-    - match: \,
-      comment: Commas
-      scope: punctuation.separator.terraform
+      push:
+        - meta_scope: meta.function-call.terraform
+        - match: \)
+          scope: punctuation.section.parens.end.terraform
+          pop: true
+        - include: block-comments
+        - include: inline-comments
+        - include: literal-values
+        - include: operators
+        - include: brackets
+        - include: attribute-access
+        - match: "{{identifer}}"
+          comment: Parameters
+          scope: variable.parameter.terraform
+        - match: \,
+          comment: Commas
+          scope: punctuation.separator.terraform
