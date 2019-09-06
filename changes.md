@@ -98,6 +98,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: all new built-in functions
 - *CHANGED*: `keyword.other.function.inline` to `support.function.builtin`
     - Better reflects scoping conventions
+- *ADDED*: matches nested function calls
 - *ADDED*: syntax tests
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md

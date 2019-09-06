@@ -312,6 +312,7 @@ contexts:
         - include: operators
         - include: brackets
         - include: attribute-access
+        - include: functions
         - match: "{{identifer}}"
           comment: Parameters
           scope: variable.parameter.terraform

@@ -799,11 +799,28 @@
 #                                    ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
+/////
+// Matche nested function calls.
+/////
+
+    func(thing(yep(1)))
+#   ^^^^ meta.function-call.terraform variable.function.terraform
+#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#        ^^^^^ meta.function-call.terraform meta.function-call.terraform variable.function.terraform
+#             ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#              ^^^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform variable.function.terraform
+#                 ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform constant.numeric.integer.terraform
+#                   ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                      ^ -function
+
 /////////////////////////////////////////////////////////////////////
 // Built-in Terraform Functions
 // TODO: match % placeholders in format()-family first parameters
 // TODO: match regexs in regex()-family first parameters
-/////////////////////////////////////////////////////////////////////
+////////////////////////`/////////////////////////////////////////////
 
 /////
 // Numeric Functions
@@ -1635,63 +1652,70 @@
 #             ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
-/////
-// TODO: Match nested functions
-/////
-
       filebase64sha256(file("filename"))
 #     ^^^^^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #                     ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                      ^^^^^^^^^^^^^^^^ meta.function-call.terraform
-
-/////
-// TODO: Match nested functions
-/////
+#                      ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                          ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                           ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                                     ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                       ^ -function
 
       filebase64sha512(file("filename"))
 #     ^^^^^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #                     ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                      ^^^^^^^^^^^^^^^^ meta.function-call.terraform
+#                      ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                          ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                           ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                                     ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                       ^ -function
 
-/////
-// TODO: Match nested functions
-/////
-      
       filemd5(file("filename"))
 #     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform variable.parameter.terraform
-#                 ^^^^^^^^^^^^ meta.function-call.terraform
-
-/////
-// TODO: Match nested functions
-/////
+#             ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       filemd1(file("filename"))
 #     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform variable.parameter.terraform
-#                 ^^^^^^^^^^^^ meta.function-call.terraform
-
-/////
-// TODO: Match nested functions
-/////
+#             ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                              ^ -function
 
       filesha256(file("filename"))
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^^^^ meta.function-call.terraform variable.parameter.terraform
-#                    ^^^^^^^^^^^^ meta.function-call.terraform
-
-/////
-// TODO: Match nested functions
-/////
+#                ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                     ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                 ^ -function
 
       filesha512(file("filename"))
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^^^^ meta.function-call.terraform variable.parameter.terraform
-#                    ^^^^^^^^^^^^ meta.function-call.terraform
+#                ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                     ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                 ^ -function
  
       md5("hello world")
 #     ^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -1701,16 +1725,27 @@
 #                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////
-// TODO: Match nested functions
 // TODO: Match builtin variables
 /////
 
       rsadecrypt(filebase64("${path.module}/ciphertext"), file("privatekey.pem"))
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^^^^^^^^^^ meta.function-call.terraform variable.parameter.terraform
-#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform
-
+#                ^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                          ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                           ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                              ^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform
+#                                          ^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                                                      ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                                       ^ meta.function-call.terraform punctuation.separator.terraform
+#                                                         ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                                                             ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                                                              ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                               ^^^^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
+#                                                                              ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                                                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                                                                ^ -function
 
       sha1("hello world")
 #     ^^^^ meta.function-call.terraform support.function.builtin.terraform
