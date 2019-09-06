@@ -70,7 +70,6 @@ contexts:
     - include: attribute-definition
     - include: attribute-access
     - include: built_in_functions
-    - include: functions
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -188,7 +187,6 @@ contexts:
         - include: attribute-access
         - include: operators
         - include: built_in_functions
-        - include: functions
 
   # Operators:
   #
@@ -291,29 +289,20 @@ contexts:
         3: punctuation.section.parens.end.terraform
         4: keyword.operator.assignment.terraform
 
-  # Built-in functions
+  # Functions: Terraform builtins and unknown
   #
   # https://www.terraform.io/docs/configuration/functions.html
-  built_in_functions:
-    - match: ({{predeclared_funcs}})(\()
-      comment: Built-in function calls
-      captures:
-        1: support.function.builtin.terraform
-        2: punctuation.section.parens.begin.terraform
-      push: function_calls_pop
-
-  # Function Calls: Identifier "(" arguments ")"
-  #
-  # TODO: handle nested function calls: list(map(string))
-  #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
   # https://www.terraform.io/docs/configuration/expressions.html#function-calls
-  functions:
-    - match: '\b({{identifer}})\b(\()'
-      comment: Function calls
+  built_in_functions:
+    - match: (({{predeclared_funcs}})|\b({{identifer}})\b)(\()
+      comment: Built-in function calls
       captures:
-        1: variable.function.terraform
-        2: punctuation.section.parens.begin.terraform
+        # 1: support.function.builtin.terraform
+        # 2: punctuation.section.parens.begin.terraform
+        2: support.function.builtin.terraform
+        3: variable.function.terraform
+        4: punctuation.section.parens.begin.terraform
       push: function_calls_pop
 
   # Function Call Syntax: matches the parameter list
