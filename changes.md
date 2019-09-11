@@ -101,6 +101,13 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches nested function calls
 - *ADDED*: syntax tests
 
+### For-Expressions
+
+- *ADDED*: matches inside tuple syntax
+- *ADDED*: matches `for` keyword
+- *ADDED*: matches `in` keyword
+- *ADDED*: matches `:` operator
+
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [splat]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#splat-operators

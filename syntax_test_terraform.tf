@@ -538,7 +538,6 @@
 
 /////////////////////////////////////////////////////////////////////
 // Brackets: Index Operations and Arrays
-// TODO: add for-expressions
 /////////////////////////////////////////////////////////////////////
 
 /////
@@ -680,17 +679,22 @@
 
 /////
 // Matches inside for-expressions
-// TODO: add for-expression match
 /////
 
-    for l in var.letters: upper(l)
+   [for l in var.letters: upper(l)]
+#  ^ punctuation.section.brackets.begin.terraform
+#   ^^^ keyword.control.terraform
+#       ^ variable.other.readwrite.terraform
+#         ^^ keyword.operator.word.terraform
+#            ^^^ variable.other.readwrite.terraform
 #               ^ punctuation.accessor.dot.terraform
 #                ^^^^^^^ variable.other.member.terraform
-#                       ^ keyword.operator.terraform 
+#                       ^ keyword.operator.terraform
 #                         ^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #                              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #                               ^ meta.function-call.terraform variable.parameter.terraform
 #                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                 ^ punctuation.section.brackets.end.terraform
 
 /////
 // Attribute-only splat
