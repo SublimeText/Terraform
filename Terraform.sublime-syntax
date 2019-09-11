@@ -255,7 +255,7 @@ contexts:
         - include: inline-comments
         - include: literal-values
         - include: operators
-        - include: array_for_expression
+        - include: tuple_for_expression
         - include: brackets
         - include: functions
 
@@ -321,7 +321,13 @@ contexts:
           comment: Commas
           scope: punctuation.separator.terraform
 
-  array_for_expression:
+  # Tuple for-Expression:
+  #
+  # "[" "for" Identifier ("," Identifier)? "in" Expression ":" Expression ("if" Expression)? "]";
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
+  # https://www.terraform.io/docs/configuration/expressions.html#for-expressions
+  tuple_for_expression:
     - match: \bfor\b
       comment: for expression (arrays)
       scope: keyword.control.terraform
@@ -336,6 +342,8 @@ contexts:
         - include: brackets
         - include: attribute-access
         - include: functions
+        - include: block-comments
+        - include: inline-comments
         - match: \,
           comment: Commas
           scope: punctuation.separator.terraform
@@ -345,26 +353,3 @@ contexts:
         - match: \]
           scope: punctuation.section.brackets.end.terraform
           pop: true
-
-
-  # array_for_expression:
-  #   - match: \bfor\b
-  #     comment: for expression (arrays)
-  #     scope: keyword.control.terraform
-  #     push:
-  #       # push a new pop_array_for_expresison scope
-  #       # that matches identifers, operators, "if"
-  #       - match: (\:)\s*
-  #         captures:
-  #           1: keyword.operator.terraforms
-  #         pop: true
-  #       - match: \bin\b
-  #         comment: in keyword
-  #         scope: keyword.operator.word.terraform
-  #       - include: brackets
-  #       - include: attribute-access
-  #       - match: "{{identifer}}"
-  #         comment: Parameters
-  #       - match: \,
-  #         comment: Commas
-  #         scope: punctuation.separator.terraform
