@@ -2100,3 +2100,58 @@
 #                                                                                                 ^ punctuation.section.brackets.end.terraform  
     ]
 #   ^ punctuation.section.brackets.end.terraform
+
+/////
+// Match if-conditionals on right-side.
+// TODO: match "var" keyword
+/////
+
+    [for s in var.list : upper(s) if s != ""]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^^^ keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#          ^^ keyword.operator.word.terraform
+#             ^^^ variable.other.readwrite.terraform
+#                ^ punctuation.accessor.dot.terraform
+#                 ^^^^ variable.other.member.terraform
+#                      ^ keyword.operator.terraform
+#                        ^^^^^ meta.function-call.terraform support.function.builtin.terraform
+#                             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                              ^ meta.function-call.terraform variable.parameter.terraform
+#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                 ^^ keyword.control.conditional.terraform
+#                                    ^ variable.other.readwrite.terraform
+#                                      ^^ keyword.operator.terraform
+#                                         ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                          ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                           ^ punctuation.section.brackets.end.terraform
+
+/////
+// Matches bracket-literals as range expression.
+/////
+
+    [for i, v in ["a", "b", "c"]: v if i < 2]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^^^ keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#         ^ punctuation.separator.terraform
+#           ^ variable.other.readwrite.terraform
+#             ^^ keyword.operator.word.terraform
+#                ^ punctuation.section.brackets.begin.terraform
+#                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ string.quoted.double.terraform
+#                    ^ punctuation.separator.terraform
+#                      ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                       ^^ string.quoted.double.terraform
+#                         ^ punctuation.separator.terraform
+#                           ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^ string.quoted.double.terraform
+#                              ^ punctuation.section.brackets.end.terraform
+#                               ^ keyword.operator.terraform
+#                                 ^ variable.other.readwrite.terraform
+#                                   ^^ keyword.control.conditional.terraform
+#                                      ^ variable.other.readwrite.terraform
+#                                        ^ keyword.operator.terraform
+#                                          ^ constant.numeric.integer.terraform
+#                                           ^ punctuation.section.brackets.end.terraform
+ 

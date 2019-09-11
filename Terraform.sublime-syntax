@@ -336,6 +336,9 @@ contexts:
         - match: \bin\b
           comment: in keyword
           scope: keyword.operator.word.terraform
+        - match: \bif\b
+          comment: if keyword
+          scope: keyword.control.conditional.terraform
         - match: '\:'
           scope: keyword.operator.terraform
         - include: literal_values
