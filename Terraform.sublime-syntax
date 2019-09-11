@@ -188,6 +188,11 @@ contexts:
         - include: operators
         - include: functions
 
+  comma:
+    - match: \,
+      comment: Commas - used in certain expressions
+      scope: punctuation.separator.terraform
+
   # Operators:
   #
   #   TODO: curly braces
@@ -249,8 +254,7 @@ contexts:
           captures:
             1: keyword.operator.splat.terraform
           pop: true
-        - match: \,
-          scope: punctuation.separator.terraform
+        - include: comma
         - include: block-comments
         - include: inline-comments
         - include: literal-values
@@ -315,12 +319,10 @@ contexts:
         - include: brackets
         - include: attribute-access
         - include: functions
+        - include: comma
         - match: "{{identifer}}"
           comment: Parameters
           scope: variable.parameter.terraform
-        - match: \,
-          comment: Commas
-          scope: punctuation.separator.terraform
 
   # Tuple for-Expression:
   #
@@ -345,9 +347,7 @@ contexts:
         - include: functions
         - include: block-comments
         - include: inline-comments
-        - match: \,
-          comment: Commas
-          scope: punctuation.separator.terraform
+        - include: comma
         - match: "{{identifer}}"
           comment: Local Identifiers
           scope: variable.other.readwrite.terraform
