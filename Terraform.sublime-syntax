@@ -62,13 +62,13 @@ variables:
 
 contexts:
   main:
-    - include: block-comments
-    - include: inline-comments
-    - include: literal-values
+    - include: block_comments
+    - include: inline_comments
+    - include: literal_values
     - include: operators
     - include: brackets
-    - include: attribute-definition
-    - include: attribute-access
+    - include: attribute_definition
+    - include: attribute_access
     - include: functions
 
   # Literal Values: Numbers, Language Constants, and Strings
@@ -77,16 +77,16 @@ contexts:
   #   but make the most sense to be part of this stack.
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
-  literal-values:
+  literal_values:
     - include: numeric-literals
-    - include: language-constants
-    - include: string-literals
+    - include: language_constants
+    - include: string_literals
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
   # https://www.terraform.io/docs/configuration/syntax.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
-  inline-comments:
+  inline_comments:
     - match: '#|//'
       comment: Inline Comments
       scope: punctuation.definition.comment.terraform
@@ -100,7 +100,7 @@ contexts:
   #
   # https://www.terraform.io/docs/configuration/syntax.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
-  block-comments:
+  block_comments:
     - match: /\*
       comment: Block comments
       scope: punctuation.definition.comment.terraform
@@ -114,7 +114,7 @@ contexts:
   #
   # https://www.terraform.io/docs/configuration/expressions.html#literal-expressions
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
-  language-constants:
+  language_constants:
     - match: \b(true|false|null)\b
       comment: Language Constants
       scope: constant.language.terraform
@@ -145,7 +145,7 @@ contexts:
   #
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
-  string-literals:
+  string_literals:
     - match: '"'
       comment: Strings
       scope: punctuation.definition.string.begin.terraform
@@ -154,7 +154,7 @@ contexts:
         - match: '"'
           scope: punctuation.definition.string.end.terraform
           pop: true
-        - include: string-interpolation
+        - include: string_interpolation
         - match: '{{char_escapes}}'
           comment: Character Escapes
           scope: constant.character.escape.terraform
@@ -164,7 +164,7 @@ contexts:
   #   TODO: include builtin variables
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
-  string-interpolation:
+  string_interpolation:
     - match: (\$|\%)\{
       comment: String interpolation
       scope: punctuation.section.interpolation.begin.terraform
@@ -183,8 +183,8 @@ contexts:
         - match: \b(if|else|endif|for|in|endfor)\b
           comment: if/else/endif and for/in/endfor directives
           scope: keyword.control.terraform
-        - include: literal-values
-        - include: attribute-access
+        - include: literal_values
+        - include: attribute_access
         - include: operators
         - include: functions
 
@@ -238,8 +238,6 @@ contexts:
 
   # Brackets: include any expression + asterisk
   #
-  #   TODO: include for-expression
-  #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#index-operator
   brackets:
     - match: \[
@@ -255,19 +253,19 @@ contexts:
             1: keyword.operator.splat.terraform
           pop: true
         - include: comma
-        - include: block-comments
-        - include: inline-comments
-        - include: literal-values
+        - include: block_comments
+        - include: inline_comments
+        - include: literal_values
         - include: operators
         - include: tuple_for_expression
         - include: brackets
         - include: functions
-        - include: attribute-access
+        - include: attribute_access
 
   # Attribute Access: "." Identifier
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-access-operator
-  attribute-access:
+  attribute_access:
     - match: \.
       scope: punctuation.accessor.dot.terraform
       push:
@@ -286,7 +284,7 @@ contexts:
   # ">", as those are other operators, not attr definitions.
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-definitions
-  attribute-definition:
+  attribute_definition:
     - match: (\()?({{identifer}})(\))?\s*(\=[^\=|\>])\s*
       comment: Identifier "=" with optional parens
       scope: variable.declaration.terraform
@@ -312,12 +310,12 @@ contexts:
         - match: \)
           scope: punctuation.section.parens.end.terraform
           pop: true
-        - include: block-comments
-        - include: inline-comments
-        - include: literal-values
+        - include: block_comments
+        - include: inline_comments
+        - include: literal_values
         - include: operators
         - include: brackets
-        - include: attribute-access
+        - include: attribute_access
         - include: functions
         - include: comma
         - match: "{{identifer}}"
@@ -340,13 +338,13 @@ contexts:
           scope: keyword.operator.word.terraform
         - match: '\:'
           scope: keyword.operator.terraform
-        - include: literal-values
+        - include: literal_values
         - include: operators
         - include: brackets
-        - include: attribute-access
+        - include: attribute_access
         - include: functions
-        - include: block-comments
-        - include: inline-comments
+        - include: block_comments
+        - include: inline_comments
         - include: comma
         - match: "{{identifer}}"
           comment: Local Identifiers
