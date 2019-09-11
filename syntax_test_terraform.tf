@@ -650,6 +650,19 @@
 #   ^ punctuation.section.brackets.end.terraform
 #    ^ -punctuation
 
+/////
+// Attribute-access inside arrays
+/////
+
+    [ aws_instance.ubuntu, aws_instance.freebsd ]
+#   ^ punctuation.section.brackets.begin.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^^^ variable.other.member.terraform
+#                        ^ punctuation.separator.terraform
+#                                      ^ punctuation.accessor.dot.terraform
+#                                       ^^^^^^^ variable.other.member.terraform
+#                                               ^ punctuation.section.brackets.end.terraform
+
 /////////////////////////////////////////////////////////////////////
 // Attribute Access
 /////////////////////////////////////////////////////////////////////
@@ -2051,7 +2064,6 @@
 /////
 // Match brackets on right-side expression.
 // TODO: match parenthesis
-// TODO: match attribute-access inside brackets
 /////
 
     value = [
@@ -2075,9 +2087,16 @@
 #                             ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                               ^ keyword.operator.terraform
 #                                 ^ punctuation.section.brackets.begin.terraform
+#                                          ^ punctuation.accessor.dot.terraform
+#                                           ^^^^^^^^^^ variable.other.member.terraform
+#                                                     ^ punctuation.separator.terraform
+#                                                               ^ punctuation.accessor.dot.terraform 
+#                                                                ^^^^^^^^^ variable.other.member.terraform  
 #                                                                         ^ punctuation.section.brackets.end.terraform
 #                                                                           ^ keyword.operator.terraform
-#                                                                             ^ punctuation.section.brackets.begin.terraform 
+#                                                                             ^ punctuation.section.brackets.begin.terraform
+#                                                                                      ^ punctuation.accessor.dot.terraform
+#                                                                                       ^^^^^^^^^^ variable.other.member.terraform
 #                                                                                                 ^ punctuation.section.brackets.end.terraform  
     ]
 #   ^ punctuation.section.brackets.end.terraform

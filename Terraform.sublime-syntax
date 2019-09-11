@@ -258,6 +258,7 @@ contexts:
         - include: tuple_for_expression
         - include: brackets
         - include: functions
+        - include: attribute-access
 
   # Attribute Access: "." Identifier
   #
