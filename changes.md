@@ -109,7 +109,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches `in` keyword
 - *ADDED*: matches `:` operator
 - *ADDED*: matches `if` keyword
-- *ADDED*: match `=>` operator
+- *ADDED*: matches `=>` operator
 
 ### Collection literals: maps/objects
 
@@ -117,6 +117,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches keys
 - *ADDED*: matches values
 - *ADDED*: matches string keys
+- *ADDED*: matches computed keys
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478

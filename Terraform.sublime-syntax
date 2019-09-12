@@ -266,6 +266,8 @@ contexts:
 
   # Objects: collection values
   #
+  #   Allows keys as identifiers, strings, and computed values wrapped in parens.
+  #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
   objects:
     - match: \{
@@ -291,6 +293,16 @@ contexts:
             3: punctuation.definition.string.end.terraform
             4: keyword.operator.terraform
           push: object-key-values
+        - match: \(
+          comment: Computed object key (any expression between parens)
+          scope: punctuation.section.parens.begin.terraform
+          push:
+            - match: '(\))\s*(\=)\s*'
+              captures:
+                1: punctuation.section.parens.begin.terraform
+                2: keyword.operator.terraform
+              set: object-key-values
+            - include: expressions
 
   # Object key values: pop at comma, newline, and closing-bracket
   #
