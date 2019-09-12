@@ -119,6 +119,15 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches string keys
 - *ADDED*: matches computed keys
 
+### Blocks
+
+- *ADDED*: matches unknown block names
+- *ADDED*: matches variable number of string labels
+- *ADDED*: matches variable number of identifier labels
+- *ADDED*: matches nested blocks
+- *ADDED*: matches inline blocks
+
+
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [splat]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#splat-operators

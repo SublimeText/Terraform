@@ -2665,3 +2665,101 @@
 #              ^ meta.function-call.terraform punctuation.section.parens.end.terraform 
     }
 #   ^ punctuation.section.brackets.end.terraform
+
+/////////////////////////////////////////////////////////////////////
+// BLOCKS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Inline block with no labels.
+////
+
+    thing  {}
+#   ^^^^^ meta.type.terraform entity.name.type.terraform
+#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#           ^ meta.block.terraform punctuation.section.block.end.terraform
+
+/////
+// Inline block with string labels.
+/////
+
+    thing "label1"   "label2" {}
+#   ^^^^^ meta.type.terraform entity.name.type.terraform
+#         ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#          ^^^^^^ meta.type.terraform string.quoted.double.terraform
+#                ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                    ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                     ^^^^^^ meta.type.terraform string.quoted.double.terraform
+#                           ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                             ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#                              ^ meta.block.terraform punctuation.section.block.end.terraform
+#                               ^ -meta
+
+/////
+// Inline block with identifier labels.
+/////
+
+    thing thing1 thing2 thing3 {}
+#   ^^^^^ meta.type.terraform entity.name.type.terraform
+#         ^^^^^^ meta.type.terraform entity.name.label.terraform
+#                ^^^^^^ meta.type.terraform entity.name.label.terraform
+#                       ^^^^^^ meta.type.terraform entity.name.label.terraform
+#                              ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#                               ^ meta.block.terraform punctuation.section.block.end.terraform
+
+//////
+// Nested multi-line blocks with expressions.
+// TODO: match "resource", "dynamic" block types
+// TODO: match "var" keyword
+/////
+
+    resource "aws_security_group" "example" {
+#   ^^^^^^^^ meta.type.terraform entity.name.type.terraform
+#            ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^^^^^^^^^^^^^^ meta.type.terraform string.quoted.double.terraform
+#                                 ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                  ^^^^^^^^ meta.type.terraform string.quoted.double.terraform
+#                                           ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+      name = "example"
+#     ^^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#          ^^ meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#            ^ meta.block.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^^^ meta.block.terraform string.quoted.double.terraform
+    
+      dynamic "ingress" {
+#     ^^^^^^^ meta.block.terraform meta.type.terraform entity.name.type.terraform
+#             ^ meta.block.terraform meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^^^^^ meta.block.terraform meta.type.terraform string.quoted.double.terraform
+#                       ^ meta.block.terraform meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+        for_each = var.service_ports
+#       ^^^^^^^^ meta.block.terraform meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#                ^^ meta.block.terraform meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#                     ^ meta.block.terraform meta.block.terraform punctuation.accessor.dot.terraform
+#                      ^^^^^^^^^^^^^ meta.block.terraform meta.block.terraform variable.other.member.terraform
+        content {
+#       ^^^^^^^ meta.block.terraform meta.block.terraform meta.type.terraform entity.name.type.terraform
+#               ^ meta.block.terraform meta.block.terraform meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+          from_port = ingress.value
+#         ^^^^^^^^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#                   ^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#                            ^ meta.block.terraform meta.block.terraform meta.block.terraform punctuation.accessor.dot.terraform
+#                             ^^^^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.other.member.terraform
+          to_port   = ingress.value
+#         ^^^^^^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#                   ^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#                            ^ meta.block.terraform meta.block.terraform meta.block.terraform punctuation.accessor.dot.terraform
+          protocol  = "tcp" + "IP"
+#         ^^^^^^^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#                   ^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#                     ^ meta.block.terraform meta.block.terraform meta.block.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^^^ meta.block.terraform meta.block.terraform meta.block.terraform string.quoted.double.terraform
+#                           ^ meta.block.terraform meta.block.terraform meta.block.terraform keyword.operator.arithmetic.terraform
+#                             ^ meta.block.terraform meta.block.terraform meta.block.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                              ^^^ meta.block.terraform meta.block.terraform meta.block.terraform string.quoted.double.terraform
+        }
+#       ^ meta.block.terraform meta.block.terraform meta.block.terraform punctuation.section.block.end.terraform
+      }
+#     ^ meta.block.terraform meta.block.terraform punctuation.section.block.end.terraform
+    }
+#   ^ meta.block.terraform punctuation.section.block.end.terraform
+#    ^ -meta

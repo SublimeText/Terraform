@@ -35,7 +35,7 @@ variables:
   # Identifiers: (UTF-8) (ID_Continue | '-')*;
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#identifiers
-  identifer: \b[[:alpha:]][[:alnum:]_-]*\b
+  identifer: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
 
   # Exponent: "e" or "E" followed by an optional sign
   #
@@ -64,6 +64,7 @@ contexts:
   main:
     - include: comments
     - include: attribute_definition
+    - include: block
     - include: expressions
 
   comments:
@@ -429,3 +430,32 @@ contexts:
     - match: "{{identifer}}"
       comment: Local Identifiers
       scope: variable.other.readwrite.terraform
+
+  # Blocks: Identifier (StringLit|Identifier)* "{" Newline Body "}" Newline;
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
+  block:
+    - match: '({{identifer}})(?=[\s\"[:word:]]*(\{))'
+      captures:
+        1: entity.name.type.terraform
+      push:
+        - meta_scope: meta.type.terraform
+        - match: \"
+          comment: String literal label
+          scope: punctuation.definition.string.begin.terraform
+          push:
+            - meta_scope: string.quoted.double.terraform
+            - match: '"'
+              scope: punctuation.definition.string.end.terraform
+              pop: true
+        - match: "{{identifer}}"
+          comment: Identifer label
+          scope: entity.name.label.terraform
+        - match: \{
+          scope: punctuation.section.block.begin.terraform
+          set:
+            - meta_scope: meta.block.terraform
+            - include: main
+            - match: \}
+              scope: punctuation.section.block.end.terraform
+              pop: true
