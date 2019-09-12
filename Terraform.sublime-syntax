@@ -67,6 +67,7 @@ contexts:
     - include: literal_values
     - include: operators
     - include: brackets
+    - include: objects
     - include: attribute_definition
     - include: attribute_access
     - include: functions
@@ -236,7 +237,7 @@ contexts:
     - match: "\\:"
       scope: keyword.operator.terraform
 
-  # Brackets: include any expression + asterisk
+  # Brackets: matches tuples and subscript notation
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#index-operator
   brackets:
@@ -261,6 +262,45 @@ contexts:
         - include: brackets
         - include: functions
         - include: attribute_access
+
+  # Objects: collection values
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
+  objects:
+    - match: \{
+      scope: punctuation.section.braces.begin.terraform
+      push:
+        - meta_scope: meta.braces.terraform
+        - match: \}
+          scope: punctuation.section.braces.end.terraform
+          pop: true
+        - include: block_comments
+        - include: inline_comments
+        - match: '\s*({{identifer}})\s*(\=)\s*'
+          comment: Local identifer
+          captures:
+            1: entity.name.tag.terraform
+            2: keyword.operator.terraform
+          push:
+            - include: block_comments
+            - include: inline_comments
+            - include: literal_values
+            - include: operators
+            - include: attribute_access
+            - include: brackets
+            - include: objects
+            - match: \,
+              comment: Pop scope on comma.
+              scope: punctuation.separator.terraform
+              pop: true
+            - match: $\n?
+              comment: Pop scope on EOL.
+              pop: true
+            - match: (?=\})
+              comment: Lookahead (don't consume) and pop scope on a bracket.
+              scope: punctuation.section.braces.end.terraform
+              pop: true
+
 
   # Attribute Access: "." Identifier
   #

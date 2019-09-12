@@ -664,6 +664,113 @@
 #                                               ^ punctuation.section.brackets.end.terraform
 
 /////////////////////////////////////////////////////////////////////
+// Collections: Objects
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Key/value pairs separated by newlines.
+/////
+
+    {
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+      name = "John"
+#     ^^^^ meta.braces.terraform entity.name.tag.terraform
+#          ^ meta.braces.terraform keyword.operator.terraform
+#            ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^ meta.braces.terraform string.quoted.double.terraform
+      age = 52
+#     ^^^ meta.braces.terraform entity.name.tag.terraform
+#         ^ meta.braces.terraform keyword.operator.terraform
+#           ^^ meta.braces.terraform constant.numeric.integer.terraform
+    }
+#   ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+/////
+// Key/value pairs separated by commas.
+/////
+
+    {name = "John", age = 52}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^^^^ meta.braces.terraform entity.name.tag.terraform
+#         ^ meta.braces.terraform keyword.operator.terraform
+#           ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^^ meta.braces.terraform string.quoted.double.terraform
+#                 ^ meta.braces.terraform punctuation.separator.terraform
+#                           ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+/////
+// Allows operators in key values.
+/////
+
+    { name = 1 + 1 }
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#     ^^^^ meta.braces.terraform entity.name.tag.terraform
+#          ^ meta.braces.terraform keyword.operator.terraform
+#            ^ meta.braces.terraform constant.numeric.integer.terraform
+#              ^ meta.braces.terraform keyword.operator.arithmetic.terraform
+#                ^ meta.braces.terraform constant.numeric.integer.terraform
+#                  ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#                   ^ -meta
+
+/////
+// Allows tuples as key values.
+/////
+
+    { list = [ 1, 2, 3 ]}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#     ^^^^ meta.braces.terraform entity.name.tag.terraform
+#          ^ meta.braces.terraform keyword.operator.terraform
+#            ^ meta.braces.terraform punctuation.section.brackets.begin.terraform
+#              ^ meta.braces.terraform constant.numeric.integer.terraform
+#               ^ meta.braces.terraform punctuation.separator.terraform
+#                 ^ meta.braces.terraform constant.numeric.integer.terraform
+#                  ^ meta.braces.terraform punctuation.separator.terraform
+#                    ^ meta.braces.terraform constant.numeric.integer.terraform
+#                      ^ meta.braces.terraform punctuation.section.brackets.end.terraform
+#                       ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#                        ^ -meta
+
+/////
+// Allows nested collection literals.
+/////
+
+    {
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+      obj1 = {
+#     ^^^^ meta.braces.terraform entity.name.tag.terraform
+#          ^ meta.braces.terraform keyword.operator.terraform
+#            ^ meta.braces.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+        obj2 = {
+#       ^^^^ meta.braces.terraform meta.braces.terraform entity.name.tag.terraform
+#            ^ meta.braces.terraform meta.braces.terraform keyword.operator.terraform
+#              ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+          value = 5
+#         ^^^^^ meta.braces.terraform meta.braces.terraform meta.braces.terraform entity.name.tag.terraform
+#               ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform keyword.operator.terraform
+#                 ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform constant.numeric.integer.terraform
+        }
+#       ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+      }
+#     ^ meta.braces.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+    }
+#   ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#    ^ -meta
+
+/////
+// Allows attribute-access as rvalue.
+// TODO: match "var" keyword
+/////
+
+    { lvalue = var.rvalue }
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#     ^^^^^^ meta.braces.terraform entity.name.tag.terraform
+#            ^ meta.braces.terraform keyword.operator.terraform
+#                 ^ meta.braces.terraform punctuation.accessor.dot.terraform
+#                  ^^^^^^ meta.braces.terraform variable.other.member.terraform
+#                         ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#                          ^ -meta
+
+/////////////////////////////////////////////////////////////////////
 // Attribute Access
 /////////////////////////////////////////////////////////////////////
 
