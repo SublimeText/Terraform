@@ -275,6 +275,7 @@ contexts:
         - match: \}
           scope: punctuation.section.braces.end.terraform
           pop: true
+        - include: object_for_expression
         - include: comments
         - match: '\s*({{identifer}})\s*(\=)\s*'
           comment: Literal, named object key
@@ -375,20 +376,44 @@ contexts:
       comment: for expression (arrays)
       scope: keyword.control.terraform
       set:
-        - match: \bin\b
-          comment: in keyword
-          scope: keyword.operator.word.terraform
-        - match: \bif\b
-          comment: if keyword
-          scope: keyword.control.conditional.terraform
-        - match: '\:'
-          scope: keyword.operator.terraform
-        - include: expressions
-        - include: comments
-        - include: comma
-        - match: "{{identifer}}"
-          comment: Local Identifiers
-          scope: variable.other.readwrite.terraform
+        - include: for_expression_body
         - match: \]
           scope: punctuation.section.brackets.end.terraform
           pop: true
+
+  # Object for-Expression:
+  #
+  # "{" "for" Identifier ("," Identifier)? "in" Expression ":" Expression "=>" Expression "..."? ("if" Expression)? "}";
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
+  # https://www.terraform.io/docs/configuration/expressions.html#for-expressions
+  object_for_expression:
+    - match: \bfor\b
+      comment: for expression (arrays)
+      scope: keyword.control.terraform
+      set:
+        - match: \=\>
+          scope: storage.type.function.terraform
+        - include: for_expression_body
+        - match: \}
+          scope: punctuation.section.brackets.end.terraform
+          pop: true
+
+  # Shared body syntax for tuple and object for-expressions.
+  # They require different `set` blocks because they are
+  # pop'd with different characters and objects allow `=>`.
+  for_expression_body:
+    - match: \bin\b
+      comment: in keyword
+      scope: keyword.operator.word.terraform
+    - match: \bif\b
+      comment: if keyword
+      scope: keyword.control.conditional.terraform
+    - match: '\:'
+      scope: keyword.operator.terraform
+    - include: expressions
+    - include: comments
+    - include: comma
+    - match: "{{identifer}}"
+      comment: Local Identifiers
+      scope: variable.other.readwrite.terraform

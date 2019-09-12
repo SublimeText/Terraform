@@ -2460,4 +2460,113 @@
 #                                        ^ keyword.operator.terraform
 #                                          ^ constant.numeric.integer.terraform
 #                                           ^ punctuation.section.brackets.end.terraform
- 
+
+/////////////////////////////////////////////////////////////////////
+// OBJECT FOR-EXPRESSIONS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches basic syntax.
+/////
+
+    {for i, v in ["a", "b"]: v => i}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^^^ meta.braces.terraform keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#         ^ punctuation.separator.terraform
+#           ^ variable.other.readwrite.terraform
+#             ^^ keyword.operator.word.terraform
+#                ^ punctuation.section.brackets.begin.terraform
+#                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ string.quoted.double.terraform
+#                    ^ punctuation.separator.terraform
+#                      ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                       ^^ string.quoted.double.terraform
+#                         ^ punctuation.section.brackets.end.terraform
+#                          ^ keyword.operator.terraform
+#                            ^ variable.other.readwrite.terraform
+#                              ^^ storage.type.function.terraform
+#                                 ^ variable.other.readwrite.terraform
+#                                  ^ punctuation.section.brackets.end.terraform
+#                                   ^ -meta
+
+/////
+// Matches ellipsis.
+/////
+
+    {for i, v in ["a"]: v => i...}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^^^ meta.braces.terraform keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#         ^ punctuation.separator.terraform
+#           ^ variable.other.readwrite.terraform
+#             ^^ keyword.operator.word.terraform
+#                ^ punctuation.section.brackets.begin.terraform
+#                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ string.quoted.double.terraform
+#                    ^ punctuation.section.brackets.end.terraform
+#                     ^ keyword.operator.terraform
+#                       ^ variable.other.readwrite.terraform
+#                         ^^ storage.type.function.terraform
+#                            ^ variable.other.readwrite.terraform
+#                             ^^^ keyword.operator.terraform
+#                                ^ punctuation.section.brackets.end.terraform
+
+/////
+// Matches if-conditional.
+// TODO: match "var" keyword
+/////
+
+    {for s in var.list : substr(s, 0, 1) => s... if s != ""}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^^^ meta.braces.terraform keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#          ^^ keyword.operator.word.terraform
+#             ^^^ variable.other.readwrite.terraform
+#                ^ punctuation.accessor.dot.terraform
+#                 ^^^^ variable.other.member.terraform
+#                      ^ keyword.operator.terraform
+#                        ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
+#                              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                               ^ meta.function-call.terraform variable.parameter.terraform
+#                                ^ meta.function-call.terraform punctuation.separator.terraform
+#                                  ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                   ^ meta.function-call.terraform punctuation.separator.terraform
+#                                     ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                        ^^ storage.type.function.terraform
+#                                           ^ variable.other.readwrite.terraform
+#                                            ^^^ keyword.operator.terraform
+#                                                ^^ keyword.control.conditional.terraform
+#                                                   ^ variable.other.readwrite.terraform
+#                                                     ^^ keyword.operator.terraform
+#                                                        ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                         ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                          ^ punctuation.section.brackets.end.terraform
+
+/////
+// Matches over multiple-lines.
+// TODO: match "var" keyword.
+/////
+
+    value = {
+#   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
+#           ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+      for l in var.letters: l =>
+#     ^^^ meta.braces.terraform keyword.control.terraform
+#         ^ variable.other.readwrite.terraform
+#           ^^ keyword.operator.word.terraform
+#              ^^^ variable.other.readwrite.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^^^^ variable.other.member.terraform
+#                         ^ keyword.operator.terraform
+#                           ^ variable.other.readwrite.terraform
+#                             ^^ storage.type.function.terraform
+        upper(l)
+#       ^^^^^ meta.function-call.terraform support.function.builtin.terraform
+#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#             ^ meta.function-call.terraform variable.parameter.terraform
+#              ^ meta.function-call.terraform punctuation.section.parens.end.terraform 
+    }
+#   ^ punctuation.section.brackets.end.terraform

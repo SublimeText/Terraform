@@ -104,10 +104,12 @@ The following changes have been made in order to either more closely follow the 
 ### For-Expressions
 
 - *ADDED*: matches inside tuple syntax
+- *ADDED*: matches inside object syntax
 - *ADDED*: matches `for` keyword
 - *ADDED*: matches `in` keyword
 - *ADDED*: matches `:` operator
 - *ADDED*: matches `if` keyword
+- *ADDED*: match `=>` operator
 
 ### Collection literals: maps/objects
 
