@@ -1072,6 +1072,54 @@
     )
 #   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
+/////
+// Allow object for-expressions.
+////
+
+    thing({for i, v in ["a"]: v => i...})
+#   ^^^^^ meta.function-call.terraform variable.function.terraform
+#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#          ^^^ meta.function-call.terraform meta.braces.terraform keyword.control.terraform
+#              ^ meta.function-call.terraform variable.other.readwrite.terraform
+#               ^ meta.function-call.terraform punctuation.separator.terraform
+#                 ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                   ^^ meta.function-call.terraform keyword.operator.word.terraform
+#                      ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^ meta.function-call.terraform string.quoted.double.terraform
+#                          ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                           ^ meta.function-call.terraform keyword.operator.terraform
+#                             ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                               ^^ meta.function-call.terraform storage.type.function.terraform
+#                                  ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                                   ^^^ meta.function-call.terraform keyword.operator.terraform
+#                                      ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+
+/////
+// Allow tuple for-expressions.
+/////
+
+    func([for v in ["a", "b"]: v])
+#   ^^^^ meta.function-call.terraform variable.function.terraform
+#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#        ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#         ^^^ meta.function-call.terraform keyword.control.terraform
+#             ^ meta.function-call.terraform variable.other.readwrite.terraform
+#               ^^ meta.function-call.terraform keyword.operator.word.terraform
+#                  ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^ meta.function-call.terraform string.quoted.double.terraform
+#                      ^ meta.function-call.terraform punctuation.separator.terraform
+#                        ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                         ^^ meta.function-call.terraform string.quoted.double.terraform
+#                           ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                            ^ meta.function-call.terraform keyword.operator.terraform
+#                              ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                               ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform 
+
 /////////////////////////////////////////////////////////////////////
 // Built-in Terraform Functions
 // TODO: match % placeholders in format()-family first parameters
