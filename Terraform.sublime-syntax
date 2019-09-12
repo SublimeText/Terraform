@@ -62,8 +62,7 @@ variables:
 
 contexts:
   main:
-    - include: block_comments
-    - include: inline_comments
+    - include: comments
     - include: literal_values
     - include: operators
     - include: brackets
@@ -82,6 +81,10 @@ contexts:
     - include: numeric-literals
     - include: language_constants
     - include: string_literals
+
+  comments:
+    - include: inline_comments
+    - include: block_comments
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
@@ -254,8 +257,7 @@ contexts:
             1: keyword.operator.splat.terraform
           pop: true
         - include: comma
-        - include: block_comments
-        - include: inline_comments
+        - include: comments
         - include: literal_values
         - include: operators
         - include: tuple_for_expression
@@ -274,16 +276,14 @@ contexts:
         - match: \}
           scope: punctuation.section.braces.end.terraform
           pop: true
-        - include: block_comments
-        - include: inline_comments
+        - include: comments
         - match: '\s*({{identifer}})\s*(\=)\s*'
           comment: Local identifer
           captures:
             1: entity.name.tag.terraform
             2: keyword.operator.terraform
           push:
-            - include: block_comments
-            - include: inline_comments
+            - include: comments
             - include: literal_values
             - include: operators
             - include: attribute_access
@@ -350,8 +350,7 @@ contexts:
         - match: \)
           scope: punctuation.section.parens.end.terraform
           pop: true
-        - include: block_comments
-        - include: inline_comments
+        - include: comments
         - include: literal_values
         - include: operators
         - include: brackets
@@ -386,8 +385,7 @@ contexts:
         - include: brackets
         - include: attribute_access
         - include: functions
-        - include: block_comments
-        - include: inline_comments
+        - include: comments
         - include: comma
         - match: "{{identifer}}"
           comment: Local Identifiers
