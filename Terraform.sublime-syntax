@@ -383,11 +383,7 @@ contexts:
           scope: keyword.control.conditional.terraform
         - match: '\:'
           scope: keyword.operator.terraform
-        - include: literal_values
-        - include: operators
-        - include: brackets
-        - include: attribute_access
-        - include: functions
+        - include: expressions
         - include: comments
         - include: comma
         - match: "{{identifer}}"
