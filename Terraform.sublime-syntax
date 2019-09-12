@@ -277,25 +277,37 @@ contexts:
           pop: true
         - include: comments
         - match: '\s*({{identifer}})\s*(\=)\s*'
-          comment: Local identifer
+          comment: Literal, named object key
           captures:
             1: entity.name.tag.terraform
             2: keyword.operator.terraform
-          push:
-            - include: comments
-            - include: expressions
-            - match: \,
-              comment: Pop scope on comma.
-              scope: punctuation.separator.terraform
-              pop: true
-            - match: $\n?
-              comment: Pop scope on EOL.
-              pop: true
-            - match: (?=\})
-              comment: Lookahead (don't consume) and pop scope on a bracket.
-              scope: punctuation.section.braces.end.terraform
-              pop: true
+          push: object-key-values
+        - match: '((\").*(\"))\s*(\=)\s*'
+          comment: String object key
+          captures:
+            1: string.quoted.double.terraform
+            2: punctuation.definition.string.begin.terraform
+            3: punctuation.definition.string.end.terraform
+            4: keyword.operator.terraform
+          push: object-key-values
 
+  # Object key values: pop at comma, newline, and closing-bracket
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
+  object-key-values:
+    - include: comments
+    - include: expressions
+    - match: \,
+      comment: Pop scope on comma.
+      scope: punctuation.separator.terraform
+      pop: true
+    - match: $\n?
+      comment: Pop scope on EOL.
+      pop: true
+    - match: (?=\})
+      comment: Lookahead (don't consume) and pop scope on a bracket.
+      scope: punctuation.section.braces.end.terraform
+      pop: true
 
   # Attribute Access: "." Identifier
   #

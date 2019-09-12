@@ -114,6 +114,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches punctuation
 - *ADDED*: matches keys
 - *ADDED*: matches values
+- *ADDED*: matches string keys
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478

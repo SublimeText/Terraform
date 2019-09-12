@@ -854,6 +854,21 @@
 #                         ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #                          ^ -meta
 
+/////
+// Allows strings as keys.
+/////
+
+    {"gggg" = "gggg"}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#     ^^^^ meta.braces.terraform string.quoted.double.terraform
+#         ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#           ^ meta.braces.terraform keyword.operator.terraform
+#             ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^ meta.braces.terraform string.quoted.double.terraform
+#                  ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                   ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
 /////////////////////////////////////////////////////////////////////
 // Attribute Access
 /////////////////////////////////////////////////////////////////////
