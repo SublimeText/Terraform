@@ -63,13 +63,28 @@ variables:
 contexts:
   main:
     - include: comments
+    - include: attribute_definition
+    - include: expressions
+
+  comments:
+    - include: inline_comments
+    - include: block_comments
+
+  # Expressions:
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#expression-terms
+  expressions:
     - include: literal_values
     - include: operators
     - include: brackets
     - include: objects
-    - include: attribute_definition
     - include: attribute_access
     - include: functions
+
+  comma:
+    - match: \,
+      comment: Commas - used in certain expressions
+      scope: punctuation.separator.terraform
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -81,10 +96,6 @@ contexts:
     - include: numeric-literals
     - include: language_constants
     - include: string_literals
-
-  comments:
-    - include: inline_comments
-    - include: block_comments
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
@@ -187,15 +198,7 @@ contexts:
         - match: \b(if|else|endif|for|in|endfor)\b
           comment: if/else/endif and for/in/endfor directives
           scope: keyword.control.terraform
-        - include: literal_values
-        - include: attribute_access
-        - include: operators
-        - include: functions
-
-  comma:
-    - match: \,
-      comment: Commas - used in certain expressions
-      scope: punctuation.separator.terraform
+        - include: expressions
 
   # Operators:
   #
@@ -258,12 +261,8 @@ contexts:
           pop: true
         - include: comma
         - include: comments
-        - include: literal_values
-        - include: operators
+        - include: expressions
         - include: tuple_for_expression
-        - include: brackets
-        - include: functions
-        - include: attribute_access
 
   # Objects: collection values
   #
@@ -284,11 +283,7 @@ contexts:
             2: keyword.operator.terraform
           push:
             - include: comments
-            - include: literal_values
-            - include: operators
-            - include: attribute_access
-            - include: brackets
-            - include: objects
+            - include: expressions
             - match: \,
               comment: Pop scope on comma.
               scope: punctuation.separator.terraform
@@ -351,11 +346,7 @@ contexts:
           scope: punctuation.section.parens.end.terraform
           pop: true
         - include: comments
-        - include: literal_values
-        - include: operators
-        - include: brackets
-        - include: attribute_access
-        - include: functions
+        - include: expressions
         - include: comma
         - match: "{{identifer}}"
           comment: Parameters
