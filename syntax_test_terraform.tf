@@ -817,7 +817,7 @@
 #                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////
-// Matche nested function calls.
+// Nested function calls.
 /////
 
     func(thing(yep(1)))
@@ -832,6 +832,21 @@
 #                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 #                      ^ -function
+
+/////
+// Parameters spanning multiple lines.
+/////
+
+    func(
+#   ^^^^ meta.function-call.terraform variable.function.terraform
+#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+      1,
+#     ^ meta.function-call.terraform constant.numeric.integer.terraform
+#      ^ meta.function-call.terraform punctuation.separator.terraform
+      2
+#     ^ meta.function-call.terraform constant.numeric.integer.terraform
+    )
+#   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////////////////////////////////////////////////////////////////////
 // Built-in Terraform Functions
