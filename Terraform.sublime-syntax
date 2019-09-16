@@ -134,6 +134,7 @@ contexts:
     - include: numeric-literals
     - include: language_constants
     - include: string_literals
+    - include: heredoc
     - include: type_keywords
     - include: named_value_references
 
@@ -247,6 +248,23 @@ contexts:
           comment: if/else/endif and for/in/endfor directives
           scope: keyword.control.terraform
         - include: expressions
+
+  # String Heredocs
+  #
+  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
+  heredoc:
+    - match: (\<\<\-?)\s*({{identifer}})\s*$
+      comment: String Heredoc's
+      captures:
+        1: keyword.operator.heredoc.terraform
+        2: keyword.control.heredoc.shell
+      push:
+        - meta_content_scope: string.unquoted.heredoc.terraform
+        - match: ^\s*\2\s*$
+          comment: The heredoc token identifier (second capture above).
+          scope: keyword.control.heredoc.terraform
+          pop: true
+        - include: string_interpolation
 
   # Operators:
   #

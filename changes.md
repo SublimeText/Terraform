@@ -147,6 +147,13 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches `string`, `number`, `bool`, and `any`
 - *ADDED*: syntax tests
 
+### Heredocs
+
+- *ADDED*: the `<<-` operator
+- *ADDED*: better identifier matching
+- *ADDED*: allow string interpolation
+- *ADDED*: syntax tests
+
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [splat]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#splat-operators

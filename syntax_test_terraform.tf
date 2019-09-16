@@ -2906,3 +2906,49 @@
 
     bool
 #   ^^^^ storage.type.terraform
+
+/////////////////////////////////////////////////////////////////////
+// HEREDOCS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Basic example.
+/////
+    << EOF
+#   ^^ keyword.operator.heredoc.terraform
+#      ^^^ keyword.control.heredoc.shell
+    sdfdfsd
+#   ^^^^^^^^ string.unquoted.heredoc.terraform
+    EOF
+#   ^^^^ keyword.control.heredoc.terraform
+
+/////
+// With leading-spaces-operator.
+/////
+
+    <<- END
+#   ^^^ keyword.operator.heredoc.terraform
+#       ^^^ keyword.control.heredoc.shell
+    heredoc
+#   ^^^^^^^^ string.unquoted.heredoc.terraform
+    EOF
+#   ^^^^ string.unquoted.heredoc.terraform
+    END
+#   ^^^^ keyword.control.heredoc.terraform
+
+/////
+// Includes string interpolation.
+/////
+
+    <<- END
+#   ^^^ keyword.operator.heredoc.terraform
+#       ^^^ keyword.control.heredoc.shell
+    Hello, ${var.name}
+#   ^^^^^^^ string.unquoted.heredoc.terraform
+#          ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#            ^^^ meta.interpolation.terraform support.constant.terraform
+#               ^ meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                ^^^^ meta.interpolation.terraform variable.other.member.terraform
+#                    ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+    END
+#   ^^^^ keyword.control.heredoc.terraform
