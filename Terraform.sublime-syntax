@@ -255,7 +255,7 @@ contexts:
       comment: String Heredoc's
       captures:
         1: keyword.operator.heredoc.terraform
-        2: keyword.control.heredoc.shell
+        2: keyword.control.heredoc.terraform
       push:
         - meta_content_scope: string.unquoted.heredoc.terraform
         - match: ^\s*\2\s*$
@@ -269,39 +269,39 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operators-and-delimiters
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operations
   operators:
-    - match: \>\=
+    - match: \>\=   # >=
       scope: keyword.operator.terraform
-    - match: \<\=
+    - match: \<\=   # <=
       scope: keyword.operator.terraform
-    - match: \=\=
+    - match: \=\=   # ==
       scope: keyword.operator.terraform
-    - match: \!\=
+    - match: \!\=   # !=
       scope: keyword.operator.terraform
-    - match: \+
+    - match: \+     # +
       scope: keyword.operator.arithmetic.terraform
-    - match: \-
+    - match: \-     # -
       scope: keyword.operator.arithmetic.terraform
-    - match: \*
+    - match: \*     # *
       scope: keyword.operator.arithmetic.terraform
-    - match: \/
+    - match: \/     # /
       scope: keyword.operator.arithmetic.terraform
-    - match: \%
+    - match: \%     # %
       scope: keyword.operator.arithmetic.terraform
-    - match: \&\&
+    - match: \&\&   # &&
       scope: keyword.operator.logical.terraform
-    - match: \|\|
+    - match: \|\|   # ||
       scope: keyword.operator.logical.terraform
-    - match: \!
+    - match: \!     # !
       scope: keyword.operator.logical.terraform
-    - match: \>
+    - match: \>     # >
       scope: keyword.operator.terraform
-    - match: \<
+    - match: \<     # <
       scope: keyword.operator.terraform
-    - match: \?
+    - match: \?     # ?
       scope: keyword.operator.terraform
-    - match: \.\.\.
+    - match: \.\.\. # ...
       scope: keyword.operator.terraform
-    - match: "\\:"
+    - match: "\\:"  # :
       scope: keyword.operator.terraform
 
   # Brackets: matches tuples and subscript notation
