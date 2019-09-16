@@ -104,11 +104,25 @@ contexts:
     - include: objects
     - include: attribute_access
     - include: functions
+    - include: parens
 
   comma:
     - match: \,
       comment: Commas - used in certain expressions
       scope: punctuation.separator.terraform
+
+  parens:
+    - match: \(
+      scope: punctuation.section.parens.begin.terraform
+      comment: Parens - matched *after* function syntax
+      push:
+        - match: \)
+          scope: punctuation.section.parens.end.terraform
+          pop: true
+        - include: expressions
+        - match: "{{identifer}}"
+          comment: Local Identifiers
+          scope: variable.other.readwrite.terraform
 
   # Literal Values: Numbers, Language Constants, and Strings
   #

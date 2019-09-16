@@ -2428,7 +2428,6 @@
 
 /////
 // Match conditional on right-side expression.
-// TODO: match parenthesis
 /////
 
     value = [
@@ -2444,6 +2443,7 @@
 #                                  ^^^^^^ variable.other.member.terraform
 #                                        ^ keyword.operator.terraform 
       (instance.public_ip != "" ? list(instance.private_ip, instance.public_ip) : list(instance.private_ip))
+#     ^ punctuation.section.parens.begin.terraform
 #      ^^^^^^^^ variable.other.readwrite.terraform
 #              ^ punctuation.accessor.dot.terraform
 #               ^^^^^^^^^ variable.other.member.terraform
@@ -2468,12 +2468,12 @@
 #                                                                                              ^ meta.function-call.terraform punctuation.accessor.dot.terraform
 #                                                                                               ^^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
 #                                                                                                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform 
+#                                                                                                          ^ punctuation.section.parens.end.terraform
     ]
 #   ^ punctuation.section.brackets.end.terraform
 
 /////
 // Match brackets on right-side expression.
-// TODO: match parenthesis
 /////
 
     value = [
@@ -2489,6 +2489,7 @@
 #                                  ^^^^^^ variable.other.member.terraform
 #                                        ^ keyword.operator.terraform 
       (instance.public_ip != "" ? [instance.private_ip, instance.public_ip] : [instance.private_ip])
+#     ^ punctuation.section.parens.begin.terraform
 #      ^^^^^^^^ variable.other.readwrite.terraform
 #              ^ punctuation.accessor.dot.terraform
 #               ^^^^^^^^^ variable.other.member.terraform
@@ -2508,6 +2509,7 @@
 #                                                                                      ^ punctuation.accessor.dot.terraform
 #                                                                                       ^^^^^^^^^^ variable.other.member.terraform
 #                                                                                                 ^ punctuation.section.brackets.end.terraform  
+#                                                                                                  ^ punctuation.section.parens.end.terraform 
     ]
 #   ^ punctuation.section.brackets.end.terraform
 

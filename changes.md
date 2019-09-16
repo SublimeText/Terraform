@@ -58,6 +58,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: arithmetic operators `+`, `-`, `*`, `/`, `%`
 - *ADDED*: logic operators `&&`, `||`, `!`
 - *ADDED*: conditional operator `predicate ? expression : expression`
+- *ADDED*: parenthesis matching
 - *ADDED*: syntax tests
 
 ### Arrays
