@@ -207,8 +207,6 @@ contexts:
 
   # Strings:
   #
-  #   TODO: add heredocs
-  #
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   string_literals:
@@ -267,8 +265,6 @@ contexts:
         - include: string_interpolation
 
   # Operators:
-  #
-  #   TODO: parenthesis
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operators-and-delimiters
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operations
