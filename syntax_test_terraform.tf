@@ -422,7 +422,6 @@
 
 /////
 // Matches for/in/endfor directives.
-// TODO: match "var" keyword
 /////
 
       "%{ for name in var.names ~}${name}%{ endfor ~}"
@@ -432,6 +431,7 @@
 #         ^^^ keyword.control.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
 #                  ^^ keyword.control.terraform
+#                     ^^^ meta.interpolation.terraform support.constant.terraform
 #                        ^ meta.interpolation.terraform punctuation.accessor.dot.terraform
 #                         ^^^^^ meta.interpolation.terraform variable.other.member.terraform
 #                               ^ keyword.operator.template.right.trim.terraform
@@ -842,13 +842,13 @@
 
 /////
 // Allows attribute-access as rvalue.
-// TODO: match "var" keyword
 /////
 
     { lvalue = var.rvalue }
 #   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #     ^^^^^^ meta.braces.terraform entity.name.tag.terraform
 #            ^ meta.braces.terraform keyword.operator.terraform
+#              ^^^ meta.braces.terraform support.constant.terraform
 #                 ^ meta.braces.terraform punctuation.accessor.dot.terraform
 #                  ^^^^^^ meta.braces.terraform variable.other.member.terraform
 #                         ^ meta.braces.terraform punctuation.section.braces.end.terraform
@@ -902,12 +902,12 @@
 
 /////
 // Allows attribute-access as keys.
-// TODO: match "var" keyword
 ////
 
     {(var.path) = 1}
 #   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #    ^ meta.braces.terraform punctuation.section.parens.begin.terraform
+#     ^^^ meta.braces.terraform support.constant.terraform
 #        ^ meta.braces.terraform punctuation.accessor.dot.terraform
 #         ^^^^ meta.braces.terraform variable.other.member.terraform
 #             ^ meta.braces.terraform punctuation.section.parens.begin.terraform
@@ -944,7 +944,6 @@
 
 /////
 // Matches inside for-expressions
-// TODO: match "var" keyword
 /////
 
    [for l in var.letters: upper(l)]
@@ -952,7 +951,7 @@
 #   ^^^ keyword.control.terraform
 #       ^ variable.other.readwrite.terraform
 #         ^^ keyword.operator.word.terraform
-#            ^^^ variable.other.readwrite.terraform
+#            ^^^ support.constant.terraform
 #               ^ punctuation.accessor.dot.terraform
 #                ^^^^^^^ variable.other.member.terraform
 #                       ^ keyword.operator.terraform
@@ -983,7 +982,6 @@
 
 /////
 // Basic definition
-// TODO: match var keyword
 /////
 
     count = length(var.availability_zones)
@@ -991,7 +989,7 @@
 #         ^ variable.declaration.terraform keyword.operator.assignment.terraform
 #           ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^^^ meta.function-call.terraform variable.parameter.terraform
+#                  ^^^ meta.function-call.terraform support.constant.terraform
 #                     ^ meta.function-call.terraform punctuation.accessor.dot.terraform
 #                      ^^^^^^^^^^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
 #                                        ^ meta.function-call.terraform punctuation.section.parens.end.terraform
@@ -1892,14 +1890,10 @@
 // Filesystem Functions
 /////
 
-/////
-// TODO: match built-in variables
-/////
-
       abspath(path.root)
 #     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform variable.parameter.terraform
+#             ^^^^ meta.function-call.terraform support.constant.terraform
 #                 ^ meta.function-call.terraform punctuation.accessor.dot.terraform
 #                  ^^^^ meta.function-call.terraform variable.other.member.terraform
 #                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
@@ -1925,40 +1919,34 @@
 #               ^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
-/////
-// TODO: match built-in variables
-/////
-
       file("${path.module}/hello.txt")
 #     ^^^^ meta.function-call.terraform support.function.builtin.terraform
 #         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #           ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#             ^^^^^^^^^^^^ meta.function-call.terraform meta.interpolation.terraform
+#             ^^^^ meta.function-call.terraform meta.interpolation.terraform support.constant.terraform
+#                 ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                  ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
+#                        ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                         ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-
-/////
-// TODO: match built-in variables
-/////
 
       fileexists("${path.module}/hello.txt")
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                 ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                   ^^^^^^^^^^^^ meta.function-call.terraform meta.interpolation.terraform
+#                   ^^^^ meta.function-call.terraform meta.interpolation.terraform support.constant.terraform
+#                       ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                        ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
+#                              ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                               ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-
-/////
-// TODO: match built-in variables
-/////
 
       fileset(path.module, "files/*.txt")
 #     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform variable.parameter.terraform
+#             ^^^^ meta.function-call.terraform support.constant.terraform
 #                 ^ meta.function-call.terraform punctuation.accessor.dot.terraform
 #                  ^^^^^^ meta.function-call.terraform variable.other.member.terraform
 #                        ^ meta.function-call.terraform punctuation.separator.terraform
@@ -1966,29 +1954,27 @@
 #                           ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
-/////
-// TODO: match built-in variables
-/////
-
       filebase64("${path.module}/hello.txt")
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                 ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                   ^^^^^^^^^^^^ meta.function-call.terraform meta.interpolation.terraform
+#                   ^^^^ meta.function-call.terraform meta.interpolation.terraform support.constant.terraform
+#                       ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                        ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
+#                              ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                               ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-
-/////
-// TODO: match built-in variables
-/////
 
       templatefile("${path.module}/backends.tmpl", {
 #     ^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                   ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                     ^^^^^^^^^^^^ meta.function-call.terraform meta.interpolation.terraform
+#                     ^^^^ meta.function-call.terraform meta.interpolation.terraform support.constant.terraform
+#                         ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                          ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
+#                                ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                 ^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                                                ^ meta.function-call.terraform punctuation.separator.terraform
 #                                                  ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
@@ -2138,10 +2124,6 @@
 #          ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
-/////
-// TODO: Match builtin variables
-/////
-
       rsadecrypt(filebase64("${path.module}/ciphertext"), file("privatekey.pem"))
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
@@ -2149,7 +2131,10 @@
 #                          ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
 #                           ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                            ^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                              ^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform
+#                              ^^^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform support.constant.terraform
+#                                  ^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                                   ^^^^^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
+#                                         ^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                          ^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
 #                                                      ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                                       ^ meta.function-call.terraform punctuation.separator.terraform
@@ -2301,7 +2286,6 @@
 
 /////
 // Basic expression.
-// TODO: match "var" keyword
 /////
 
     [for s in var.list : upper(s)]
@@ -2309,7 +2293,7 @@
 #    ^^^ keyword.control.terraform
 #        ^ variable.other.readwrite.terraform
 #          ^^ keyword.operator.word.terraform
-#             ^^^ variable.other.readwrite.terraform
+#             ^^^ support.constant.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ keyword.operator.terraform
@@ -2321,7 +2305,6 @@
 
 /////
 // Object or map source value.
-// TODO: match "var" keyword
 ////
 
     [for k, v in var.map : length(k) + length(v)]
@@ -2331,7 +2314,7 @@
 #         ^ punctuation.separator.terraform
 #           ^ variable.other.readwrite.terraform
 #             ^^ keyword.operator.word.terraform
-#                ^^^ variable.other.readwrite.terraform
+#                ^^^ support.constant.terraform
 #                   ^ punctuation.accessor.dot.terraform
 #                    ^^^ variable.other.member.terraform
 #                        ^ keyword.operator.terraform
@@ -2348,7 +2331,6 @@
 
 /////
 // Complex right-side expressions.
-// TODO: match "var" keyword
 ////
 
     [for o in var.list : o.interfaces[0].name]
@@ -2356,7 +2338,7 @@
 #    ^^^ keyword.control.terraform
 #        ^ variable.other.readwrite.terraform
 #          ^^ keyword.operator.word.terraform
-#             ^^^ variable.other.readwrite.terraform
+#             ^^^ support.constant.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ keyword.operator.terraform
@@ -2372,7 +2354,6 @@
 
 /////
 // Legacy splat expression attribute access.
-// TODO: match "var" keyword
 /////
 
     [for o in var.list : o.interfaces][0].name
@@ -2380,7 +2361,7 @@
 #    ^^^ keyword.control.terraform
 #        ^ variable.other.readwrite.terraform
 #          ^^ keyword.operator.word.terraform
-#             ^^^ variable.other.readwrite.terraform
+#             ^^^ support.constant.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ keyword.operator.terraform
@@ -2504,7 +2485,6 @@
 
 /////
 // Match if-conditionals on right-side.
-// TODO: match "var" keyword
 /////
 
     [for s in var.list : upper(s) if s != ""]
@@ -2512,7 +2492,7 @@
 #    ^^^ keyword.control.terraform
 #        ^ variable.other.readwrite.terraform
 #          ^^ keyword.operator.word.terraform
-#             ^^^ variable.other.readwrite.terraform
+#             ^^^ support.constant.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ keyword.operator.terraform
@@ -2609,7 +2589,6 @@
 
 /////
 // Matches if-conditional.
-// TODO: match "var" keyword
 /////
 
     {for s in var.list : substr(s, 0, 1) => s... if s != ""}
@@ -2617,7 +2596,7 @@
 #    ^^^ meta.braces.terraform keyword.control.terraform
 #        ^ variable.other.readwrite.terraform
 #          ^^ keyword.operator.word.terraform
-#             ^^^ variable.other.readwrite.terraform
+#             ^^^ support.constant.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ keyword.operator.terraform
@@ -2641,7 +2620,6 @@
 
 /////
 // Matches over multiple-lines.
-// TODO: match "var" keyword.
 /////
 
     value = {
@@ -2652,7 +2630,7 @@
 #     ^^^ meta.braces.terraform keyword.control.terraform
 #         ^ variable.other.readwrite.terraform
 #           ^^ keyword.operator.word.terraform
-#              ^^^ variable.other.readwrite.terraform
+#              ^^^ support.constant.terraform
 #                 ^ punctuation.accessor.dot.terraform
 #                  ^^^^^^^ variable.other.member.terraform
 #                         ^ keyword.operator.terraform
@@ -2710,7 +2688,6 @@
 //////
 // Nested multi-line blocks with expressions.
 // TODO: match "resource", "dynamic" block types
-// TODO: match "var" keyword
 /////
 
     resource "aws_security_group" "example" {
@@ -2734,6 +2711,7 @@
         for_each = var.service_ports
 #       ^^^^^^^^ meta.block.terraform meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
 #                ^^ meta.block.terraform meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#                  ^^^ meta.block.terraform meta.block.terraform support.constant.terraform
 #                     ^ meta.block.terraform meta.block.terraform punctuation.accessor.dot.terraform
 #                      ^^^^^^^^^^^^^ meta.block.terraform meta.block.terraform variable.other.member.terraform
         content {
@@ -2801,3 +2779,41 @@
     }
 #   ^ meta.block.terraform punctuation.section.block.end.terraform
 #    ^ -meta -block
+
+/////////////////////////////////////////////////////////////////////
+// TERRAFORM NAMED VALUES
+/////////////////////////////////////////////////////////////////////
+
+    var.something
+#   ^^^ support.constant.terraform
+#      ^ punctuation.accessor.dot.terraform
+#       ^^^^^^^^^ variable.other.member.terraform
+
+    local.something
+#   ^^^^^ support.constant.terraform
+#        ^ punctuation.accessor.dot.terraform
+#         ^^^^^^^^^ variable.other.member.terraform
+
+    module.name.output_name
+#   ^^^^^^ support.constant.terraform
+#         ^ punctuation.accessor.dot.terraform
+#          ^^^^ variable.other.member.terraform
+#              ^ punctuation.accessor.dot.terraform
+#               ^^^^^^^^^^^ variable.other.member.terraform
+
+    data.data_type.name
+#   ^^^^ support.constant.terraform
+#       ^ punctuation.accessor.dot.terraform
+#        ^^^^^^^^^ variable.other.member.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^ variable.other.member.terraform
+
+    path.module
+#   ^^^^ support.constant.terraform
+#       ^ punctuation.accessor.dot.terraform
+#        ^^^^^^ variable.other.member.terraform
+
+    terraform.workspace
+#   ^^^^^^^^^ support.constant.terraform
+#            ^ punctuation.accessor.dot.terraform
+#             ^^^^^^^^^ variable.other.member.terraform

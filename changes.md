@@ -127,6 +127,10 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches nested blocks
 - *ADDED*: matches inline blocks
 
+### Terraform Named Values
+
+- *ADDED*: matches `var`, `local`, `module`, `data`, `path`, `terraform`.
+
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478

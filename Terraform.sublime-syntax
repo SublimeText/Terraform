@@ -55,6 +55,11 @@ variables:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   char_escapes: \\[nrt"\\]|\\u(\h{8}|\h{4})
 
+  # Terraform Named Values
+  #
+  # https://www.terraform.io/docs/configuration/expressions.html#references-to-named-values
+  named_values: var|local|module|data|path|terraform
+
   # Built-In Functions
   #
   # https://www.terraform.io/docs/configuration/functions.html
@@ -97,6 +102,12 @@ contexts:
     - include: numeric-literals
     - include: language_constants
     - include: string_literals
+    - include: named_value_references
+
+  # Constant values available only to Terraform.
+  named_value_references:
+    - match: '\b({{named_values}})\b'
+      scope: support.constant.terraform
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
