@@ -141,6 +141,11 @@ The following changes have been made in order to either more closely follow the 
 - *CHANGED*: `provisoner` and `atlas` are now matched as normal blocks, not top-level Terraform blocks.
 - *ADDED*: syntax tests
 
+### Terraform Type Keywords
+
+- *ADDED*: matches `string`, `number`, `bool`, and `any`
+- *ADDED*: syntax tests
+
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [splat]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#splat-operators

@@ -2888,3 +2888,19 @@
 #   ^^^^^^^^^ meta.type.terraform storage.type.terraform
 #             ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #              ^ meta.block.terraform punctuation.section.block.end.terraform
+
+/////////////////////////////////////////////////////////////////////
+// TERRAFORM TYPE KEYWORDS
+/////////////////////////////////////////////////////////////////////
+
+    string
+#   ^^^^^^ storage.type.terraform
+
+    any
+#   ^^^ storage.type.terraform
+
+    number
+#   ^^^^^^ storage.type.terraform
+
+    bool
+#   ^^^^ storage.type.terraform

@@ -72,6 +72,12 @@ variables:
   # terraform: https://www.terraform.io/docs/configuration/terraform.html#terraform-block-syntax
   terraform_known_blocks: resource|provider|variable|output|locals|module|data|terraform
 
+  # Terraform built-in type keywords
+  #
+  # https://www.terraform.io/docs/configuration/types.html#primitive-types
+  # https://www.terraform.io/docs/configuration/types.html#dynamic-types-the-quot-any-quot-constraint
+  terraform_type_keywords: any|string|number|bool
+
   # Built-In Functions
   #
   # https://www.terraform.io/docs/configuration/functions.html
@@ -114,12 +120,18 @@ contexts:
     - include: numeric-literals
     - include: language_constants
     - include: string_literals
+    - include: type_keywords
     - include: named_value_references
 
-  # Constant values available only to Terraform.
   named_value_references:
     - match: '\b({{named_values}})\b'
+      comment: Constant values available only to Terraform.
       scope: support.constant.terraform
+
+  type_keywords:
+    - match: '\b({{terraform_type_keywords}})\b'
+      comment: Type keywords known to Terraform.
+      scope: storage.type.terraform
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
