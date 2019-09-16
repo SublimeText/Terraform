@@ -60,6 +60,18 @@ variables:
   # https://www.terraform.io/docs/configuration/expressions.html#references-to-named-values
   named_values: var|local|module|data|path|terraform
 
+  # Block types that are known to Terraform.
+  #
+  # resource: https://www.terraform.io/docs/configuration/resources.html
+  # provider: https://www.terraform.io/docs/configuration/providers.html
+  # variable: https://www.terraform.io/docs/configuration/variables.html
+  # output: https://www.terraform.io/docs/configuration/outputs.html
+  # locals: https://www.terraform.io/docs/configuration/locals.html
+  # module: https://www.terraform.io/docs/configuration/modules.html
+  # data: https://www.terraform.io/docs/configuration/data-sources.html
+  # terraform: https://www.terraform.io/docs/configuration/terraform.html#terraform-block-syntax
+  terraform_known_blocks: resource|provider|variable|output|locals|module|data|terraform
+
   # Built-In Functions
   #
   # https://www.terraform.io/docs/configuration/functions.html
@@ -446,9 +458,10 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
-    - match: '({{identifer}})(?=[\s\"[:word:]]*(\{))'
+    - match: '(({{terraform_known_blocks}})|({{identifer}}))(?=[\s\"[:word:]]*(\{))'
       captures:
-        1: entity.name.type.terraform
+        2: storage.type.terraform
+        3: entity.name.type.terraform
       push:
         - meta_scope: meta.type.terraform
         - match: \"

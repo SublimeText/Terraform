@@ -362,6 +362,19 @@
 #                         ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                          ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
+/////
+// Includes named values.
+/////
+
+    "${var.something}"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#    ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#      ^^^ meta.interpolation.terraform support.constant.terraform
+#         ^ meta.interpolation.terraform punctuation.accessor.dot.terraform
+#          ^^^^^^^^^ meta.interpolation.terraform variable.other.member.terraform
+#                   ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                    ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+
 /////////////////////////////////////////////////////////////////////
 // Template If Directives
 /////////////////////////////////////////////////////////////////////
@@ -729,6 +742,21 @@
 #                   ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #                    ^ punctuation.section.brackets.end.terraform 
 
+/////
+// Includes named values
+/////
+
+    [local.thing1, local.thing2]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^^^^^ support.constant.terraform
+#         ^ punctuation.accessor.dot.terraform
+#          ^^^^^^ variable.other.member.terraform
+#                ^ punctuation.separator.terraform
+#                  ^^^^^ support.constant.terraform
+#                       ^ punctuation.accessor.dot.terraform
+#                        ^^^^^^ variable.other.member.terraform
+#                              ^ punctuation.section.brackets.end.terraform
+
 /////////////////////////////////////////////////////////////////////
 // Collections: Objects
 /////////////////////////////////////////////////////////////////////
@@ -841,7 +869,7 @@
 #    ^ -meta
 
 /////
-// Allows attribute-access as rvalue.
+// Allows attribute-access as rvalue, including named values.
 /////
 
     { lvalue = var.rvalue }
@@ -2687,11 +2715,10 @@
 
 //////
 // Nested multi-line blocks with expressions.
-// TODO: match "resource", "dynamic" block types
 /////
 
     resource "aws_security_group" "example" {
-#   ^^^^^^^^ meta.type.terraform entity.name.type.terraform
+#   ^^^^^^^^ meta.type.terraform storage.type.terraform
 #            ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #             ^^^^^^^^^^^^^^^^^^^ meta.type.terraform string.quoted.double.terraform
 #                                 ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
@@ -2817,3 +2844,47 @@
 #   ^^^^^^^^^ support.constant.terraform
 #            ^ punctuation.accessor.dot.terraform
 #             ^^^^^^^^^ variable.other.member.terraform
+
+/////////////////////////////////////////////////////////////////////
+// TERRAFORM TOP-LEVEL BLOCK TYPES
+/////////////////////////////////////////////////////////////////////
+
+    resource {}
+#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#             ^ meta.block.terraform punctuation.section.block.end.terraform
+
+    provider {}
+#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#             ^ meta.block.terraform punctuation.section.block.end.terraform
+
+    variable {}
+#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#             ^ meta.block.terraform punctuation.section.block.end.terraform
+
+    output {}
+#   ^^^^^^ meta.type.terraform storage.type.terraform
+#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#           ^ meta.block.terraform punctuation.section.block.end.terraform
+
+    locals {}
+#   ^^^^^^ meta.type.terraform storage.type.terraform
+#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#           ^ meta.block.terraform punctuation.section.block.end.terraform
+
+    module {}
+#   ^^^^^^ meta.type.terraform storage.type.terraform
+#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#           ^ meta.block.terraform punctuation.section.block.end.terraform
+
+    data {}
+#   ^^^^ meta.type.terraform storage.type.terraform
+#        ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#         ^ meta.block.terraform punctuation.section.block.end.terraform
+
+    terraform {}
+#   ^^^^^^^^^ meta.type.terraform storage.type.terraform
+#             ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#              ^ meta.block.terraform punctuation.section.block.end.terraform

@@ -110,6 +110,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches `:` operator
 - *ADDED*: matches `if` keyword
 - *ADDED*: matches `=>` operator
+- *ADDED*: syntax tests
 
 ### Collection literals: maps/objects
 
@@ -118,6 +119,7 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches values
 - *ADDED*: matches string keys
 - *ADDED*: matches computed keys
+- *ADDED*: syntax tests
 
 ### Blocks
 
@@ -126,11 +128,18 @@ The following changes have been made in order to either more closely follow the 
 - *ADDED*: matches variable number of identifier labels
 - *ADDED*: matches nested blocks
 - *ADDED*: matches inline blocks
+- *ADDED*: syntax tests
 
 ### Terraform Named Values
 
 - *ADDED*: matches `var`, `local`, `module`, `data`, `path`, `terraform`.
+- *ADDED*: syntax tests
 
+### Terraform Block Types
+
+- *ADDED*: matches `locals`, `terraform` blocks
+- *CHANGED*: `provisoner` and `atlas` are now matched as normal blocks, not top-level Terraform blocks.
+- *ADDED*: syntax tests
 
 [hcl]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
