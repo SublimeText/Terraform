@@ -2763,3 +2763,41 @@
     }
 #   ^ meta.block.terraform punctuation.section.block.end.terraform
 #    ^ -meta
+
+/////
+// Matches blocks with functions, objects, tuples.
+/////
+
+    thing label1 {
+#   ^^^^^ meta.type.terraform entity.name.type.terraform
+#         ^^^^^^ meta.type.terraform entity.name.label.terraform
+#                ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+      func = function(param1)
+#     ^^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#          ^^ meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#            ^^^^^^^^ meta.block.terraform meta.function-call.terraform variable.function.terraform
+#                    ^ meta.block.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                     ^^^^^^ meta.block.terraform meta.function-call.terraform variable.parameter.terraform
+#                           ^ meta.block.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+      obj = {
+#     ^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#         ^^ meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+        key = "value"
+#       ^^^ meta.block.terraform meta.braces.terraform entity.name.tag.terraform
+#           ^ meta.block.terraform meta.braces.terraform keyword.operator.terraform
+#             ^ meta.block.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^^^ meta.block.terraform meta.braces.terraform string.quoted.double.terraform
+#                   ^ meta.block.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+      }
+#     ^ meta.block.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+      tuple = [1, 2]
+#     ^^^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
+#           ^^ meta.block.terraform variable.declaration.terraform keyword.operator.assignment.terraform
+#             ^ meta.block.terraform punctuation.section.brackets.begin.terraform
+#              ^ meta.block.terraform constant.numeric.integer.terraform
+#               ^ meta.block.terraform punctuation.separator.terraform
+#                 ^ meta.block.terraform constant.numeric.integer.terraform
+#                  ^ meta.block.terraform punctuation.section.brackets.end.terraform
+    }
+#   ^ meta.block.terraform punctuation.section.block.end.terraform
+#    ^ -meta -block
