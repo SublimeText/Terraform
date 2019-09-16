@@ -499,7 +499,7 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
-    - match: '(({{terraform_known_blocks}})|({{identifer}}))(?=[\s\"[:word:]]*(\{))'
+    - match: '(({{terraform_known_blocks}})|({{identifer}}))(?=[\s\"\-[:word:]]*(\{))'
       captures:
         2: storage.type.terraform
         3: entity.name.type.terraform
@@ -510,7 +510,7 @@ contexts:
           scope: punctuation.definition.string.begin.terraform
           push:
             - meta_scope: string.quoted.double.terraform
-            - match: '"'
+            - match: \"
               scope: punctuation.definition.string.end.terraform
               pop: true
         - match: "{{identifer}}"
