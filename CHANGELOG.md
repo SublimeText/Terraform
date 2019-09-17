@@ -44,6 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [Primitive type constants][types].
 - Heredocs with the leading-spaces operator `<<-`.
 - String interpolation inside heredocs.
+- [Import][import] statements.
 
 ### Changed
 
@@ -228,6 +229,7 @@ Initial release.
 [exponents]: https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
 [hex-literals]: https://github.com/hashicorp/terraform/issues/20933#issuecomment-480050478
 [for-exp]: https://www.terraform.io/docs/configuration/expressions.html#for-expressions
+[import]: https://www.terraform.io/docs/import/usage.html
 [indices]: https://www.terraform.io/docs/configuration/expressions.html#indices-and-attributes
 [named-values]: https://www.terraform.io/docs/configuration/expressions.html#references-to-named-values
 [old-splat]: https://www.terraform.io/docs/configuration/expressions.html#legacy-attribute-only-splat-expressions

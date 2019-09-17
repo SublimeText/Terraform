@@ -87,6 +87,7 @@ contexts:
   main:
     - include: comments
     - include: attribute_definition
+    - include: imports
     - include: block
     - include: expressions
 
@@ -303,6 +304,31 @@ contexts:
       scope: keyword.operator.terraform
     - match: "\\:"  # :
       scope: keyword.operator.terraform
+
+  imports:
+    - match: \s*(terraform)\s*(import)\s*
+      comment: Importing resources
+      captures:
+        1: support.constant.terraform
+        2: keyword.control.import.terraform
+      push:
+        - match: \"
+          comment: String literal label
+          scope: punctuation.definition.string.begin.terraform
+          push:
+            - meta_scope: string.quoted.double.terraform
+            - match: \"
+              scope: punctuation.definition.string.end.terraform
+              pop: true
+        - match: "{{identifer}}"
+          comment: Identifer label
+          scope: entity.name.label.terraform
+        - include: numeric-literals
+        - include: attribute_access
+        - match: $\n?
+          comment: Pop at newline
+          pop: true
+
 
   # Brackets: matches tuples and subscript notation
   #
