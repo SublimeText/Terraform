@@ -2916,7 +2916,7 @@
 /////
     << EOF
 #   ^^ keyword.operator.heredoc.terraform
-#      ^^^ keyword.control.heredoc.shell
+#      ^^^ keyword.control.heredoc.terraform
     sdfdfsd
 #   ^^^^^^^^ string.unquoted.heredoc.terraform
     EOF
@@ -2928,7 +2928,7 @@
 
     <<- END
 #   ^^^ keyword.operator.heredoc.terraform
-#       ^^^ keyword.control.heredoc.shell
+#       ^^^ keyword.control.heredoc.terraform
     heredoc
 #   ^^^^^^^^ string.unquoted.heredoc.terraform
     EOF
@@ -2942,7 +2942,7 @@
 
     <<- END
 #   ^^^ keyword.operator.heredoc.terraform
-#       ^^^ keyword.control.heredoc.shell
+#       ^^^ keyword.control.heredoc.terraform
     Hello, ${var.name}
 #   ^^^^^^^ string.unquoted.heredoc.terraform
 #          ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
