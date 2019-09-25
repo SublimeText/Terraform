@@ -26,12 +26,18 @@ repository:
     patterns:
     - include: '#literal_values'
     - include: '#operators'
+    - include: '#brackets'
 
   literal_values:
     patterns:
       - include: '#numeric_literals'
       - include: '#language_constants'
       - include: '#string_literals'
+
+  comma:
+    comment: Commas - used in certain expressions
+    name: punctuation.separator.terraform
+    match: \,
 
   inline_comments:
     comment: Inline comments
@@ -146,56 +152,17 @@ repository:
       - match: "\\:"  # :
         name: keyword.operator.terraform
 
-
-# - name: meta.resource.terraform
-#   match: (resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)
-#   foldingStartMarker: '\{\s*$'
-#   foldingStopMarker: '^\s*\}'
-#   captures:
-#     '1': {name: storage.type.function.terraform}
-#     '2': {name: string.terraform punctuation.definition.string.begin.terraform}
-#     '3': {name: string.value.terraform}
-#     '4': {name: string.terraform punctuation.definition.string.end.terraform}
-#     '5': {name: string.terraform punctuation.definition.string.begin.terraform}
-#     '6': {name: string.value.terraform}
-#     '7': {name: string.terraform punctuation.definition.string.end.terraform}
-#     '8': {name: punctuation.definition.tag.terraform}
-
-# - match: (provider|provisioner|variable|output|module|atlas)\s+(")?([\w\-]+)(")?\s+({)
-#   foldingStartMarker: '\{\s*$'
-#   foldingStopMarker: '^\s*\}'
-#   captures:
-#     '1': {name: storage.type.function.terraform}
-#     '2': {name: string.terraform punctuation.definition.string.begin.terraform}
-#     '3': {name: string.value.terraform}
-#     '4': {name: string.terraform punctuation.definition.string.end.terraform}
-#     '5': {name: punctuation.definition.tag.terraform}
-
-# - comment: Value assignments (left hand side not in double quotes)
-#   match: ([\w_-]+)\s*(=)\s*
-#   captures:
-#     '1': {name: variable.other.assignment.terraform}
-#     '2': {name: keyword.operator.terraform}
-
-# - comment: Value assignments (left hand side in double quotes)
-#   match: (")([\w_-]+)(")\s*(=)\s*
-#   captures:
-#     '1': {name: punctuation.quote.double.terraform}
-#     '2': {name: variable.assignment.terraform}
-#     '3': {name: punctuation.quote.double.terraform}
-#     '4': {name: keyword.operator.terraform}
-
-# - comment: Maps
-#   match: ([\w\-_]+)\s+({)
-#   captures:
-#     '1': {name: entity.name.section.terraform}
-#     '2': {name: punctuation.definition.tag.terraform}
-
-# - name: string.unquoted.heredoc.terraform
-#   begin: (?>\s*<<(\w+))
-#   beginCaptures:
-#     '0': {name: punctuation.definition.string.begin.terraform}
-#     '1': {name: keyword.operator.heredoc.terraform}
-#   end: ^\s*\1$
-#   endCaptures:
-#     '0': {name: punctuation.definition.string.end.terraform keyword.operator.heredoc.terraform}
+  brackets:
+    comment: Tuples & subscript notation
+    begin: \[
+    beginCaptures:
+      '0': { name: punctuation.section.brackets.begin.terraform }
+    end: (\*)?\]
+    endCaptures:
+      '0': { name: punctuation.section.brackets.end.terraform }
+      '1': { name: keyword.operator.splat.terraform }
+    patterns:
+      - include: '#comma'
+      - include: '#comments'
+      - include: '#expressions'
+      # TODO: - include: '#tuple_for_expression'

@@ -317,7 +317,19 @@
 // Includes tuples.
 ////
 
-// TODO
+    "something ${[1, 2, 3]}"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#    ^^^^^^^^^^ string.quoted.double.terraform
+#              ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                ^ meta.interpolation.terraform punctuation.section.brackets.begin.terraform
+#                 ^ meta.interpolation.terraform constant.numeric.integer.terraform
+#                  ^ meta.interpolation.terraform punctuation.separator.terraform
+#                    ^ meta.interpolation.terraform constant.numeric.integer.terraform
+#                     ^ meta.interpolation.terraform punctuation.separator.terraform
+#                       ^ meta.interpolation.terraform constant.numeric.integer.terraform
+#                        ^ meta.interpolation.terraform punctuation.section.brackets.end.terraform
+#                         ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                          ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
 /////
 // Includes named values.
@@ -490,6 +502,115 @@
 
 /////
 // Ellipsis
+/////
+
+// TODO
+
+/////////////////////////////////////////////////////////////////////
+// Brackets: Index Operations and Arrays
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Index Operations
+/////
+
+    thing[1]
+#       ^ -punctuation 
+#        ^ punctuation.section.brackets.begin.terraform
+#         ^ constant.numeric.integer.terraform
+#          ^ punctuation.section.brackets.end.terraform
+#           ^ -punctuation
+
+/////
+// Arrays of literals
+/////
+
+    ["a", "b", "c"]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^ punctuation.definition.string.begin.terraform
+#    ^^^ string.quoted.double.terraform
+#      ^ punctuation.definition.string.end.terraform
+#       ^ punctuation.separator.terraform
+#         ^ punctuation.definition.string.begin.terraform
+#         ^^^ string.quoted.double.terraform
+#           ^ punctuation.definition.string.end.terraform
+#            ^ punctuation.separator.terraform
+#              ^ punctuation.definition.string.begin.terraform
+#              ^^^ string.quoted.double.terraform
+#                ^ punctuation.definition.string.end.terraform
+#                 ^ punctuation.section.brackets.end.terraform
+
+/////
+// Allows inline comments
+/////
+
+    [1, /* inline */ 2]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^ constant.numeric.integer.terraform
+#     ^ punctuation.separator.terraform
+#       ^^ punctuation.definition.comment.terraform
+#       ^^^^^^^^^^^^ comment.block.terraform
+#                 ^^ punctuation.definition.comment.terraform
+#                    ^ constant.numeric.integer.terraform
+#                     ^ punctuation.section.brackets.end.terraform
+
+/////
+// Allows expression over multiple lines
+/////
+
+    [
+#   ^ punctuation.section.brackets.begin.terraform
+      1,
+#     ^ constant.numeric.integer.terraform
+#      ^ punctuation.separator.terraform
+      2
+#     ^ constant.numeric.integer.terraform
+    ]
+#   ^ punctuation.section.brackets.end.terraform
+
+/////
+// Allows operators
+/////
+
+    [ 1 + 2 ]
+#   ^ punctuation.section.brackets.begin.terraform
+#     ^ constant.numeric.integer.terraform
+#       ^ keyword.operator.arithmetic.terraform
+#         ^ constant.numeric.integer.terraform
+#           ^ punctuation.section.brackets.end.terraform
+
+/////
+// Splat operator
+/////
+
+// TODO
+
+/////
+// Handle nested arrays
+/////
+
+// TODO
+
+/////
+// Attribute-access inside arrays
+/////
+
+// TODO
+
+/////
+// Includes functions.
+/////
+
+// TODO
+
+/////
+// Include objects.
+/////
+
+// TODO
+
+/////
+// Includes named values
 /////
 
 // TODO

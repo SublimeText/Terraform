@@ -50,6 +50,60 @@
 			<key>name</key>
 			<string>comment.block.terraform</string>
 		</dict>
+		<key>brackets</key>
+		<dict>
+			<key>begin</key>
+			<string>\[</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.brackets.begin.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Tuples &amp; subscript notation</string>
+			<key>end</key>
+			<string>(\*)?\]</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.brackets.end.terraform</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.splat.terraform</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comma</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+			</array>
+		</dict>
+		<key>comma</key>
+		<dict>
+			<key>comment</key>
+			<string>Commas - used in certain expressions</string>
+			<key>match</key>
+			<string>\,</string>
+			<key>name</key>
+			<string>punctuation.separator.terraform</string>
+		</dict>
 		<key>comments</key>
 		<dict>
 			<key>patterns</key>
@@ -75,6 +129,10 @@
 				<dict>
 					<key>include</key>
 					<string>#operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#brackets</string>
 				</dict>
 			</array>
 		</dict>
