@@ -172,6 +172,64 @@
 				</dict>
 			</array>
 		</dict>
+		<key>string_interpolation</key>
+		<dict>
+			<key>begin</key>
+			<string>(\$|\%)\{</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.interpolation.begin.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>String interpolation</string>
+			<key>end</key>
+			<string>\}</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.interpolation.end.terraform</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.interpolation.terraform</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>Trim left whitespace</string>
+					<key>match</key>
+					<string>\~\s</string>
+					<key>name</key>
+					<string>keyword.operator.template.left.trim.terraform</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Trim right whitespace</string>
+					<key>match</key>
+					<string>\s\~</string>
+					<key>name</key>
+					<string>keyword.operator.template.right.trim.terraform</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>if/else/endif and for/in/endfor directives</string>
+					<key>match</key>
+					<string>\b(if|else|endif|for|in|endfor)\b</string>
+					<key>name</key>
+					<string>keyword.control.terraform</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+			</array>
+		</dict>
 		<key>string_literals</key>
 		<dict>
 			<key>begin</key>
@@ -200,6 +258,10 @@
 			<string>string.quoted.double.terraform</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#string_interpolation</string>
+				</dict>
 				<dict>
 					<key>comment</key>
 					<string>Character Escapes</string>

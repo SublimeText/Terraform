@@ -248,3 +248,135 @@
 #                                     ^^^^^^^^^^ constant.character.escape.terraform
 #                                               ^ punctuation.definition.string.end.terraform
 
+/////////////////////////////////////////////////////////////////////
+// STRING INTERPOLATION
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Correct scopes during interpolation.
+/////
+
+      "some ${interpolation} string"
+#   ^ -punctuation -string
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^ string.quoted.double.terraform
+#           ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#             ^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                          ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                            ^^^^^^^ string.quoted.double.terraform
+#                                  ^ punctuation.definition.string.end.terraform
+#                                   ^ -punctuation -string
+
+/////
+// Matches left-trim and right-trim.
+/////
+
+      "%{~ fff ~}"
+#     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#        ^^ meta.interpolation.terraform keyword.operator.template.left.trim.terraform
+#          ^^^^^^ meta.interpolation.terraform
+#             ^^ meta.interpolation.terraform keyword.operator.template.right.trim.terraform
+#               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+
+/////
+// Matches operators
+/////
+
+// TODO
+
+/////
+// Dot-access attributes in string interpolation
+/////
+
+// TODO
+
+/////
+// Handles function calls
+/////
+
+// TODO
+
+/////
+// Includes objects.
+////
+
+// TODO
+
+/////
+// Includes tuples.
+////
+
+// TODO
+
+/////
+// Includes named values.
+/////
+
+// TODO
+
+/////////////////////////////////////////////////////////////////////
+// Template If Directives
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches if/endif directives.
+/////
+
+      "${ if name == "Mary" }${name}${ endif ~}"
+#    ^ -string -punctuation
+#     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#         ^^ meta.interpolation.terraform keyword.control.terraform
+#                    ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^^^^^ source.terraform meta.interpolation.terraform string.quoted.double.terraform
+#                         ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                           ^ punctuation.section.interpolation.end.terraform
+#                            ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                                  ^ punctuation.section.interpolation.end.terraform 
+#                                   ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                                      ^^^^^ meta.interpolation.terraform keyword.control.terraform
+#                                            ^ meta.interpolation.terraform keyword.operator.template.right.trim.terraform
+#                                             ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                               ^ -string -punctuation
+
+/////
+// Matches if/else/endif directives.
+/////
+
+      "%{ if name == "Mary" }${name}%{ else }${ "Mary" }%{ endif ~}"
+#    ^ -string -punctuation
+#     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#         ^^ meta.interpolation.terraform keyword.control.terraform
+#                    ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^^^^^ source.terraform meta.interpolation.terraform string.quoted.double.terraform
+#                         ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                           ^ punctuation.section.interpolation.end.terraform
+#                            ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                                  ^ punctuation.section.interpolation.end.terraform 
+#                                   ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                                      ^^^^ meta.interpolation.terraform keyword.control.terraform
+#                                           ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                            ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                                               ^ meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                ^^^^^ meta.interpolation.terraform string.quoted.double.terraform
+#                                                      ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                                      ^ punctuation.section.interpolation.end.terraform
+#                                                       ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                                                          ^^^^^ meta.interpolation.terraform keyword.control.terraform
+#                                                                ^ meta.interpolation.terraform keyword.operator.template.right.trim.terraform
+#                                                                 ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                                                  ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                                   ^ -string -punctuation
+
+/////
+// Matches for/in/endfor directives.
+/////
+
+// TODO
+
