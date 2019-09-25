@@ -388,6 +388,7 @@
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
 #         ^^ meta.interpolation.terraform keyword.control.terraform
+#                 ^^ meta.interpolation.terraform keyword.operator.terraform
 #                    ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                    ^^^^^^ source.terraform meta.interpolation.terraform string.quoted.double.terraform
 #                         ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
@@ -411,6 +412,7 @@
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
 #         ^^ meta.interpolation.terraform keyword.control.terraform
+#                 ^^ meta.interpolation.terraform keyword.operator.terraform
 #                    ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                    ^^^^^^ source.terraform meta.interpolation.terraform string.quoted.double.terraform
 #                         ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
