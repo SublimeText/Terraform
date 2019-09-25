@@ -7,7 +7,6 @@ uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 
 variables:
   identifier: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
-  char_escapes: \\[nrt"\\]|\\u(\h{8}|\h{4})
   named_values: var|local|module|data|path|terraform
   terraform_known_blocks: resource|provider|variable|output|locals|module|data|terraform
   terraform_type_keywords: any|string|number|bool
@@ -29,8 +28,9 @@ repository:
 
   literal_values:
     patterns:
-    - include: '#numeric_literals'
-    - include: '#language_constants'
+      - include: '#numeric_literals'
+      - include: '#language_constants'
+      - include: '#string_literals'
 
   inline_comments:
     comment: Inline comments
@@ -71,6 +71,21 @@ repository:
       - comment: Integers
         name: constant.numeric.integer.terraform
         match: \d+
+
+  string_literals:
+    comment: Strings
+    name: string.quoted.double.terraform
+    begin: '"'
+    beginCaptures:
+      '0': { name: punctuation.definition.string.begin.terraform }
+    end: '"'
+    endCaptures:
+      '0': { name: punctuation.definition.string.end.terraform }
+    patterns:
+      # - include: '#string_interpolation'
+      - comment: Character Escapes
+        match: \\[nrt"\\]|\\u(\h{8}|\h{4})
+        name: constant.character.escape.terraform
 
 # - name: meta.resource.terraform
 #   match: (resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)

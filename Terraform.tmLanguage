@@ -115,6 +115,10 @@
 					<key>include</key>
 					<string>#language_constants</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string_literals</string>
+				</dict>
 			</array>
 		</dict>
 		<key>numeric_literals</key>
@@ -168,6 +172,44 @@
 				</dict>
 			</array>
 		</dict>
+		<key>string_literals</key>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Strings</string>
+			<key>end</key>
+			<string>"</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.terraform</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.double.terraform</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>Character Escapes</string>
+					<key>match</key>
+					<string>\\[nrt"\\]|\\u(\h{8}|\h{4})</string>
+					<key>name</key>
+					<string>constant.character.escape.terraform</string>
+				</dict>
+			</array>
+		</dict>
 	</dict>
 	<key>scopeName</key>
 	<string>source.terraform</string>
@@ -175,8 +217,6 @@
 	<string>9060ca81-906d-4f19-a91a-159f4eb119d6</string>
 	<key>variables</key>
 	<dict>
-		<key>char_escapes</key>
-		<string>\\[nrt"\\]|\\u(\h{8}|\h{4})</string>
 		<key>identifier</key>
 		<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
 		<key>named_values</key>
