@@ -1,8 +1,17 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
+---
 name: Terraform
 scopeName: source.terraform
 fileTypes: [tf, tfvars, hcl]
 uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
+
+variables:
+  identifier: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
+  char_escapes: \\[nrt"\\]|\\u(\h{8}|\h{4})
+  named_values: var|local|module|data|path|terraform
+  terraform_known_blocks: resource|provider|variable|output|locals|module|data|terraform
+  terraform_type_keywords: any|string|number|bool
+  predeclared_funcs: abs|ceil|floor|log|max|min|pow|signum|chomp|format|formatlist|indent|join|lower|regex|regexall|replace|split|strrev|substr|title|trimspace|upper|chunklist|coalesce|coalescelist|compact|concat|contains|distinct|element|flatten|index|keys|length|list|lookup|map|matchkeys|merge|range|reverse|setintersection|setproduct|setunion|slice|sort|transpose|values|zipmap|base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|urlencode|yamldecode|yamlencode|abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile|formatdate|timeadd|timestamp|base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filemd1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5|cidrhost|cidrnetmask|cidrsubnet|tobool|tolist|tomap|tonumber|toset|tostring
 
 patterns:
 - include: '#comments'
@@ -20,6 +29,7 @@ repository:
 
   literal_values:
     patterns:
+    - include: '#numeric_literals'
     - include: '#language_constants'
 
   inline_comments:
@@ -45,13 +55,22 @@ repository:
     name: constant.language.terraform
     match: \b(true|false|null)\b
 
-# - comment: Numbers
-#   name: constant.numeric.terraform
-#   match: \b([0-9]+)([kKmMgG]b?)?\b
-
-# - comment: Hex numbers
-#   name: constant.numeric.terraform
-#   match: \b(0x[0-9A-Fa-f]+)([kKmMgG]b?)?\b
+  numeric_literals:
+    patterns:
+      - comment: Integer, no fraction, optional exponent
+        name: constant.numeric.float.terraform
+        match: '\d+(([Ee][+-]?))\d+'
+        captures:
+          '1': { name: punctuation.separator.exponent.terraform }
+      - comment: Integer, fraction, optional exponent
+        name: constant.numeric.float.terraform
+        match: \d+(\.)\d+(?:(([Ee][+-]?))\d+)?
+        captures:
+          '1': { name: punctuation.separator.decimal.terraform }
+          '2': { name: punctuation.separator.exponent.terraform }
+      - comment: Integers
+        name: constant.numeric.integer.terraform
+        match: \d+
 
 # - name: meta.resource.terraform
 #   match: (resource|data)\s+(")?(\w+)(")?\s+(")?([\w\-]+)(")?\s+({)

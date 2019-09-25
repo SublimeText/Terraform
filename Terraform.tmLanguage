@@ -109,7 +109,62 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#numeric_literals</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#language_constants</string>
+				</dict>
+			</array>
+		</dict>
+		<key>numeric_literals</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.exponent.terraform</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Integer, no fraction, optional exponent</string>
+					<key>match</key>
+					<string>\d+(([Ee][+-]?))\d+</string>
+					<key>name</key>
+					<string>constant.numeric.float.terraform</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.decimal.terraform</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.exponent.terraform</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Integer, fraction, optional exponent</string>
+					<key>match</key>
+					<string>\d+(\.)\d+(?:(([Ee][+-]?))\d+)?</string>
+					<key>name</key>
+					<string>constant.numeric.float.terraform</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Integers</string>
+					<key>match</key>
+					<string>\d+</string>
+					<key>name</key>
+					<string>constant.numeric.integer.terraform</string>
 				</dict>
 			</array>
 		</dict>
@@ -118,5 +173,20 @@
 	<string>source.terraform</string>
 	<key>uuid</key>
 	<string>9060ca81-906d-4f19-a91a-159f4eb119d6</string>
+	<key>variables</key>
+	<dict>
+		<key>char_escapes</key>
+		<string>\\[nrt"\\]|\\u(\h{8}|\h{4})</string>
+		<key>identifier</key>
+		<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
+		<key>named_values</key>
+		<string>var|local|module|data|path|terraform</string>
+		<key>predeclared_funcs</key>
+		<string>abs|ceil|floor|log|max|min|pow|signum|chomp|format|formatlist|indent|join|lower|regex|regexall|replace|split|strrev|substr|title|trimspace|upper|chunklist|coalesce|coalescelist|compact|concat|contains|distinct|element|flatten|index|keys|length|list|lookup|map|matchkeys|merge|range|reverse|setintersection|setproduct|setunion|slice|sort|transpose|values|zipmap|base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|urlencode|yamldecode|yamlencode|abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile|formatdate|timeadd|timestamp|base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filemd1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5|cidrhost|cidrnetmask|cidrsubnet|tobool|tolist|tomap|tonumber|toset|tostring</string>
+		<key>terraform_known_blocks</key>
+		<string>resource|provider|variable|output|locals|module|data|terraform</string>
+		<key>terraform_type_keywords</key>
+		<string>any|string|number|bool</string>
+	</dict>
 </dict>
 </plist>

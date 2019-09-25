@@ -110,3 +110,110 @@
 # ^ -constant
 #   ^^^^ constant.language.terraform
 #         ^ -constant
+
+/////////////////////////////////////////////////////////////////////
+// INTEGER CONSTANTS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches integers.
+/////
+
+    444
+# ^ -constant -numeric
+#   ^^^ constant.numeric.integer.terraform
+
+/////
+// Matches zero.
+/////
+
+      0
+# ^ -constant -numeric
+#     ^ constant.numeric.integer.terraform
+
+/////
+// Matches one.
+/////
+
+      1
+# ^ -constant -numeric
+#     ^ constant.numeric.integer.terraform
+
+/////
+// Matches large integers.
+/////
+
+      26345645634561
+# ^ -constant -numeric
+#     ^^^^^^^^^^^^^^ constant.numeric.integer.terraform
+
+/////////////////////////////////////////////////////////////////////
+// FLOATING-POINT CONSTANTS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches floating-point numbers.
+/////
+
+      1.2
+# ^ -constant -numeric
+#     ^ constant.numeric.float.terraform
+#      ^ punctuation.separator.decimal.terraform
+#       ^ constant.numeric.float.terraform
+
+/////
+// Matches large floating-point numbers.
+/////
+
+      61.28888888888
+#   ^ -constant -numeric
+#     ^^ constant.numeric.float.terraform
+#       ^ punctuation.separator.decimal.terraform
+#        ^^^^^^^^^^^ constant.numeric.float.terraform
+
+/////
+// Matches integers with exponents.
+/////
+
+      1e12
+#   ^ -constant -numeric
+#     ^ constant.numeric.float.terraform
+#      ^ punctuation.separator.exponent.terraform
+#       ^^ constant.numeric.float.terraform
+
+/////
+// Matches floats with exponents.
+/////
+
+      1.4E12
+#   ^ -constant -numeric
+#     ^ constant.numeric.float.terraform
+#      ^ punctuation.separator.decimal.terraform
+#       ^ constant.numeric.float.terraform
+#        ^ punctuation.separator.exponent.terraform
+#         ^^ constant.numeric.float.terraform
+
+/////
+// Matches floats with postive signed exponents.
+/////
+
+      1.4e+12
+#   ^ -constant -numeric
+#     ^ constant.numeric.float.terraform
+#      ^ punctuation.separator.decimal.terraform
+#       ^ constant.numeric.float.terraform
+#        ^^ punctuation.separator.exponent.terraform
+#          ^^ constant.numeric.float.terraform
+
+/////
+// Matches floats with negative signed exponents.
+/////
+
+      1.4E-12
+#   ^ -constant -numeric
+#     ^ constant.numeric.float.terraform
+#      ^ punctuation.separator.decimal.terraform
+#       ^ constant.numeric.float.terraform
+#        ^^ punctuation.separator.exponent.terraform
+#          ^^ constant.numeric.float.terraform
+
