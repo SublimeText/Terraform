@@ -132,7 +132,7 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
   literal_values:
-    - include: numeric-literals
+    - include: numeric_literals
     - include: language_constants
     - include: string_literals
     - include: heredoc
@@ -190,7 +190,7 @@ contexts:
   #
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
-  numeric-literals:
+  numeric_literals:
     - match: \d+({{exponent}})\d+
       comment: Integer, no fraction, optional exponent
       scope: constant.numeric.float.terraform
@@ -323,7 +323,7 @@ contexts:
         - match: "{{identifer}}"
           comment: Identifer label
           scope: entity.name.label.terraform
-        - include: numeric-literals
+        - include: numeric_literals
         - include: attribute_access
         - match: $\n?
           comment: Pop at newline
