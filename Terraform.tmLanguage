@@ -18,7 +18,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#literal_values</string>
+			<string>#expressions</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -71,6 +71,10 @@
 				<dict>
 					<key>include</key>
 					<string>#literal_values</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operators</string>
 				</dict>
 			</array>
 		</dict>
@@ -169,6 +173,114 @@
 					<string>\d+</string>
 					<key>name</key>
 					<string>constant.numeric.integer.terraform</string>
+				</dict>
+			</array>
+		</dict>
+		<key>operators</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\&gt;\=</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\&lt;\=</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\=\=</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\!\=</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\+</string>
+					<key>name</key>
+					<string>keyword.operator.arithmetic.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\-</string>
+					<key>name</key>
+					<string>keyword.operator.arithmetic.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\*</string>
+					<key>name</key>
+					<string>keyword.operator.arithmetic.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\/</string>
+					<key>name</key>
+					<string>keyword.operator.arithmetic.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\%</string>
+					<key>name</key>
+					<string>keyword.operator.arithmetic.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\&amp;\&amp;</string>
+					<key>name</key>
+					<string>keyword.operator.logical.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\|\|</string>
+					<key>name</key>
+					<string>keyword.operator.logical.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\!</string>
+					<key>name</key>
+					<string>keyword.operator.logical.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\&gt;</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\&lt;</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\?</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\.\.\.</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\:</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
 				</dict>
 			</array>
 		</dict>

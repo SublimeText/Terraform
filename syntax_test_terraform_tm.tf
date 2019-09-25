@@ -284,7 +284,16 @@
 // Matches operators
 /////
 
-// TODO
+    "${ something ? true : false }"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#    ^^ punctuation.section.interpolation.begin.terraform
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                 ^ keyword.operator.terraform
+#                   ^^^^ meta.interpolation.terraform constant.language.terraform
+#                        ^ meta.interpolation.terraform keyword.operator.terraform
+#                          ^^^^^ meta.interpolation.terraform constant.language.terraform
+#                                ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                 ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
 /////
 // Dot-access attributes in string interpolation
@@ -330,6 +339,7 @@
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
 #         ^^ meta.interpolation.terraform keyword.control.terraform
+#                 ^^ meta.interpolation.terraform keyword.operator.terraform
 #                    ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                    ^^^^^^ source.terraform meta.interpolation.terraform string.quoted.double.terraform
 #                         ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
@@ -353,6 +363,7 @@
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
 #         ^^ meta.interpolation.terraform keyword.control.terraform
+#                 ^^ meta.interpolation.terraform keyword.operator.terraform
 #                    ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                    ^^^^^^ source.terraform meta.interpolation.terraform string.quoted.double.terraform
 #                         ^ source.terraform meta.interpolation.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
@@ -380,3 +391,105 @@
 
 // TODO
 
+/////////////////////////////////////////////////////////////////////
+// Operators
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Comparison
+/////
+
+    a == b
+#   ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#         ^ -keyword -operator 
+
+    a != b
+#   ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#         ^ -keyword -operator 
+
+    a < b
+#    ^ -keyword -operator
+#     ^ keyword.operator.terraform
+#      ^ -keyword -operator
+
+    a <= b
+#    ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#       ^ -keyword -operator
+
+    a > b
+#    ^ -keyword -operator 
+#     ^ keyword.operator.terraform
+#      ^ -keyword -operator
+
+    a >= b
+#    ^ -keyword -operator
+#     ^^ keyword.operator.terraform
+#       ^ -keyword -operator
+
+/////
+// Arithmetic
+/////
+
+    a + b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a - b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a * b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a / b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    a % b
+#    ^ -keyword -operator
+#     ^ keyword.operator.arithmetic.terraform
+#      ^ -keyword -operator
+
+    -a
+#  ^ -keyword -operator
+#   ^ keyword.operator.arithmetic.terraform 
+#    ^ -keyword -operator 
+
+/////
+// Logic
+/////
+
+    a && b
+#   ^^ -keyword -operator
+#     ^^ keyword.operator.logical.terraform
+#       ^^ -keyword -operator
+
+    a || b
+#   ^^ -keyword -operator
+#     ^^ keyword.operator.logical.terraform
+#       ^^ -keyword -operator
+
+    !a
+# ^^ -keyword -operator
+#   ^ keyword.operator.logical.terraform
+#    ^^ -keyword -operator
+
+/////
+// Conditional
+/////
+
+// TODO
+
+/////
+// Ellipsis
+/////
+
+// TODO

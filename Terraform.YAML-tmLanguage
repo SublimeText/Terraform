@@ -14,7 +14,7 @@ variables:
 
 patterns:
 - include: '#comments'
-- include: '#literal_values'
+- include: '#expressions'
 
 repository:
   comments:
@@ -25,6 +25,7 @@ repository:
   expressions:
     patterns:
     - include: '#literal_values'
+    - include: '#operators'
 
   literal_values:
     patterns:
@@ -107,6 +108,43 @@ repository:
         name: keyword.control.terraform
         match: \b(if|else|endif|for|in|endfor)\b
       - include: '#expressions'
+
+  operators:
+    patterns:
+      - match: \>\=   # >=
+        name: keyword.operator.terraform
+      - match: \<\=   # <=
+        name: keyword.operator.terraform
+      - match: \=\=   # ==
+        name: keyword.operator.terraform
+      - match: \!\=   # !=
+        name: keyword.operator.terraform
+      - match: \+     # +
+        name: keyword.operator.arithmetic.terraform
+      - match: \-     # -
+        name: keyword.operator.arithmetic.terraform
+      - match: \*     # *
+        name: keyword.operator.arithmetic.terraform
+      - match: \/     # /
+        name: keyword.operator.arithmetic.terraform
+      - match: \%     # %
+        name: keyword.operator.arithmetic.terraform
+      - match: \&\&   # &&
+        name: keyword.operator.logical.terraform
+      - match: \|\|   # ||
+        name: keyword.operator.logical.terraform
+      - match: \!     # !
+        name: keyword.operator.logical.terraform
+      - match: \>     # >
+        name: keyword.operator.terraform
+      - match: \<     # <
+        name: keyword.operator.terraform
+      - match: \?     # ?
+        name: keyword.operator.terraform
+      - match: \.\.\. # ...
+        name: keyword.operator.terraform
+      - match: "\\:"  # :
+        name: keyword.operator.terraform
 
 
 # - name: meta.resource.terraform
