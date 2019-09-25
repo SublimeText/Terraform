@@ -305,6 +305,9 @@ contexts:
     - match: "\\:"  # :
       scope: keyword.operator.terraform
 
+  # Terraform "import" statements
+  #
+  # https://www.terraform.io/docs/import/usage.html
   imports:
     - match: \s*(terraform)\s*(import)\s*
       comment: Importing resources
@@ -328,7 +331,6 @@ contexts:
         - match: $\n?
           comment: Pop at newline
           pop: true
-
 
   # Brackets: matches tuples and subscript notation
   #
