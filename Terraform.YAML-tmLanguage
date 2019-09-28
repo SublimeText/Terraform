@@ -27,6 +27,7 @@ repository:
     - include: '#literal_values'
     - include: '#operators'
     - include: '#brackets'
+    - include: '#objects'
 
   literal_values:
     patterns:
@@ -166,3 +167,60 @@ repository:
       - include: '#comments'
       - include: '#expressions'
       # TODO: - include: '#tuple_for_expression'
+
+  objects:
+    comment: Map collection values
+    name: meta.braces.terraform
+    begin: '\{'
+    beginCaptures:
+      '0': { name: punctuation.section.braces.begin.terraform }
+    end: '\}'
+    endCaptures:
+      '0': { name: punctuation.section.braces.end.terraform }
+    patterns:
+      # TODO: - include: '#object_for_expression'
+      - include: '#comments'
+      - comment: Literal, named object key
+        begin: '\s*(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)\s*(\=)\s*'
+        beginCaptures:
+          '1': { name: entity.name.tag.terraform }
+          '2': { name: keyword.operator.terraform }
+        end: ((\,)|($\n?)|(?=\}))
+        endCaptures:
+          '1': { name: punctuation.separator.terraform }
+          '3': { name: punctuation.section.braces.end.terraform }
+        patterns:
+          - include: '#object_key_values'
+      - comment: String object key
+        begin: '((\").*(\"))\s*(\=)\s*'
+        beginCaptures:
+          '1': { name: string.quoted.double.terraform }
+          '2': { name: punctuation.definition.string.begin.terraform }
+          '3': { name: punctuation.definition.string.end.terraform }
+          '4': { name: keyword.operator.terraform }
+        end: ((\,)|($\n?)|(?=\}))
+        endCaptures:
+          '1': { name: punctuation.separator.terraform }
+          '3': { name: punctuation.section.braces.end.terraform }
+        patterns:
+          - include: '#object_key_values'
+      - comment: Begin computed object key
+        begin: '\('
+        beginCaptures:
+          '0': { name: punctuation.section.parens.begin.terraform }
+        end: '(\))\s*(\=)\s*'
+        endCaptures:
+          '1': { name: punctuation.section.parens.end.terraform }
+          '2': { name: keyword.operator.terraform }
+        patterns:
+          - include: '#expressions'
+      - comment: Random Expression, for matching after computed keys
+        patterns:
+          - include: '#object_key_values'
+
+
+  object_key_values:
+    patterns:
+      - include: '#comments'
+      - include: '#expressions'
+
