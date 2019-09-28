@@ -299,7 +299,15 @@
 // Dot-access attributes in string interpolation
 /////
 
-// TODO
+    "hello ${aws_instance.ubuntu}"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#   ^^^^^^^ string.quoted.double.terraform
+#          ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#            ^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                        ^ meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                         ^^^^^^ meta.interpolation.terraform variable.other.member.terraform
+#                               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
 /////
 // Handles function calls
@@ -593,7 +601,17 @@
 // Splat operator
 /////
 
-// TODO
+    tuple[*].foo.bar[0]
+#        ^ punctuation.section.brackets.begin.terraform
+#         ^ punctuation.section.brackets.end.terraform keyword.operator.splat.terraform
+#          ^ punctuation.section.brackets.end.terraform
+#           ^ punctuation.accessor.dot.terraform
+#            ^^^ variable.other.member.terraform
+#               ^ punctuation.accessor.dot.terraform
+#                ^^^ variable.other.member.terraform
+#                   ^ punctuation.section.brackets.begin.terraform
+#                    ^ constant.numeric.integer.terraform
+#                     ^ punctuation.section.brackets.end.terraform
 
 /////
 // Handle nested arrays
@@ -605,7 +623,14 @@
 // Attribute-access inside arrays
 /////
 
-// TODO
+    [ aws_instance.ubuntu, aws_instance.freebsd ]
+#   ^ punctuation.section.brackets.begin.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^^^ variable.other.member.terraform
+#                        ^ punctuation.separator.terraform
+#                                      ^ punctuation.accessor.dot.terraform
+#                                       ^^^^^^^ variable.other.member.terraform
+#                                               ^ punctuation.section.brackets.end.terraform
 
 /////
 // Includes functions.
@@ -787,3 +812,50 @@
 
 // TODO
 
+/////////////////////////////////////////////////////////////////////
+// Attribute Access
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches dot-access
+/////
+
+    aws_instance.ubuntu[*].private_dns
+#               ^ punctuation.accessor.dot.terraform
+#                ^^^^^^ variable.other.member.terraform
+#                      ^ punctuation.section.brackets.begin.terraform
+#                       ^ punctuation.section.brackets.end.terraform keyword.operator.splat.terraform
+#                        ^ punctuation.section.brackets.end.terraform
+#                         ^ punctuation.accessor.dot.terraform
+#                          ^^^^^^^^^^^ variable.other.member.terraform
+#                                     ^ -variable -punctuation 
+
+/////
+// Ignores dot-access in string literals
+/////
+
+    "aws_instance.ubuntu"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^ -variable
+#   ^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform
+
+/////
+// Matches inside for-expressions
+/////
+
+// TODO
+
+/////
+// Attribute-only splat
+/////
+
+    tuple.*.foo.bar[0]
+#        ^ punctuation.accessor.dot.terraform
+#         ^ keyword.operator.splat.terraform
+#          ^ punctuation.accessor.dot.terraform
+#           ^^^ variable.other.member.terraform
+#              ^ punctuation.accessor.dot.terraform
+#               ^^^ variable.other.member.terraform
+#                  ^ punctuation.section.brackets.begin.terraform
+#                   ^ constant.numeric.integer.terraform
+#                    ^ punctuation.section.brackets.end.terraform

@@ -28,6 +28,7 @@ repository:
     - include: '#operators'
     - include: '#brackets'
     - include: '#objects'
+    - include: '#attribute_access'
 
   literal_values:
     patterns:
@@ -218,9 +219,17 @@ repository:
         patterns:
           - include: '#object_key_values'
 
-
   object_key_values:
     patterns:
       - include: '#comments'
       - include: '#expressions'
 
+  attribute_access:
+    comment: Attribute Access - "." Identifier
+    begin: '\.'
+    beginCaptures:
+      '0': { name: punctuation.accessor.dot.terraform }
+    end: '(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)|(\*)'
+    endCaptures:
+      '1': { name: variable.other.member.terraform }
+      '2': { name: keyword.operator.splat.terraform }

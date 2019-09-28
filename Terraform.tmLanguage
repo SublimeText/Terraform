@@ -23,6 +23,36 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>attribute_access</key>
+		<dict>
+			<key>begin</key>
+			<string>\.</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.accessor.dot.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Attribute Access - "." Identifier</string>
+			<key>end</key>
+			<string>(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)|(\*)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.other.member.terraform</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.splat.terraform</string>
+				</dict>
+			</dict>
+		</dict>
 		<key>block_comments</key>
 		<dict>
 			<key>begin</key>
@@ -137,6 +167,10 @@
 				<dict>
 					<key>include</key>
 					<string>#objects</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attribute_access</string>
 				</dict>
 			</array>
 		</dict>
