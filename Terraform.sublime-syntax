@@ -388,7 +388,7 @@ contexts:
           push:
             - match: '(\))\s*(\=)\s*'
               captures:
-                1: punctuation.section.parens.begin.terraform
+                1: punctuation.section.parens.end.terraform
                 2: keyword.operator.terraform
               set: object_key_values
             - include: expressions
