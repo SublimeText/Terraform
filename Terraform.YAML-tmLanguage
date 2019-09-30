@@ -13,23 +13,24 @@ variables:
   predeclared_funcs: abs|ceil|floor|log|max|min|pow|signum|chomp|format|formatlist|indent|join|lower|regex|regexall|replace|split|strrev|substr|title|trimspace|upper|chunklist|coalesce|coalescelist|compact|concat|contains|distinct|element|flatten|index|keys|length|list|lookup|map|matchkeys|merge|range|reverse|setintersection|setproduct|setunion|slice|sort|transpose|values|zipmap|base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|urlencode|yamldecode|yamlencode|abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile|formatdate|timeadd|timestamp|base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filemd1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5|cidrhost|cidrnetmask|cidrsubnet|tobool|tolist|tomap|tonumber|toset|tostring
 
 patterns:
-- include: '#comments'
-- include: '#expressions'
+  - include: '#comments'
+  - include: '#attribute_definition'
+  - include: '#expressions'
 
 repository:
   comments:
     patterns:
-    - include: '#inline_comments'
-    - include: '#block_comments'
+      - include: '#inline_comments'
+      - include: '#block_comments'
 
   expressions:
     patterns:
-    - include: '#literal_values'
-    - include: '#operators'
-    - include: '#brackets'
-    - include: '#objects'
-    - include: '#attribute_access'
-    - include: '#functions'
+      - include: '#literal_values'
+      - include: '#operators'
+      - include: '#brackets'
+      - include: '#objects'
+      - include: '#attribute_access'
+      - include: '#functions'
 
   literal_values:
     patterns:
@@ -234,6 +235,16 @@ repository:
     endCaptures:
       '1': { name: variable.other.member.terraform }
       '2': { name: keyword.operator.splat.terraform }
+
+  attribute_definition:
+    comment: Attribute Definition - Identifier "=" Expression Newline
+    match: (\()?(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)(\))?\s*(\=[^\=|\>])\s*
+    name: variable.declaration.terraform
+    captures:
+      '1': { name: punctuation.section.parens.begin.terraform }
+      '2': { name: variable.other.readwrite.terraform }
+      '3': { name: punctuation.section.parens.end.terraform }
+      '4': { name: keyword.operator.assignment.terraform }
 
   functions:
     comment: Functions calls- Terraform builtins and unknown

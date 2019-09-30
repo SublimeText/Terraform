@@ -18,6 +18,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#attribute_definition</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#expressions</string>
 		</dict>
 	</array>
@@ -52,6 +56,38 @@
 					<string>keyword.operator.splat.terraform</string>
 				</dict>
 			</dict>
+		</dict>
+		<key>attribute_definition</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.begin.terraform</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>variable.other.readwrite.terraform</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.end.terraform</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.assignment.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Attribute Definition - Identifier "=" Expression Newline</string>
+			<key>match</key>
+			<string>(\()?(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)(\))?\s*(\=[^\=|\&gt;])\s*</string>
+			<key>name</key>
+			<string>variable.declaration.terraform</string>
 		</dict>
 		<key>block_comments</key>
 		<dict>

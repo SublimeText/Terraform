@@ -628,7 +628,26 @@
 // Handle nested arrays
 /////
 
-// TODO
+    count = [
+#   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
+#           ^ punctuation.section.brackets.begin.terraform
+      [ 1, 2],
+#     ^ punctuation.section.brackets.begin.terraform
+#       ^ constant.numeric.integer.terraform
+#        ^ punctuation.separator.terraform
+#          ^ constant.numeric.integer.terraform
+#           ^ punctuation.section.brackets.end.terraform
+#            ^ punctuation.separator.terraform
+      [ 6, 7]
+#     ^ punctuation.section.brackets.begin.terraform
+#       ^ constant.numeric.integer.terraform
+#        ^ punctuation.separator.terraform
+#          ^ constant.numeric.integer.terraform
+#           ^ punctuation.section.brackets.end.terraform
+    ]
+#   ^ punctuation.section.brackets.end.terraform
+#    ^ -punctuation
 
 /////
 // Attribute-access inside arrays
@@ -894,7 +913,14 @@
 // Populate an attribute from a variable value
 /////
 
-// TODO
+    (foo) = "baz"
+#   ^ variable.declaration.terraform punctuation.section.parens.begin.terraform
+#    ^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#       ^ variable.declaration.terraform punctuation.section.parens.end.terraform
+#         ^ variable.declaration.terraform keyword.operator.assignment.terraform
+#           ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#           ^^^^^ string.quoted.double.terraform
+#               ^ string.quoted.double.terraform punctuation.definition.string.end.terraform 
 
 /////////////////////////////////////////////////////////////////////
 // Function Calls
