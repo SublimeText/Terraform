@@ -29,6 +29,7 @@ repository:
     - include: '#brackets'
     - include: '#objects'
     - include: '#attribute_access'
+    - include: '#functions'
 
   literal_values:
     patterns:
@@ -233,3 +234,23 @@ repository:
     endCaptures:
       '1': { name: variable.other.member.terraform }
       '2': { name: keyword.operator.splat.terraform }
+
+  functions:
+    comment: Functions calls- Terraform builtins and unknown
+    name: meta.function-call.terraform
+    begin: '(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)(\()'
+    # TODO: include built-in functions
+    beginCaptures:
+      '1': { name: variable.function.terraform }
+      '2': { name: punctuation.section.parens.begin.terraform }
+    end: \)
+    endCaptures:
+      '0': { name: punctuation.section.parens.end.terraform }
+    patterns:
+      - include: '#comments'
+      - include: '#expressions'
+      - include: '#comma'
+      - comment: Function parameter
+        match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
+        name: variable.parameter.terraform
+

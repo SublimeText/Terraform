@@ -522,7 +522,18 @@
 // Ellipsis
 /////
 
-// TODO
+    hhh([55, 2453, 2]...)
+#   ^^^ meta.function-call.terraform variable.function.terraform
+#      ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#       ^ punctuation.section.brackets.begin.terraform
+#        ^^ constant.numeric.integer.terraform
+#          ^ punctuation.separator.terraform
+#            ^^^^ constant.numeric.integer.terraform
+#                ^ punctuation.separator.terraform
+#                  ^ constant.numeric.integer.terraform
+#                   ^ punctuation.section.brackets.end.terraform
+#                    ^^^ keyword.operator.terraform 
+#                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////////////////////////////////////////////////////////////////////
 // Brackets: Index Operations and Arrays
@@ -731,7 +742,7 @@
 #                        ^ -meta
 
 /////
-// Allows function calls as keys.
+// Allows function calls as values.
 /////
 
 // TODO
@@ -804,7 +815,16 @@
 // Allows function calls as keys.
 /////
 
-// TODO
+    {(func()) = 1}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^ meta.braces.terraform punctuation.section.parens.begin.terraform
+#     ^^^^ meta.braces.terraform meta.function-call.terraform variable.function.terraform
+#         ^ meta.braces.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.braces.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#           ^ meta.braces.terraform punctuation.section.parens.end.terraform
+#             ^ meta.braces.terraform keyword.operator.terraform
+#               ^ meta.braces.terraform constant.numeric.integer.terraform
+#                ^ meta.braces.terraform punctuation.section.braces.end.terraform
 
 /////
 // Allows attribute-access as keys.
@@ -859,3 +879,140 @@
 #                  ^ punctuation.section.brackets.begin.terraform
 #                   ^ constant.numeric.integer.terraform
 #                    ^ punctuation.section.brackets.end.terraform
+
+/////////////////////////////////////////////////////////////////////
+// Attribute Definition
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Basic definition
+/////
+
+// TODO
+
+/////
+// Populate an attribute from a variable value
+/////
+
+// TODO
+
+/////////////////////////////////////////////////////////////////////
+// Function Calls
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Basic call.
+/////
+
+    thing(l)
+#   ^^^^^ meta.function-call.terraform variable.function.terraform
+#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.terraform variable.parameter.terraform
+#          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+
+/////
+// Matches parameters, attribute-access, literals, operators, commas.
+/////
+
+    cidrthingy(aws_vpc.main.cidr_block, 4, count.index+1)
+#   ^^^^^^^^^^ meta.function-call.terraform variable.function.terraform
+#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#              ^^^^^^^ meta.function-call.terraform variable.parameter.terraform
+#                     ^ meta.function-call.terraform punctuation.accessor.dot.terraform
+#                      ^^^^ meta.function-call.terraform variable.other.member.terraform
+#                          ^ meta.function-call.terraform punctuation.accessor.dot.terraform
+#                           ^^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
+#                                     ^ meta.function-call.terraform punctuation.separator.terraform
+#                                       ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                        ^ meta.function-call.terraform punctuation.separator.terraform
+#                                          ^^^^^ meta.function-call.terraform variable.parameter.terraform
+#                                               ^ meta.function-call.terraform punctuation.accessor.dot.terraform
+#                                                ^^^^^ meta.function-call.terraform variable.other.member.terraform
+#                                                     ^ meta.function-call.terraform keyword.operator.arithmetic.terraform
+#                                                      ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                                        ^ -meta -function-call -variable
+
+/////
+// Matches arrays and splat as parameters.
+/////
+
+      y6y([55, 2453, 2]..., [55555555])
+#     ^^^ meta.function-call.terraform variable.function.terraform
+#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#          ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#            ^ meta.function-call.terraform punctuation.separator.terraform
+#              ^^^^ meta.function-call.terraform constant.numeric.integer.terraform
+#                  ^ meta.function-call.terraform punctuation.separator.terraform
+#                    ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                      ^^^ meta.function-call.terraform keyword.operator.terraform
+#                         ^ meta.function-call.terraform punctuation.separator.terraform
+#                           ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#                            ^^^^^^^^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                    ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+
+/////
+// Matches objects as parameters.
+/////
+
+    some({a = 1, b = "2"})
+#   ^^^^ meta.function-call.terraform variable.function.terraform
+#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#        ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#         ^ meta.function-call.terraform meta.braces.terraform entity.name.tag.terraform
+#           ^ meta.function-call.terraform meta.braces.terraform keyword.operator.terraform
+#             ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#              ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
+#                ^ meta.function-call.terraform meta.braces.terraform entity.name.tag.terraform
+#                  ^ meta.function-call.terraform meta.braces.terraform keyword.operator.terraform
+#                    ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                     ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                        ^ meta.function-call.terraform punctuation.section.parens.end.terraform 
+
+/////
+// Nested function calls.
+/////
+
+    func(thing(yep(1)))
+#   ^^^^ meta.function-call.terraform variable.function.terraform
+#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#        ^^^^^ meta.function-call.terraform meta.function-call.terraform variable.function.terraform
+#             ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#              ^^^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform variable.function.terraform
+#                 ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform constant.numeric.integer.terraform
+#                   ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                      ^ -function
+
+/////
+// Parameters spanning multiple lines.
+/////
+
+    func(
+#   ^^^^ meta.function-call.terraform variable.function.terraform
+#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+      1,
+#     ^ meta.function-call.terraform constant.numeric.integer.terraform
+#      ^ meta.function-call.terraform punctuation.separator.terraform
+      2
+#     ^ meta.function-call.terraform constant.numeric.integer.terraform
+    )
+#   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+
+/////
+// Allow object for-expressions.
+////
+
+// TODO
+
+/////
+// Allow tuple for-expressions.
+/////
+
+// TODO

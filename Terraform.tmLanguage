@@ -172,6 +172,65 @@
 					<key>include</key>
 					<string>#attribute_access</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#functions</string>
+				</dict>
+			</array>
+		</dict>
+		<key>functions</key>
+		<dict>
+			<key>begin</key>
+			<string>(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.function.terraform</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.begin.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Functions calls- Terraform builtins and unknown</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.end.terraform</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function-call.terraform</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comma</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Function parameter</string>
+					<key>match</key>
+					<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
+					<key>name</key>
+					<string>variable.parameter.terraform</string>
+				</dict>
 			</array>
 		</dict>
 		<key>inline_comments</key>
