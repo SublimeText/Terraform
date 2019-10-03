@@ -1035,7 +1035,26 @@
 // Allow object for-expressions.
 ////
 
-// TODO
+    thing({for i, v in ["a"]: v => i...})
+#   ^^^^^ meta.function-call.terraform variable.function.terraform
+#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#          ^^^ meta.function-call.terraform meta.braces.terraform keyword.control.terraform
+#              ^ meta.function-call.terraform variable.other.readwrite.terraform
+#               ^ meta.function-call.terraform punctuation.separator.terraform
+#                 ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                   ^^ meta.function-call.terraform keyword.operator.word.terraform
+#                      ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^ meta.function-call.terraform string.quoted.double.terraform
+#                          ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                           ^ meta.function-call.terraform keyword.operator.terraform
+#                             ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                               ^^ meta.function-call.terraform storage.type.function.terraform
+#                                  ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                                   ^^^ meta.function-call.terraform keyword.operator.terraform
+#                                      ^ meta.function-call.terraform punctuation.section.braces.end.terraform
+#                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////
 // Allow tuple for-expressions.
@@ -1193,6 +1212,68 @@
 #                                          ^ constant.numeric.integer.terraform
 #                                           ^ punctuation.section.brackets.end.terraform
 
+/////////////////////////////////////////////////////////////////////
+// OBJECT FOR-EXPRESSIONS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Matches basic syntax.
+/////
+
+    {for i, v in ["a", "b"]: v => i}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^^^ meta.braces.terraform keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#         ^ punctuation.separator.terraform
+#           ^ variable.other.readwrite.terraform
+#             ^^ keyword.operator.word.terraform
+#                ^ punctuation.section.brackets.begin.terraform
+#                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ string.quoted.double.terraform
+#                    ^ punctuation.separator.terraform
+#                      ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                       ^^ string.quoted.double.terraform
+#                         ^ punctuation.section.brackets.end.terraform
+#                          ^ keyword.operator.terraform
+#                            ^ variable.other.readwrite.terraform
+#                              ^^ storage.type.function.terraform
+#                                 ^ variable.other.readwrite.terraform
+#                                  ^ punctuation.section.braces.end.terraform
+#                                   ^ -meta
+
+/////
+// Matches ellipsis.
+/////
+
+    {for i, v in ["a"]: v => i...}
+#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#    ^^^ meta.braces.terraform keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#         ^ punctuation.separator.terraform
+#           ^ variable.other.readwrite.terraform
+#             ^^ keyword.operator.word.terraform
+#                ^ punctuation.section.brackets.begin.terraform
+#                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ string.quoted.double.terraform
+#                    ^ punctuation.section.brackets.end.terraform
+#                     ^ keyword.operator.terraform
+#                       ^ variable.other.readwrite.terraform
+#                         ^^ storage.type.function.terraform
+#                            ^ variable.other.readwrite.terraform
+#                             ^^^ keyword.operator.terraform
+#                                ^ punctuation.section.braces.end.terraform
+
+/////
+// Matches if-conditional.
+/////
+
+// TODO
+
+/////
+// Matches over multiple-lines.
+/////
+
+// TODO
 
 /////////////////////////////////////////////////////////////////////
 // HEREDOCS

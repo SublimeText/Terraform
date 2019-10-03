@@ -418,6 +418,70 @@
 				</dict>
 			</array>
 		</dict>
+		<key>object_for_expression</key>
+		<dict>
+			<key>begin</key>
+			<string>\bfor\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Object for-expression</string>
+			<key>end</key>
+			<string>(?=\})</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\=\&gt;</string>
+					<key>name</key>
+					<string>storage.type.function.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\bin\b</string>
+					<key>name</key>
+					<string>keyword.operator.word.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\bif\b</string>
+					<key>name</key>
+					<string>keyword.control.conditional.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\:</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comma</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Local Identifiers</string>
+					<key>match</key>
+					<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
+					<key>name</key>
+					<string>variable.other.readwrite.terraform</string>
+				</dict>
+			</array>
+		</dict>
 		<key>object_key_values</key>
 		<dict>
 			<key>patterns</key>
@@ -460,6 +524,10 @@
 			<string>meta.braces.terraform</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#object_for_expression</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#comments</string>
