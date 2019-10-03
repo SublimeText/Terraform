@@ -497,7 +497,7 @@ contexts:
           scope: storage.type.function.terraform
         - include: for_expression_body
         - match: \}
-          scope: punctuation.section.brackets.end.terraform
+          scope: punctuation.section.braces.end.terraform
           pop: true
 
   # Shared body syntax for tuple and object for-expressions.

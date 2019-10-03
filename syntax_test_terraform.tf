@@ -1167,7 +1167,7 @@
 #                               ^^ meta.function-call.terraform storage.type.function.terraform
 #                                  ^ meta.function-call.terraform variable.other.readwrite.terraform
 #                                   ^^^ meta.function-call.terraform keyword.operator.terraform
-#                                      ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                                      ^ meta.function-call.terraform punctuation.section.braces.end.terraform
 #                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////
@@ -2592,7 +2592,7 @@
 #                            ^ variable.other.readwrite.terraform
 #                              ^^ storage.type.function.terraform
 #                                 ^ variable.other.readwrite.terraform
-#                                  ^ punctuation.section.brackets.end.terraform
+#                                  ^ punctuation.section.braces.end.terraform
 #                                   ^ -meta
 
 /////
@@ -2615,7 +2615,7 @@
 #                         ^^ storage.type.function.terraform
 #                            ^ variable.other.readwrite.terraform
 #                             ^^^ keyword.operator.terraform
-#                                ^ punctuation.section.brackets.end.terraform
+#                                ^ punctuation.section.braces.end.terraform
 
 /////
 // Matches if-conditional.
@@ -2646,7 +2646,7 @@
 #                                                     ^^ keyword.operator.terraform
 #                                                        ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                                                         ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                          ^ punctuation.section.brackets.end.terraform
+#                                                          ^ punctuation.section.braces.end.terraform
 
 /////
 // Matches over multiple-lines.
@@ -2672,7 +2672,7 @@
 #             ^ meta.function-call.terraform variable.parameter.terraform
 #              ^ meta.function-call.terraform punctuation.section.parens.end.terraform 
     }
-#   ^ punctuation.section.brackets.end.terraform
+#   ^ punctuation.section.braces.end.terraform
 
 /////////////////////////////////////////////////////////////////////
 // BLOCKS
