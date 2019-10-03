@@ -37,6 +37,7 @@ repository:
       - include: '#numeric_literals'
       - include: '#language_constants'
       - include: '#string_literals'
+      - include: '#heredoc'
 
   comma:
     comment: Commas - used in certain expressions
@@ -118,6 +119,19 @@ repository:
         name: keyword.control.terraform
         match: \b(if|else|endif|for|in|endfor)\b
       - include: '#expressions'
+
+  heredoc:
+    comment: Heredocs
+    name: string.unquoted.heredoc.terraform
+    begin: '(\<\<\-?)\s*(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)\s*$'
+    beginCaptures:
+      '1': { name: keyword.operator.heredoc.terraform }
+      '2': { name: keyword.control.heredoc.terraform }
+    end: '^\s*\2\s*$'
+    endCaptures:
+      '0': { name: keyword.control.heredoc.terraform }
+    patterns:
+      - include: '#string_interpolation'
 
   operators:
     patterns:

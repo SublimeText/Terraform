@@ -1042,3 +1042,38 @@
 /////
 
 // TODO
+
+/////////////////////////////////////////////////////////////////////
+// HEREDOCS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Basic example.
+/////
+    << EOF
+#   ^^ keyword.operator.heredoc.terraform
+#      ^^^ keyword.control.heredoc.terraform
+    sdfdfsd
+#   ^^^^^^^^ string.unquoted.heredoc.terraform
+    EOF
+#   ^^^^ keyword.control.heredoc.terraform
+
+/////
+// With leading-spaces-operator.
+/////
+
+    <<- END
+#   ^^^ keyword.operator.heredoc.terraform
+#       ^^^ keyword.control.heredoc.terraform
+    heredoc
+#   ^^^^^^^^ string.unquoted.heredoc.terraform
+    EOF
+#   ^^^^ string.unquoted.heredoc.terraform
+    END
+#   ^^^^ keyword.control.heredoc.terraform
+
+/////
+// Includes string interpolation.
+/////
+
+// TODO

@@ -269,6 +269,45 @@
 				</dict>
 			</array>
 		</dict>
+		<key>heredoc</key>
+		<dict>
+			<key>begin</key>
+			<string>(\&lt;\&lt;\-?)\s*(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)\s*$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.heredoc.terraform</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.heredoc.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Heredocs</string>
+			<key>end</key>
+			<string>^\s*\2\s*$</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.heredoc.terraform</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.unquoted.heredoc.terraform</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string_interpolation</string>
+				</dict>
+			</array>
+		</dict>
 		<key>inline_comments</key>
 		<dict>
 			<key>begin</key>
@@ -313,6 +352,10 @@
 				<dict>
 					<key>include</key>
 					<string>#string_literals</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#heredoc</string>
 				</dict>
 			</array>
 		</dict>
