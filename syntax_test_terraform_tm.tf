@@ -1041,7 +1041,158 @@
 // Allow tuple for-expressions.
 /////
 
+    func([for v in ["a", "b"]: v])
+#   ^^^^ meta.function-call.terraform variable.function.terraform
+#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#        ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#         ^^^ meta.function-call.terraform keyword.control.terraform
+#             ^ meta.function-call.terraform variable.other.readwrite.terraform
+#               ^^ meta.function-call.terraform keyword.operator.word.terraform
+#                  ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
+#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^ meta.function-call.terraform string.quoted.double.terraform
+#                      ^ meta.function-call.terraform punctuation.separator.terraform
+#                        ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                         ^^ meta.function-call.terraform string.quoted.double.terraform
+#                           ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                            ^ meta.function-call.terraform keyword.operator.terraform
+#                              ^ meta.function-call.terraform variable.other.readwrite.terraform
+#                               ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
+#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+
+/////////////////////////////////////////////////////////////////////
+// TUPLE FOR-EXPRESSIONS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Basic expression.
+/////
+
 // TODO
+
+/////
+// Object or map source value.
+////
+
+// TODO
+
+/////
+// Complex right-side expressions.
+////
+
+// TODO
+
+/////
+// Legacy splat expression attribute access.
+/////
+
+// TODO
+
+/////
+// Multi-line for-expressions.
+/////
+
+    value = [
+#   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
+#           ^ punctuation.section.brackets.begin.terraform
+      for instance in aws_instance.ubuntu:
+#     ^^^ keyword.control.terraform
+#         ^^^^^^^^ variable.other.readwrite.terraform
+#                  ^^ keyword.operator.word.terraform
+#                     ^^^^^^^^^^^^ variable.other.readwrite.terraform
+#                                 ^ punctuation.accessor.dot.terraform
+#                                  ^^^^^^ variable.other.member.terraform
+#                                        ^ keyword.operator.terraform
+      instance.private_dns
+#     ^^^^^^^^ variable.other.readwrite.terraform
+#             ^ punctuation.accessor.dot.terraform
+#              ^^^^^^^^^^^ variable.other.member.terraform
+    ]
+#   ^ punctuation.section.brackets.end.terraform
+
+/////
+// Match conditional on right-side expression.
+/////
+
+// TODO
+
+/////
+// Match brackets on right-side expression.
+/////
+
+    value = [
+#   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
+#           ^ punctuation.section.brackets.begin.terraform 
+      for instance in aws_instance.ubuntu:
+#     ^^^ keyword.control.terraform
+#         ^^^^^^^^ variable.other.readwrite.terraform
+#                  ^^ keyword.operator.word.terraform
+#                     ^^^^^^^^^^^^ variable.other.readwrite.terraform
+#                                 ^ punctuation.accessor.dot.terraform
+#                                  ^^^^^^ variable.other.member.terraform
+#                                        ^ keyword.operator.terraform 
+      (instance.public_ip != "" ? [instance.private_ip, instance.public_ip] : [instance.private_ip])
+#     ^ punctuation.section.parens.begin.terraform
+#      ^^^^^^^^ variable.other.readwrite.terraform
+#              ^ punctuation.accessor.dot.terraform
+#               ^^^^^^^^^ variable.other.member.terraform
+#                         ^^ keyword.operator.terraform
+#                            ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                             ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                               ^ keyword.operator.terraform
+#                                 ^ punctuation.section.brackets.begin.terraform
+#                                          ^ punctuation.accessor.dot.terraform
+#                                           ^^^^^^^^^^ variable.other.member.terraform
+#                                                     ^ punctuation.separator.terraform
+#                                                               ^ punctuation.accessor.dot.terraform 
+#                                                                ^^^^^^^^^ variable.other.member.terraform  
+#                                                                         ^ punctuation.section.brackets.end.terraform
+#                                                                           ^ keyword.operator.terraform
+#                                                                             ^ punctuation.section.brackets.begin.terraform
+#                                                                                      ^ punctuation.accessor.dot.terraform
+#                                                                                       ^^^^^^^^^^ variable.other.member.terraform
+#                                                                                                 ^ punctuation.section.brackets.end.terraform  
+#                                                                                                  ^ punctuation.section.parens.end.terraform 
+    ]
+#   ^ punctuation.section.brackets.end.terraform
+
+/////
+// Match if-conditionals on right-side.
+/////
+
+// TODO
+
+/////
+// Matches bracket-literals as range expression.
+/////
+
+    [for i, v in ["a", "b", "c"]: v if i < 2]
+#   ^ punctuation.section.brackets.begin.terraform
+#    ^^^ keyword.control.terraform
+#        ^ variable.other.readwrite.terraform
+#         ^ punctuation.separator.terraform
+#           ^ variable.other.readwrite.terraform
+#             ^^ keyword.operator.word.terraform
+#                ^ punctuation.section.brackets.begin.terraform
+#                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ string.quoted.double.terraform
+#                    ^ punctuation.separator.terraform
+#                      ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                       ^^ string.quoted.double.terraform
+#                         ^ punctuation.separator.terraform
+#                           ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^ string.quoted.double.terraform
+#                              ^ punctuation.section.brackets.end.terraform
+#                               ^ keyword.operator.terraform
+#                                 ^ variable.other.readwrite.terraform
+#                                   ^^ keyword.control.conditional.terraform
+#                                      ^ variable.other.readwrite.terraform
+#                                        ^ keyword.operator.terraform
+#                                          ^ constant.numeric.integer.terraform
+#                                           ^ punctuation.section.brackets.end.terraform
+
 
 /////////////////////////////////////////////////////////////////////
 // HEREDOCS

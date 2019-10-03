@@ -159,6 +159,10 @@
 					<key>include</key>
 					<string>#expressions</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tuple_for_expression</string>
+				</dict>
 			</array>
 		</dict>
 		<key>comma</key>
@@ -211,6 +215,10 @@
 				<dict>
 					<key>include</key>
 					<string>#functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#parens</string>
 				</dict>
 			</array>
 		</dict>
@@ -705,6 +713,46 @@
 				</dict>
 			</array>
 		</dict>
+		<key>parens</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.begin.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Parens - matched *after* function syntax</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.end.terraform</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Local Identifiers</string>
+					<key>match</key>
+					<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
+					<key>name</key>
+					<string>variable.other.readwrite.terraform</string>
+				</dict>
+			</array>
+		</dict>
 		<key>string_interpolation</key>
 		<dict>
 			<key>begin</key>
@@ -802,6 +850,64 @@
 					<string>\\[nrt"\\]|\\u(\h{8}|\h{4})</string>
 					<key>name</key>
 					<string>constant.character.escape.terraform</string>
+				</dict>
+			</array>
+		</dict>
+		<key>tuple_for_expression</key>
+		<dict>
+			<key>begin</key>
+			<string>\bfor\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Tuple for-expression</string>
+			<key>end</key>
+			<string>(?=\])</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\bin\b</string>
+					<key>name</key>
+					<string>keyword.operator.word.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\bif\b</string>
+					<key>name</key>
+					<string>keyword.control.conditional.terraform</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\:</string>
+					<key>name</key>
+					<string>keyword.operator.terraform</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comma</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Local Identifiers</string>
+					<key>match</key>
+					<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
+					<key>name</key>
+					<string>variable.other.readwrite.terraform</string>
 				</dict>
 			</array>
 		</dict>

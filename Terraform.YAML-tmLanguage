@@ -31,6 +31,7 @@ repository:
       - include: '#objects'
       - include: '#attribute_access'
       - include: '#functions'
+      - include: '#parens'
 
   literal_values:
     patterns:
@@ -43,6 +44,20 @@ repository:
     comment: Commas - used in certain expressions
     name: punctuation.separator.terraform
     match: \,
+
+  parens:
+    comment: Parens - matched *after* function syntax
+    begin: '\('
+    beginCaptures:
+      '0': { name: punctuation.section.parens.begin.terraform }
+    end: '\)'
+    endCaptures:
+      '0': { name: punctuation.section.parens.end.terraform }
+    patterns:
+      - include: '#expressions'
+      - match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
+        comment: Local Identifiers
+        name: variable.other.readwrite.terraform
 
   inline_comments:
     comment: Inline comments
@@ -183,7 +198,7 @@ repository:
       - include: '#comma'
       - include: '#comments'
       - include: '#expressions'
-      # TODO: - include: '#tuple_for_expression'
+      - include: '#tuple_for_expression'
 
   objects:
     comment: Map collection values
@@ -279,3 +294,22 @@ repository:
         match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
         name: variable.parameter.terraform
 
+  tuple_for_expression:
+    comment: Tuple for-expression
+    begin: \bfor\b
+    beginCaptures:
+      '0': { name: keyword.control.terraform }
+    end: '(?=\])'
+    patterns:
+      - match: '\bin\b'
+        name: keyword.operator.word.terraform
+      - match: '\bif\b'
+        name: keyword.control.conditional.terraform
+      - match: "\\:"
+        name: keyword.operator.terraform
+      - include: '#expressions'
+      - include: '#comments'
+      - include: '#comma'
+      - match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
+        comment: Local Identifiers
+        name: variable.other.readwrite.terraform
