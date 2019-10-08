@@ -39,6 +39,7 @@ repository:
       - include: '#language_constants'
       - include: '#string_literals'
       - include: '#heredoc'
+      - include: '#type_keywords'
       - include: '#named_value_references'
 
   comma:
@@ -64,6 +65,11 @@ repository:
     comment: Terraform built-in variables
     match: '\b(var|local|module|data|path|terraform)\b'
     name: support.constant.terraform
+
+  type_keywords:
+    comment: Type keywords known to Terraform.
+    match: '\b(any|string|number|bool)\b'
+    name: storage.type.terraform
 
   inline_comments:
     comment: Inline comments

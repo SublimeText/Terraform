@@ -405,6 +405,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#type_keywords</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#named_value_references</string>
 				</dict>
 			</array>
@@ -1079,6 +1083,15 @@
 					<string>variable.other.readwrite.terraform</string>
 				</dict>
 			</array>
+		</dict>
+		<key>type_keywords</key>
+		<dict>
+			<key>comment</key>
+			<string>Type keywords known to Terraform.</string>
+			<key>match</key>
+			<string>\b(any|string|number|bool)\b</string>
+			<key>name</key>
+			<string>storage.type.terraform</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
