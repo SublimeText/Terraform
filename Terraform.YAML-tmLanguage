@@ -7,7 +7,7 @@ uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 
 patterns:
   - include: '#comments'
-  - include: '#attribute_definition'
+  - include: '#top_level_attribute_definition'
   - include: '#block'
   - include: '#expressions'
 
@@ -15,7 +15,6 @@ repository:
   main:
     patterns:
       - include: '#comments'
-      - include: '#attribute_definition'
       - include: '#block'
       - include: '#expressions'
 
@@ -254,7 +253,6 @@ repository:
   object_key_values:
     patterns:
       - include: '#comments'
-      - include: '#attribute_definition'
       - include: '#expressions'
 
   attribute_access:
@@ -267,7 +265,7 @@ repository:
       '1': { name: variable.other.member.terraform }
       '2': { name: keyword.operator.splat.terraform }
 
-  attribute_definition:
+  top_level_attribute_definition:
     comment: Attribute Definition - Identifier "=" Expression Newline
     match: (\()?(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)(\))?\s*(\=[^\=|\>])\s*
     name: variable.declaration.terraform
