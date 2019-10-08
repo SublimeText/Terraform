@@ -403,6 +403,10 @@
 					<key>include</key>
 					<string>#heredoc</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#named_value_references</string>
+				</dict>
 			</array>
 		</dict>
 		<key>main</key>
@@ -422,6 +426,15 @@
 					<string>#expressions</string>
 				</dict>
 			</array>
+		</dict>
+		<key>named_value_references</key>
+		<dict>
+			<key>comment</key>
+			<string>Terraform built-in variables</string>
+			<key>match</key>
+			<string>\b(var|local|module|data|path|terraform)\b</string>
+			<key>name</key>
+			<string>support.constant.terraform</string>
 		</dict>
 		<key>numeric_literals</key>
 		<dict>

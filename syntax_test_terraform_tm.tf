@@ -1411,6 +1411,44 @@
 // TODO
 
 /////////////////////////////////////////////////////////////////////
+// TERRAFORM NAMED VALUES
+/////////////////////////////////////////////////////////////////////
+
+    var.something
+#   ^^^ support.constant.terraform
+#      ^ punctuation.accessor.dot.terraform
+#       ^^^^^^^^^ variable.other.member.terraform
+
+    local.something
+#   ^^^^^ support.constant.terraform
+#        ^ punctuation.accessor.dot.terraform
+#         ^^^^^^^^^ variable.other.member.terraform
+
+    module.name.output_name
+#   ^^^^^^ support.constant.terraform
+#         ^ punctuation.accessor.dot.terraform
+#          ^^^^ variable.other.member.terraform
+#              ^ punctuation.accessor.dot.terraform
+#               ^^^^^^^^^^^ variable.other.member.terraform
+
+    data.data_type.name
+#   ^^^^ support.constant.terraform
+#       ^ punctuation.accessor.dot.terraform
+#        ^^^^^^^^^ variable.other.member.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^ variable.other.member.terraform
+
+    path.module
+#   ^^^^ support.constant.terraform
+#       ^ punctuation.accessor.dot.terraform
+#        ^^^^^^ variable.other.member.terraform
+
+    terraform.workspace
+#   ^^^^^^^^^ support.constant.terraform
+#            ^ punctuation.accessor.dot.terraform
+#             ^^^^^^^^^ variable.other.member.terraform
+
+/////////////////////////////////////////////////////////////////////
 // TERRAFORM TOP-LEVEL BLOCK TYPES
 /////////////////////////////////////////////////////////////////////
 

@@ -39,6 +39,7 @@ repository:
       - include: '#language_constants'
       - include: '#string_literals'
       - include: '#heredoc'
+      - include: '#named_value_references'
 
   comma:
     comment: Commas - used in certain expressions
@@ -58,6 +59,11 @@ repository:
       - match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
         comment: Local Identifiers
         name: variable.other.readwrite.terraform
+
+  named_value_references:
+    comment: Terraform built-in variables
+    match: '\b(var|local|module|data|path|terraform)\b'
+    name: support.constant.terraform
 
   inline_comments:
     comment: Inline comments
