@@ -22,6 +22,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#block</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#expressions</string>
 		</dict>
 	</array>
@@ -88,6 +92,67 @@
 			<string>(\()?(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)(\))?\s*(\=[^\=|\&gt;])\s*</string>
 			<key>name</key>
 			<string>variable.declaration.terraform</string>
+		</dict>
+		<key>block</key>
+		<dict>
+			<key>begin</key>
+			<string>(\b(resource|provider|variable|output|locals|module|data|terraform)\b|(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b))(?=[\s\"\-[:word:]]*(\{))</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.terraform</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Blocks</string>
+			<key>end</key>
+			<string>(?=\{)</string>
+			<key>name</key>
+			<string>meta.type.terraform</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\"</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.terraform</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>String literal label</string>
+					<key>end</key>
+					<string>\"</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.terraform</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.double.terraform</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Identifer label</string>
+					<key>match</key>
+					<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
+					<key>name</key>
+					<string>entity.name.label.terraform</string>
+				</dict>
+			</array>
 		</dict>
 		<key>block_comments</key>
 		<dict>
@@ -367,6 +432,28 @@
 				</dict>
 			</array>
 		</dict>
+		<key>main</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attribute_definition</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+			</array>
+		</dict>
 		<key>numeric_literals</key>
 		<dict>
 			<key>patterns</key>
@@ -489,6 +576,10 @@
 				<dict>
 					<key>include</key>
 					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attribute_definition</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -984,18 +1075,5 @@
 	<string>source.terraform</string>
 	<key>uuid</key>
 	<string>9060ca81-906d-4f19-a91a-159f4eb119d6</string>
-	<key>variables</key>
-	<dict>
-		<key>identifier</key>
-		<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
-		<key>named_values</key>
-		<string>var|local|module|data|path|terraform</string>
-		<key>predeclared_funcs</key>
-		<string>abs|ceil|floor|log|max|min|pow|signum|chomp|format|formatlist|indent|join|lower|regex|regexall|replace|split|strrev|substr|title|trimspace|upper|chunklist|coalesce|coalescelist|compact|concat|contains|distinct|element|flatten|index|keys|length|list|lookup|map|matchkeys|merge|range|reverse|setintersection|setproduct|setunion|slice|sort|transpose|values|zipmap|base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|urlencode|yamldecode|yamlencode|abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile|formatdate|timeadd|timestamp|base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filemd1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5|cidrhost|cidrnetmask|cidrsubnet|tobool|tolist|tomap|tonumber|toset|tostring</string>
-		<key>terraform_known_blocks</key>
-		<string>resource|provider|variable|output|locals|module|data|terraform</string>
-		<key>terraform_type_keywords</key>
-		<string>any|string|number|bool</string>
-	</dict>
 </dict>
 </plist>

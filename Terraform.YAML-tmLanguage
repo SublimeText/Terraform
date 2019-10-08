@@ -5,19 +5,20 @@ scopeName: source.terraform
 fileTypes: [tf, tfvars, hcl]
 uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 
-variables:
-  identifier: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
-  named_values: var|local|module|data|path|terraform
-  terraform_known_blocks: resource|provider|variable|output|locals|module|data|terraform
-  terraform_type_keywords: any|string|number|bool
-  predeclared_funcs: abs|ceil|floor|log|max|min|pow|signum|chomp|format|formatlist|indent|join|lower|regex|regexall|replace|split|strrev|substr|title|trimspace|upper|chunklist|coalesce|coalescelist|compact|concat|contains|distinct|element|flatten|index|keys|length|list|lookup|map|matchkeys|merge|range|reverse|setintersection|setproduct|setunion|slice|sort|transpose|values|zipmap|base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|urlencode|yamldecode|yamlencode|abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile|formatdate|timeadd|timestamp|base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filemd1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5|cidrhost|cidrnetmask|cidrsubnet|tobool|tolist|tomap|tonumber|toset|tostring
-
 patterns:
   - include: '#comments'
   - include: '#attribute_definition'
+  - include: '#block'
   - include: '#expressions'
 
 repository:
+  main:
+    patterns:
+      - include: '#comments'
+      - include: '#attribute_definition'
+      - include: '#block'
+      - include: '#expressions'
+
   comments:
     patterns:
       - include: '#inline_comments'
@@ -253,6 +254,7 @@ repository:
   object_key_values:
     patterns:
       - include: '#comments'
+      - include: '#attribute_definition'
       - include: '#expressions'
 
   attribute_access:
@@ -310,13 +312,13 @@ repository:
       - include: '#expressions'
       - include: '#comments'
       - include: '#comma'
-      - match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
+      - match: '\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b'
         comment: Local Identifiers
         name: variable.other.readwrite.terraform
 
   object_for_expression:
     comment: Object for-expression
-    begin: \bfor\b
+    begin: '\bfor\b'
     beginCaptures:
       '0': { name: keyword.control.terraform }
     end: '(?=\})'
@@ -332,6 +334,27 @@ repository:
       - include: '#expressions'
       - include: '#comments'
       - include: '#comma'
-      - match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
+      - match: '\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b'
         comment: Local Identifiers
         name: variable.other.readwrite.terraform
+
+  block:
+    comment: Blocks
+    name: meta.type.terraform
+    begin: '(\b(resource|provider|variable|output|locals|module|data|terraform)\b|(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b))(?=[\s\"\-[:word:]]*(\{))'
+    beginCaptures:
+      '2': { name: storage.type.terraform }
+      '3': { name: entity.name.type.terraform }
+    end: '(?=\{)'
+    patterns:
+      - comment: String literal label
+        name: string.quoted.double.terraform
+        begin: '\"'
+        beginCaptures:
+          '0': { name: punctuation.definition.string.begin.terraform }
+        end: '\"'
+        endCaptures:
+          '0': { name: punctuation.definition.string.end.terraform }
+      - comment: Identifer label
+        match: '\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b'
+        name: entity.name.label.terraform

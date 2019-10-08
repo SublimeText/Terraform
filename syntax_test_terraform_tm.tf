@@ -1276,6 +1276,103 @@
 // TODO
 
 /////////////////////////////////////////////////////////////////////
+// BLOCKS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Inline block with no labels.
+////
+
+    thing  {}
+#   ^^^^^ meta.type.terraform entity.name.type.terraform
+#          ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#           ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+/////
+// Inline block with string labels.
+/////
+
+    thing "label1"   "label2" {}
+#   ^^^^^ meta.type.terraform entity.name.type.terraform
+#         ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#          ^^^^^^ meta.type.terraform string.quoted.double.terraform
+#                ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                    ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                     ^^^^^^ meta.type.terraform string.quoted.double.terraform
+#                           ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                             ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#                              ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#                               ^ -meta
+
+/////
+// Inline block with identifier labels.
+/////
+
+    thing thing1 thing2 thing3 {}
+#   ^^^^^ meta.type.terraform entity.name.type.terraform
+#         ^^^^^^ meta.type.terraform entity.name.label.terraform
+#                ^^^^^^ meta.type.terraform entity.name.label.terraform
+#                       ^^^^^^ meta.type.terraform entity.name.label.terraform
+#                              ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#                               ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+//////
+// Nested multi-line blocks with expressions.
+/////
+
+// TODO
+
+/////
+// Matches blocks with functions, objects, tuples.
+/////
+
+// TODO
+
+/////////////////////////////////////////////////////////////////////
+// TERRAFORM TOP-LEVEL BLOCK TYPES
+/////////////////////////////////////////////////////////////////////
+
+    resource {}
+#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#            ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#             ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+    provider {}
+#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#            ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#             ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+    variable {}
+#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#            ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#             ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+    output {}
+#   ^^^^^^ meta.type.terraform storage.type.terraform
+#          ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#           ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+    locals {}
+#   ^^^^^^ meta.type.terraform storage.type.terraform
+#          ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#           ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+    module {}
+#   ^^^^^^ meta.type.terraform storage.type.terraform
+#          ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#           ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+    data {}
+#   ^^^^ meta.type.terraform storage.type.terraform
+#        ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#         ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+    terraform {}
+#   ^^^^^^^^^ meta.type.terraform storage.type.terraform
+#             ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#              ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+/////////////////////////////////////////////////////////////////////
 // HEREDOCS
 /////////////////////////////////////////////////////////////////////
 
