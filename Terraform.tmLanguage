@@ -740,7 +740,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#object_key_values</string>
+							<string>#main</string>
 						</dict>
 					</array>
 				</dict>

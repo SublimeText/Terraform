@@ -260,7 +260,7 @@ repository:
           - include: '#expressions'
       - comment: Random Expression, for matching after computed keys
         patterns:
-          - include: '#object_key_values'
+          - include: '#main'
 
   object_key_values:
     patterns:
