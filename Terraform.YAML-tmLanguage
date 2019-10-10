@@ -349,6 +349,10 @@ repository:
         comment: Local Identifiers
         name: variable.other.readwrite.terraform
 
+  # Blocks in the tmLanguage only catch the first line of the
+  # block definition. The body of the block is covered by the
+  # #objects context, since we don't have a stack to push and
+  # pop contexts, it's impossible to know which one we are in.
   block:
     comment: Blocks
     name: meta.type.terraform
