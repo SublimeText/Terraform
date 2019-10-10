@@ -22,6 +22,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#imports</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#block</string>
 		</dict>
 		<dict>
@@ -351,6 +355,51 @@
 				<dict>
 					<key>include</key>
 					<string>#string_interpolation</string>
+				</dict>
+			</array>
+		</dict>
+		<key>imports</key>
+		<dict>
+			<key>begin</key>
+			<string>\s*(terraform)\s*(import)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant.terraform</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.import.terraform</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Terraform imports</string>
+			<key>end</key>
+			<string>$\n?</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string_literals</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Identifier label</string>
+					<key>match</key>
+					<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
+					<key>name</key>
+					<string>entity.name.label.terraform</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#numeric_literals</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attribute_access</string>
 				</dict>
 			</array>
 		</dict>

@@ -8,6 +8,7 @@ uuid: 9060ca81-906d-4f19-a91a-159f4eb119d6
 patterns:
   - include: '#comments'
   - include: '#top_level_attribute_definition'
+  - include: '#imports'
   - include: '#block'
   - include: '#expressions'
 
@@ -368,3 +369,18 @@ repository:
       - comment: Identifer label
         match: '\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b'
         name: entity.name.label.terraform
+
+  imports:
+    comment: Terraform imports
+    begin: '\s*(terraform)\s*(import)\s*'
+    beginCaptures:
+      '1': { name: support.constant.terraform }
+      '2': { name: keyword.control.import.terraform }
+    end: '$\n?'
+    patterns:
+      - include: '#string_literals'
+      - match: '\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b'
+        comment: Identifier label
+        name: entity.name.label.terraform
+      - include: '#numeric_literals'
+      - include: '#attribute_access'

@@ -2954,3 +2954,31 @@
 #                    ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
     END
 #   ^^^^ keyword.control.heredoc.terraform
+
+/////////////////////////////////////////////////////////////////////
+// IMPORTS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Import with attribute access.
+/////
+
+    terraform import aws_instance.example i-abcd1234
+#   ^^^^^^^^^ support.constant.terraform
+#             ^^^^^^ keyword.control.import.terraform
+#                    ^^^^^^^^^^^^ entity.name.label.terraform
+#                                ^ punctuation.accessor.dot.terraform
+#                                 ^^^^^^^ variable.other.member.terraform
+#                                         ^^^^^^^^^^ entity.name.label.terraform
+
+/////
+// Import with numeric literals.
+/////
+
+    terraform import digitalocean_ssh_key.mykey 263654
+#   ^^^^^^^^^ support.constant.terraform
+#             ^^^^^^ keyword.control.import.terraform
+#                    ^^^^^^^^^^^^^^^^^^^^ entity.name.label.terraform
+#                                        ^ punctuation.accessor.dot.terraform
+#                                         ^^^^^ variable.other.member.terraform
+#                                               ^^^^^^ constant.numeric.integer.terraform
