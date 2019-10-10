@@ -99,18 +99,18 @@ repository:
     patterns:
       - comment: Integer, no fraction, optional exponent
         name: constant.numeric.float.terraform
-        match: '\d+(([Ee][+-]?))\d+'
+        match: '\b\d+(([Ee][+-]?))\d+\b'
         captures:
           '1': { name: punctuation.separator.exponent.terraform }
       - comment: Integer, fraction, optional exponent
         name: constant.numeric.float.terraform
-        match: \d+(\.)\d+(?:(([Ee][+-]?))\d+)?
+        match: '\b\d+(\.)\d+(?:(([Ee][+-]?))\d+)?\b'
         captures:
           '1': { name: punctuation.separator.decimal.terraform }
           '2': { name: punctuation.separator.exponent.terraform }
       - comment: Integers
         name: constant.numeric.integer.terraform
-        match: \d+
+        match: '\b\d+\b'
 
   string_literals:
     comment: Strings

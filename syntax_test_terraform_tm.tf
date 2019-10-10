@@ -147,6 +147,17 @@
 # ^ -constant -numeric
 #     ^^^^^^^^^^^^^^ constant.numeric.integer.terraform
 
+/////
+// Ignores integers inside identifiers.
+/////
+
+    aws_route53_zone.main.zone_id
+#   ^^^^^^^^^^^^^^^^ -numeric -constant 
+#                   ^ punctuation.accessor.dot.terraform
+#                    ^^^^ variable.other.member.terraform
+#                        ^ punctuation.accessor.dot.terraform
+#                         ^^^^^^^ variable.other.member.terraform
+
 /////////////////////////////////////////////////////////////////////
 // FLOATING-POINT CONSTANTS
 /////////////////////////////////////////////////////////////////////

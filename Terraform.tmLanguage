@@ -505,7 +505,7 @@
 					<key>comment</key>
 					<string>Integer, no fraction, optional exponent</string>
 					<key>match</key>
-					<string>\d+(([Ee][+-]?))\d+</string>
+					<string>\b\d+(([Ee][+-]?))\d+\b</string>
 					<key>name</key>
 					<string>constant.numeric.float.terraform</string>
 				</dict>
@@ -526,7 +526,7 @@
 					<key>comment</key>
 					<string>Integer, fraction, optional exponent</string>
 					<key>match</key>
-					<string>\d+(\.)\d+(?:(([Ee][+-]?))\d+)?</string>
+					<string>\b\d+(\.)\d+(?:(([Ee][+-]?))\d+)?\b</string>
 					<key>name</key>
 					<string>constant.numeric.float.terraform</string>
 				</dict>
@@ -534,7 +534,7 @@
 					<key>comment</key>
 					<string>Integers</string>
 					<key>match</key>
-					<string>\d+</string>
+					<string>\b\d+\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.terraform</string>
 				</dict>

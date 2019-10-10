@@ -191,18 +191,18 @@ contexts:
   # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
   numeric_literals:
-    - match: \d+({{exponent}})\d+
+    - match: \b\d+({{exponent}})\d+\b
       comment: Integer, no fraction, optional exponent
       scope: constant.numeric.float.terraform
       captures:
         1: punctuation.separator.exponent.terraform
-    - match: \d+(\.)\d+(?:({{exponent}})\d+)?
+    - match: \b\d+(\.)\d+(?:({{exponent}})\d+)?\b
       comment: Integer, fraction, optional exponent
       scope: constant.numeric.float.terraform
       captures:
         1: punctuation.separator.decimal.terraform
         2: punctuation.separator.exponent.terraform
-    - match: \d+
+    - match: \b\d+\b
       comment: Integers
       scope: constant.numeric.integer.terraform
 
