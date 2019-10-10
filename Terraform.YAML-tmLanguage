@@ -273,10 +273,11 @@ repository:
     begin: '\.'
     beginCaptures:
       '0': { name: punctuation.accessor.dot.terraform }
-    end: '(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)|(\*)'
+    end: '(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)|(\*)|(\d+)'
     endCaptures:
       '1': { name: variable.other.member.terraform }
       '2': { name: keyword.operator.splat.terraform }
+      '3': { name: constant.numeric.integer.terraform }
 
   top_level_attribute_definition:
     comment: Attribute Definition - Identifier "=" Expression Newline

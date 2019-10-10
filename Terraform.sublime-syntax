@@ -422,6 +422,10 @@ contexts:
           comment: Attribute access
           scope: variable.other.member.terraform
           pop: true
+        - match: \d+
+          comment: Subscript
+          scope: constant.numeric.integer.terraform
+          pop: true
         - match: \*
           comment: Attribute-only splat
           scope: keyword.operator.splat.terraform

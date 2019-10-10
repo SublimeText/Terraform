@@ -50,7 +50,7 @@
 			<key>comment</key>
 			<string>Attribute Access - "." Identifier</string>
 			<key>end</key>
-			<string>(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)|(\*)</string>
+			<string>(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)|(\*)|(\d+)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -62,6 +62,11 @@
 				<dict>
 					<key>name</key>
 					<string>keyword.operator.splat.terraform</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.integer.terraform</string>
 				</dict>
 			</dict>
 		</dict>

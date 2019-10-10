@@ -1016,6 +1016,19 @@
 #                   ^ constant.numeric.integer.terraform
 #                    ^ punctuation.section.brackets.end.terraform
 
+/////
+// Matches subscript indexes
+/////
+
+    aws_route53_zone.project.name_servers.1
+#                   ^ punctuation.accessor.dot.terraform
+#                    ^^^^^^^ variable.other.member.terraform
+#                           ^ punctuation.accessor.dot.terraform
+#                            ^^^^^^^^^^^^ variable.other.member.terraform
+#                                        ^ punctuation.accessor.dot.terraform
+#                                         ^ constant.numeric.integer.terraform
+#                                          ^ -constant -punctuation -variable
+
 /////////////////////////////////////////////////////////////////////
 // Attribute Definition
 /////////////////////////////////////////////////////////////////////
