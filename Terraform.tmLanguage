@@ -314,14 +314,6 @@
 					<key>include</key>
 					<string>#comma</string>
 				</dict>
-				<dict>
-					<key>comment</key>
-					<string>Function parameter</string>
-					<key>match</key>
-					<string>\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b</string>
-					<key>name</key>
-					<string>variable.parameter.terraform</string>
-				</dict>
 			</array>
 		</dict>
 		<key>heredoc</key>

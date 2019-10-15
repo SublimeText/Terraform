@@ -304,9 +304,6 @@ repository:
       - include: '#comments'
       - include: '#expressions'
       - include: '#comma'
-      - comment: Function parameter
-        match: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
-        name: variable.parameter.terraform
 
   tuple_for_expression:
     comment: Tuple for-expression

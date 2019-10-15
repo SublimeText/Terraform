@@ -466,9 +466,6 @@ contexts:
         - include: comments
         - include: expressions
         - include: comma
-        - match: "{{identifer}}"
-          comment: Parameters
-          scope: variable.parameter.terraform
 
   # Tuple for-Expression:
   #
