@@ -405,10 +405,10 @@
 #                    ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
 /////
-// Handles capture groups (parens) in a regex
+// Handles regexes (various punctuation).
 /////
 
-    records = ["${replace("hostname.domain.com:1234", "/(.*):[0-9]+/", "$1")}"]
+    records = ["${replace("hostname.domain.com:1234", "/(.*):[0-9]{0,26}/", "$1")}"]
 #   ^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
 #           ^^ variable.declaration.terraform keyword.operator.assignment.terraform
 #             ^ punctuation.section.brackets.begin.terraform
@@ -421,17 +421,17 @@
 #                                                  ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                                                   ^ meta.interpolation.terraform meta.function-call.terraform punctuation.separator.terraform
 #                                                     ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                                      ^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                                   ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                                    ^ meta.interpolation.terraform meta.function-call.terraform punctuation.separator.terraform
-#                                                                      ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                                                       ^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                                         ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                                          ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                                                           ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                                                                            ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                                             ^ punctuation.section.brackets.end.terraform
-#                                                                              ^ -meta -string -variable -punctuation
+#                                                      ^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
+#                                                                        ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                                         ^ meta.interpolation.terraform meta.function-call.terraform punctuation.separator.terraform
+#                                                                           ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                                            ^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
+#                                                                              ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                                               ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                                                                ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                                                                 ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                                                  ^ punctuation.section.brackets.end.terraform
+#                                                                                   ^ -meta -string -variable -punctuation
 
 /////////////////////////////////////////////////////////////////////
 // Template If Directives
