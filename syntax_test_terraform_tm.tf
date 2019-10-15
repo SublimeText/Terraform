@@ -433,6 +433,27 @@
 #                                                                                  ^ punctuation.section.brackets.end.terraform
 #                                                                                   ^ -meta -string -variable -punctuation
 
+/////
+// Handles nested interpolation.
+/////
+
+    "${file("${path.module}/text_files/ecs_app")}"
+#   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#    ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#      ^^^^ meta.interpolation.terraform meta.function-call.terraform support.function.builtin.terraform
+#          ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#              ^^^^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform support.constant.terraform
+#                  ^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.terraform
+#                   ^^^^^^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
+#                         ^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                          ^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
+#                                             ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                              ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+
 /////////////////////////////////////////////////////////////////////
 // Template If Directives
 /////////////////////////////////////////////////////////////////////
