@@ -339,6 +339,25 @@
 #                                                                    ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
 /////
+// Handles nested function calls.
+/////
+
+    id = "db-final-snapshot-${md5(timestamp())}"
+#   ^^ variable.declaration.terraform variable.other.readwrite.terraform
+#      ^^ variable.declaration.terraform keyword.operator.assignment.terraform
+#        ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#         ^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform
+#                           ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                             ^^^ meta.interpolation.terraform meta.function-call.terraform support.function.builtin.terraform
+#                                ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                                 ^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
+#                                          ^ meta.interpolation.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                                           ^ meta.interpolation.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                            ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                             ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+
+/////
 // Includes objects.
 ////
 
