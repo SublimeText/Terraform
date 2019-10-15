@@ -44,7 +44,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.accessor.dot.terraform</string>
+					<string>punctuation.accessor.terraform</string>
 				</dict>
 			</dict>
 			<key>comment</key>

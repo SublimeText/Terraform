@@ -416,7 +416,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-access-operator
   attribute_access:
     - match: \.
-      scope: punctuation.accessor.dot.terraform
+      scope: punctuation.accessor.terraform
       push:
         - match: "{{identifer}}"
           comment: Attribute access
