@@ -371,13 +371,13 @@ contexts:
         - match: '\s*({{identifer}})\s*(\=)\s*'
           comment: Literal, named object key
           captures:
-            1: entity.name.tag.terraform
+            1: meta.mapping.key.terraform string.unquoted.terraform
             2: keyword.operator.terraform
           push: object_key_values
         - match: '((\").*(\"))\s*(\=)\s*'
           comment: String object key
           captures:
-            1: string.quoted.double.terraform
+            1: meta.mapping.key.terraform string.quoted.double.terraform
             2: punctuation.definition.string.begin.terraform
             3: punctuation.definition.string.end.terraform
             4: keyword.operator.terraform
@@ -386,6 +386,7 @@ contexts:
           comment: Computed object key (any expression between parens)
           scope: punctuation.section.parens.begin.terraform
           push:
+            - meta_scope: meta.mapping.key.terraform
             - match: '(\))\s*(\=)\s*'
               captures:
                 1: punctuation.section.parens.end.terraform

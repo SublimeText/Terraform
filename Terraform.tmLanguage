@@ -659,7 +659,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.tag.terraform</string>
+							<string>meta.mapping.key.terraform string.unquoted.terraform</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -700,7 +700,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>string.quoted.double.terraform</string>
+							<string>meta.mapping.key.terraform string.quoted.double.terraform</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -771,6 +771,8 @@
 							<string>keyword.operator.terraform</string>
 						</dict>
 					</dict>
+					<key>name</key>
+					<string>meta.mapping.key.terraform</string>
 					<key>patterns</key>
 					<array>
 						<dict>

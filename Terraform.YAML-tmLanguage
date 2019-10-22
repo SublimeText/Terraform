@@ -228,7 +228,7 @@ repository:
       - comment: Literal, named object key
         begin: '\s*(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)\s*(\=)\s*'
         beginCaptures:
-          '1': { name: entity.name.tag.terraform }
+          '1': { name: 'meta.mapping.key.terraform string.unquoted.terraform' }
           '2': { name: keyword.operator.terraform }
         end: ((\,)|($\n?)|(?=\}))
         endCaptures:
@@ -239,7 +239,7 @@ repository:
       - comment: String object key
         begin: '((\").*(\"))\s*(\=)\s*'
         beginCaptures:
-          '1': { name: string.quoted.double.terraform }
+          '1': { name: meta.mapping.key.terraform string.quoted.double.terraform }
           '2': { name: punctuation.definition.string.begin.terraform }
           '3': { name: punctuation.definition.string.end.terraform }
           '4': { name: keyword.operator.terraform }
@@ -250,6 +250,7 @@ repository:
         patterns:
           - include: '#object_key_values'
       - comment: Begin computed object key
+        name: meta.mapping.key.terraform
         begin: '\('
         beginCaptures:
           '0': { name: punctuation.section.parens.begin.terraform }
