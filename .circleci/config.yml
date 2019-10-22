@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python
     environment:
-      PACKAGE: "Terraform"  # Package name
+      PACKAGE: "Terraform" # Package name
       SUBLIME_TEXT_VERSION: "3"
     steps:
       - checkout
@@ -33,37 +33,33 @@ jobs:
           sudo pip install codecov
           codecov
 
-  build-macos:
-    macos:
-      xcode: "9.0"
-    environment:
-      PACKAGE: "UnitTesting-example"  # Package name
-      SUBLIME_TEXT_VERSION: "3"
-    steps:
-      - checkout
-      - run: curl -OL https://raw.githubusercontent.com/SublimeText/UnitTesting/master/sbin/circleci.sh
-      - run: |
-          export PATH="$HOME/.local/bin:$PATH"
-
-          # bootstrap the testing environment
-          sh circleci.sh bootstrap
-
-          # install Package Control and package denepdencies
-          # sh circleci.sh install_package_control
-
-          # run tests with test coverage report
-          sh circleci.sh run_tests --coverage
-
-          # testing syntax_test files
-          # - sh travis.sh run_syntax_tests
-      - run: |
-          brew upgrade python
-          pip3 install codecov
-          codecov
+  # build-macos:
+  #   macos:
+  #     xcode: "9.0"
+  #   environment:
+  #     PACKAGE: "UnitTesting-example"  # Package name
+  #     SUBLIME_TEXT_VERSION: "3"
+  #   steps:
+  #     - checkout
+  #     - run: curl -OL https://raw.githubusercontent.com/SublimeText/UnitTesting/master/sbin/circleci.sh
+  #     - run: |
+  #         export PATH="$HOME/.local/bin:$PATH"
+  #         # bootstrap the testing environment
+  #         sh circleci.sh bootstrap
+  #         # install Package Control and package denepdencies
+  #         # sh circleci.sh install_package_control
+  #         # run tests with test coverage report
+  #         sh circleci.sh run_tests --coverage
+  #         # testing syntax_test files
+  #         # - sh travis.sh run_syntax_tests
+  #     - run: |
+  #         brew upgrade python
+  #         pip3 install codecov
+  #         codecov
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build-linux
-      - build-macos
+      # - build-macos
