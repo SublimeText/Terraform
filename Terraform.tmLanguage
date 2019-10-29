@@ -951,7 +951,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.interpolation.begin.terraform</string>
+					<string>keyword.other.interpolation.begin.terraform</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -963,7 +963,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.interpolation.end.terraform</string>
+					<string>keyword.other.interpolation.end.terraform</string>
 				</dict>
 			</dict>
 			<key>name</key>

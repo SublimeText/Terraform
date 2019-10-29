@@ -132,10 +132,10 @@ repository:
     name: meta.interpolation.terraform
     begin: '(\$|\%)\{'
     beginCaptures:
-      '0': { name: punctuation.section.interpolation.begin.terraform }
+      '0': { name: keyword.other.interpolation.begin.terraform }
     end: \}
     endCaptures:
-      '0': { name: punctuation.section.interpolation.end.terraform}
+      '0': { name: keyword.other.interpolation.end.terraform}
     patterns:
       - comment: Trim left whitespace
         name: keyword.operator.template.left.trim.terraform

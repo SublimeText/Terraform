@@ -230,12 +230,12 @@ contexts:
   string_interpolation:
     - match: (\$|\%)\{
       comment: String interpolation
-      scope: punctuation.section.interpolation.begin.terraform
+      scope: keyword.other.interpolation.begin.terraform
       push:
         - meta_scope: meta.interpolation.terraform
         - clear_scopes: 1 # Clear the string.* scope.
         - match: \}
-          scope: punctuation.section.interpolation.end.terraform
+          scope: keyword.other.interpolation.end.terraform
           pop: true
         - match: \~\s
           comment: Trim left whitespace
