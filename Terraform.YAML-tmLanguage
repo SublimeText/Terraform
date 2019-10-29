@@ -273,7 +273,7 @@ repository:
     comment: Attribute Access - "." Identifier
     begin: '\.'
     beginCaptures:
-      '0': { name: punctuation.accessor.terraform }
+      '0': { name: keyword.operator.accessor.terraform }
     end: '(\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)|(\*)|(\d+)'
     endCaptures:
       '1': { name: variable.other.member.terraform }
