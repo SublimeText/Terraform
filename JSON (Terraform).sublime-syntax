@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: JSON (Terraform)
+hidden: true
+file_extensions:
+  - tfstate
+scope: source.json.terraform
+contexts:
+  main:
+    - include: scope:source.json

@@ -6,12 +6,7 @@
    <string>Symbol List</string>
    <key>scope</key>
    <string>
-      <!--
-        Resource matches `resource` and `data` blocks. Block matches `provider`,
-        `provisioner`, `variable`, `output`, `module`, and `atlas` blocks.
-      -->
-      meta.resource.terraform,
-      meta.block.terraform
+      meta.type.terraform
    </string>
    <key>settings</key>
    <dict>
