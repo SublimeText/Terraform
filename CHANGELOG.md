@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## v1.0.0 - 2020-01-20
 
-A huge thanks to @patrickrgaffney for this amazing contribution. #39
+A huge thanks to @patrickrgaffney for this amazing contribution. [#39](https://github.com/alexlouden/Terraform.tmLanguage/pull/39)
 
 ### Added
 
