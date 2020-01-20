@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## v1.0.0 - 2020-01-20
+
+A huge thanks to @patrickrgaffney for this amazing contribution. #39
+
 ### Added
 
 - [Syntax tests][tests] have been added.
@@ -72,7 +76,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Remove the `string.*` scope inside string templates.
 
-----
 ## v0.19.0 - 2019-08-20
 
 ### Added
