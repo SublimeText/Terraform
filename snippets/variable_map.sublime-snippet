@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 variable "${1:name}" {
-	type = "map"
+	type = map
 	${2:description = "${3:describe your variable}"}
 	default = {
 		${4:key1} = "${5:val1}"

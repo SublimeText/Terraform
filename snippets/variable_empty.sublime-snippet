@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 variable "${1:name}" {
-	type = "string"
+	type = string
 	${2:description = "${3:describe your variable}"}
 }
 ]]></content>
