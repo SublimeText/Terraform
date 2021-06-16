@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    name: Run syntax_tests
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+        with:
+          path: Terraform
+
+      - name: Download syntax_tests
+        run: wget -O st_syntax_tests.tar.xz https://download.sublimetext.com/st_syntax_tests_build_4094_x64.tar.xz
+
+      - name: Extract syntax_tests
+        run: tar xf st_syntax_tests.tar.xz
+
+      - name: Setup package directory
+        run: mkdir -p ./st_syntax_tests/Data/Packages
+
+      - name: Move package files to Packages dir
+        run: mv Terraform ./st_syntax_tests/Data/Packages/
+
+      - name: Move syntax_tests
+        run: mv st_syntax_tests/* ./
+
+      - name: Cleanup syntax_tests archive
+        run: rm -R st_syntax_tests st_syntax_tests.tar.xz
+
+      - name: Run syntax tests
+        run: ./syntax_tests
