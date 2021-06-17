@@ -11,30 +11,39 @@ on:
 
 jobs:
   build:
-    name: Run syntax_tests
+    name: Run syntax_tests (${{ matrix.st.name }})
     runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        st:
+          - name: Latest Sublime Text
+            url: https://download.sublimetext.com/latest/dev/linux/x64/syntax_tests
+            test_directory: st_syntax_tests
+          - name: Sublime Text 3
+            url: https://download.sublimetext.com/st3_syntax_tests_build_3211_x64.tar.bz2
+            test_directory: st3_syntax_tests
     steps:
       - uses: actions/checkout@master
         with:
           path: Terraform
 
       - name: Download syntax_tests
-        run: wget -O st_syntax_tests.tar.xz https://download.sublimetext.com/st_syntax_tests_build_4094_x64.tar.xz
+        run: wget -O ${{ matrix.st.test_directory }}.tar.xz ${{ matrix.st.url }}
 
       - name: Extract syntax_tests
-        run: tar xf st_syntax_tests.tar.xz
+        run: tar xf ${{ matrix.st.test_directory }}.tar.xz
 
       - name: Setup package directory
-        run: mkdir -p ./st_syntax_tests/Data/Packages
+        run: mkdir -p ./${{ matrix.st.test_directory }}/Data/Packages
 
       - name: Move package files to Packages dir
-        run: mv Terraform ./st_syntax_tests/Data/Packages/
+        run: mv Terraform ./${{ matrix.st.test_directory }}/Data/Packages/
 
       - name: Move syntax_tests
-        run: mv st_syntax_tests/* ./
+        run: mv ${{ matrix.st.test_directory }}/* ./
 
       - name: Cleanup syntax_tests archive
-        run: rm -R st_syntax_tests st_syntax_tests.tar.xz
+        run: ls -la && rm -R ${{ matrix.st.test_directory }} ${{ matrix.st.test_directory }}.tar.xz
 
       - name: Run syntax tests
         run: ./syntax_tests
