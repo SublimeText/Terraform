@@ -43,7 +43,7 @@ jobs:
         run: mv ${{ matrix.st.test_directory }}/* ./
 
       - name: Cleanup syntax_tests archive
-        run: ls -la && rm -R ${{ matrix.st.test_directory }} ${{ matrix.st.test_directory }}.tar.xz
+        run: rm -R ${{ matrix.st.test_directory }} ${{ matrix.st.test_directory }}.tar.xz
 
       - name: Run syntax tests
         run: ./syntax_tests
