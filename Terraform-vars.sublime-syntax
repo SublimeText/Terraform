@@ -13,7 +13,7 @@
 # https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
 #
 ---
-name: Terraform (vars)
+name: Terraform (variables)
 
 # File Extensions:
 #
