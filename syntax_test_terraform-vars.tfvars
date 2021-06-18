@@ -1,4 +1,4 @@
-# SYNTAX TEST "Terraform-tfvars.sublime-syntax"
+# SYNTAX TEST "Terraform-vars.sublime-syntax"
 
 /////////////////////////////////////////////////////////////////////
 // INLINE COMMENTS
