@@ -1,7 +1,7 @@
 %YAML 1.2
 #
 # This syntax definition is based on the Terraform guide:
-# https://www.terraform.io/docs/configuration/index.html
+# https://www.terraform.io/docs/language/index.html
 #
 # As well as the HCL Native Syntax Spec:
 # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
@@ -18,7 +18,7 @@ name: Terraform
 # File Extensions:
 #
 # - ".tf": the standard file extension
-#   https://www.terraform.io/docs/configuration/index.html#code-organization
+#   https://www.terraform.io/docs/language/index.html
 #
 # - ".hcl": non-terraform tools often use this HCL syntax, i.e. Vault
 #   https://www.vaultproject.io/docs/configuration/
@@ -53,30 +53,30 @@ variables:
 
   # Terraform Named Values
   #
-  # https://www.terraform.io/docs/configuration/expressions.html#references-to-named-values
+  # https://www.terraform.io/docs/language/expressions/references.html
   named_values: var|local|module|data|path|terraform
 
   # Block types that are known to Terraform.
   #
-  # resource: https://www.terraform.io/docs/configuration/resources.html
-  # provider: https://www.terraform.io/docs/configuration/providers.html
-  # variable: https://www.terraform.io/docs/configuration/variables.html
-  # output: https://www.terraform.io/docs/configuration/outputs.html
-  # locals: https://www.terraform.io/docs/configuration/locals.html
-  # module: https://www.terraform.io/docs/configuration/modules.html
-  # data: https://www.terraform.io/docs/configuration/data-sources.html
-  # terraform: https://www.terraform.io/docs/configuration/terraform.html#terraform-block-syntax
+  # resource: https://www.terraform.io/docs/language/resources/syntax.html
+  # provider: https://www.terraform.io/docs/language/providers/configuration.html
+  # variable: https://www.terraform.io/docs/language/values/variables.html
+  # output: https://www.terraform.io/docs/language/values/outputs.html
+  # locals: https://www.terraform.io/docs/language/values/locals.html
+  # module: https://www.terraform.io/docs/language/modules/syntax.html
+  # data: https://www.terraform.io/docs/language/data-sources/index.html
+  # terraform: https://www.terraform.io/docs/language/settings/index.html#terraform-block-syntax
   terraform_known_blocks: resource|provider|variable|output|locals|module|data|terraform
 
   # Terraform built-in type keywords
   #
-  # https://www.terraform.io/docs/configuration/types.html#primitive-types
-  # https://www.terraform.io/docs/configuration/types.html#dynamic-types-the-quot-any-quot-constraint
+  # https://www.terraform.io/docs/language/expressions/type-constraints.html#primitive-types
+  # https://www.terraform.io/docs/language/expressions/type-constraints.html#dynamic-types-the-quot-any-quot-constraint
   terraform_type_keywords: any|string|number|bool
 
   # Built-In Functions
   #
-  # https://www.terraform.io/docs/configuration/functions.html
+  # https://www.terraform.io/docs/language/functions/index.html
   predeclared_funcs: abs|ceil|floor|log|max|min|pow|signum|chomp|format|formatlist|indent|join|lower|regex|regexall|replace|split|strrev|substr|title|trimspace|upper|chunklist|coalesce|coalescelist|compact|concat|contains|distinct|element|flatten|index|keys|length|list|lookup|map|matchkeys|merge|range|reverse|setintersection|setproduct|setunion|slice|sort|transpose|values|zipmap|base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|urlencode|yamldecode|yamlencode|abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile|formatdate|timeadd|timestamp|base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filemd1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5|cidrhost|cidrnetmask|cidrsubnet|tobool|tolist|tomap|tonumber|toset|tostring
 
 contexts:
@@ -147,7 +147,7 @@ contexts:
 
   # Inline Comments: begin at the operator, end at the end of the line.
   #
-  # https://www.terraform.io/docs/configuration/syntax.html#comments
+  # https://www.terraform.io/docs/language/syntax/configuration.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
   inline_comments:
     - match: '#|//'
@@ -161,7 +161,7 @@ contexts:
 
   # Block comments: start and end delimiters for multi-line comments.
   #
-  # https://www.terraform.io/docs/configuration/syntax.html#comments
+  # https://www.terraform.io/docs/language/syntax/configuration.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
   block_comments:
     - match: /\*
@@ -175,7 +175,7 @@ contexts:
 
   # Language Constants: booleans and `null`.
   #
-  # https://www.terraform.io/docs/configuration/expressions.html#literal-expressions
+  # https://www.terraform.io/docs/language/expressions/types.html#literal-expressions
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
   language_constants:
     - match: \b(true|false|null)\b
@@ -184,7 +184,7 @@ contexts:
 
   # Numbers: Integers, fractions and exponents
   #
-  # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
+  # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
   numeric_literals:
     - match: \b\d+({{exponent}})\d+\b
@@ -204,7 +204,7 @@ contexts:
 
   # Strings:
   #
-  # https://www.terraform.io/docs/configuration/expressions.html#types-and-values
+  # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   string_literals:
     - match: '"'
@@ -303,7 +303,7 @@ contexts:
 
   # Terraform "import" statements
   #
-  # https://www.terraform.io/docs/import/usage.html
+  # https://www.terraform.io/docs/cli/import/usage.html
   imports:
     - match: \s*(terraform)\s*(import)\s*
       comment: Importing resources
@@ -447,7 +447,7 @@ contexts:
   # Functions: Terraform builtins and unknown
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
-  # https://www.terraform.io/docs/configuration/expressions.html#function-calls
+  # https://www.terraform.io/docs/language/expressions/function-calls.html
   functions:
     - match: (({{predeclared_funcs}})|\b({{identifer}})\b)(\()
       comment: Built-in function calls
@@ -469,7 +469,7 @@ contexts:
   # "[" "for" Identifier ("," Identifier)? "in" Expression ":" Expression ("if" Expression)? "]";
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
-  # https://www.terraform.io/docs/configuration/expressions.html#for-expressions
+  # https://www.terraform.io/docs/language/expressions/for.html
   tuple_for_expression:
     - match: \bfor\b
       comment: for expression (arrays)
@@ -485,7 +485,7 @@ contexts:
   # "{" "for" Identifier ("," Identifier)? "in" Expression ":" Expression "=>" Expression "..."? ("if" Expression)? "}";
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
-  # https://www.terraform.io/docs/configuration/expressions.html#for-expressions
+  # https://www.terraform.io/docs/language/expressions/for.html
   object_for_expression:
     - match: \bfor\b
       comment: for expression (arrays)
