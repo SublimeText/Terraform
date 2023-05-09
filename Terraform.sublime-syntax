@@ -25,6 +25,7 @@ name: Terraform
 file_extensions:
   - tf
   - hcl
+  - nomad
 scope: source.terraform
 
 variables:
