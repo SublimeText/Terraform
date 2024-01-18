@@ -5,7 +5,7 @@
 	<key>name</key>
 	<string>Comments</string>
 	<key>scope</key>
-	<string>source.terraform, source.terraform-vars, source.terraform-hcl</string>
+	<string>source.terraform, source.terraform-vars, source.hcl</string>
 	<key>settings</key>
 	<dict>
 		<key>shellVariables</key>

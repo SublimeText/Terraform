@@ -13,7 +13,7 @@
 # https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
 #
 ---
-name: Terraform (HCL)
+name: HCL
 
 # File Extensions:
 #
@@ -21,7 +21,7 @@ name: Terraform (HCL)
 #   https://www.vaultproject.io/docs/configuration/
 file_extensions:
   - hcl
-scope: source.terraform-hcl
+scope: source.hcl
 
 contexts:
   main:
