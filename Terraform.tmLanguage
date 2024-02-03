@@ -7,6 +7,7 @@
 		<string>tf</string>
 		<string>tfvars</string>
 		<string>hcl</string>
+		<string>nomad</string>
 	</array>
 	<key>name</key>
 	<string>Terraform</string>

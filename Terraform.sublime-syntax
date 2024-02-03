@@ -21,6 +21,9 @@ name: Terraform
 #   https://www.terraform.io/docs/language/index.html
 file_extensions:
   - tf
+  - hcl
+  - nomad
+
 scope: source.terraform
 
 variables:
