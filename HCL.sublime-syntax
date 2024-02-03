@@ -1,0 +1,28 @@
+%YAML 1.2
+#
+# This syntax definition is based on the Terraform guide:
+# https://www.terraform.io/docs/configuration/index.html
+#
+# As well as the HCL Native Syntax Spec:
+# https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
+#
+# For documentation on the .subline-syntax format:
+# https://www.sublimetext.com/docs/syntax.html
+#
+# Regex's in this file support the Oniguruma regex engine:
+# https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
+#
+---
+name: HCL
+
+# File Extensions:
+#
+# - ".hcl": non-terraform tools often use this HCL syntax, i.e. Vault
+#   https://www.vaultproject.io/docs/configuration/
+file_extensions:
+  - hcl
+scope: source.hcl
+
+contexts:
+  main:
+    - include: scope:source.terraform

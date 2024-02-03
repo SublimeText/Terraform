@@ -19,13 +19,11 @@ name: Terraform
 #
 # - ".tf": the standard file extension
 #   https://www.terraform.io/docs/language/index.html
-#
-# - ".hcl": non-terraform tools often use this HCL syntax, i.e. Vault
-#   https://www.vaultproject.io/docs/configuration/
 file_extensions:
   - tf
   - hcl
   - nomad
+
 scope: source.terraform
 
 variables:

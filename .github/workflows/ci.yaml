@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     name: Run syntax_tests (${{ matrix.st.name }})
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         st:
