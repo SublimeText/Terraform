@@ -1263,7 +1263,7 @@
 #                          ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                           ^ meta.function-call.terraform punctuation.section.block.loop.for.terraform
 #                             ^ meta.function-call.terraform variable.other.readwrite.terraform
-#                               ^^ meta.function-call.terraform storage.type.function.terraform
+#                               ^^ meta.function-call.terraform punctuation.separator.key-value.terraform
 #                                  ^ meta.function-call.terraform variable.other.readwrite.terraform
 #                                   ^^^ meta.function-call.terraform keyword.operator.terraform
 #                                      ^ meta.function-call.terraform punctuation.section.braces.end.terraform
@@ -2689,7 +2689,7 @@
 #                         ^ punctuation.section.brackets.end.terraform
 #                          ^ punctuation.section.block.loop.for.terraform
 #                            ^ variable.other.readwrite.terraform
-#                              ^^ storage.type.function.terraform
+#                              ^^ punctuation.separator.key-value.terraform
 #                                 ^ variable.other.readwrite.terraform
 #                                  ^ punctuation.section.braces.end.terraform
 #                                   ^ -meta
@@ -2711,7 +2711,7 @@
 #                    ^ punctuation.section.brackets.end.terraform
 #                     ^ punctuation.section.block.loop.for.terraform
 #                       ^ variable.other.readwrite.terraform
-#                         ^^ storage.type.function.terraform
+#                         ^^ punctuation.separator.key-value.terraform
 #                            ^ variable.other.readwrite.terraform
 #                             ^^^ keyword.operator.terraform
 #                                ^ punctuation.section.braces.end.terraform
@@ -2737,7 +2737,7 @@
 #                                   ^ meta.function-call.terraform punctuation.separator.terraform
 #                                     ^ meta.function-call.terraform constant.numeric.integer.terraform
 #                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                        ^^ storage.type.function.terraform
+#                                        ^^ punctuation.separator.key-value.terraform
 #                                           ^ variable.other.readwrite.terraform
 #                                            ^^^ keyword.operator.terraform
 #                                                ^^ keyword.control.conditional.terraform
@@ -2764,7 +2764,7 @@
 #                  ^^^^^^^ variable.other.member.terraform
 #                         ^ punctuation.section.block.loop.for.terraform
 #                           ^ variable.other.readwrite.terraform
-#                             ^^ storage.type.function.terraform
+#                             ^^ punctuation.separator.key-value.terraform
         upper(l)
 #       ^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform

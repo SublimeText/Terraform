@@ -488,7 +488,7 @@ contexts:
       scope: keyword.control.loop.for.terraform
       set:
         - match: \=\>
-          scope: storage.type.function.terraform
+          scope: punctuation.separator.key-value.terraform
         - include: for_expression_body
         - match: \}
           scope: punctuation.section.braces.end.terraform
