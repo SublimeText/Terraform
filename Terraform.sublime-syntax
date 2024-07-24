@@ -521,7 +521,7 @@ contexts:
   block:
     - match: (?:\b({{terraform_known_blocks}})\b|({{identifer}}))(?=[\s\"\-[:word:]]*(\{))
       captures:
-        1: storage.type.terraform
+        1: keyword.declaration.terraform
         2: entity.name.type.terraform
       push:
         - meta_scope: meta.type.terraform

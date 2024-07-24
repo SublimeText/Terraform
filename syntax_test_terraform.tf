@@ -2814,7 +2814,7 @@
 /////
 
     resource "aws_security_group" "example" {
-#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
 #            ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #             ^^^^^^^^^^^^^^^^^^^ meta.type.terraform string.quoted.double.terraform
 #                                 ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
@@ -2946,42 +2946,42 @@
 /////////////////////////////////////////////////////////////////////
 
     resource {}
-#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
 #            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #             ^ meta.block.terraform punctuation.section.block.end.terraform
 
     provider {}
-#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
 #            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #             ^ meta.block.terraform punctuation.section.block.end.terraform
 
     variable {}
-#   ^^^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
 #            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #             ^ meta.block.terraform punctuation.section.block.end.terraform
 
     output {}
-#   ^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^ meta.type.terraform keyword.declaration.terraform
 #          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #           ^ meta.block.terraform punctuation.section.block.end.terraform
 
     locals {}
-#   ^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^ meta.type.terraform keyword.declaration.terraform
 #          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #           ^ meta.block.terraform punctuation.section.block.end.terraform
 
     module {}
-#   ^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^ meta.type.terraform keyword.declaration.terraform
 #          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #           ^ meta.block.terraform punctuation.section.block.end.terraform
 
     data {}
-#   ^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^ meta.type.terraform keyword.declaration.terraform
 #        ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #         ^ meta.block.terraform punctuation.section.block.end.terraform
 
     terraform {}
-#   ^^^^^^^^^ meta.type.terraform storage.type.terraform
+#   ^^^^^^^^^ meta.type.terraform keyword.declaration.terraform
 #             ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #              ^ meta.block.terraform punctuation.section.block.end.terraform
 
