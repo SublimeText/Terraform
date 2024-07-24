@@ -135,8 +135,8 @@ contexts:
 
   named_value_references:
     - match: '\b({{named_values}})\b'
-      comment: Constant values available only to Terraform.
-      scope: support.constant.terraform
+      comment: Special variables available only to Terraform.
+      scope: variable.language.terraform
 
   type_keywords:
     - match: '\b({{terraform_type_keywords}})\b'
