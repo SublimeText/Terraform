@@ -1063,9 +1063,9 @@
 
    [for l in var.letters: upper(l)]
 #  ^ punctuation.section.brackets.begin.terraform
-#   ^^^ keyword.control.terraform
+#   ^^^ keyword.control.loop.for.terraform
 #       ^ variable.other.readwrite.terraform
-#         ^^ keyword.operator.word.terraform
+#         ^^ keyword.control.loop.in.terraform
 #            ^^^ variable.language.terraform
 #               ^ punctuation.accessor.dot.terraform
 #                ^^^^^^^ variable.other.member.terraform
@@ -1252,11 +1252,11 @@
 #   ^^^^^ meta.function-call.terraform variable.function.terraform
 #        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #         ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#          ^^^ meta.function-call.terraform meta.braces.terraform keyword.control.terraform
+#          ^^^ meta.function-call.terraform meta.braces.terraform keyword.control.loop.for.terraform
 #              ^ meta.function-call.terraform variable.other.readwrite.terraform
 #               ^ meta.function-call.terraform punctuation.separator.terraform
 #                 ^ meta.function-call.terraform variable.other.readwrite.terraform
-#                   ^^ meta.function-call.terraform keyword.operator.word.terraform
+#                   ^^ meta.function-call.terraform keyword.control.loop.in.terraform
 #                      ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
 #                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                        ^^ meta.function-call.terraform string.quoted.double.terraform
@@ -1277,9 +1277,9 @@
 #   ^^^^ meta.function-call.terraform variable.function.terraform
 #       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #        ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#         ^^^ meta.function-call.terraform keyword.control.terraform
+#         ^^^ meta.function-call.terraform keyword.control.loop.for.terraform
 #             ^ meta.function-call.terraform variable.other.readwrite.terraform
-#               ^^ meta.function-call.terraform keyword.operator.word.terraform
+#               ^^ meta.function-call.terraform keyword.control.loop.in.terraform
 #                  ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
 #                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                    ^^ meta.function-call.terraform string.quoted.double.terraform
@@ -2417,9 +2417,9 @@
 
     [for s in var.list : upper(s)]
 #   ^ punctuation.section.brackets.begin.terraform
-#    ^^^ keyword.control.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
-#          ^^ keyword.operator.word.terraform
+#          ^^ keyword.control.loop.in.terraform
 #             ^^^ variable.language.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
@@ -2436,11 +2436,11 @@
 
     [for k, v in var.map : length(k) + length(v)]
 #   ^ punctuation.section.brackets.begin.terraform
-#    ^^^ keyword.control.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
 #         ^ punctuation.separator.terraform
 #           ^ variable.other.readwrite.terraform
-#             ^^ keyword.operator.word.terraform
+#             ^^ keyword.control.loop.in.terraform
 #                ^^^ variable.language.terraform
 #                   ^ punctuation.accessor.dot.terraform
 #                    ^^^ variable.other.member.terraform
@@ -2462,9 +2462,9 @@
 
     [for o in var.list : o.interfaces[0].name]
 #   ^ punctuation.section.brackets.begin.terraform
-#    ^^^ keyword.control.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
-#          ^^ keyword.operator.word.terraform
+#          ^^ keyword.control.loop.in.terraform
 #             ^^^ variable.language.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
@@ -2485,9 +2485,9 @@
 
     [for o in var.list : o.interfaces][0].name
 #   ^ punctuation.section.brackets.begin.terraform
-#    ^^^ keyword.control.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
-#          ^^ keyword.operator.word.terraform
+#          ^^ keyword.control.loop.in.terraform
 #             ^^^ variable.language.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
@@ -2511,9 +2511,9 @@
 #         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
 #           ^ punctuation.section.brackets.begin.terraform
       for instance in aws_instance.ubuntu:
-#     ^^^ keyword.control.terraform
+#     ^^^ keyword.control.loop.for.terraform
 #         ^^^^^^^^ variable.other.readwrite.terraform
-#                  ^^ keyword.operator.word.terraform
+#                  ^^ keyword.control.loop.in.terraform
 #                     ^^^^^^^^^^^^ variable.other.readwrite.terraform
 #                                 ^ punctuation.accessor.dot.terraform
 #                                  ^^^^^^ variable.other.member.terraform
@@ -2534,9 +2534,9 @@
 #         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
 #           ^ punctuation.section.brackets.begin.terraform
       for instance in aws_instance.ubuntu:
-#     ^^^ keyword.control.terraform
+#     ^^^ keyword.control.loop.for.terraform
 #         ^^^^^^^^ variable.other.readwrite.terraform
-#                  ^^ keyword.operator.word.terraform
+#                  ^^ keyword.control.loop.in.terraform
 #                     ^^^^^^^^^^^^ variable.other.readwrite.terraform
 #                                 ^ punctuation.accessor.dot.terraform
 #                                  ^^^^^^ variable.other.member.terraform
@@ -2580,9 +2580,9 @@
 #         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
 #           ^ punctuation.section.brackets.begin.terraform
       for instance in aws_instance.ubuntu:
-#     ^^^ keyword.control.terraform
+#     ^^^ keyword.control.loop.for.terraform
 #         ^^^^^^^^ variable.other.readwrite.terraform
-#                  ^^ keyword.operator.word.terraform
+#                  ^^ keyword.control.loop.in.terraform
 #                     ^^^^^^^^^^^^ variable.other.readwrite.terraform
 #                                 ^ punctuation.accessor.dot.terraform
 #                                  ^^^^^^ variable.other.member.terraform
@@ -2618,9 +2618,9 @@
 
     [for s in var.list : upper(s) if s != ""]
 #   ^ punctuation.section.brackets.begin.terraform
-#    ^^^ keyword.control.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
-#          ^^ keyword.operator.word.terraform
+#          ^^ keyword.control.loop.in.terraform
 #             ^^^ variable.language.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
@@ -2642,11 +2642,11 @@
 
     [for i, v in ["a", "b", "c"]: v if i < 2]
 #   ^ punctuation.section.brackets.begin.terraform
-#    ^^^ keyword.control.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
 #         ^ punctuation.separator.terraform
 #           ^ variable.other.readwrite.terraform
-#             ^^ keyword.operator.word.terraform
+#             ^^ keyword.control.loop.in.terraform
 #                ^ punctuation.section.brackets.begin.terraform
 #                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                  ^^ string.quoted.double.terraform
@@ -2675,11 +2675,11 @@
 
     {for i, v in ["a", "b"]: v => i}
 #   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^^^ meta.braces.terraform keyword.control.terraform
+#    ^^^ meta.braces.terraform keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
 #         ^ punctuation.separator.terraform
 #           ^ variable.other.readwrite.terraform
-#             ^^ keyword.operator.word.terraform
+#             ^^ keyword.control.loop.in.terraform
 #                ^ punctuation.section.brackets.begin.terraform
 #                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                  ^^ string.quoted.double.terraform
@@ -2700,11 +2700,11 @@
 
     {for i, v in ["a"]: v => i...}
 #   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^^^ meta.braces.terraform keyword.control.terraform
+#    ^^^ meta.braces.terraform keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
 #         ^ punctuation.separator.terraform
 #           ^ variable.other.readwrite.terraform
-#             ^^ keyword.operator.word.terraform
+#             ^^ keyword.control.loop.in.terraform
 #                ^ punctuation.section.brackets.begin.terraform
 #                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                  ^^ string.quoted.double.terraform
@@ -2722,9 +2722,9 @@
 
     {for s in var.list : substr(s, 0, 1) => s... if s != ""}
 #   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^^^ meta.braces.terraform keyword.control.terraform
+#    ^^^ meta.braces.terraform keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
-#          ^^ keyword.operator.word.terraform
+#          ^^ keyword.control.loop.in.terraform
 #             ^^^ variable.language.terraform
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
@@ -2756,9 +2756,9 @@
 #         ^^ variable.declaration.terraform keyword.operator.assignment.terraform
 #           ^ meta.braces.terraform punctuation.section.braces.begin.terraform
       for l in var.letters: l =>
-#     ^^^ meta.braces.terraform keyword.control.terraform
+#     ^^^ meta.braces.terraform keyword.control.loop.for.terraform
 #         ^ variable.other.readwrite.terraform
-#           ^^ keyword.operator.word.terraform
+#           ^^ keyword.control.loop.in.terraform
 #              ^^^ variable.language.terraform
 #                 ^ punctuation.accessor.dot.terraform
 #                  ^^^^^^^ variable.other.member.terraform

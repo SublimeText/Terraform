@@ -469,7 +469,7 @@ contexts:
   tuple_for_expression:
     - match: \bfor\b
       comment: for expression (arrays)
-      scope: keyword.control.terraform
+      scope: keyword.control.loop.for.terraform
       set:
         - include: for_expression_body
         - match: \]
@@ -485,7 +485,7 @@ contexts:
   object_for_expression:
     - match: \bfor\b
       comment: for expression (arrays)
-      scope: keyword.control.terraform
+      scope: keyword.control.loop.for.terraform
       set:
         - match: \=\>
           scope: storage.type.function.terraform
@@ -500,7 +500,7 @@ contexts:
   for_expression_body:
     - match: \bin\b
       comment: in keyword
-      scope: keyword.operator.word.terraform
+      scope: keyword.control.loop.in.terraform
     - match: \bif\b
       comment: if keyword
       scope: keyword.control.conditional.terraform
