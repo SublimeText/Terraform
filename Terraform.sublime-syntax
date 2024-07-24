@@ -209,7 +209,7 @@ contexts:
       comment: Strings
       scope: punctuation.definition.string.begin.terraform
       push:
-        - meta_scope: string.quoted.double.terraform
+        - meta_scope: meta.string.terraform string.quoted.double.terraform
         - match: '"'
           scope: punctuation.definition.string.end.terraform
           pop: true
@@ -222,21 +222,19 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
   string_interpolation:
-    - match: (\$|\%)\{
-      comment: String interpolation
-      scope: keyword.other.interpolation.begin.terraform
+    - match: ([$%]\{)(~)?
+      captures:
+        1: punctuation.section.interpolation.begin.terraform
+        2: keyword.operator.template.trim.left.terraform
       push:
         - meta_scope: meta.interpolation.terraform
-        - clear_scopes: 1 # Clear the string.* scope.
-        - match: \}
-          scope: keyword.other.interpolation.end.terraform
+        - meta_content_scope: source.terraform
+        - clear_scopes: 1  # Clear the string.* scope.
+        - match: (~)?(\})
+          captures:
+            1: keyword.operator.template.trim.right.terraform
+            2: punctuation.section.interpolation.end.terraform
           pop: true
-        - match: \~\s
-          comment: Trim left whitespace
-          scope: keyword.operator.template.left.trim.terraform
-        - match: \s\~
-          comment: Trim right whitespace
-          scope: keyword.operator.template.right.trim.terraform
         - match: \b(if|else|endif|for|in|endfor)\b
           comment: if/else/endif and for/in/endfor directives
           scope: keyword.control.terraform
@@ -252,7 +250,7 @@ contexts:
         1: keyword.operator.heredoc.terraform
         2: keyword.control.heredoc.terraform
       push:
-        - meta_content_scope: string.unquoted.heredoc.terraform
+        - meta_content_scope: meta.string.terraform string.unquoted.heredoc.terraform
         - match: ^\s*\2\s*$
           comment: The heredoc token identifier (second capture above).
           scope: keyword.control.heredoc.terraform
