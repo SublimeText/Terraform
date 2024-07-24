@@ -296,7 +296,7 @@ contexts:
       scope: keyword.operator.terraform
     - match: \.\.\. # ...
       scope: keyword.operator.terraform
-    - match: "\\:"  # :
+    - match: ':'  # :
       scope: keyword.operator.terraform
 
   # Terraform "import" statements
