@@ -505,7 +505,7 @@ contexts:
       comment: if keyword
       scope: keyword.control.conditional.terraform
     - match: '\:'
-      scope: keyword.operator.terraform
+      scope: punctuation.section.block.loop.for.terraform
     - include: expressions
     - include: comments
     - include: comma
