@@ -519,10 +519,10 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
-    - match: '(\b({{terraform_known_blocks}})\b|({{identifer}}))(?=[\s\"\-[:word:]]*(\{))'
+    - match: (?:\b({{terraform_known_blocks}})\b|({{identifer}}))(?=[\s\"\-[:word:]]*(\{))
       captures:
-        2: storage.type.terraform
-        3: entity.name.type.terraform
+        1: storage.type.terraform
+        2: entity.name.type.terraform
       push:
         - meta_scope: meta.type.terraform
         - match: \"
