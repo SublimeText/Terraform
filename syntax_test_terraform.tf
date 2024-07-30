@@ -2430,6 +2430,15 @@
 #               ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
+
+    provider::terraform::encode_tfvars({
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.function.builtin.terraform
+#                                     ^ punctuation.section.parens.begin.terraform
+#                                      ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+      example = "Hello!"
+    })
+
 /////////////////////////////////////////////////////////////////////
 // TUPLE FOR-EXPRESSIONS
 /////////////////////////////////////////////////////////////////////
