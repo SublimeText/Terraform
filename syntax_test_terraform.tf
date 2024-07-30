@@ -2969,6 +2969,21 @@
 #            ^ punctuation.accessor.dot.terraform
 #             ^^^^^^^^^ variable.other.member.terraform
 
+    count.index
+#   ^^^^^ variable.language.terraform
+#        ^ punctuation.accessor.dot.terraform
+#         ^^^^^ variable.other.member.terraform
+
+    each.key
+#   ^^^^ variable.language.terraform
+#       ^ punctuation.accessor.dot.terraform
+#        ^^^ variable.other.member.terraform
+
+    self.private_ip
+#   ^^^^ variable.language.terraform
+#       ^ punctuation.accessor.dot.terraform
+#        ^^^^^^^^^^ variable.other.member.terraform
+
 /////////////////////////////////////////////////////////////////////
 // TERRAFORM TOP-LEVEL BLOCK TYPES
 /////////////////////////////////////////////////////////////////////

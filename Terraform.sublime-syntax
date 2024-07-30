@@ -52,7 +52,7 @@ variables:
   # Terraform Named Values
   #
   # https://www.terraform.io/docs/language/expressions/references.html
-  named_values: var|local|module|data|path|terraform
+  named_values: var|local|module|data|path|terraform|each|count|self
 
   # Block types that are known to Terraform.
   #
