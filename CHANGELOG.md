@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Added
+
+- Declare hyphens as sub-word separators.
+- Special highlighting for `for_each` and `count` meta arguments.
+- Highlighting of more special language variables: `each`, `count` and `self`.
+
+### Changed
+
+- Switch to Syntax version 2. This breaks compatibility with ST builds before 4000!
+- Adapt and improve many scope names to standards that have been established
+  over the past years for the default packages,
+  including:
+  * String interpolation meta scopes and punctuation
+  * Keywords (declarations and `in` inside a `for` expression)
+  * Attribute access punctuation
+  * Punctuation scopes in `for` expressions
+- Updated the built-in function list for highlighting.
+
+### Removed
+
+- Various files targetting older ST versions,
+  notably the old `.tmLanguage` syntax definition.
+
+### Fixed
+
+- Improved matching of identifiers by adding a scope and properly recognizing hyphens.
+
+---
+
 ## v1.0.0 - 2020-01-20
 
 A huge thanks to @patrickrgaffney for this amazing contribution. [#39](https://github.com/alexlouden/Terraform.tmLanguage/pull/39)
