@@ -29,7 +29,7 @@ variables:
   # Identifiers: (UTF-8) (ID_Continue | '-')*;
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#identifiers
-  identifer: \b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b
+  identifer: (?:\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)
 
   # Exponent: "e" or "E" followed by an optional sign
   #
@@ -52,7 +52,7 @@ variables:
   # Terraform Named Values
   #
   # https://www.terraform.io/docs/language/expressions/references.html
-  named_values: var|local|module|data|path|terraform
+  named_values: var|local|module|data|path|terraform|each|count|self
 
   # Block types that are known to Terraform.
   #
@@ -74,8 +74,38 @@ variables:
 
   # Built-In Functions
   #
-  # https://www.terraform.io/docs/language/functions/index.html
-  predeclared_funcs: abs|ceil|floor|log|max|min|pow|signum|chomp|format|formatlist|indent|join|lower|regex|regexall|replace|split|strrev|substr|title|trimspace|upper|chunklist|coalesce|coalescelist|compact|concat|contains|distinct|element|flatten|index|keys|length|list|lookup|map|matchkeys|merge|range|reverse|setintersection|setproduct|setunion|slice|sort|transpose|values|zipmap|base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|urlencode|yamldecode|yamlencode|abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile|formatdate|timeadd|timestamp|base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filemd1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5|cidrhost|cidrnetmask|cidrsubnet|tobool|tolist|tomap|tonumber|toset|tostring
+  # https://developer.hashicorp.com/terraform/language/functions
+  predeclared_funcs: |-
+    \b(?x:
+      # numbers
+       abs|ceil|floor|log|max|min|parseint|pow|signum
+      # string
+      |chomp|endswith|format|formatlist|indent|join|lower|regex|regexall|replace
+      |split|startswith|strcontains|strrev|substr
+      |templatestring|title|trim|trimprefix|trimsuffix|trimspace|upper
+      # collection
+      |alltrue|anytrue|chunklist|coalesce|coalescelist|compact|concat|contains
+      |distinct|element|flatten|index|keys|length|list|lookup
+      |map|matchkeys|merge|one|range|reverse
+      |setintersection|setproduct|setsubtract|setunion|slice|sort|sum
+      |transpose|values|zipmap
+      # encoding
+      |base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|textdecodebase64|textencodebase64|urlencode|yamldecode|yamlencode
+      # filesystem
+      |abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile
+      # date and time
+      |formatdate|plantimestamp|timeadd|timecmp|timestamp
+      # hash and crypto
+      |base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filesha1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5
+      # ip network
+      |cidrhost|cidrnetmask|cidrsubnet|cidrsubnets
+      # type conversion
+      |can|issensitive|nonsensitive|sensitive|tobool|tolist|tomap|tonumber|toset|tostring|try|type
+      # terraform-specific
+      |provider::terraform::(?:encode_tfvars|decode_tfvars|encode_expr)
+      # deprecated/old
+      |filemd1
+    )\b
 
 contexts:
   main:
@@ -208,15 +238,17 @@ contexts:
     - match: '"'
       comment: Strings
       scope: punctuation.definition.string.begin.terraform
-      push:
-        - meta_scope: meta.string.terraform string.quoted.double.terraform
-        - match: '"'
-          scope: punctuation.definition.string.end.terraform
-          pop: true
-        - include: string_interpolation
-        - match: '{{char_escapes}}'
-          comment: Character Escapes
-          scope: constant.character.escape.terraform
+      push: string_body
+
+  string_body:
+    - meta_scope: meta.string.terraform string.quoted.double.terraform
+    - match: '"'
+      scope: punctuation.definition.string.end.terraform
+      pop: true
+    - include: string_interpolation
+    - match: '{{char_escapes}}'
+      comment: Character Escapes
+      scope: constant.character.escape.terraform
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
@@ -226,19 +258,21 @@ contexts:
       captures:
         1: punctuation.section.interpolation.begin.terraform
         2: keyword.operator.template.trim.left.terraform
-      push:
-        - meta_scope: meta.interpolation.terraform
-        - meta_content_scope: source.terraform
-        - clear_scopes: 1  # Clear the string.* scope.
-        - match: (~)?(\})
-          captures:
-            1: keyword.operator.template.trim.right.terraform
-            2: punctuation.section.interpolation.end.terraform
-          pop: true
-        - match: \b(if|else|endif|for|in|endfor)\b
-          comment: if/else/endif and for/in/endfor directives
-          scope: keyword.control.terraform
-        - include: expressions
+      push: string_interpolation_body
+
+  string_interpolation_body:
+    - meta_scope: meta.interpolation.terraform
+    - meta_content_scope: source.terraform
+    - clear_scopes: 1  # Clear the string.* scope.
+    - match: (~)?(\})
+      captures:
+        1: keyword.operator.template.trim.right.terraform
+        2: punctuation.section.interpolation.end.terraform
+      pop: true
+    - match: \b(if|else|endif|for|in|endfor)\b
+      comment: if/else/endif and for/in/endfor directives
+      scope: keyword.control.terraform
+    - include: expressions
 
   # String Heredocs
   #
@@ -353,43 +387,54 @@ contexts:
   objects:
     - match: \{
       scope: punctuation.section.braces.begin.terraform
+      push: object_body
+
+  object_body:
+    - meta_scope: meta.braces.terraform
+    - match: \}
+      scope: punctuation.section.braces.end.terraform
+      pop: true
+    - include: object_for_expression
+    - include: comments
+    - match: (?=({{identifer}}|\".*?\")\s*=)
       push:
-        - meta_scope: meta.braces.terraform
-        - match: \}
-          scope: punctuation.section.braces.end.terraform
-          pop: true
-        - include: object_for_expression
-        - include: comments
-        - match: '\s*({{identifer}})\s*(\=)\s*'
-          comment: Literal, named object key
+        - object_value
+        - assignment_operator
+        - object_key
+    - match: \(
+      comment: Computed object key (any expression between parens)
+      scope: punctuation.section.parens.begin.terraform
+      push:
+        - meta_scope: meta.mapping.key.terraform
+        - match: '(\))\s*(\=)\s*'
           captures:
-            1: meta.mapping.key.terraform string.unquoted.terraform
+            1: punctuation.section.parens.end.terraform
             2: keyword.operator.terraform
-          push: object_key_values
-        - match: '((\").*(\"))\s*(\=)\s*'
-          comment: String object key
-          captures:
-            1: meta.mapping.key.terraform string.quoted.double.terraform
-            2: punctuation.definition.string.begin.terraform
-            3: punctuation.definition.string.end.terraform
-            4: keyword.operator.terraform
-          push: object_key_values
-        - match: \(
-          comment: Computed object key (any expression between parens)
-          scope: punctuation.section.parens.begin.terraform
-          push:
-            - meta_scope: meta.mapping.key.terraform
-            - match: '(\))\s*(\=)\s*'
-              captures:
-                1: punctuation.section.parens.end.terraform
-                2: keyword.operator.terraform
-              set: object_key_values
-            - include: expressions
+          set: object_value
+        - include: expressions
+
+  object_key:
+    - match: '{{identifer}}'
+      scope: meta.mapping.key.terraform string.unquoted.terraform
+      pop: true
+    - match: (\").*?(\")
+      scope: meta.mapping.key.terraform string.quoted.double.terraform
+      captures:
+        1: punctuation.definition.string.begin.terraform
+        2: punctuation.definition.string.end.terraform
+      pop: true
+    - include: else_pop
+
+  assignment_operator:
+    - match: =
+      scope: keyword.operator.assignment.terraform
+      pop: true
+    - include: else_pop
 
   # Object key values: pop at comma, newline, and closing-bracket
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
-  object_key_values:
+  object_value:
     - include: comments
     - include: expressions
     - match: \,
@@ -431,26 +476,45 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-definitions
   attribute_definition:
-    - match: (\()?({{identifer}})(\))?\s*(\=[^\=|\>])\s*
-      comment: Identifier "=" with optional parens
-      scope: variable.declaration.terraform
-      captures:
-        1: punctuation.section.parens.begin.terraform
-        2: variable.other.readwrite.terraform
-        3: punctuation.section.parens.end.terraform
-        4: keyword.operator.assignment.terraform
+    - match: (?=(\()?({{identifer}})(\))?\s*(\=(?![\=\>])))
+      push:
+        - assignment_operator
+        - attribute_key
+
+  attribute_key:
+    - match: \((?={{identifer}}\))
+      scope: punctuation.section.parens.begin.terraform
+      set:
+        - attribute_key_end
+        - attribute_key
+    # https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
+    - match: for_each\b
+      scope: variable.declaration.terraform keyword.control.loop.for.terraform
+      pop: true
+    # https://developer.hashicorp.com/terraform/language/meta-arguments/count
+    - match: count\b
+      scope: variable.declaration.terraform keyword.control.conditional.terraform
+      pop: true
+    - match: '{{identifer}}'
+      scope: variable.declaration.terraform variable.other.readwrite.terraform
+      pop: true
+
+  attribute_key_end:
+    - match: \)
+      scope: punctuation.section.parens.end.terraform
+      pop: true
 
   # Functions: Terraform builtins and unknown
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
   # https://www.terraform.io/docs/language/expressions/function-calls.html
   functions:
-    - match: (({{predeclared_funcs}})|\b({{identifer}})\b)(\()
+    - match: (?:({{predeclared_funcs}})|\b({{identifer}})\b)(\()
       comment: Built-in function calls
       captures:
-        2: support.function.builtin.terraform
-        3: variable.function.terraform
-        4: punctuation.section.parens.begin.terraform
+        1: support.function.builtin.terraform
+        2: variable.function.terraform
+        3: punctuation.section.parens.begin.terraform
       push:
         - meta_scope: meta.function-call.terraform
         - match: \)
@@ -521,24 +585,32 @@ contexts:
       captures:
         1: keyword.declaration.terraform
         2: entity.name.type.terraform
-      push:
-        - meta_scope: meta.type.terraform
-        - match: \"
-          comment: String literal label
-          scope: punctuation.definition.string.begin.terraform
-          push:
-            - meta_scope: string.quoted.double.terraform
-            - match: \"
-              scope: punctuation.definition.string.end.terraform
-              pop: true
-        - match: "{{identifer}}"
-          comment: Identifer label
-          scope: entity.name.label.terraform
-        - match: \{
-          scope: punctuation.section.block.begin.terraform
-          set:
-            - meta_scope: meta.block.terraform
-            - include: main
-            - match: \}
-              scope: punctuation.section.block.end.terraform
-              pop: true
+      push: block_name
+
+  block_name:
+    - meta_scope: meta.type.terraform
+    - match: \"
+      scope: punctuation.definition.string.begin.terraform
+      push: block_name_body
+    - match: "{{identifer}}"
+      scope: entity.name.label.terraform
+    - match: \{
+      scope: punctuation.section.block.begin.terraform
+      set: block_body
+
+  block_name_body:
+    - meta_scope: string.quoted.double.terraform
+    - match: \"
+      scope: punctuation.definition.string.end.terraform
+      pop: true
+
+  block_body:
+    - meta_scope: meta.block.terraform
+    - include: main
+    - match: \}
+      scope: punctuation.section.block.end.terraform
+      pop: true
+
+  else_pop:
+    - match: (?=\S)
+      pop: true

@@ -88,13 +88,13 @@
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #     ^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#       ^ meta.braces.terraform keyword.operator.terraform
+#       ^ meta.braces.terraform keyword.operator.assignment.terraform
 #         ^ meta.braces.terraform constant.numeric.integer.terraform
 #          ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #           ^ punctuation.separator.terraform
 #             ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #              ^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                ^ meta.braces.terraform keyword.operator.terraform
+#                ^ meta.braces.terraform keyword.operator.assignment.terraform
 #                  ^ meta.braces.terraform constant.numeric.integer.terraform
 #                   ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #                    ^ punctuation.section.brackets.end.terraform
@@ -110,11 +110,11 @@
 #         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #          ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
 #           ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#            ^ meta.function-call.terraform meta.braces.terraform keyword.operator.terraform
+#            ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
 #             ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
 #              ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
 #                ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                 ^ meta.function-call.terraform meta.braces.terraform keyword.operator.terraform
+#                 ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
 #                  ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
 #                   ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
 #                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
