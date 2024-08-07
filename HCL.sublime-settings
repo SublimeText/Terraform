@@ -1,4 +1,7 @@
 {
 	"tab_size": 2,
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,
+	// Move '-' to sub-word separators
+	"word_separators": "./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?",
+	"sub_word_separators": "_-",
 }
