@@ -179,11 +179,13 @@ contexts:
     - match: '#|//'
       comment: Inline Comments
       scope: punctuation.definition.comment.terraform
-      push:
-        - meta_scope: comment.line.terraform
-        - match: $\n?
-          scope: punctuation.definition.comment.terraform
-          pop: true
+      push: inline_comment_body
+
+  inline_comment_body:
+    - meta_scope: comment.line.terraform
+    - match: $\n?
+      scope: punctuation.definition.comment.terraform
+      pop: true
 
   # Block comments: start and end delimiters for multi-line comments.
   #
@@ -193,11 +195,13 @@ contexts:
     - match: /\*
       comment: Block comments
       scope: punctuation.definition.comment.terraform
-      push:
-        - meta_scope: comment.block.terraform
-        - match: \*/
-          scope: punctuation.definition.comment.terraform
-          pop: true
+      push: block_comments_body
+
+  block_comments_body:
+    - meta_scope: comment.block.terraform
+    - match: \*/
+      scope: punctuation.definition.comment.terraform
+      pop: true
 
   # Language Constants: booleans and `null`.
   #
@@ -453,19 +457,23 @@ contexts:
   attribute_access:
     - match: \.
       scope: punctuation.accessor.dot.terraform
-      push:
-        - match: "{{identifier}}"
-          comment: Attribute access
-          scope: variable.other.member.terraform
-          pop: true
-        - match: \d+
-          comment: Subscript
-          scope: constant.numeric.integer.terraform
-          pop: true
-        - match: \*
-          comment: Attribute-only splat
-          scope: keyword.operator.splat.terraform
-          pop: true
+      push: member
+
+  member:
+    - include: comments
+    - match: "{{identifier}}"
+      comment: Attribute access
+      scope: variable.other.member.terraform
+      pop: true
+    - match: \d+
+      comment: Subscript
+      scope: constant.numeric.integer.terraform
+      pop: true
+    - match: \*
+      comment: Attribute-only splat
+      scope: keyword.operator.splat.terraform
+      pop: true
+    - include: else_pop
 
   # Attribute Definition: Identifier "=" Expression Newline
   #
