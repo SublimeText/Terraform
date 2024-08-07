@@ -29,7 +29,7 @@ variables:
   # Identifiers: (UTF-8) (ID_Continue | '-')*;
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#identifiers
-  identifer: (?:\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)
+  identifier: (?:\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)
 
   # Exponent: "e" or "E" followed by an optional sign
   #
@@ -123,13 +123,14 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#expression-terms
   expressions:
-    - include: literal_values
+    - include: literals
     - include: operators
     - include: brackets
     - include: objects
     - include: attribute_access
     - include: functions
     - include: parens
+    - include: identifiers
 
   comma:
     - match: \,
@@ -145,9 +146,6 @@ contexts:
           scope: punctuation.section.parens.end.terraform
           pop: true
         - include: expressions
-        - match: "{{identifer}}"
-          comment: Local Identifiers
-          scope: variable.other.readwrite.terraform
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -155,7 +153,7 @@ contexts:
   #   but make the most sense to be part of this stack.
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
-  literal_values:
+  literals:
     - include: numeric_literals
     - include: language_constants
     - include: string_literals
@@ -181,11 +179,13 @@ contexts:
     - match: '#|//'
       comment: Inline Comments
       scope: punctuation.definition.comment.terraform
-      push:
-        - meta_scope: comment.line.terraform
-        - match: $\n?
-          scope: punctuation.definition.comment.terraform
-          pop: true
+      push: inline_comment_body
+
+  inline_comment_body:
+    - meta_scope: comment.line.terraform
+    - match: $\n?
+      scope: punctuation.definition.comment.terraform
+      pop: true
 
   # Block comments: start and end delimiters for multi-line comments.
   #
@@ -195,11 +195,13 @@ contexts:
     - match: /\*
       comment: Block comments
       scope: punctuation.definition.comment.terraform
-      push:
-        - meta_scope: comment.block.terraform
-        - match: \*/
-          scope: punctuation.definition.comment.terraform
-          pop: true
+      push: block_comments_body
+
+  block_comments_body:
+    - meta_scope: comment.block.terraform
+    - match: \*/
+      scope: punctuation.definition.comment.terraform
+      pop: true
 
   # Language Constants: booleans and `null`.
   #
@@ -278,7 +280,7 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   heredoc:
-    - match: (\<\<\-?)\s*({{identifer}})\s*$
+    - match: (\<\<\-?)\s*({{identifier}})\s*$
       comment: String Heredoc's
       captures:
         1: keyword.operator.heredoc.terraform
@@ -349,8 +351,8 @@ contexts:
             - match: \"
               scope: punctuation.definition.string.end.terraform
               pop: true
-        - match: "{{identifer}}"
-          comment: Identifer label
+        - match: "{{identifier}}"
+          comment: Identifier label
           scope: entity.name.label.terraform
         - include: numeric_literals
         - include: attribute_access
@@ -376,8 +378,8 @@ contexts:
           pop: true
         - include: comma
         - include: comments
-        - include: expressions
         - include: tuple_for_expression
+        - include: expressions
 
   # Objects: collection values
   #
@@ -396,7 +398,7 @@ contexts:
       pop: true
     - include: object_for_expression
     - include: comments
-    - match: (?=({{identifer}}|\".*?\")\s*=)
+    - match: (?=({{identifier}}|\".*?\")\s*=)
       push:
         - object_value
         - assignment_operator
@@ -414,7 +416,7 @@ contexts:
         - include: expressions
 
   object_key:
-    - match: '{{identifer}}'
+    - match: '{{identifier}}'
       scope: meta.mapping.key.terraform string.unquoted.terraform
       pop: true
     - match: (\").*?(\")
@@ -455,19 +457,23 @@ contexts:
   attribute_access:
     - match: \.
       scope: punctuation.accessor.dot.terraform
-      push:
-        - match: "{{identifer}}"
-          comment: Attribute access
-          scope: variable.other.member.terraform
-          pop: true
-        - match: \d+
-          comment: Subscript
-          scope: constant.numeric.integer.terraform
-          pop: true
-        - match: \*
-          comment: Attribute-only splat
-          scope: keyword.operator.splat.terraform
-          pop: true
+      push: member
+
+  member:
+    - include: comments
+    - match: "{{identifier}}"
+      comment: Attribute access
+      scope: variable.other.member.terraform
+      pop: true
+    - match: \d+
+      comment: Subscript
+      scope: constant.numeric.integer.terraform
+      pop: true
+    - match: \*
+      comment: Attribute-only splat
+      scope: keyword.operator.splat.terraform
+      pop: true
+    - include: else_pop
 
   # Attribute Definition: Identifier "=" Expression Newline
   #
@@ -476,13 +482,13 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-definitions
   attribute_definition:
-    - match: (?=(\()?({{identifer}})(\))?\s*(\=(?![\=\>])))
+    - match: (?=(\()?({{identifier}})(\))?\s*(\=(?![\=\>])))
       push:
         - assignment_operator
         - attribute_key
 
   attribute_key:
-    - match: \((?={{identifer}}\))
+    - match: \((?={{identifier}}\))
       scope: punctuation.section.parens.begin.terraform
       set:
         - attribute_key_end
@@ -495,7 +501,7 @@ contexts:
     - match: count\b
       scope: variable.declaration.terraform keyword.control.conditional.terraform
       pop: true
-    - match: '{{identifer}}'
+    - match: '{{identifier}}'
       scope: variable.declaration.terraform variable.other.readwrite.terraform
       pop: true
 
@@ -509,7 +515,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
   # https://www.terraform.io/docs/language/expressions/function-calls.html
   functions:
-    - match: (?:({{predeclared_funcs}})|\b({{identifer}})\b)(\()
+    - match: (?:({{predeclared_funcs}})|\b({{identifier}})\b)(\()
       comment: Built-in function calls
       captures:
         1: support.function.builtin.terraform
@@ -573,15 +579,16 @@ contexts:
     - include: expressions
     - include: comments
     - include: comma
-    - match: "{{identifer}}"
-      comment: Local Identifiers
+
+  identifiers:
+    - match: "{{identifier}}"
       scope: variable.other.readwrite.terraform
 
   # Blocks: Identifier (StringLit|Identifier)* "{" Newline Body "}" Newline;
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
-    - match: (?:\b({{terraform_known_blocks}})\b|({{identifer}}))(?=[\s\"\-[:word:]]*(\{))
+    - match: (?:\b({{terraform_known_blocks}})\b|({{identifier}}))(?=[\s\"\-[:word:]]*(\{))
       captures:
         1: keyword.declaration.terraform
         2: entity.name.type.terraform
@@ -592,7 +599,7 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.begin.terraform
       push: block_name_body
-    - match: "{{identifer}}"
+    - match: "{{identifier}}"
       scope: entity.name.label.terraform
     - match: \{
       scope: punctuation.section.block.begin.terraform

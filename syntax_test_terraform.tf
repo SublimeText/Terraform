@@ -260,6 +260,25 @@
 #                                               ^ punctuation.definition.string.end.terraform
 
 /////////////////////////////////////////////////////////////////////
+// Identifiers
+/////////////////////////////////////////////////////////////////////
+
+      this_is_an_identifier
+#     ^^^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.terraform
+
+      identifier.member_access
+#     ^^^^^^^^^^ variable.other.readwrite.terraform
+#               ^ punctuation.accessor.dot.terraform
+#                ^^^^^^^^^^^^^ variable.other.member.terraform
+
+      identifier-with-hyphens
+#     ^^^^^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.terraform
+
+      identifier.
+// comment
+# <- comment
+
+/////////////////////////////////////////////////////////////////////
 // STRING INTERPOLATION
 /////////////////////////////////////////////////////////////////////
 
@@ -1118,6 +1137,13 @@
 #               ^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #               ^ punctuation.definition.string.begin.terraform
 #                      ^ punctuation.definition.string.end.terraform
+
+    provider = google-beta.impersonated
+#   ^^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#            ^ keyword.operator.assignment.terraform
+#              ^^^^^^^^^^^ variable.other.readwrite.terraform
+#                         ^ punctuation.accessor.dot.terraform
+#                          ^^^^^^^^^^^^ variable.other.member.terraform
 
 
 /////
