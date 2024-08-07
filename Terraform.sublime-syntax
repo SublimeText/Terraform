@@ -28,10 +28,17 @@ file_extensions:
 scope: source.terraform
 
 variables:
-  # Identifiers: (UTF-8) (ID_Continue | '-')*;
+  # Identifiers: ID_Start (ID_Continue | '-')*;
   #
-  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#identifiers
-  identifier: (?:\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\b)
+  # There is an undocumented exception
+  # that an underscore character is also accepted
+  # as an id start character.
+  #
+  # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#identifiers
+  # http://unicode.org/reports/tr31/#Table_Lexical_Classes_for_Identifiers
+  ID_Start: '[\p{ID_Start}_]'
+  ID_Continue: '[\p{ID_Continue}-]'
+  identifier: (?:{{ID_Start}}{{ID_Continue}}*)
 
   # Exponent: "e" or "E" followed by an optional sign
   #

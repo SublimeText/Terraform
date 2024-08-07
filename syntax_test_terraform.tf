@@ -274,6 +274,9 @@
       identifier-with-hyphens
 #     ^^^^^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.terraform
 
+      __EOF__
+#     ^^^^^^^ variable.other.readwrite.terraform
+
       identifier.
 // comment
 # <- comment
@@ -3128,6 +3131,12 @@
     END
 #   ^^^^ keyword.control.heredoc.terraform
 
+    <<__EOF__
+#   ^^ keyword.operator.heredoc.terraform
+#     ^^^^^^^ keyword.control.heredoc.terraform
+    aaa
+    __EOF__
+#   ^^^^^^^^ keyword.control.heredoc.terraform
 /////////////////////////////////////////////////////////////////////
 // IMPORTS
 /////////////////////////////////////////////////////////////////////
