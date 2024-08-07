@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Improved matching of identifiers by adding a scope and properly recognizing hyphens.
+- Support identifiers starting with an underscore character (#43).
 
 ---
 
