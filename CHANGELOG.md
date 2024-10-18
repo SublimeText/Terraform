@@ -45,6 +45,32 @@ All following changes are courtesy of @FichteFoll. (#58 - #64)
 
 ---
 
+## v1.3.1 - 2024-02-03
+
+### Added
+
+- `.nomad` files are also recognized by the Terraform syntax. (@Quenty, #55)
+
+## v1.3.0 - 2024-01-18
+
+### Changed
+
+- Separate HCL syntax into its own file and report it as `source.hcl` (rather than `source.terraform`). (@rchl, #56)
+- Update links to official docs on terraform.io. (@totoroot, #53)
+
+## v1.2.0 - 2021-06-21
+
+### Changed
+
+- Split the tfvars handling into a separate syntax file. (@rchl, #49) <br>
+  This improves interoperability with terraform-ls, e.g. via LSP.
+
+## v1.1.0 - 2021-05-17
+
+### Fixed
+
+- Removed quotes around variable types in snippets. (@notnmeyer, #42)
+
 ## v1.0.0 - 2020-01-20
 
 A huge thanks to @patrickrgaffney for this amazing contribution. (#39)
