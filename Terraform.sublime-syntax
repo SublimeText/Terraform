@@ -217,9 +217,12 @@ contexts:
   # https://www.terraform.io/docs/language/expressions/types.html#literal-expressions
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
   language_constants:
-    - match: \b(true|false|null)\b
-      comment: Language Constants
-      scope: constant.language.terraform
+    - match: \btrue\b
+      scope: constant.language.boolean.true.terraform
+    - match: \bfalse\b
+      scope: constant.language.boolean.false.terraform
+    - match: \bnull\b
+      scope: constant.language.null.terraform
 
   # Numbers: Integers, fractions and exponents
   #
@@ -246,6 +249,31 @@ contexts:
   # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   string_literals:
+    - match: (")(true)(")
+      scope: string.quoted.double.terraform
+      captures:
+        1: punctuation.definition.string.begin.terraform
+        2: constant.language.boolean.true.terraform
+        3: punctuation.definition.string.end.terraform
+    - match: (")(false)(")
+      scope: string.quoted.double.terraform
+      captures:
+        1: punctuation.definition.string.begin.terraform
+        2: constant.language.boolean.false.terraform
+        3: punctuation.definition.string.end.terraform
+    - match: (")(none|null)(")
+      scope: string.quoted.double.terraform
+      captures:
+        1: punctuation.definition.string.begin.terraform
+        2: constant.language.null.terraform
+        3: punctuation.definition.string.end.terraform
+    - match: (")(-?)(\d+)(")
+      scope: string.quoted.double.terraform
+      captures:
+        1: punctuation.definition.string.begin.terraform
+        2: keyword.operator.arithmetic.terraform
+        3: meta.number.integer.terraform constant.numeric.value.terraform
+        4: punctuation.definition.string.end.terraform
     - match: '"'
       comment: Strings
       scope: punctuation.definition.string.begin.terraform

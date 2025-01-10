@@ -89,7 +89,7 @@
 
     true
 # ^ -constant
-#   ^^^^ constant.language.terraform
+#   ^^^^ constant.language.boolean.true.terraform
 #         ^ -constant
 
 /////
@@ -98,7 +98,7 @@
 
     false
 # ^ -constant
-#   ^^^^^ constant.language.terraform
+#   ^^^^^ constant.language.boolean.false.terraform
 #         ^ -constant
 
 
@@ -108,7 +108,7 @@
 
     null
 # ^ -constant
-#   ^^^^ constant.language.terraform
+#   ^^^^ constant.language.null.terraform
 #         ^ -constant
 
 /////////////////////////////////////////////////////////////////////
@@ -327,9 +327,9 @@
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.terraform
 #                 ^ keyword.operator.terraform
-#                   ^^^^ meta.interpolation.terraform constant.language.terraform
+#                   ^^^^ meta.interpolation.terraform constant.language.boolean.true.terraform
 #                        ^ meta.interpolation.terraform keyword.operator.terraform
-#                          ^^^^^ meta.interpolation.terraform constant.language.terraform
+#                          ^^^^^ meta.interpolation.terraform constant.language.boolean.false.terraform
 #                                ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                 ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
@@ -2399,8 +2399,18 @@
       tobool(true)
 #     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^^^^ meta.function-call.terraform constant.language.terraform
+#            ^^^^ meta.function-call.terraform constant.language.boolean.true.terraform
 #                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+
+      tobool("true")
+#     ^^^^^^^^^^^^^^ meta.function-call.terraform
+#     ^^^^^^ support.function.builtin.terraform
+#           ^ punctuation.section.parens.begin.terraform
+#            ^^^^^^ string.quoted.double.terraform
+#            ^ punctuation.definition.string.begin.terraform
+#             ^^^^ constant.language.boolean.true.terraform
+#                 ^ punctuation.definition.string.end.terraform
+#                  ^ punctuation.section.parens.end.terraform
 
       tolist(["a", "b", "c"])
 #     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
