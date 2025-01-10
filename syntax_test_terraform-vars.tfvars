@@ -24,7 +24,7 @@
 
     true
 # ^ -constant
-#   ^^^^ constant.language.terraform
+#   ^^^^ constant.language.boolean.true.terraform
 #         ^ -constant
 
     444
