@@ -260,6 +260,7 @@ contexts:
     - match: '{{char_escapes}}'
       comment: Character Escapes
       scope: constant.character.escape.terraform
+    - include: aws-acl
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
@@ -626,6 +627,18 @@ contexts:
     - match: \}
       scope: punctuation.section.block.end.terraform
       pop: true
+
+  aws-acl:
+    - match: (?=\barn:aws:)
+      push:
+        - meta_scope: variable.language.acl.terraform
+        - include: string_interpolation
+        - match: :|/
+          scope: punctuation.separator.sequence.terraform
+        - match: \*
+          scope: constant.other.wildcard.asterisk.terraform
+        - match: (?![\w-])
+          pop: true
 
   else_pop:
     - match: (?=\S)
