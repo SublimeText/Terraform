@@ -598,6 +598,21 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
+    # Special case heuristic for the two-term ones
+    - match: (\b({{terraform_known_blocks}})\b\s*(")({{identifier}})(")\s*(")({{identifier}})("))\s*(\{)
+      captures:
+        1: meta.type.terraform
+        2: keyword.declaration.terraform
+        3: punctuation.definition.begin.terraform
+        4: support.type.terraform
+        5: punctuation.definition.end.terraform
+        6: punctuation.definition.begin.terraform
+        7: entity.name.type.terraform
+        8: punctuation.definition.end.terraform
+        9: punctuation.section.block.begin.terraform
+      push: block_body
+
+    # Generic
     - match: (?:\b({{terraform_known_blocks}})\b|({{identifier}}))(?=[\s\"\-[:word:]]*(\{))
       captures:
         1: keyword.declaration.terraform
