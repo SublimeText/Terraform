@@ -1,0 +1,75 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+# https://github.com/hashicorp/terraform/blob/337bf8e11b75dff87509455cabee60b023dd586e/internal/command/jsonformat/plan.go#L201
+file_extensions:
+  - tfplan
+  - tf.plan
+scope: source.diff.terraform
+
+contexts:
+
+  main:
+    - include: comments
+    - match: ^\+/-
+      scope: punctuation.definition.changed.diff
+      push: line-created-then-destroyed
+    - match: ^-/\+
+      scope: punctuation.definition.changed.diff
+      push: line-destroyed-then-created
+    - match: ^!
+      scope: punctuation.definition.changed.diff
+      push: line-changed
+    - match: ^\+
+      scope: punctuation.definition.inserted.diff
+      push: line-inserted
+    - match: ^-
+      scope: punctuation.definition.deleted.diff
+      push: line-deleted
+
+  comments:
+    - match: (#)
+      scope: punctuation.definition.comment.terraform
+      push:
+        - meta_scope: comment.line.number-sign.terraform
+        - include: pop-eol
+
+  annotations:
+    - match: ->
+      scope: keyword.operator.assignment.terraform
+    - match: \(known after apply\)$
+      scope: comment.block.terraform
+
+  line-deleted:
+    - meta_scope: markup.deleted.diff
+    - include: pop-eol
+    - include: annotations
+
+  line-inserted:
+    - meta_scope: markup.inserted.diff
+    - include: pop-eol
+    - include: annotations
+
+  line-changed:
+    - meta_scope: markup.changed.updated-in-place.diff
+    - include: pop-eol
+    - include: annotations
+
+  line-created-then-destroyed:
+    - meta_scope: markup.changed.created-then-destroyed.diff
+    - include: pop-eol
+    - include: annotations
+
+  line-destroyed-then-created:
+    - meta_scope: markup.changed.destroyed-then-created.diff
+    - include: pop-eol
+    - include: annotations
+
+  line-ignored:
+    - meta_scope: comment.line.diff
+    - include: pop-eol
+    - include: annotations
+
+  pop-eol:
+    - match: \n|$
+      pop: 1
