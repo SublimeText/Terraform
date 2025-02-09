@@ -65,15 +65,16 @@ variables:
 
   # Block types that are known to Terraform.
   #
-  # resource: https://www.terraform.io/docs/language/resources/syntax.html
-  # provider: https://www.terraform.io/docs/language/providers/configuration.html
-  # variable: https://www.terraform.io/docs/language/values/variables.html
-  # output: https://www.terraform.io/docs/language/values/outputs.html
-  # locals: https://www.terraform.io/docs/language/values/locals.html
-  # module: https://www.terraform.io/docs/language/modules/syntax.html
-  # data: https://www.terraform.io/docs/language/data-sources/index.html
-  # terraform: https://www.terraform.io/docs/language/settings/index.html#terraform-block-syntax
-  terraform_known_blocks: resource|provider|variable|output|locals|module|data|terraform
+  # data: https://developer.hashicorp.com/terraform/language/data-sources
+  # ephermal: https://developer.hashicorp.com/terraform/language/resources/ephemeral#ephemeral
+  # locals: https://developer.hashicorp.com/terraform/language/values/locals
+  # module: https://developer.hashicorp.com/terraform/language/modules/syntax
+  # output: https://developer.hashicorp.com/terraform/language/values/outputs
+  # provider: https://developer.hashicorp.com/terraform/language/providers/configuration
+  # resource: https://developer.hashicorp.com/terraform/language/resources/syntax
+  # terraform: https://developer.hashicorp.com/terraform/language/terraform#terraform-block-syntax
+  # variable: https://developer.hashicorp.com/terraform/language/values/variables
+  terraform_known_blocks: data|ephemeral|locals|module|output|provider|resource|terraform|variable
 
   # Terraform built-in type keywords
   #
