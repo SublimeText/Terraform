@@ -66,7 +66,7 @@ variables:
   # Block types that are known to Terraform.
   #
   # data: https://developer.hashicorp.com/terraform/language/data-sources
-  # ephermal: https://developer.hashicorp.com/terraform/language/resources/ephemeral#ephemeral
+  # epheremal: https://developer.hashicorp.com/terraform/language/resources/ephemeral
   # locals: https://developer.hashicorp.com/terraform/language/values/locals
   # module: https://developer.hashicorp.com/terraform/language/modules/syntax
   # output: https://developer.hashicorp.com/terraform/language/values/outputs
