@@ -66,6 +66,17 @@
 #                                  ^ punctuation.definition.string.end.terraform
 #                                   ^ -punctuation -string
 
+      "arn:aws:sns:us-east-1:123456789012:example-sns-topic-name"
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ variable.language.acl.terraform
+#         ^ punctuation.separator.sequence.terraform
+#             ^ punctuation.separator.sequence.terraform
+#                 ^ punctuation.separator.sequence.terraform
+#                           ^ punctuation.separator.sequence.terraform
+#                                        ^ punctuation.separator.sequence.terraform
+#                                                               ^ punctuation.definition.string.end.terraform
+
     a + b
 #    ^ -keyword -operator
 #     ^ keyword.operator.arithmetic.terraform

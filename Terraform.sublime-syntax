@@ -261,6 +261,7 @@ contexts:
     - match: '{{char_escapes}}'
       comment: Character Escapes
       scope: constant.character.escape.terraform
+    - include: aws-acl
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
@@ -598,6 +599,21 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
+    # Special case heuristic for the two-term ones
+    - match: (\b({{terraform_known_blocks}})\b\s*(")({{identifier}})(")\s*(")({{identifier}})("))\s*(\{)
+      captures:
+        1: meta.type.terraform
+        2: keyword.declaration.terraform
+        3: punctuation.definition.begin.terraform
+        4: support.type.terraform
+        5: punctuation.definition.end.terraform
+        6: punctuation.definition.begin.terraform
+        7: entity.name.type.terraform
+        8: punctuation.definition.end.terraform
+        9: punctuation.section.block.begin.terraform
+      push: block_body
+
+    # Generic
     - match: (?:\b({{terraform_known_blocks}})\b|({{identifier}}))(?=[\s\"\-[:word:]]*(\{))
       captures:
         1: keyword.declaration.terraform
@@ -627,6 +643,18 @@ contexts:
     - match: \}
       scope: punctuation.section.block.end.terraform
       pop: true
+
+  aws-acl:
+    - match: (?=\barn:aws:)
+      push:
+        - meta_scope: variable.language.acl.terraform
+        - include: string_interpolation
+        - match: :|/
+          scope: punctuation.separator.sequence.terraform
+        - match: \*
+          scope: constant.other.wildcard.asterisk.terraform
+        - match: (?![\w-])
+          pop: true
 
   else_pop:
     - match: (?=\S)
