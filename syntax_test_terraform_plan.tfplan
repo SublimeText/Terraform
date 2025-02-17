@@ -40,10 +40,12 @@ Terraform will perform the following actions:
 -       fqdn    = "lyncdiscover.example.com" -> null
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
 #                                            ^^ keyword.operator.assignment.terraform
+#                                               ^^^^ constant.language.null.terraform
 -       id      = "ABCDEABCDEABCDEA_lyncdiscover_CNAME" -> null
 -       name    = "lyncdiscover" -> null
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
 #                                ^^ keyword.operator.assignment.terraform
+#                                   ^^^^ constant.language.null.terraform
 -       records = [
 -           "webdir.online.lync.com.",
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff

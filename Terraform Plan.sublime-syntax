@@ -39,6 +39,8 @@ contexts:
       scope: keyword.operator.assignment.terraform
     - match: \(known after apply\)$
       scope: comment.block.terraform
+    - match: \bnull$
+      scope: constant.language.null.terraform
 
   line-deleted:
     - meta_scope: markup.deleted.diff
