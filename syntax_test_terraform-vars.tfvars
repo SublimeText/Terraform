@@ -76,13 +76,13 @@
 #         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #          ^^^^^^^^^ meta.function-call.terraform
 #                   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                     ^ keyword.operator.terraform
+#                     ^ keyword.operator.comparison.terraform
 #                       ^ constant.numeric.integer.terraform
-#                         ^ keyword.operator.terraform
+#                         ^ keyword.operator.ternary.terraform
 #                                    ^ punctuation.section.brackets.begin.terraform
 #                                     ^ constant.numeric.integer.terraform
 #                                      ^ punctuation.section.brackets.end.terraform
-#                                        ^ keyword.operator.terraform
+#                                        ^ keyword.operator.ternary.terraform
 
     [{a = 1}, {g = 2}]
 #   ^ punctuation.section.brackets.begin.terraform
