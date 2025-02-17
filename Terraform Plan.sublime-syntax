@@ -11,6 +11,17 @@ contexts:
 
   main:
     - include: comments
+    - include: diffs
+    - include: summary
+
+  comments:
+    - match: '#'
+      scope: punctuation.definition.comment.terraform
+      push:
+        - meta_scope: comment.line.number-sign.terraform
+        - include: pop-eol
+
+  diffs:
     - match: ^\+/-
       scope: punctuation.definition.changed.diff
       push: line-created-then-destroyed
@@ -26,13 +37,6 @@ contexts:
     - match: ^-
       scope: punctuation.definition.deleted.diff
       push: line-deleted
-
-  comments:
-    - match: (#)
-      scope: punctuation.definition.comment.terraform
-      push:
-        - meta_scope: comment.line.number-sign.terraform
-        - include: pop-eol
 
   annotations:
     - match: ->
@@ -71,6 +75,28 @@ contexts:
     - meta_scope: comment.line.diff
     - include: pop-eol
     - include: annotations
+
+  summary:
+    - match: ^(?=Plan:[ ]\d)
+      push:
+        - meta_scope: meta.block.summary.terraform
+        - include: pop-eol
+        - match: ','
+          scope: punctuation.separator.sequence.terraform
+        - match: \.
+          scope: punctuation.terminator.terraform
+        - match: (\d+) to add
+          scope: markup.inserted.terraform
+          captures:
+            1: meta.number.integer.decimal.terraform constant.numeric.value.terraform
+        - match: (\d+) to change
+          scope: markup.changed.terraform
+          captures:
+            1: meta.number.integer.decimal.terraform constant.numeric.value.terraform
+        - match: (\d+) to destroy
+          scope: markup.deleted.terraform
+          captures:
+            1: meta.number.integer.decimal.terraform constant.numeric.value.terraform
 
   pop-eol:
     - match: \n|$

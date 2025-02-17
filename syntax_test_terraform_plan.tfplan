@@ -92,3 +92,13 @@ Terraform will perform the following actions:
     }
 
 Plan: 2 to add, 1 to change, 2 to destroy.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.summary.terraform
+#     ^^^^^^^^ markup.inserted.terraform
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#             ^ punctuation.separator.sequence.terraform
+#               ^^^^^^^^^^^ markup.changed.terraform
+#               ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                          ^ punctuation.separator.sequence.terraform
+#                            ^^^^^^^^^^^^ markup.deleted.terraform
+#                            ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                        ^ punctuation.terminator.terraform
