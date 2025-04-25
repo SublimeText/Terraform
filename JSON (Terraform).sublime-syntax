@@ -2,10 +2,16 @@
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
 name: JSON (Terraform)
+scope: source.json.terraform
+version: 2
 hidden: true
+
+extends: Packages/JSON/JSON.sublime-syntax
+
 file_extensions:
   - tfstate
-scope: source.json.terraform
+
 contexts:
-  main:
-    - include: scope:source.json
+  double-quoted-string-body:
+    - meta_prepend: true
+    - include: Packages/Terraform/Terraform.sublime-syntax#string_interpolation
