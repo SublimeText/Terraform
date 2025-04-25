@@ -28,7 +28,7 @@ jobs:
           - build: latest  # Latest dev build
             packages: master
           - build: 4169  # Oldest stable version we intent to support
-            packages: stable
+            packages: v4186
     steps:
       - uses: actions/checkout@v3
       - uses: SublimeText/syntax-test-action@v2
