@@ -2884,10 +2884,10 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.terraform
 #   ^^^^^^^^ keyword.declaration.terraform
 #            ^ punctuation.definition.begin.terraform
-#             ^^^^^^^^^^^^^^^^^^ support.type.terraform
+#             ^^^^^^^^^^^^^^^^^^ support.type.aws
 #                               ^ punctuation.definition.end.terraform
 #                                 ^ punctuation.definition.begin.terraform
-#                                  ^^^^^^^ entity.name.type.terraform
+#                                  ^^^^^^^ entity.name.type.aws
 #                                         ^ punctuation.definition.end.terraform
 #                                           ^ punctuation.section.block.begin.terraform
       name = "example"

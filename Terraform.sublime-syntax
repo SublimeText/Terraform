@@ -598,16 +598,16 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
-    # Special case heuristic for the two-term ones
-    - match: (\b({{terraform_known_blocks}})\b\s*(")({{identifier}})(")\s*(")({{identifier}})("))\s*(\{)
+    # Special case heuristic for the AWS two-term resources
+    - match: (\b(resource)\b\s+(")(aws_{{identifier}})(")\s+(")({{identifier}})("))\s*(\{)
       captures:
         1: meta.type.terraform
         2: keyword.declaration.terraform
         3: punctuation.definition.begin.terraform
-        4: support.type.terraform
+        4: support.type.aws
         5: punctuation.definition.end.terraform
         6: punctuation.definition.begin.terraform
-        7: entity.name.type.terraform
+        7: entity.name.type.aws
         8: punctuation.definition.end.terraform
         9: punctuation.section.block.begin.terraform
       push: block_body
