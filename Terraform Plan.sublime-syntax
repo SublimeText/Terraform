@@ -2,10 +2,12 @@
 ---
 # http://www.sublimetext.com/docs/syntax.html
 # https://github.com/hashicorp/terraform/blob/337bf8e11b75dff87509455cabee60b023dd586e/internal/command/jsonformat/plan.go#L201
+name: Terraform Plan
+scope: source.diff.terraform
+
 file_extensions:
   - tfplan
   - tf.plan
-scope: source.diff.terraform
 
 contexts:
 
