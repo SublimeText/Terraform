@@ -2890,12 +2890,16 @@
 /////
 
     resource "aws_security_group" "example" {
-#   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
-#            ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^^^^^^^^^^^^^^ meta.type.terraform string.quoted.double.terraform
-#                                 ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                  ^^^^^^^^ meta.type.terraform string.quoted.double.terraform
-#                                           ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.terraform
+#   ^^^^^^^^ keyword.declaration.terraform
+#            ^ punctuation.definition.begin.terraform
+#             ^^^^^^^^^^^^^^^^^^ support.type.aws
+#                               ^ punctuation.definition.end.terraform
+#                                 ^ punctuation.definition.begin.terraform
+#                                  ^^^^^^^ entity.name.type.aws
+#                                         ^ punctuation.definition.end.terraform
+#                                           ^ punctuation.section.block.begin.terraform
       name = "example"
 #     ^^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
 #          ^ meta.block.terraform keyword.operator.assignment.terraform
