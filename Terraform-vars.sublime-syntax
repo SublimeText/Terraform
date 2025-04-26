@@ -14,8 +14,10 @@
 #
 ---
 name: Terraform (variables)
-
+scope: source.terraform-vars
 version: 2
+
+extends: Terraform.sublime-syntax
 
 # File Extensions:
 #
@@ -23,6 +25,3 @@ version: 2
 #   https://www.terraform.io/docs/configuration/variables.html#variable-definitions-tfvars-files
 file_extensions:
   - tfvars
-scope: source.terraform-vars
-
-extends: Terraform.sublime-syntax

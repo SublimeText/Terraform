@@ -14,7 +14,7 @@
 #
 ---
 name: Terraform
-
+scope: source.terraform
 version: 2
 
 # File Extensions:
@@ -24,8 +24,6 @@ version: 2
 file_extensions:
   - tf
   - nomad
-
-scope: source.terraform
 
 variables:
   # Identifiers: ID_Start (ID_Continue | '-')*;

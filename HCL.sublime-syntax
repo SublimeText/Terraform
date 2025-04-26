@@ -14,8 +14,10 @@
 #
 ---
 name: HCL
-
+scope: source.hcl
 version: 2
+
+extends: Terraform.sublime-syntax
 
 # File Extensions:
 #
@@ -23,6 +25,3 @@ version: 2
 #   https://www.vaultproject.io/docs/configuration/
 file_extensions:
   - hcl
-scope: source.hcl
-
-extends: Terraform.sublime-syntax
