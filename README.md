@@ -23,7 +23,7 @@ Installation
 ### Manually
 
 1. Open the Sublime Text Packages folder:
-    - OS X: `~/Library/Application Support/Sublime Text/Packages/`
+    - MacOS: `~/Library/Application Support/Sublime Text/Packages/`
     - Windows: `%APPDATA%/Sublime Text/Packages/`
     - Linux (Ubuntu/Debian): `~/.config/sublime-text/Packages/`
 2. Clone this repo.
