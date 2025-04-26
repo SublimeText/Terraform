@@ -1,4 +1,5 @@
 name: Syntax Tests
+# https://github.com/SublimeText/syntax-test-action
 
 on:
   push:
@@ -7,27 +8,30 @@ on:
     paths:
       - .github/workflows/syntax.yaml
       - '**.sublime-syntax'
-      - '**/syntax_test*'
+      - '**/syntax_test_*'
       - '**.tmPreferences'
   pull_request:
     paths:
       - .github/workflows/syntax.yaml
       - '**.sublime-syntax'
-      - '**/syntax_test*'
+      - '**/syntax_test_*'
       - '**.tmPreferences'
 
 jobs:
   syntax_tests:
     name: Syntax Tests (${{ matrix.build }})
     runs-on: ubuntu-latest
-    timeout-minutes: 15  # default is 6 hours!
+    timeout-minutes: 15
     strategy:
       matrix:
         include:
           - build: latest  # Latest dev build
-          - build: 4169  # Oldest stable version we intent to support
+            packages: master
+          - build: 4180  # Oldest version we intent to support
+            packages: v4180
     steps:
       - uses: actions/checkout@v3
       - uses: SublimeText/syntax-test-action@v2
         with:
           build: ${{ matrix.build }}
+          default_packages: ${{ matrix.packages }}

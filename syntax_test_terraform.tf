@@ -3178,3 +3178,56 @@
 #                                        ^ punctuation.accessor.dot.terraform
 #                                         ^^^^^ variable.other.member.terraform
 #                                               ^^^^^^ constant.numeric.integer.terraform
+
+
+resource "aws_iam_role_policy" "attach-inline-policy-1" {
+    name = "xxx"
+    role = aws_iam_role.execution-role.name
+    policy = jsonencode({
+        Version = "2012-10-17"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform meta.braces.terraform
+#       ^^^^^^^ meta.mapping.key.terraform string.unquoted.terraform
+#               ^ keyword.operator.assignment.terraform
+#                 ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#                 ^ punctuation.definition.string.begin.terraform
+#                            ^ punctuation.definition.string.end.terraform
+        "Statement": [
+#^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform
+#^^^^^^^ meta.braces.terraform
+#       ^^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json
+#       ^ punctuation.definition.string.begin.json
+#                 ^ punctuation.definition.string.end.json
+#                  ^^ meta.braces.terraform
+#                  ^ punctuation.separator.key-value.json
+#                    ^ meta.mapping.value.json meta.sequence.json punctuation.section.sequence.begin.json
+            {
+                "Action": [
+                    "lambda:InvokeFunction",
+                    "lambda:InvokeAsync"
+                ],
+                "Resource": "arn:aws:lambda:*:*:function:${var.environment}-xxx",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform meta.mapping.value.json meta.sequence.json
+#^^^^^^^^^^^^^^^ meta.mapping.json
+#               ^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json
+#               ^ punctuation.definition.string.begin.json
+#                        ^ punctuation.definition.string.end.json
+#                         ^^ meta.mapping.json
+#                         ^ punctuation.separator.key-value.json
+#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.string.json
+#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
+#                           ^ punctuation.definition.string.begin.json
+#                                                        ^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                                                        ^^ punctuation.section.interpolation.begin.terraform
+#                                                          ^^^^^^^^^^^^^^^ source.terraform
+#                                                          ^^^ variable.language.terraform
+#                                                             ^ punctuation.accessor.dot.terraform
+#                                                              ^^^^^^^^^^^ variable.other.member.terraform
+#                                                                         ^ punctuation.section.interpolation.end.terraform
+#                                                                          ^^^^^ string.quoted.double.json
+#                                                                              ^ punctuation.definition.string.end.json
+#                                                                               ^ meta.mapping.json punctuation.separator.sequence.json
+                "Effect": "Allow"
+            }
+        ]
+    })
+}

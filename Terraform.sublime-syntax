@@ -453,6 +453,7 @@ contexts:
             2: keyword.operator.terraform
           set: object_value
         - include: expressions
+    - include: scope:source.json.terraform#object-body
 
   object_key:
     - match: '{{identifier}}'
