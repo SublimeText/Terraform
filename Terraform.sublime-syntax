@@ -309,13 +309,13 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#operations
   operators:
     - match: \>\=   # >=
-      scope: keyword.operator.terraform
+      scope: keyword.operator.comparison.terraform
     - match: \<\=   # <=
-      scope: keyword.operator.terraform
+      scope: keyword.operator.comparison.terraform
     - match: \=\=   # ==
-      scope: keyword.operator.terraform
+      scope: keyword.operator.comparison.terraform
     - match: \!\=   # !=
-      scope: keyword.operator.terraform
+      scope: keyword.operator.comparison.terraform
     - match: \+     # +
       scope: keyword.operator.arithmetic.terraform
     - match: \-     # -
@@ -333,15 +333,15 @@ contexts:
     - match: \!     # !
       scope: keyword.operator.logical.terraform
     - match: \>     # >
-      scope: keyword.operator.terraform
+      scope: keyword.operator.comparison.terraform
     - match: \<     # <
-      scope: keyword.operator.terraform
+      scope: keyword.operator.comparison.terraform
     - match: \?     # ?
-      scope: keyword.operator.terraform
+      scope: keyword.operator.ternary.terraform
     - match: \.\.\. # ...
       scope: keyword.operator.terraform
     - match: ':'  # :
-      scope: keyword.operator.terraform
+      scope: keyword.operator.ternary.terraform
 
   # Terraform "import" statements
   #
