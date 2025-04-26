@@ -1,0 +1,104 @@
+# SYNTAX TEST "Terraform Plan.sublime-syntax"
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+
++   create
+!   update-in-place
+-   destroy
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_route53_record_cname_autodiscover_example_com must be replaced
+-/+ resource "aws_route53_record" "cname_autodiscover_example_com" {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.destroyed-then-created.diff
+#^^ punctuation.definition.changed.diff
++       allow_overwrite = (known after apply)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+#                         ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
+!       fqdn            = "autodiscover.example.com" -> (known after apply)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.updated-in-place.diff
+#                                                    ^^ keyword.operator.assignment.terraform
+#                                                       ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
+!       id              = "ABCDEABCDEABCDEA_autodiscover_CNAME" -> (known after apply)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.updated-in-place.diff
+#                                                               ^^ keyword.operator.assignment.terraform
+#                                                                  ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
+!       name            = "autodiscover.example.com" -> (known after apply)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.updated-in-place.diff
+#                                                    ^^ keyword.operator.assignment.terraform
+#                                                       ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
+        # (4 unchanged attributes hidden)
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - markup
+    }
+# ^^^^ - markup
+
+  # aws_route53_record_cname_lyncdiscover_example_com will be destroyed
+-   resource "aws_route53_record" "cname_lyncdiscover_example_com_old" {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
+-       fqdn    = "lyncdiscover.example.com" -> null
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
+#                                            ^^ keyword.operator.assignment.terraform
+#                                               ^^^^ constant.language.null.terraform
+-       id      = "ABCDEABCDEABCDEA_lyncdiscover_CNAME" -> null
+-       name    = "lyncdiscover" -> null
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
+#                                ^^ keyword.operator.assignment.terraform
+#                                   ^^^^ constant.language.null.terraform
+-       records = [
+-           "webdir.online.lync.com.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
+        ] -> null
+-       ttl     = 7200 -> null
+-       type    = "CNAME" -> null
+-       zone_id = "ABCDEABCDEABCDEA" -> null
+    }
+
+  # aws_route53_record_cname_lyncdiscover_example_com will be created
++   resource "aws_route53_record" "cname_lyncdiscover_example_com_new" {
++       fqdn    = (known after apply)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+#                 ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
++       id      = (known after apply)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+#                 ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
++       name    = (known after apply)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+#                 ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
++       records = [
++           "webdir.online.lync.com.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+        ]
++       ttl     = 7200
++       type    = "CNAME"
++       zone_id = "ABCDEABCDEABCDEA"
+    }
+
+  # aws_route53_record_zone_example_com will be updated in-place
+!   resource "aws_route53_record" "cname_autodiscover_example_com" {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.updated-in-place.diff
+!       comment       = "Records for the example.com domain" -> "Records for the example.com domains"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.updated-in-place.diff
+#                                                            ^^ keyword.operator.assignment.terraform
+        id            = "ABCDEABCDEABCDEA"
+        name          = "example.com"
+        tags          = {
+            "Provisioner" = "Terraform"
+            "System"      = "example"
+            "Workspace"   = "production"
+        }
+        # (3 unchanged attributes hidden)
+    }
+
+Plan: 2 to add, 1 to change, 2 to destroy.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.summary.terraform
+#     ^^^^^^^^ markup.inserted.terraform
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#             ^ punctuation.separator.sequence.terraform
+#               ^^^^^^^^^^^ markup.changed.terraform
+#               ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                          ^ punctuation.separator.sequence.terraform
+#                            ^^^^^^^^^^^^ markup.deleted.terraform
+#                            ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                        ^ punctuation.terminator.terraform
