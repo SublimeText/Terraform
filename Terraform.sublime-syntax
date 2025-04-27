@@ -673,7 +673,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   block:
     # Special case heuristic for the AWS two-term resources
-    - match: (\b(resource)\s+(")(aws_{{identifier}})(")\s+(")({{identifier}})("))\s*(\{)
+    - match: (\b(resource)\s+(")({{identifier}})(")\s+(")({{identifier}})("))\s*(\{)
       captures:
         1: meta.type.terraform
         2: keyword.declaration.terraform
