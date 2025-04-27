@@ -2046,8 +2046,9 @@
       yamldecode("true")
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^ meta.function-call.terraform string.quoted.double.terraform
+#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform - constant
+#                 ^^^^ meta.function-call.terraform meta.string.terraform string.quoted.double.terraform constant.language.boolean.true.terraform
+#                     ^ meta.function-call.terraform meta.string.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform - constant
 #                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       yamlencode({a = "b", c = "d"})
