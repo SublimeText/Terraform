@@ -708,6 +708,7 @@
 /////
 
     ["a", "b", "c"]
+#   ^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^ punctuation.definition.string.begin.terraform
 #    ^^^ string.quoted.double.terraform
@@ -727,6 +728,7 @@
 /////
 
     [1, /* inline */ 2]
+#   ^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #     ^ punctuation.separator.terraform
@@ -755,6 +757,7 @@
 /////
 
     [ 1 + 2 ]
+#   ^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #       ^ keyword.operator.arithmetic.terraform
@@ -807,6 +810,7 @@
 /////
 
     [ aws_instance.ubuntu, aws_instance.freebsd ]
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #                 ^ punctuation.accessor.dot.terraform
 #                  ^^^^^^ variable.other.member.terraform
@@ -820,6 +824,7 @@
 /////
 
     [ upper("ggh") ]
+#   ^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
@@ -833,6 +838,11 @@
 /////
 
     [{a = 1}, {g = 2}]
+#   ^ meta.brackets.terraform - meta.braces
+#    ^^^^^^^ meta.brackets.terraform meta.braces.terraform
+#           ^^ meta.brackets.terraform - meta.braces
+#             ^^^^^^^ meta.brackets.terraform meta.braces.terraform
+#                    ^ meta.brackets.terraform - meta.braces
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #     ^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
@@ -852,6 +862,7 @@
 /////
 
     [local.thing1, local.thing2]
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^^^^^ variable.language.terraform
 #         ^ punctuation.accessor.dot.terraform
@@ -889,27 +900,29 @@
 /////
 
     {name = "John", age = 52}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#         ^ meta.braces.terraform keyword.operator.assignment.terraform
-#           ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^^^^ meta.braces.terraform string.quoted.double.terraform
-#                 ^ meta.braces.terraform punctuation.separator.terraform
-#                   ^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                           ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform
+#   ^ punctuation.section.braces.begin.terraform
+#    ^^^^ meta.mapping.key.terraform string.unquoted.terraform
+#         ^ keyword.operator.assignment.terraform
+#           ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^^ string.quoted.double.terraform
+#                 ^ punctuation.separator.terraform
+#                   ^^^ meta.mapping.key.terraform string.unquoted.terraform
+#                           ^ punctuation.section.braces.end.terraform
 
 /////
 // Allows operators in key values.
 /////
 
     { name = 1 + 1 }
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#     ^^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#          ^ meta.braces.terraform keyword.operator.assignment.terraform
-#            ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#              ^ meta.braces.terraform keyword.operator.arithmetic.terraform
-#                ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^^^^^^^^^^^^^^^^ meta.braces.terraform
+#   ^ punctuation.section.braces.begin.terraform
+#     ^^^^ meta.mapping.key.terraform string.unquoted.terraform
+#          ^ keyword.operator.assignment.terraform
+#            ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#              ^ keyword.operator.arithmetic.terraform
+#                ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ punctuation.section.braces.end.terraform
 #                   ^ - meta
 
 /////
@@ -917,17 +930,20 @@
 /////
 
     { list = [ 1, 2, 3 ]}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#     ^^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#          ^ meta.braces.terraform keyword.operator.assignment.terraform
-#            ^ meta.braces.terraform punctuation.section.brackets.begin.terraform
-#              ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.braces.terraform punctuation.separator.terraform
-#                 ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.braces.terraform punctuation.separator.terraform
-#                    ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                      ^ meta.braces.terraform punctuation.section.brackets.end.terraform
-#                       ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^^^^^^^^^ meta.braces.terraform - meta.brackets
+#            ^^^^^^^^^^^ meta.braces.terraform meta.brackets.terraform
+#                       ^ meta.braces.terraform - meta.brackets
+#   ^ punctuation.section.braces.begin.terraform
+#     ^^^^ meta.mapping.key.terraform string.unquoted.terraform
+#          ^ keyword.operator.assignment.terraform
+#            ^ punctuation.section.brackets.begin.terraform
+#              ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ punctuation.separator.terraform
+#                 ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ punctuation.separator.terraform
+#                    ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                      ^ punctuation.section.brackets.end.terraform
+#                       ^ punctuation.section.braces.end.terraform
 #                        ^ - meta
 
 /////
@@ -979,13 +995,14 @@
 /////
 
     { lvalue = var.rvalue }
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#     ^^^^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#            ^ meta.braces.terraform keyword.operator.assignment.terraform
-#              ^^^ meta.braces.terraform variable.language.terraform
-#                 ^ meta.braces.terraform punctuation.accessor.dot.terraform
-#                  ^^^^^^ meta.braces.terraform variable.other.member.terraform
-#                         ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform
+#   ^ punctuation.section.braces.begin.terraform
+#     ^^^^^^ meta.mapping.key.terraform string.unquoted.terraform
+#            ^ keyword.operator.assignment.terraform
+#              ^^^ variable.language.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^^^ variable.other.member.terraform
+#                         ^ punctuation.section.braces.end.terraform
 #                          ^ - meta
 
 /////
@@ -993,61 +1010,70 @@
 /////
 
     {"gggg" = "gggg"}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^ meta.braces.terraform meta.mapping.key.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#     ^^^^ meta.braces.terraform meta.mapping.key.terraform string.quoted.double.terraform
-#         ^ meta.braces.terraform meta.mapping.key.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#           ^ meta.braces.terraform keyword.operator.assignment.terraform
-#             ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^^^ meta.braces.terraform string.quoted.double.terraform
-#                  ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                   ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^^^^^^^^^^^^^^^^^ meta.braces.terraform
+#   ^ punctuation.section.braces.begin.terraform
+#    ^ meta.mapping.key.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#     ^^^^ meta.mapping.key.terraform string.quoted.double.terraform
+#         ^ meta.mapping.key.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#           ^ keyword.operator.assignment.terraform
+#             ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^ string.quoted.double.terraform
+#                  ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                   ^ punctuation.section.braces.end.terraform
 
 /////
 // Allows expressions + operators as keys.
 /////
 
     {(1 + 2) = "gggg"}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.begin.terraform
-#     ^ meta.braces.terraform meta.mapping.key.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#       ^ meta.braces.terraform meta.mapping.key.terraform keyword.operator.arithmetic.terraform
-#         ^ meta.braces.terraform meta.mapping.key.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#          ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
-#            ^ meta.braces.terraform keyword.operator.assignment.terraform
-#              ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^^^^ meta.braces.terraform string.quoted.double.terraform
-#                    ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^ meta.braces.terraform - meta.parens
+#    ^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform
+#           ^^^^^^^^^^ meta.braces.terraform - meta.parens
+#   ^ punctuation.section.braces.begin.terraform
+#    ^ punctuation.section.parens.begin.terraform
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#       ^ keyword.operator.arithmetic.terraform
+#         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#          ^ punctuation.section.parens.end.terraform
+#            ^ keyword.operator.assignment.terraform
+#              ^^^^^^ string.quoted.double.terraform
+#                    ^ punctuation.section.braces.end.terraform
 
 /////
 // Allows function calls as keys.
 /////
 
     {(func()) = 1}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.begin.terraform
-#     ^^^^ meta.braces.terraform meta.mapping.key.terraform meta.function-call.terraform variable.function.terraform
-#         ^ meta.braces.terraform meta.mapping.key.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.braces.terraform meta.mapping.key.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#           ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
-#             ^ meta.braces.terraform keyword.operator.assignment.terraform
-#               ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^ meta.braces.terraform - meta.parens
+#    ^^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform
+#            ^^^^^ meta.braces.terraform - meta.parens
+#   ^ punctuation.section.braces.begin.terraform
+#    ^ punctuation.section.parens.begin.terraform
+#     ^^^^ meta.function-call.terraform variable.function.terraform
+#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#           ^ punctuation.section.parens.end.terraform
+#             ^ keyword.operator.assignment.terraform
+#               ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                ^ punctuation.section.braces.end.terraform
 
 /////
 // Allows attribute-access as keys.
 ////
 
     {(var.path) = 1}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.begin.terraform
-#     ^^^ meta.braces.terraform meta.mapping.key.terraform variable.language.terraform
-#        ^ meta.braces.terraform meta.mapping.key.terraform punctuation.accessor.dot.terraform
-#         ^^^^ meta.braces.terraform meta.mapping.key.terraform variable.other.member.terraform
-#             ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
-#               ^ meta.braces.terraform keyword.operator.assignment.terraform
-#                 ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.braces.terraform punctuation.section.braces.end.terraform
+#   ^ meta.braces.terraform - meta.parens
+#    ^^^^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform
+#              ^^^^^ meta.braces.terraform - meta.parens
+#   ^ punctuation.section.braces.begin.terraform
+#    ^ punctuation.section.parens.begin.terraform
+#     ^^^ variable.language.terraform
+#        ^ punctuation.accessor.dot.terraform
+#         ^^^^ variable.other.member.terraform
+#             ^ punctuation.section.parens.end.terraform
+#               ^ keyword.operator.assignment.terraform
+#                 ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ punctuation.section.braces.end.terraform
 
 /////////////////////////////////////////////////////////////////////
 // Attribute Access
@@ -2484,6 +2510,7 @@
 /////
 
     [for s in var.list : upper(s)]
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
@@ -2503,6 +2530,7 @@
 ////
 
     [for k, v in var.map : length(k) + length(v)]
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
@@ -2529,6 +2557,7 @@
 ////
 
     [for o in var.list : o.interfaces[0].name]
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
@@ -2552,6 +2581,7 @@
 /////
 
     [for o in var.list : o.interfaces][0].name
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
@@ -2575,10 +2605,13 @@
 /////
 
     value = [
+#          ^ - meta.brackets
+#           ^^ meta.brackets.terraform
 #   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
 #         ^ keyword.operator.assignment.terraform
 #           ^ punctuation.section.brackets.begin.terraform
       for instance in aws_instance.ubuntu:
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #     ^^^ keyword.control.loop.for.terraform
 #         ^^^^^^^^ variable.other.readwrite.terraform
 #                  ^^ keyword.operator.iteration.in.terraform
@@ -2587,21 +2620,27 @@
 #                                  ^^^^^^ variable.other.member.terraform
 #                                        ^ punctuation.section.block.loop.for.terraform
       instance.private_dns
+#    ^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #     ^^^^^^^^ variable.other.readwrite.terraform
 #             ^ punctuation.accessor.dot.terraform
 #              ^^^^^^^^^^^ variable.other.member.terraform
     ]
+#^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.end.terraform
+#    ^ - meta.brackets
 
 /////
 // Match conditional on right-side expression.
 /////
 
     value = [
+#          ^ - meta.brackets
+#           ^^ meta.brackets.terraform
 #   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
 #         ^ keyword.operator.assignment.terraform
 #           ^ punctuation.section.brackets.begin.terraform
       for instance in aws_instance.ubuntu:
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #     ^^^ keyword.control.loop.for.terraform
 #         ^^^^^^^^ variable.other.readwrite.terraform
 #                  ^^ keyword.operator.iteration.in.terraform
@@ -2610,6 +2649,9 @@
 #                                  ^^^^^^ variable.other.member.terraform
 #                                        ^ punctuation.section.block.loop.for.terraform
       (instance.public_ip != "" ? list(instance.private_ip, instance.public_ip) : list(instance.private_ip))
+#    ^ meta.brackets.terraform - meta.parens
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform meta.parens.terraform
+#                                                                                                           ^ meta.brackets.terraform - meta.parens
 #     ^ punctuation.section.parens.begin.terraform
 #      ^^^^^^^^ variable.other.readwrite.terraform
 #              ^ punctuation.accessor.dot.terraform
@@ -2637,7 +2679,9 @@
 #                                                                                                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                                                                                          ^ punctuation.section.parens.end.terraform
     ]
+#^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.end.terraform
+#    ^ - meta.brackets
 
 /////
 // Match brackets on right-side expression.
@@ -2648,6 +2692,7 @@
 #         ^ keyword.operator.assignment.terraform
 #           ^ punctuation.section.brackets.begin.terraform
       for instance in aws_instance.ubuntu:
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #     ^^^ keyword.control.loop.for.terraform
 #         ^^^^^^^^ variable.other.readwrite.terraform
 #                  ^^ keyword.operator.iteration.in.terraform
@@ -2656,6 +2701,12 @@
 #                                  ^^^^^^ variable.other.member.terraform
 #                                        ^ punctuation.section.block.loop.for.terraform
       (instance.public_ip != "" ? [instance.private_ip, instance.public_ip] : [instance.private_ip])
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform meta.parens.terraform - meta.parens meta.brackets
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform meta.parens.terraform meta.brackets.terraform
+#                                                                          ^^^ meta.brackets.terraform meta.parens.terraform - meta.parens meta.brackets
+#                                                                             ^^^^^^^^^^^^^^^^^^^^^ meta.brackets.terraform meta.parens.terraform meta.brackets.terraform
+#                                                                                                  ^ meta.brackets.terraform meta.parens.terraform - meta.parens meta.brackets
+#                                                                                                   ^ meta.brackets.terraform - meta.parens
 #     ^ punctuation.section.parens.begin.terraform
 #      ^^^^^^^^ variable.other.readwrite.terraform
 #              ^ punctuation.accessor.dot.terraform
@@ -2678,7 +2729,10 @@
 #                                                                                                 ^ punctuation.section.brackets.end.terraform
 #                                                                                                  ^ punctuation.section.parens.end.terraform
     ]
+# <- meta.brackets.terraform
+#^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.end.terraform
+#    ^ - meta.brackets
 
 /////
 // Match if-conditionals on right-side.
@@ -2709,6 +2763,9 @@
 /////
 
     [for i, v in ["a", "b", "c"]: v if i < 2]
+#   ^^^^^^^^^^^^^ meta.brackets.terraform - meta.brackets meta.brackets
+#                ^^^^^^^^^^^^^^^ meta.brackets.terraform meta.brackets.terraform
+#                               ^^^^^^^^^^^^^ meta.brackets.terraform - meta.brackets meta.brackets
 #   ^ punctuation.section.brackets.begin.terraform
 #    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
@@ -2742,8 +2799,9 @@
 /////
 
     {for i, v in ["a", "b"]: v => i}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^^^ meta.braces.terraform keyword.control.loop.for.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform
+#   ^ punctuation.section.braces.begin.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
 #         ^ punctuation.separator.terraform
 #           ^ variable.other.readwrite.terraform
@@ -2767,8 +2825,9 @@
 /////
 
     {for i, v in ["a"]: v => i...}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^^^ meta.braces.terraform keyword.control.loop.for.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform
+#   ^ punctuation.section.braces.begin.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
 #         ^ punctuation.separator.terraform
 #           ^ variable.other.readwrite.terraform
@@ -2789,8 +2848,9 @@
 /////
 
     {for s in var.list : substr(s, 0, 1) => s... if s != ""}
-#   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
-#    ^^^ meta.braces.terraform keyword.control.loop.for.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform
+#   ^ punctuation.section.braces.begin.terraform
+#    ^^^ keyword.control.loop.for.terraform
 #        ^ variable.other.readwrite.terraform
 #          ^^ keyword.operator.iteration.in.terraform
 #             ^^^ variable.language.terraform
@@ -2822,8 +2882,10 @@
     value = {
 #   ^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
 #         ^ keyword.operator.assignment.terraform
+#          ^ - meta.braces
 #           ^ meta.braces.terraform punctuation.section.braces.begin.terraform
       for l in var.letters: l =>
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform
 #     ^^^ meta.braces.terraform keyword.control.loop.for.terraform
 #         ^ variable.other.readwrite.terraform
 #           ^^ keyword.operator.iteration.in.terraform
@@ -2834,12 +2896,16 @@
 #                           ^ variable.other.readwrite.terraform
 #                             ^^ punctuation.separator.key-value.terraform
         upper(l)
+#      ^^^^^^^^^^ meta.braces.terraform
 #       ^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #             ^ meta.function-call.terraform
 #              ^ meta.function-call.terraform punctuation.section.parens.end.terraform
     }
+# <- meta.braces.terraform
+#^^^^ meta.braces.terraform
 #   ^ punctuation.section.braces.end.terraform
+#    ^ - meta.braces
 
 /////////////////////////////////////////////////////////////////////
 // BLOCKS
@@ -2851,23 +2917,22 @@
 
     thing  {}
 #   ^^^^^ meta.type.terraform entity.name.type.terraform
-#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#           ^ meta.block.terraform punctuation.section.block.end.terraform
+#        ^^ - meta.type - meta.block
+#          ^^ meta.block.terraform - meta.type
+#          ^ punctuation.section.block.begin.terraform
+#           ^ punctuation.section.block.end.terraform
 
 /////
 // Inline block with string labels.
 /////
 
     thing "label1"   "label2" {}
-#   ^^^^^ meta.type.terraform entity.name.type.terraform
-#         ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#          ^^^^^^ meta.type.terraform string.quoted.double.terraform
-#                ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                    ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                     ^^^^^^ meta.type.terraform string.quoted.double.terraform
-#                           ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                             ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#                              ^ meta.block.terraform punctuation.section.block.end.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.terraform
+#   ^^^^^ entity.name.type.terraform
+#         ^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#                    ^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#                            ^ - meta.type - meta.block
+#                             ^^ meta.block.terraform - meta.type
 #                               ^ - meta
 
 /////
@@ -2875,20 +2940,23 @@
 /////
 
     thing thing1 thing2 thing3 {}
-#   ^^^^^ meta.type.terraform entity.name.type.terraform
-#         ^^^^^^ meta.type.terraform entity.name.label.terraform
-#                ^^^^^^ meta.type.terraform entity.name.label.terraform
-#                       ^^^^^^ meta.type.terraform entity.name.label.terraform
-#                              ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#                               ^ meta.block.terraform punctuation.section.block.end.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.terraform
+#   ^^^^^ entity.name.type.terraform
+#         ^^^^^^ entity.name.label.terraform
+#                ^^^^^^ entity.name.label.terraform
+#                       ^^^^^^ entity.name.label.terraform
+#                              ^^ meta.block.terraform - meta.type
+#                              ^ punctuation.section.block.begin.terraform
+#                               ^ punctuation.section.block.end.terraform
 
 //////
 // Nested multi-line blocks with expressions.
 /////
 
     resource "aws_security_group" "example" {
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.terraform
+#                                          ^ - meta.type - meta.block meta.block
+#                                           ^^ meta.block.terraform - meta.type
 #   ^^^^^^^^ keyword.declaration.terraform
 #            ^ punctuation.definition.begin.terraform
 #             ^^^^^^^^^^^^^^^^^^ support.type.aws
@@ -2898,16 +2966,20 @@
 #                                         ^ punctuation.definition.end.terraform
 #                                           ^ punctuation.section.block.begin.terraform
       name = "example"
-#     ^^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
-#          ^ meta.block.terraform keyword.operator.assignment.terraform
-#            ^ meta.block.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^^^ meta.block.terraform string.quoted.double.terraform
+#    ^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#     ^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#          ^ keyword.operator.assignment.terraform
+#            ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^^^ string.quoted.double.terraform
 
       dynamic "ingress" {
-#     ^^^^^^^ meta.block.terraform meta.type.terraform entity.name.type.terraform
-#             ^ meta.block.terraform meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^^^^^^^ meta.block.terraform meta.type.terraform string.quoted.double.terraform
-#                       ^ meta.block.terraform meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#     ^^^^^^^^^^^^^^^^^ meta.block.terraform meta.type.terraform - meta.block meta.block
+#                      ^ meta.block.terraform - meta.type - meta.block meta.block
+#                       ^^ meta.block.terraform meta.block.terraform
+#     ^^^^^^^ meta.type.terraform entity.name.type.terraform
+#             ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^^^^^ meta.type.terraform string.quoted.double.terraform
+#                       ^ punctuation.section.block.begin.terraform
         for_each = var.service_ports
 #       ^^^^^^^^ variable.declaration.terraform keyword.control.loop.for.terraform
 #                ^ keyword.operator.assignment.terraform
@@ -2915,8 +2987,11 @@
 #                     ^ punctuation.accessor.dot.terraform
 #                      ^^^^^^^^^^^^^ variable.other.member.terraform
         content {
-#       ^^^^^^^ meta.block.terraform meta.block.terraform meta.type.terraform entity.name.type.terraform
-#               ^ meta.block.terraform meta.block.terraform meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#       ^^^^^^^ meta.block.terraform meta.block.terraform meta.type.terraform
+#              ^ meta.block.terraform meta.block.terraform - meta.type
+#               ^^ meta.block.terraform meta.block.terraform meta.block.terraform - meta.type
+#       ^^^^^^^ entity.name.type.terraform
+#               ^ punctuation.section.block.begin.terraform
           from_port = ingress.value
 #         ^^^^^^^^^ meta.block.terraform meta.block.terraform meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
 #                   ^ meta.block.terraform meta.block.terraform meta.block.terraform keyword.operator.assignment.terraform
@@ -2947,25 +3022,30 @@
 /////
 
     thing label1 {
-#   ^^^^^ meta.type.terraform entity.name.type.terraform
-#         ^^^^^^ meta.type.terraform entity.name.label.terraform
-#                ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
+#   ^^^^^^^^^^^^ meta.type.terraform
+#               ^ - meta.block - meta.type
+#                ^^ meta.block.terraform - meta.type
+#   ^^^^^ entity.name.type.terraform
+#         ^^^^^^ entity.name.label.terraform
+#                ^ punctuation.section.block.begin.terraform
       func = function(param1)
-#     ^^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
-#          ^ meta.block.terraform keyword.operator.assignment.terraform
-#            ^^^^^^^^ meta.block.terraform meta.function-call.terraform variable.function.terraform
-#                    ^ meta.block.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                     ^^^^^^ meta.block.terraform meta.function-call.terraform
-#                           ^ meta.block.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#     ^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#          ^ keyword.operator.assignment.terraform
+#            ^^^^^^^^ meta.function-call.terraform variable.function.terraform
+#                    ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#                     ^^^^^^ meta.function-call.terraform
+#                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
       obj = {
-#     ^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
-#         ^ meta.block.terraform keyword.operator.assignment.terraform
+#    ^^^^^^^ meta.block.terraform - meta.braces
+#           ^^ meta.block.terraform meta.braces.terraform
+#     ^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#         ^ keyword.operator.assignment.terraform
         key = "value"
-#       ^^^ meta.block.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#           ^ meta.block.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#             ^ meta.block.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^^^^^ meta.block.terraform meta.braces.terraform string.quoted.double.terraform
-#                   ^ meta.block.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#      ^^^^^^^^^^^^^^^ meta.block.terraform meta.braces.terraform
+#       ^^^ meta.mapping.key.terraform string.unquoted.terraform
+#           ^ keyword.operator.assignment.terraform
+#             ^^^^^^^ meta.string.terraform string.quoted.double.terraform
       }
 #     ^ meta.block.terraform meta.braces.terraform punctuation.section.braces.end.terraform
       tuple = [1, 2]
@@ -3039,43 +3119,51 @@
 
     resource {}
 #   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
-#            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#             ^ meta.block.terraform punctuation.section.block.end.terraform
+#           ^ - meta.block - meta.type
+#            ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#             ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
     provider {}
 #   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
-#            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#             ^ meta.block.terraform punctuation.section.block.end.terraform
+#           ^ - meta.block - meta.type
+#            ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#             ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
     variable {}
 #   ^^^^^^^^ meta.type.terraform keyword.declaration.terraform
-#            ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#             ^ meta.block.terraform punctuation.section.block.end.terraform
+#           ^ - meta.block - meta.type
+#            ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#             ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
     output {}
 #   ^^^^^^ meta.type.terraform keyword.declaration.terraform
-#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#           ^ meta.block.terraform punctuation.section.block.end.terraform
+#         ^ - meta.block - meta.type
+#          ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#           ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
     locals {}
 #   ^^^^^^ meta.type.terraform keyword.declaration.terraform
-#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#           ^ meta.block.terraform punctuation.section.block.end.terraform
+#         ^ - meta.block - meta.type
+#          ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#           ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
     module {}
 #   ^^^^^^ meta.type.terraform keyword.declaration.terraform
-#          ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#           ^ meta.block.terraform punctuation.section.block.end.terraform
+#         ^ - meta.block - meta.type
+#          ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#           ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
     data {}
 #   ^^^^ meta.type.terraform keyword.declaration.terraform
-#        ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#         ^ meta.block.terraform punctuation.section.block.end.terraform
+#       ^ - meta.block - meta.type
+#        ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#         ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
     terraform {}
 #   ^^^^^^^^^ meta.type.terraform keyword.declaration.terraform
-#             ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
-#              ^ meta.block.terraform punctuation.section.block.end.terraform
+#            ^ - meta.block - meta.type
+#             ^ meta.block.terraform punctuation.section.block.begin.terraform - meta.type
+#              ^ meta.block.terraform punctuation.section.block.end.terraform - meta.type
 
 /////////////////////////////////////////////////////////////////////
 // TERRAFORM TYPE KEYWORDS

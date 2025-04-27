@@ -152,6 +152,7 @@ contexts:
       push: paren-body
 
   paren-body:
+    - meta_scope: meta.parens.terraform
     - match: \)
       scope: punctuation.section.parens.end.terraform
       pop: 1
@@ -444,6 +445,7 @@ contexts:
       push: bracket-body
 
   bracket-body:
+    - meta_scope: meta.brackets.terraform
     - match: (\*)?\]
       comment: Full-splat operator
       scope: punctuation.section.brackets.end.terraform
@@ -487,15 +489,15 @@ contexts:
     - include: Packages/Terraform/JSON (Terraform).sublime-syntax#object-body
 
   object-computed-key:
-    - meta_scope: meta.mapping.key.terraform
+    - meta_scope: meta.mapping.key.terraform meta.parens.terraform
     - include: paren-body
 
   object-literal-key:
     - match: '{{identifier}}'
-      scope: meta.mapping.key.terraform string.unquoted.terraform
+      scope: meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
       pop: 1
     - match: (\").*?(\")
-      scope: meta.mapping.key.terraform string.quoted.double.terraform
+      scope: meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
       captures:
         1: punctuation.definition.string.begin.terraform
         2: punctuation.definition.string.end.terraform
@@ -581,6 +583,7 @@ contexts:
       pop: 1
 
   attribute-key-end:
+    - meta_scope: meta.parens.terraform
     - match: \)
       scope: punctuation.section.parens.end.terraform
       pop: 1
@@ -620,8 +623,9 @@ contexts:
       set: tuple-for-expression-body
 
   tuple-for-expression-body:
+    - meta_content_scope: meta.brackets.terraform
     - match: \]
-      scope: punctuation.section.brackets.end.terraform
+      scope: meta.brackets.terraform punctuation.section.brackets.end.terraform
       pop: 1
     - include: for-expression-body
 
@@ -638,8 +642,9 @@ contexts:
       set: object-for-expression-body
 
   object-for-expression-body:
+    - meta_content_scope: meta.braces.terraform
     - match: \}
-      scope: punctuation.section.braces.end.terraform
+      scope: meta.braces.terraform punctuation.section.braces.end.terraform
       pop: 1
     - match: \=\>
       scope: punctuation.separator.key-value.terraform
@@ -678,25 +683,26 @@ contexts:
         6: punctuation.definition.begin.terraform
         7: entity.name.type.aws
         8: punctuation.definition.end.terraform
-        9: punctuation.section.block.begin.terraform
+        9: meta.block.terraform punctuation.section.block.begin.terraform
       push: block-body
-
     # Generic
-    - match: (?:\b({{terraform_known_blocks}})\b|({{identifier}}))(?=[\s\"\-[:word:]]*(\{))
+    - match: (?:\b({{terraform_known_blocks}})\b|({{identifier}}))(?=[-\s\w"]*\{)
+      scope: meta.type.terraform
       captures:
         1: keyword.declaration.terraform
         2: entity.name.type.terraform
       push: block-name
 
   block-name:
-    - meta_scope: meta.type.terraform
+    - meta_content_scope: meta.type.terraform
     - match: \"
       scope: punctuation.definition.string.begin.terraform
       push: block-name-body
     - match: '{{identifier}}'
       scope: entity.name.label.terraform
-    - match: \{
-      scope: punctuation.section.block.begin.terraform
+    - match: \s*(\{)
+      captures:
+        1: meta.block.terraform punctuation.section.block.begin.terraform
       set: block-body
 
   block-name-body:
@@ -706,9 +712,9 @@ contexts:
       pop: 1
 
   block-body:
-    - meta_scope: meta.block.terraform
+    - meta_content_scope: meta.block.terraform
     - match: \}
-      scope: punctuation.section.block.end.terraform
+      scope: meta.block.terraform punctuation.section.block.end.terraform
       pop: 1
     - include: main
 
