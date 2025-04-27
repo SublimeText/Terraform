@@ -272,14 +272,14 @@ contexts:
         2: keyword.operator.arithmetic.terraform
         3: meta.number.integer.terraform constant.numeric.value.terraform
         4: punctuation.definition.string.end.terraform
-    - match: '"'
+    - match: \"
       comment: Strings
       scope: punctuation.definition.string.begin.terraform
       push: string_body
 
   string_body:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
-    - match: '"'
+    - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
     - match: '{{char_escapes}}'
@@ -420,7 +420,7 @@ contexts:
       comment: String literal label
       scope: punctuation.definition.string.begin.terraform
       push: literal_label_body
-    - match: "{{identifier}}"
+    - match: '{{identifier}}'
       comment: Identifier label
       scope: entity.name.label.terraform
     - include: numeric_literals
@@ -536,7 +536,7 @@ contexts:
 
   member:
     - include: comments
-    - match: "{{identifier}}"
+    - match: '{{identifier}}'
       comment: Attribute access
       scope: variable.other.member.terraform
       pop: 1
@@ -660,7 +660,7 @@ contexts:
     - include: comma
 
   identifiers:
-    - match: "{{identifier}}"
+    - match: '{{identifier}}'
       scope: variable.other.readwrite.terraform
 
   # Blocks: Identifier (StringLit|Identifier)* "{" Newline Body "}" Newline;
@@ -693,7 +693,7 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.begin.terraform
       push: block_name_body
-    - match: "{{identifier}}"
+    - match: '{{identifier}}'
       scope: entity.name.label.terraform
     - match: \{
       scope: punctuation.section.block.begin.terraform
