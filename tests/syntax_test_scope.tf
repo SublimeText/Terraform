@@ -23,7 +23,7 @@
 /////
 
         # bar
-#     ^ -comment -punctuation
+#     ^ - comment - punctuation
 #       ^ punctuation.definition.comment.terraform
 #       ^^^^^ comment.line.terraform
 
@@ -32,7 +32,7 @@
 /////
 
     // baz # blah
-# ^ -comment -punctuation
+# ^ - comment - punctuation
 #   ^^ punctuation.definition.comment.terraform
 #   ^^^^^^^^^^^^^ comment.line.terraform
 
@@ -45,7 +45,7 @@
 /////
 
     /* foo */
-# ^ -comment -punctuation
+# ^ - comment - punctuation
 #   ^^ punctuation.definition.comment.terraform
 #   ^^^^^^^^ comment.block.terraform
 #          ^^ punctuation.definition.comment.terraform
@@ -55,7 +55,7 @@
 /////
 
     /*
-# ^ -comment -punctuation
+# ^ - comment - punctuation
 #   ^^ punctuation.definition.comment.terraform
 #   ^^^^ comment.block.terraform
 
@@ -71,11 +71,11 @@
 /////
 
      /* comment */    // inline
-# ^ -comment -punctuation
+# ^ - comment - punctuation
 #    ^^ punctuation.definition.comment.terraform
 #    ^^^^^^^^^^^^ comment.block.terraform
 #               ^^ punctuation.definition.comment.terraform
-#                 ^^^ -comment -punctuation
+#                 ^^^ - comment - punctuation
 #                     ^^ punctuation.definition.comment.terraform
 #                     ^^^^^^^^ comment.line.terraform
 
@@ -88,18 +88,18 @@
 /////
 
     true
-# ^ -constant
+# ^ - constant
 #   ^^^^ constant.language.boolean.true.terraform
-#         ^ -constant
+#         ^ - constant
 
 /////
 // Matches `false`.
 /////
 
     false
-# ^ -constant
+# ^ - constant
 #   ^^^^^ constant.language.boolean.false.terraform
-#         ^ -constant
+#         ^ - constant
 
 
 /////
@@ -107,9 +107,9 @@
 /////
 
     null
-# ^ -constant
+# ^ - constant
 #   ^^^^ constant.language.null.terraform
-#         ^ -constant
+#         ^ - constant
 
 /////////////////////////////////////////////////////////////////////
 // INTEGER CONSTANTS
@@ -156,7 +156,7 @@
 /////
 
     aws_route53_zone.main.zone_id
-#   ^^^^^^^^^^^^^^^^ -numeric -constant
+#   ^^^^^^^^^^^^^^^^ - numeric - constant
 #                   ^ punctuation.accessor.dot.terraform
 #                    ^^^^ variable.other.member.terraform
 #                        ^ punctuation.accessor.dot.terraform
@@ -234,18 +234,18 @@
 /////
 
       "a string"
-#   ^ -punctuation -string
+#   ^ - punctuation - string
 #     ^ punctuation.definition.string.begin.terraform
 #     ^^^^^^^^^^ string.quoted.double.terraform
 #              ^ punctuation.definition.string.end.terraform
-#                 ^ -punctuation -string
+#                 ^ - punctuation - string
 
 /////
 // Matches character escapes.
 /////
 
       "a \n b \r c \t d \" e \udead f \udeadbeef"
-#   ^ -punctuation -string
+#   ^ - punctuation - string
 #     ^ punctuation.definition.string.begin.terraform
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform
 #        ^^ constant.character.escape.terraform
@@ -287,7 +287,7 @@
 /////
 
       "some ${interpolation} string"
-#   ^ -punctuation -string
+#   ^ - punctuation - string
 #     ^ punctuation.definition.string.begin.terraform
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform
 #      ^^^^^ string.quoted.double.terraform
@@ -297,7 +297,7 @@
 #                          ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                            ^^^^^^^ string.quoted.double.terraform
 #                                  ^ punctuation.definition.string.end.terraform
-#                                   ^ -punctuation -string
+#                                   ^ - punctuation - string
 
 /////
 // Matches left-trim and right-trim.
@@ -455,7 +455,7 @@
 #                                                                                ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                                                 ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                                                                                  ^ punctuation.section.brackets.end.terraform
-#                                                                                   ^ -meta -string -variable -punctuation
+#                                                                                   ^ - meta - string - variable - punctuation
 
 /////
 // Handles nested interpolation.
@@ -487,7 +487,7 @@
 /////
 
       "${ if name == "Mary" }${name}${ endif ~}"
-#    ^ -string -punctuation
+#    ^ - string - punctuation
 #     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
@@ -504,14 +504,14 @@
 #                                            ^ meta.interpolation.terraform keyword.operator.template.trim.right.terraform
 #                                             ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                               ^ -string -punctuation
+#                                               ^ - string - punctuation
 
 /////
 // Matches if/else/endif directives.
 /////
 
       "%{ if name == "Mary" }${name}%{ else }${ "Mary" }%{ endif ~}"
-#    ^ -string -punctuation
+#    ^ - string - punctuation
 #     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
@@ -536,14 +536,14 @@
 #                                                                ^ meta.interpolation.terraform keyword.operator.template.trim.right.terraform
 #                                                                 ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                                  ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                                   ^ -string -punctuation
+#                                                                   ^ - string - punctuation
 
 /////
 // Matches for/in/endfor directives.
 /////
 
       "%{ for name in var.names ~}${name}%{ endfor ~}"
-#   ^ -string -punctuation
+#   ^ - string - punctuation
 #     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #         ^^^ keyword.control.loop.for.terraform
@@ -561,7 +561,7 @@
 #                                                  ^ meta.interpolation.terraform keyword.operator.template.trim.right.terraform
 #                                                   ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                    ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                     ^ -string -punctuation
+#                                                     ^ - string - punctuation
 
 /////////////////////////////////////////////////////////////////////
 // Operators
@@ -572,87 +572,87 @@
 /////
 
     a == b
-#   ^ -keyword -operator
+#   ^ - keyword - operator
 #     ^^ keyword.operator.comparison.terraform
-#         ^ -keyword -operator
+#         ^ - keyword - operator
 
     a != b
-#   ^ -keyword -operator
+#   ^ - keyword - operator
 #     ^^ keyword.operator.comparison.terraform
-#         ^ -keyword -operator
+#         ^ - keyword - operator
 
     a < b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^ keyword.operator.comparison.terraform
-#      ^ -keyword -operator
+#      ^ - keyword - operator
 
     a <= b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^^ keyword.operator.comparison.terraform
-#       ^ -keyword -operator
+#       ^ - keyword - operator
 
     a > b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^ keyword.operator.comparison.terraform
-#      ^ -keyword -operator
+#      ^ - keyword - operator
 
     a >= b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^^ keyword.operator.comparison.terraform
-#       ^ -keyword -operator
+#       ^ - keyword - operator
 
 /////
 // Arithmetic
 /////
 
     a + b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^ keyword.operator.arithmetic.terraform
-#      ^ -keyword -operator
+#      ^ - keyword - operator
 
     a - b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^ keyword.operator.arithmetic.terraform
-#      ^ -keyword -operator
+#      ^ - keyword - operator
 
     a * b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^ keyword.operator.arithmetic.terraform
-#      ^ -keyword -operator
+#      ^ - keyword - operator
 
     a / b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^ keyword.operator.arithmetic.terraform
-#      ^ -keyword -operator
+#      ^ - keyword - operator
 
     a % b
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 #     ^ keyword.operator.arithmetic.terraform
-#      ^ -keyword -operator
+#      ^ - keyword - operator
 
-    -a
-#  ^ -keyword -operator
+    - a
+#  ^ - keyword - operator
 #   ^ keyword.operator.arithmetic.terraform
-#    ^ -keyword -operator
+#    ^ - keyword - operator
 
 /////
 // Logic
 /////
 
     a && b
-#   ^^ -keyword -operator
+#   ^^ - keyword - operator
 #     ^^ keyword.operator.logical.terraform
-#       ^^ -keyword -operator
+#       ^^ - keyword - operator
 
     a || b
-#   ^^ -keyword -operator
+#   ^^ - keyword - operator
 #     ^^ keyword.operator.logical.terraform
-#       ^^ -keyword -operator
+#       ^^ - keyword - operator
 
     !a
-# ^^ -keyword -operator
+# ^^ - keyword - operator
 #   ^ keyword.operator.logical.terraform
-#    ^^ -keyword -operator
+#    ^^ - keyword - operator
 
 /////
 // Conditional
@@ -697,11 +697,11 @@
 /////
 
     thing[1]
-#       ^ -punctuation
+#       ^ - punctuation
 #        ^ punctuation.section.brackets.begin.terraform
 #         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #          ^ punctuation.section.brackets.end.terraform
-#           ^ -punctuation
+#           ^ - punctuation
 
 /////
 // Arrays of literals
@@ -800,7 +800,7 @@
 #           ^ punctuation.section.brackets.end.terraform
     ]
 #   ^ punctuation.section.brackets.end.terraform
-#    ^ -punctuation
+#    ^ - punctuation
 
 /////
 // Attribute-access inside arrays
@@ -910,7 +910,7 @@
 #              ^ meta.braces.terraform keyword.operator.arithmetic.terraform
 #                ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.braces.terraform punctuation.section.braces.end.terraform
-#                   ^ -meta
+#                   ^ - meta
 
 /////
 // Allows tuples as key values.
@@ -928,7 +928,7 @@
 #                    ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                      ^ meta.braces.terraform punctuation.section.brackets.end.terraform
 #                       ^ meta.braces.terraform punctuation.section.braces.end.terraform
-#                        ^ -meta
+#                        ^ - meta
 
 /////
 // Allows function calls as values.
@@ -972,7 +972,7 @@
 #     ^ meta.braces.terraform meta.braces.terraform punctuation.section.braces.end.terraform
     }
 #   ^ meta.braces.terraform punctuation.section.braces.end.terraform
-#    ^ -meta
+#    ^ - meta
 
 /////
 // Allows attribute-access as rvalue, including named values.
@@ -986,7 +986,7 @@
 #                 ^ meta.braces.terraform punctuation.accessor.dot.terraform
 #                  ^^^^^^ meta.braces.terraform variable.other.member.terraform
 #                         ^ meta.braces.terraform punctuation.section.braces.end.terraform
-#                          ^ -meta
+#                          ^ - meta
 
 /////
 // Allows strings as keys.
@@ -1065,7 +1065,7 @@
 #                        ^ punctuation.section.brackets.end.terraform
 #                         ^ punctuation.accessor.dot.terraform
 #                          ^^^^^^^^^^^ variable.other.member.terraform
-#                                     ^ -variable -punctuation
+#                                     ^ - variable - punctuation
 
 /////
 // Ignores dot-access in string literals
@@ -1073,7 +1073,7 @@
 
     "aws_instance.ubuntu"
 #   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^ -variable
+#                ^ - variable
 #   ^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform
 
 /////
@@ -1121,7 +1121,7 @@
 #                            ^^^^^^^^^^^^ variable.other.member.terraform
 #                                        ^ punctuation.accessor.dot.terraform
 #                                         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                          ^ -constant -punctuation -variable
+#                                          ^ - constant - punctuation - variable
 
 /////////////////////////////////////////////////////////////////////
 // Attribute Definition
@@ -1219,7 +1219,7 @@
 #                                                     ^ meta.function-call.terraform keyword.operator.arithmetic.terraform
 #                                                      ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                                        ^ -meta -function-call -variable
+#                                                        ^ - meta - function-call - variable
 
 /////
 // Matches arrays and splat as parameters.
@@ -1276,7 +1276,7 @@
 #                   ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                      ^ -function
+#                      ^ - function
 
 /////
 // Parameters spanning multiple lines.
@@ -2237,7 +2237,7 @@
 #                            ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
 #                                     ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                       ^ -function
+#                                       ^ - function
 
       filebase64sha512(file("filename"))
 #     ^^^^^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -2248,7 +2248,7 @@
 #                            ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
 #                                     ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                       ^ -function
+#                                       ^ - function
 
       filemd5(file("filename"))
 #     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -2269,7 +2269,7 @@
 #                   ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
 #                            ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                              ^ -function
+#                              ^ - function
 
       filesha256(file("filename"))
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -2280,7 +2280,7 @@
 #                      ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
 #                               ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                 ^ -function
+#                                 ^ - function
 
       filesha512(file("filename"))
 #     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -2291,7 +2291,7 @@
 #                      ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
 #                               ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                 ^ -function
+#                                 ^ - function
 
       md5("hello world")
 #     ^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -2320,7 +2320,7 @@
 #                                                               ^^^^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
 #                                                                              ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                                                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                                                                ^ -function
+#                                                                                ^ - function
 
       sha1("hello world")
 #     ^^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -2760,7 +2760,7 @@
 #                              ^^ punctuation.separator.key-value.terraform
 #                                 ^ variable.other.readwrite.terraform
 #                                  ^ punctuation.section.braces.end.terraform
-#                                   ^ -meta
+#                                   ^ - meta
 
 /////
 // Matches ellipsis.
@@ -2868,7 +2868,7 @@
 #                           ^ meta.type.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                             ^ meta.type.terraform meta.block.terraform punctuation.section.block.begin.terraform
 #                              ^ meta.block.terraform punctuation.section.block.end.terraform
-#                               ^ -meta
+#                               ^ - meta
 
 /////
 // Inline block with identifier labels.
@@ -2940,7 +2940,7 @@
 #     ^ meta.block.terraform meta.block.terraform punctuation.section.block.end.terraform
     }
 #   ^ meta.block.terraform punctuation.section.block.end.terraform
-#    ^ -meta
+#    ^ - meta
 
 /////
 // Matches blocks with functions, objects, tuples.
@@ -2978,7 +2978,7 @@
 #                  ^ meta.block.terraform punctuation.section.brackets.end.terraform
     }
 #   ^ meta.block.terraform punctuation.section.block.end.terraform
-#    ^ -meta -block
+#    ^ - meta - block
 
 /////////////////////////////////////////////////////////////////////
 // TERRAFORM NAMED VALUES
