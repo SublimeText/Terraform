@@ -1017,7 +1017,7 @@
 #       ^ meta.braces.terraform meta.mapping.key.terraform keyword.operator.arithmetic.terraform
 #         ^ meta.braces.terraform meta.mapping.key.terraform constant.numeric.integer.terraform
 #          ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
-#            ^ meta.braces.terraform keyword.operator.terraform
+#            ^ meta.braces.terraform keyword.operator.assignment.terraform
 #              ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #               ^^^^^ meta.braces.terraform string.quoted.double.terraform
 #                    ^ meta.braces.terraform punctuation.section.braces.end.terraform
@@ -1033,7 +1033,7 @@
 #         ^ meta.braces.terraform meta.mapping.key.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
 #          ^ meta.braces.terraform meta.mapping.key.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #           ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
-#             ^ meta.braces.terraform keyword.operator.terraform
+#             ^ meta.braces.terraform keyword.operator.assignment.terraform
 #               ^ meta.braces.terraform constant.numeric.integer.terraform
 #                ^ meta.braces.terraform punctuation.section.braces.end.terraform
 
@@ -1048,7 +1048,7 @@
 #        ^ meta.braces.terraform meta.mapping.key.terraform punctuation.accessor.dot.terraform
 #         ^^^^ meta.braces.terraform meta.mapping.key.terraform variable.other.member.terraform
 #             ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
-#               ^ meta.braces.terraform keyword.operator.terraform
+#               ^ meta.braces.terraform keyword.operator.assignment.terraform
 #                 ^ meta.braces.terraform constant.numeric.integer.terraform
 #                  ^ meta.braces.terraform punctuation.section.braces.end.terraform
 

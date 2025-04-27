@@ -149,11 +149,13 @@ contexts:
     - match: \(
       scope: punctuation.section.parens.begin.terraform
       comment: Parens - matched *after* function syntax
-      push:
-        - match: \)
-          scope: punctuation.section.parens.end.terraform
-          pop: true
-        - include: expressions
+      push: paren_body
+
+  paren_body:
+    - match: \)
+      scope: punctuation.section.parens.end.terraform
+      pop: true
+    - include: expressions
 
   # Literal Values: Numbers, Language Constants, and Strings
   #
@@ -333,13 +335,15 @@ contexts:
       captures:
         1: keyword.operator.heredoc.terraform
         2: keyword.control.heredoc.terraform
-      push:
-        - meta_content_scope: meta.string.terraform string.unquoted.heredoc.terraform
-        - match: ^\s*\2\s*$
-          comment: The heredoc token identifier (second capture above).
-          scope: keyword.control.heredoc.terraform
-          pop: true
-        - include: string_interpolation
+      push: heredoc_body
+
+  heredoc_body:
+    - meta_content_scope: meta.string.terraform string.unquoted.heredoc.terraform
+    - match: ^\s*\2\s*$
+      comment: The heredoc token identifier (second capture above).
+      scope: keyword.control.heredoc.terraform
+      pop: true
+    - include: string_interpolation
 
   # Operators:
   #
@@ -390,23 +394,27 @@ contexts:
       captures:
         1: support.constant.terraform
         2: keyword.control.import.terraform
-      push:
-        - match: \"
-          comment: String literal label
-          scope: punctuation.definition.string.begin.terraform
-          push:
-            - meta_scope: string.quoted.double.terraform
-            - match: \"
-              scope: punctuation.definition.string.end.terraform
-              pop: true
-        - match: "{{identifier}}"
-          comment: Identifier label
-          scope: entity.name.label.terraform
-        - include: numeric_literals
-        - include: attribute_access
-        - match: $\n?
-          comment: Pop at newline
-          pop: true
+      push: import_body
+
+  import_body:
+    - match: \"
+      comment: String literal label
+      scope: punctuation.definition.string.begin.terraform
+      push: literal_label_body
+    - match: "{{identifier}}"
+      comment: Identifier label
+      scope: entity.name.label.terraform
+    - include: numeric_literals
+    - include: attribute_access
+    - match: $\n?
+      comment: Pop at newline
+      pop: true
+
+  literal_label_body:
+    - meta_scope: string.quoted.double.terraform
+    - match: \"
+      scope: punctuation.definition.string.end.terraform
+      pop: true
 
   # Brackets: matches tuples and subscript notation
   #
@@ -414,20 +422,19 @@ contexts:
   brackets:
     - match: \[
       scope: punctuation.section.brackets.begin.terraform
-      push:
-        - match: \]
-          scope: punctuation.section.brackets.end.terraform
-          pop: true
-        - match: (\*)\]
-          comment: Full-splat operator
-          scope: punctuation.section.brackets.end.terraform
-          captures:
-            1: keyword.operator.splat.terraform
-          pop: true
-        - include: comma
-        - include: comments
-        - include: tuple_for_expression
-        - include: expressions
+      push: bracket_body
+
+  bracket_body:
+    - match: (\*)?\]
+      comment: Full-splat operator
+      scope: punctuation.section.brackets.end.terraform
+      captures:
+        1: keyword.operator.splat.terraform
+      pop: true
+    - include: comma
+    - include: comments
+    - include: tuple_for_expression
+    - include: expressions
 
   # Objects: collection values
   #
@@ -450,21 +457,21 @@ contexts:
       push:
         - object_value
         - assignment_operator
-        - object_key
+        - object_literal_key
     - match: \(
       comment: Computed object key (any expression between parens)
       scope: punctuation.section.parens.begin.terraform
       push:
-        - meta_scope: meta.mapping.key.terraform
-        - match: '(\))\s*(\=)\s*'
-          captures:
-            1: punctuation.section.parens.end.terraform
-            2: keyword.operator.terraform
-          set: object_value
-        - include: expressions
+        - object_value
+        - assignment_operator
+        - object_computed_key
     - include: Packages/Terraform/JSON (Terraform).sublime-syntax#object-body
 
-  object_key:
+  object_computed_key:
+    - meta_scope: meta.mapping.key.terraform
+    - include: paren_body
+
+  object_literal_key:
     - match: '{{identifier}}'
       scope: meta.mapping.key.terraform string.unquoted.terraform
       pop: true
@@ -570,14 +577,16 @@ contexts:
         1: support.function.builtin.terraform
         2: variable.function.terraform
         3: punctuation.section.parens.begin.terraform
-      push:
-        - meta_scope: meta.function-call.terraform
-        - match: \)
-          scope: punctuation.section.parens.end.terraform
-          pop: true
-        - include: comments
-        - include: expressions
-        - include: comma
+      push: function_argument_list_body
+
+  function_argument_list_body:
+    - meta_scope: meta.function-call.terraform
+    - match: \)
+      scope: punctuation.section.parens.end.terraform
+      pop: true
+    - include: comments
+    - include: expressions
+    - include: comma
 
   # Tuple for-Expression:
   #
@@ -589,11 +598,13 @@ contexts:
     - match: \bfor\b
       comment: for expression (arrays)
       scope: keyword.control.loop.for.terraform
-      set:
-        - include: for_expression_body
-        - match: \]
-          scope: punctuation.section.brackets.end.terraform
-          pop: true
+      set: tuple_for_expression_body
+
+  tuple_for_expression_body:
+    - match: \]
+      scope: punctuation.section.brackets.end.terraform
+      pop: true
+    - include: for_expression_body
 
   # Object for-Expression:
   #
@@ -605,13 +616,15 @@ contexts:
     - match: \bfor\b
       comment: for expression (arrays)
       scope: keyword.control.loop.for.terraform
-      set:
-        - match: \=\>
-          scope: punctuation.separator.key-value.terraform
-        - include: for_expression_body
-        - match: \}
-          scope: punctuation.section.braces.end.terraform
-          pop: true
+      set: object_for_expression_body
+
+  object_for_expression_body:
+    - match: \}
+      scope: punctuation.section.braces.end.terraform
+      pop: true
+    - match: \=\>
+      scope: punctuation.separator.key-value.terraform
+    - include: for_expression_body
 
   # Shared body syntax for tuple and object for-expressions.
   # They require different `set` blocks because they are
@@ -677,10 +690,10 @@ contexts:
 
   block_body:
     - meta_scope: meta.block.terraform
-    - include: main
     - match: \}
       scope: punctuation.section.block.end.terraform
       pop: true
+    - include: main
 
   else_pop:
     - match: (?=\S)
