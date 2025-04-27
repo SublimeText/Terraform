@@ -13,5 +13,5 @@ file_extensions:
 contexts:
   double-quoted-string-body:
     - meta_prepend: true
-    - include: Packages/Terraform/Terraform.sublime-syntax#string_interpolation
-    - include: Packages/Terraform/Terraform.sublime-syntax#aws_acl
+    - include: Packages/Terraform/Terraform.sublime-syntax#string-interpolation
+    - include: Packages/Terraform/Terraform.sublime-syntax#aws-acl
