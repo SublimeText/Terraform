@@ -154,7 +154,7 @@ contexts:
   paren_body:
     - match: \)
       scope: punctuation.section.parens.end.terraform
-      pop: true
+      pop: 1
     - include: expressions
 
   # Literal Values: Numbers, Language Constants, and Strings
@@ -195,7 +195,7 @@ contexts:
     - meta_scope: comment.line.terraform
     - match: $\n?
       scope: punctuation.definition.comment.terraform
-      pop: true
+      pop: 1
 
   # Block comments: start and end delimiters for multi-line comments.
   #
@@ -211,7 +211,7 @@ contexts:
     - meta_scope: comment.block.terraform
     - match: \*/
       scope: punctuation.definition.comment.terraform
-      pop: true
+      pop: 1
 
   # Language Constants: booleans and `null`.
   #
@@ -284,7 +284,7 @@ contexts:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: '"'
       scope: punctuation.definition.string.end.terraform
-      pop: true
+      pop: 1
     - match: '{{char_escapes}}'
       comment: Character Escapes
       scope: constant.character.escape.terraform
@@ -308,7 +308,7 @@ contexts:
     - match: \*
       scope: constant.other.wildcard.asterisk.terraform
     - match: (?![\w-])
-      pop: true
+      pop: 1
 
   acl_interpolation_body:
     - meta_scope: meta.interpolation.terraform
@@ -333,7 +333,7 @@ contexts:
       captures:
         1: keyword.operator.template.trim.right.terraform
         2: punctuation.section.interpolation.end.terraform
-      pop: true
+      pop: 1
     - match: \b(if|else|endif|for|in|endfor)\b
       comment: if/else/endif and for/in/endfor directives
       scope: keyword.control.terraform
@@ -355,7 +355,7 @@ contexts:
     - match: ^\s*\2\s*$
       comment: The heredoc token identifier (second capture above).
       scope: keyword.control.heredoc.terraform
-      pop: true
+      pop: 1
     - include: string_interpolation
 
   # Operators:
@@ -421,13 +421,13 @@ contexts:
     - include: attribute_access
     - match: $\n?
       comment: Pop at newline
-      pop: true
+      pop: 1
 
   literal_label_body:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
-      pop: true
+      pop: 1
 
   # Brackets: matches tuples and subscript notation
   #
@@ -443,7 +443,7 @@ contexts:
       scope: punctuation.section.brackets.end.terraform
       captures:
         1: keyword.operator.splat.terraform
-      pop: true
+      pop: 1
     - include: comma
     - include: comments
     - include: tuple_for_expression
@@ -463,7 +463,7 @@ contexts:
     - meta_scope: meta.braces.terraform
     - match: \}
       scope: punctuation.section.braces.end.terraform
-      pop: true
+      pop: 1
     - include: object_for_expression
     - include: comments
     - match: (?=({{identifier}}|\".*?\")\s*=)
@@ -487,19 +487,19 @@ contexts:
   object_literal_key:
     - match: '{{identifier}}'
       scope: meta.mapping.key.terraform string.unquoted.terraform
-      pop: true
+      pop: 1
     - match: (\").*?(\")
       scope: meta.mapping.key.terraform string.quoted.double.terraform
       captures:
         1: punctuation.definition.string.begin.terraform
         2: punctuation.definition.string.end.terraform
-      pop: true
+      pop: 1
     - include: else_pop
 
   assignment_operator:
     - match: =
       scope: keyword.operator.assignment.terraform
-      pop: true
+      pop: 1
     - include: else_pop
 
   # Object key values: pop at comma, newline, and closing-bracket
@@ -511,14 +511,14 @@ contexts:
     - match: \,
       comment: Pop scope on comma.
       scope: punctuation.separator.terraform
-      pop: true
+      pop: 1
     - match: $\n?
       comment: Pop scope on EOL.
-      pop: true
+      pop: 1
     - match: (?=\})
       comment: Lookahead (don't consume) and pop scope on a bracket.
       scope: punctuation.section.braces.end.terraform
-      pop: true
+      pop: 1
 
   # Attribute Access: "." Identifier
   #
@@ -533,15 +533,15 @@ contexts:
     - match: "{{identifier}}"
       comment: Attribute access
       scope: variable.other.member.terraform
-      pop: true
+      pop: 1
     - match: \d+
       comment: Subscript
       scope: constant.numeric.integer.terraform
-      pop: true
+      pop: 1
     - match: \*
       comment: Attribute-only splat
       scope: keyword.operator.splat.terraform
-      pop: true
+      pop: 1
     - include: else_pop
 
   # Attribute Definition: Identifier "=" Expression Newline
@@ -565,19 +565,19 @@ contexts:
     # https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
     - match: for_each\b
       scope: variable.declaration.terraform keyword.control.loop.for.terraform
-      pop: true
+      pop: 1
     # https://developer.hashicorp.com/terraform/language/meta-arguments/count
     - match: count\b
       scope: variable.declaration.terraform keyword.control.conditional.terraform
-      pop: true
+      pop: 1
     - match: '{{identifier}}'
       scope: variable.declaration.terraform variable.other.readwrite.terraform
-      pop: true
+      pop: 1
 
   attribute_key_end:
     - match: \)
       scope: punctuation.section.parens.end.terraform
-      pop: true
+      pop: 1
 
   # Functions: Terraform builtins and unknown
   #
@@ -596,7 +596,7 @@ contexts:
     - meta_scope: meta.function-call.terraform
     - match: \)
       scope: punctuation.section.parens.end.terraform
-      pop: true
+      pop: 1
     - include: comments
     - include: expressions
     - include: comma
@@ -616,7 +616,7 @@ contexts:
   tuple_for_expression_body:
     - match: \]
       scope: punctuation.section.brackets.end.terraform
-      pop: true
+      pop: 1
     - include: for_expression_body
 
   # Object for-Expression:
@@ -634,7 +634,7 @@ contexts:
   object_for_expression_body:
     - match: \}
       scope: punctuation.section.braces.end.terraform
-      pop: true
+      pop: 1
     - match: \=\>
       scope: punctuation.separator.key-value.terraform
     - include: for_expression_body
@@ -699,15 +699,15 @@ contexts:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
-      pop: true
+      pop: 1
 
   block_body:
     - meta_scope: meta.block.terraform
     - match: \}
       scope: punctuation.section.block.end.terraform
-      pop: true
+      pop: 1
     - include: main
 
   else_pop:
     - match: (?=\S)
-      pop: true
+      pop: 1
