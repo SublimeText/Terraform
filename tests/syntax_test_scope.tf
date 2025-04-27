@@ -3183,6 +3183,19 @@
 resource "aws_iam_role_policy" "attach-inline-policy-1" {
     name = "xxx"
     role = aws_iam_role.execution-role.name
+
+    res_arn = "arn:aws:lambda:*:*:function:${var.environment}-xxx"
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.string.terraform
+#             ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform - variable
+#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ variable.language.acl.terraform
+#                                          ^^ punctuation.section.interpolation.begin.terraform
+#                                            ^^^^^^^^^^^^^^^ source.terraform source.terraform
+#                                            ^^^ variable.language.terraform
+#                                               ^ punctuation.accessor.dot.terraform
+#                                                ^^^^^^^^^^^ variable.other.member.terraform
+#                                                           ^ punctuation.section.interpolation.end.terraform
+#                                                                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform - variable
+
     policy = jsonencode({
         Version = "2012-10-17"
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform meta.braces.terraform
@@ -3209,23 +3222,24 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform meta.mapping.value.json meta.sequence.json
 #^^^^^^^^^^^^^^^ meta.mapping.json
 #               ^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json
+#                         ^^ meta.mapping.json
+#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.string.json - meta.interpolation
+#                                                        ^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.string.json meta.interpolation.terraform - string
+#                                                                          ^^^^^ meta.mapping.value.json meta.string.json - meta.interpolation
+#                                                                               ^ meta.mapping.json
 #               ^ punctuation.definition.string.begin.json
 #                        ^ punctuation.definition.string.end.json
-#                         ^^ meta.mapping.json
 #                         ^ punctuation.separator.key-value.json
-#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.string.json
-#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
-#                           ^ punctuation.definition.string.begin.json
-#                                                        ^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
+#                           ^ string.quoted.double.json punctuation.definition.string.begin.json - variable
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ variable.language.acl.terraform
 #                                                        ^^ punctuation.section.interpolation.begin.terraform
-#                                                          ^^^^^^^^^^^^^^^ source.terraform
+#                                                          ^^^^^^^^^^^^^^^ source.terraform source.terraform
 #                                                          ^^^ variable.language.terraform
 #                                                             ^ punctuation.accessor.dot.terraform
 #                                                              ^^^^^^^^^^^ variable.other.member.terraform
 #                                                                         ^ punctuation.section.interpolation.end.terraform
-#                                                                          ^^^^^ string.quoted.double.json
-#                                                                              ^ punctuation.definition.string.end.json
-#                                                                               ^ meta.mapping.json punctuation.separator.sequence.json
+#                                                                              ^ string.quoted.double.json  punctuation.definition.string.end.json - variable
+#                                                                               ^ punctuation.separator.sequence.json
                 "Effect": "Allow"
             }
         ]
