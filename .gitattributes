@@ -4,7 +4,7 @@
 .gitignore export-ignore
 
 # screenshots
-screenshot.png export-ignore
+preview.* export-ignore
 
 # development
 tests/ export-ignore

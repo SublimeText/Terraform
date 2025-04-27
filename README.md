@@ -1,15 +1,11 @@
-Terraform Syntax Highlighting and Snippets
-==========================================
+# Terraform
 
-This [Sublime Text][] package provides basic support for Terraform's
-[custom `.tf` file type][.tf], along with snippets for each of the basic
-Terraform resource types.
+[Terraform][.tf] configuration file syntax definitions and snippets for [Sublime Text][].
 
-![Syntax highlighting screenshot](screenshot.png)
+![preview](preview.png)
 
 
-Installation
-------------
+## Installation
 
 ### Using Package Control
 
