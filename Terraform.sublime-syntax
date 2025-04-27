@@ -83,7 +83,7 @@ variables:
   # Built-In Functions
   #
   # https://developer.hashicorp.com/terraform/language/functions
-  predeclared_funcs: |-
+  builtin_functions: |-
     \b(?x:
       # numbers
        abs|ceil|floor|log|max|min|parseint|pow|signum
@@ -593,16 +593,32 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
   # https://www.terraform.io/docs/language/expressions/function-calls.html
   functions:
-    - match: (?:({{predeclared_funcs}})|\b({{identifier}})\b)(\()
-      comment: Built-in function calls
-      captures:
-        1: support.function.builtin.terraform
-        2: variable.function.terraform
-        3: punctuation.section.parens.begin.terraform
-      push: function-argument-list-body
+    - match: (?={{builtin_functions}}\()
+      push: builtin-function-name
+    - match: (?=(?:{{identifier}}::)*{{identifier}}\()
+      push: other-function-name
+
+  builtin-function-name:
+    - meta_content_scope: meta.function-call.identifier.terraform
+    - include: function-argument-list
+    - include: namespaces
+    - match: '{{identifier}}'
+      scope: support.function.builtin.terraform
+
+  other-function-name:
+    - meta_content_scope: meta.function-call.identifier.terraform
+    - include: function-argument-list
+    - include: namespaces
+    - match: '{{identifier}}'
+      scope: variable.function.terraform
+
+  function-argument-list:
+    - match: \(
+      scope: punctuation.section.parens.begin.terraform
+      set: function-argument-list-body
 
   function-argument-list-body:
-    - meta_scope: meta.function-call.terraform
+    - meta_scope: meta.function-call.arguments.terraform meta.parens.terraform
     - match: \)
       scope: punctuation.section.parens.end.terraform
       pop: 1
@@ -663,6 +679,12 @@ contexts:
     - include: expressions
     - include: comments
     - include: comma
+
+  namespaces:
+    - match: ({{identifier}})(::)
+      captures:
+        1: variable.namespace.terraform
+        2: punctuation.accessor.double-colon.terraform
 
   identifiers:
     - match: '{{identifier}}'

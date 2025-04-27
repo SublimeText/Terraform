@@ -351,14 +351,14 @@
       "${formatdate("DD MMM YYYY hh:mm ZZZ", "2018-01-02T23:12:01Z")}"
 #     ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#        ^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform support.function.builtin.terraform
-#                  ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                   ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                    ^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                          ^ meta.interpolation.terraform meta.function-call.terraform punctuation.separator.terraform
-#                                            ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                             ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                                  ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#        ^^^^^^^^^^ meta.interpolation.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                  ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                   ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                          ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                            ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                             ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                                  ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                                                   ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                                    ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
@@ -372,12 +372,12 @@
 #        ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #         ^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform
 #                           ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                             ^^^ meta.interpolation.terraform meta.function-call.terraform support.function.builtin.terraform
-#                                ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                                 ^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                                          ^ meta.interpolation.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                                           ^ meta.interpolation.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                            ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                             ^^^ meta.interpolation.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                                ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                                 ^^^^^^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                                          ^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                                           ^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                                            ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                             ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
@@ -438,20 +438,20 @@
 #             ^ punctuation.section.brackets.begin.terraform
 #              ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #               ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                 ^^^^^^^ meta.interpolation.terraform meta.function-call.terraform support.function.builtin.terraform
-#                        ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                         ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                          ^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                  ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                   ^ meta.interpolation.terraform meta.function-call.terraform punctuation.separator.terraform
-#                                                     ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                                      ^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                                        ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                                         ^ meta.interpolation.terraform meta.function-call.terraform punctuation.separator.terraform
-#                                                                           ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                                                            ^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                                              ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                                                               ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#                 ^^^^^^^ meta.interpolation.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                        ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                         ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                  ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                   ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                                     ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                      ^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                                        ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                                         ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                                                           ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                                            ^^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                                              ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                                                               ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                                                                ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                                                 ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                                                                                  ^ punctuation.section.brackets.end.terraform
@@ -464,17 +464,17 @@
     "${file("${path.module}/text_files/ecs_app")}"
 #   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #    ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#      ^^^^ meta.interpolation.terraform meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#              ^^^^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform variable.language.terraform
-#                  ^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
-#                   ^^^^^^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
-#                         ^ meta.interpolation.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                          ^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                             ^ meta.interpolation.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                              ^ meta.interpolation.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#      ^^^^ meta.interpolation.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#              ^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.interpolation.terraform variable.language.terraform
+#                  ^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                   ^^^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.interpolation.terraform variable.other.member.terraform
+#                         ^ meta.interpolation.terraform meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                          ^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                             ^ meta.interpolation.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                              ^ meta.interpolation.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                               ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 
@@ -659,10 +659,10 @@
 /////
 
     length(some_list) > 0 ? some_list[0] : default
-#   ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^^^^^^^^^ meta.function-call.terraform
-#                   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^^^^^^^^^ meta.function-call.arguments.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                     ^ keyword.operator.comparison.terraform
 #                       ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                         ^ keyword.operator.ternary.terraform
@@ -676,8 +676,8 @@
 /////
 
     hhh([55, 2453, 2]...)
-#   ^^^ meta.function-call.terraform variable.function.terraform
-#      ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#   ^^^ meta.function-call.identifier.terraform variable.function.terraform
+#      ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
 #       ^ punctuation.section.brackets.begin.terraform
 #        ^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #          ^ punctuation.separator.terraform
@@ -686,7 +686,7 @@
 #                  ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                   ^ punctuation.section.brackets.end.terraform
 #                    ^^^ keyword.operator.terraform
-#                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                       ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////////////////////////////////////////////////////////////////////
 // Brackets: Index Operations and Arrays
@@ -826,11 +826,11 @@
     [ upper("ggh") ]
 #   ^^^^^^^^^^^^^^^^ meta.brackets.terraform
 #   ^ punctuation.section.brackets.begin.terraform
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                  ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -955,11 +955,11 @@
       a = upper("l"),
 #     ^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #       ^ meta.braces.terraform keyword.operator.assignment.terraform
-#         ^^^^^ meta.braces.terraform meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.braces.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.braces.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^ meta.braces.terraform meta.function-call.terraform string.quoted.double.terraform
-#                  ^ meta.braces.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
+#         ^^^^^ meta.braces.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.braces.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.braces.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^ meta.braces.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                  ^ meta.braces.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                   ^ meta.braces.terraform punctuation.separator.terraform
     }
 #   ^ meta.braces.terraform punctuation.section.braces.end.terraform
@@ -1049,9 +1049,9 @@
 #            ^^^^^ meta.braces.terraform - meta.parens
 #   ^ punctuation.section.braces.begin.terraform
 #    ^ punctuation.section.parens.begin.terraform
-#     ^^^^ meta.function-call.terraform variable.function.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #           ^ punctuation.section.parens.end.terraform
 #             ^ keyword.operator.assignment.terraform
 #               ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
@@ -1115,10 +1115,10 @@
 #               ^ punctuation.accessor.dot.terraform
 #                ^^^^^^^ variable.other.member.terraform
 #                       ^ punctuation.section.block.loop.for.terraform
-#                         ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                               ^ meta.function-call.terraform
-#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                         ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                               ^ meta.function-call.arguments.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                 ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -1179,8 +1179,8 @@
     for_each = toset([])
 #   ^^^^^^^^ keyword.control.loop.for.terraform
 #            ^ keyword.operator.assignment.terraform
-#              ^^^^^^^^^ meta.function-call.terraform
-#              ^^^^^ support.function.builtin.terraform
+#              ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                   ^^^^ meta.function-call.arguments.terraform meta.parens.terraform
 #                   ^ punctuation.section.parens.begin.terraform
 #                    ^ punctuation.section.brackets.begin.terraform
 #                     ^ punctuation.section.brackets.end.terraform
@@ -1189,8 +1189,8 @@
     count = length(var.availability_zones)
 #   ^^^^^ variable.declaration.terraform keyword.control.conditional.terraform
 #         ^ keyword.operator.assignment.terraform
-#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform
-#           ^^^^^^ support.function.builtin.terraform
+#           ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
 #                 ^ punctuation.section.parens.begin.terraform
 #                  ^^^ variable.language.terraform
 #                     ^ punctuation.accessor.dot.terraform
@@ -1219,32 +1219,32 @@
 /////
 
     thing(l)
-#   ^^^^^ meta.function-call.terraform variable.function.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^ meta.function-call.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.arguments.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Matches parameters, attribute-access, literals, operators, commas.
 /////
 
     cidrthingy(aws_vpc.main.cidr_block, 4, count.index+1)
-#   ^^^^^^^^^^ meta.function-call.terraform variable.function.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^^^^^^^ meta.function-call.terraform
-#                     ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                      ^^^^ meta.function-call.terraform variable.other.member.terraform
-#                          ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                           ^^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
-#                                     ^ meta.function-call.terraform punctuation.separator.terraform
-#                                       ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                        ^ meta.function-call.terraform punctuation.separator.terraform
-#                                          ^^^^^ meta.function-call.terraform
-#                                               ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                                                ^^^^^ meta.function-call.terraform variable.other.member.terraform
-#                                                     ^ meta.function-call.terraform keyword.operator.arithmetic.terraform
-#                                                      ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^^^^^^^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#             ^ punctuation.section.parens.begin.terraform
+#                     ^ punctuation.accessor.dot.terraform
+#                      ^^^^ variable.other.member.terraform
+#                          ^ punctuation.accessor.dot.terraform
+#                           ^^^^^^^^^^ variable.other.member.terraform
+#                                     ^ punctuation.separator.terraform
+#                                       ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                        ^ punctuation.separator.terraform
+#                                          ^^^^^ variable.language.terraform
+#                                               ^ punctuation.accessor.dot.terraform
+#                                                ^^^^^ variable.other.member.terraform
+#                                                     ^ keyword.operator.arithmetic.terraform
+#                                                      ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                                       ^ punctuation.section.parens.end.terraform
 #                                                        ^ - meta - function-call - variable
 
 /////
@@ -1252,56 +1252,56 @@
 /////
 
       y6y([55, 2453, 2]..., [55555555])
-#     ^^^ meta.function-call.terraform variable.function.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#          ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#            ^ meta.function-call.terraform punctuation.separator.terraform
-#              ^^^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                    ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                      ^^^ meta.function-call.terraform keyword.operator.terraform
-#                         ^ meta.function-call.terraform punctuation.separator.terraform
-#                           ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                            ^^^^^^^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                    ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform variable.function.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#          ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#              ^^^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                    ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                      ^^^ meta.function-call.arguments.terraform keyword.operator.terraform
+#                         ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                           ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                            ^^^^^^^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                    ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                     ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Matches objects as parameters.
 /////
 
     some({a = 1, b = "2"})
-#   ^^^^ meta.function-call.terraform variable.function.terraform
-#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#        ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#         ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#           ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#             ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#              ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                  ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                    ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                     ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                       ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                        ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#       ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#        ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#         ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#           ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#             ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                  ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                    ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                     ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Nested function calls.
 /////
 
     func(thing(yep(1)))
-#   ^^^^ meta.function-call.terraform variable.function.terraform
-#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#        ^^^^^ meta.function-call.terraform meta.function-call.terraform variable.function.terraform
-#             ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^^^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform variable.function.terraform
-#                 ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                   ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#       ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#        ^^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform variable.function.terraform
+#             ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#              ^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.function-call.identifier.terraform variable.function.terraform
+#                 ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                   ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                    ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                      ^ - function
 
 /////
@@ -1309,63 +1309,65 @@
 /////
 
     func(
-#   ^^^^ meta.function-call.terraform variable.function.terraform
-#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
+#   ^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#       ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
       1,
-#     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#      ^ meta.function-call.terraform punctuation.separator.terraform
+#     ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#      ^ meta.function-call.arguments.terraform punctuation.separator.terraform
       2
-#     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#     ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
     )
-#   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Allow object for-expressions.
 ////
 
     thing({for i, v in ["a"]: v => i...})
-#   ^^^^^ meta.function-call.terraform variable.function.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#          ^^^ meta.function-call.terraform meta.braces.terraform keyword.control.loop.for.terraform
-#              ^ meta.function-call.terraform variable.other.readwrite.terraform
-#               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform variable.other.readwrite.terraform
-#                   ^^ meta.function-call.terraform keyword.operator.iteration.in.terraform
-#                      ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                        ^^ meta.function-call.terraform string.quoted.double.terraform
-#                          ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                           ^ meta.function-call.terraform punctuation.section.block.loop.for.terraform
-#                             ^ meta.function-call.terraform variable.other.readwrite.terraform
-#                               ^^ meta.function-call.terraform punctuation.separator.key-value.terraform
-#                                  ^ meta.function-call.terraform variable.other.readwrite.terraform
-#                                   ^^^ meta.function-call.terraform keyword.operator.terraform
-#                                      ^ meta.function-call.terraform punctuation.section.braces.end.terraform
-#                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#        ^ punctuation.section.parens.begin.terraform
+#         ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#          ^^^ meta.braces.terraform keyword.control.loop.for.terraform
+#              ^ variable.other.readwrite.terraform
+#               ^ punctuation.separator.terraform
+#                 ^ variable.other.readwrite.terraform
+#                   ^^ keyword.operator.iteration.in.terraform
+#                      ^ punctuation.section.brackets.begin.terraform
+#                       ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^ string.quoted.double.terraform
+#                          ^ punctuation.section.brackets.end.terraform
+#                           ^ punctuation.section.block.loop.for.terraform
+#                             ^ variable.other.readwrite.terraform
+#                               ^^ punctuation.separator.key-value.terraform
+#                                  ^ variable.other.readwrite.terraform
+#                                   ^^^ keyword.operator.terraform
+#                                      ^ punctuation.section.braces.end.terraform
+#                                       ^ punctuation.section.parens.end.terraform
 
 /////
 // Allow tuple for-expressions.
 /////
 
     func([for v in ["a", "b"]: v])
-#   ^^^^ meta.function-call.terraform variable.function.terraform
-#       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#        ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#         ^^^ meta.function-call.terraform keyword.control.loop.for.terraform
-#             ^ meta.function-call.terraform variable.other.readwrite.terraform
-#               ^^ meta.function-call.terraform keyword.operator.iteration.in.terraform
-#                  ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                    ^^ meta.function-call.terraform string.quoted.double.terraform
-#                      ^ meta.function-call.terraform punctuation.separator.terraform
-#                        ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                         ^^ meta.function-call.terraform string.quoted.double.terraform
-#                           ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                            ^ meta.function-call.terraform punctuation.section.block.loop.for.terraform
-#                              ^ meta.function-call.terraform variable.other.readwrite.terraform
-#                               ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#   ^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#       ^ punctuation.section.parens.begin.terraform
+#        ^ punctuation.section.brackets.begin.terraform
+#         ^^^ keyword.control.loop.for.terraform
+#             ^ variable.other.readwrite.terraform
+#               ^^ keyword.operator.iteration.in.terraform
+#                  ^ punctuation.section.brackets.begin.terraform
+#                   ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^ string.quoted.double.terraform
+#                      ^ punctuation.separator.terraform
+#                        ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                         ^^ string.quoted.double.terraform
+#                           ^ punctuation.section.brackets.end.terraform
+#                            ^ punctuation.section.block.loop.for.terraform
+#                              ^ variable.other.readwrite.terraform
+#                               ^ punctuation.section.brackets.end.terraform
+#                                ^ punctuation.section.parens.end.terraform
 
 /////////////////////////////////////////////////////////////////////
 // Built-in Terraform Functions
@@ -1378,1128 +1380,1166 @@
 /////
 
       abs(23)
-#     ^^^ meta.function-call.terraform support.function.builtin.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       ceil(5.1)
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^^^ meta.function-call.terraform meta.number.float.decimal.terraform constant.numeric.value.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^^^ meta.function-call.arguments.terraform meta.number.float.decimal.terraform constant.numeric.value.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       floor(5)
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       log(50, 10)
-#     ^^^ meta.function-call.terraform support.function.builtin.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#           ^ meta.function-call.terraform punctuation.separator.terraform
-#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#             ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       max(12, 54, 3)
-#     ^^^ meta.function-call.terraform support.function.builtin.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#           ^ meta.function-call.terraform punctuation.separator.terraform
-#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#             ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                 ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       min(12, 54, 3)
-#     ^^^ meta.function-call.terraform support.function.builtin.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#           ^ meta.function-call.terraform punctuation.separator.terraform
-#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#             ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                 ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       pow(3, 2)
-#     ^^^ meta.function-call.terraform support.function.builtin.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#          ^ meta.function-call.terraform punctuation.separator.terraform
-#            ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#            ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       signum(-13)
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform keyword.operator.arithmetic.terraform
-#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform keyword.operator.arithmetic.terraform
+#             ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // String Functions
 /////
 
       chomp("hello\n")
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                 ^^ meta.function-call.terraform string.quoted.double.terraform constant.character.escape.terraform
-#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                 ^^ meta.function-call.arguments.terraform string.quoted.double.terraform constant.character.escape.terraform
+#                   ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       format("Hello, %s!", "Ander")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                        ^ meta.function-call.terraform punctuation.separator.terraform
-#                          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                           ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                                 ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                          ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                           ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                                 ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       formatlist("Hello, %s!", ["Valentina", "Ander"])
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                            ^ meta.function-call.terraform punctuation.separator.terraform
-#                              ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                ^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                          ^ meta.function-call.terraform punctuation.separator.terraform
-#                                            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                             ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                                   ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                              ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                ^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                          ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                             ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                   ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       indent(2, "[\n  foo,\n  bar,\n]\n")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#             ^ meta.function-call.terraform punctuation.separator.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                       ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       join(", ", ["foo", "bar", "baz"])
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#           ^^^ meta.function-call.terraform string.quoted.double.terraform
-#              ^ meta.function-call.terraform punctuation.separator.terraform
-#                ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                 ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                  ^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                      ^ meta.function-call.terraform punctuation.separator.terraform
-#                        ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                         ^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                             ^ meta.function-call.terraform punctuation.separator.terraform
-#                               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                ^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                    ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#           ^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                 ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                        ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                         ^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                ^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                    ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                     ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       lower("HELLO")
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       regex("[a-z]+", "53453453.345345aaabbbccc23454")
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                     ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                     ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       regexall("[a-z]+", "1234abcd5678efgh9")
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                      ^ meta.function-call.terraform punctuation.separator.terraform
-#                        ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                         ^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#              ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#               ^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                        ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                         ^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       replace("1 + 2 + 3", "+", "-")
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                        ^ meta.function-call.terraform punctuation.separator.terraform
-#                          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                           ^^ meta.function-call.terraform string.quoted.double.terraform
-#                             ^ meta.function-call.terraform punctuation.separator.terraform
-#                               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                ^^ meta.function-call.terraform string.quoted.double.terraform
-#                                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                          ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                           ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       split(",", "foo")
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^ meta.function-call.terraform string.quoted.double.terraform
-#              ^ meta.function-call.terraform punctuation.separator.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       strrev("hello")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       substr("🤔🤷", 0, 1)
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^ meta.function-call.terraform string.quoted.double.terraform
-#                ^ meta.function-call.terraform punctuation.separator.terraform
-#                  ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                  ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                     ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       title("hello world")
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                        ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       trimspace("  hello\n\n")
-#     ^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                  ^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                            ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       upper("hello")
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Collection Functions
 /////
 
       chunklist(["a", "b"], 2)
-#     ^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                ^^^ meta.function-call.terraform string.quoted.double.terraform
-#                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                     ^^^ meta.function-call.terraform string.quoted.double.terraform
-#                        ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                         ^ meta.function-call.terraform punctuation.separator.terraform
-#                           ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                            ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                ^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                     ^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                         ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                           ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                            ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       coalesce("a", "b")
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^ meta.function-call.terraform string.quoted.double.terraform
-#                 ^ meta.function-call.terraform punctuation.separator.terraform
-#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                    ^^ meta.function-call.terraform string.quoted.double.terraform
-#                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#              ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#               ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                   ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       coalescelist([], ["c", "d"])
-#     ^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                   ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                    ^ meta.function-call.terraform punctuation.separator.terraform
-#                      ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                        ^^ meta.function-call.terraform string.quoted.double.terraform
-#                          ^ meta.function-call.terraform punctuation.separator.terraform
-#                            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                             ^^ meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                    ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                       ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                          ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                             ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       compact(["a", "", "b"])
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^ meta.function-call.terraform string.quoted.double.terraform
-#                 ^ meta.function-call.terraform punctuation.separator.terraform
-#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                    ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
-#                     ^ meta.function-call.terraform punctuation.separator.terraform
-#                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                        ^^ meta.function-call.terraform string.quoted.double.terraform
-#                          ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#              ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#               ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                   ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                       ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                          ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       concat(["a"], ["c"])
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^ meta.function-call.terraform string.quoted.double.terraform
-#                ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                 ^ meta.function-call.terraform punctuation.separator.terraform
-#                   ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                    ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                     ^^ meta.function-call.terraform string.quoted.double.terraform
-#                       ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                        ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#             ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                    ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                     ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       contains(["a"], "a")
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^ meta.function-call.terraform string.quoted.double.terraform
-#                  ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                     ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                      ^^ meta.function-call.terraform string.quoted.double.terraform
-#                        ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                     ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       distinct(["a", "b", "a"])
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^ meta.function-call.terraform string.quoted.double.terraform
-#                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                    ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                     ^^ meta.function-call.terraform string.quoted.double.terraform
-#                       ^ meta.function-call.terraform punctuation.separator.terraform
-#                         ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                          ^^ meta.function-call.terraform string.quoted.double.terraform
-#                            ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                    ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                     ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                         ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                          ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       element(["a", "b"], 1)
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^ meta.function-call.terraform string.quoted.double.terraform
-#                 ^ meta.function-call.terraform punctuation.separator.terraform
-#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                    ^^ meta.function-call.terraform string.quoted.double.terraform
-#                      ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                       ^ meta.function-call.terraform punctuation.separator.terraform
-#                         ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#              ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#               ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                   ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                       ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                         ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                          ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       flatten([[["a", "b"]], ["c"]])
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^ meta.function-call.terraform string.quoted.double.terraform
-#                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                     ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                      ^^ meta.function-call.terraform string.quoted.double.terraform
-#                        ^^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                          ^ meta.function-call.terraform punctuation.separator.terraform
-#                            ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                              ^^ meta.function-call.terraform string.quoted.double.terraform
-#                                ^^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^^^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                     ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                        ^^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                          ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                            ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                             ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                              ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                ^^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       index(["a"], "b")
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^ meta.function-call.terraform string.quoted.double.terraform
-#               ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                ^ meta.function-call.terraform punctuation.separator.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^ meta.function-call.terraform string.quoted.double.terraform
-#                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       keys({a=1, c=2})
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#           ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#            ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#             ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#              ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                 ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                  ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                   ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#           ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#            ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#             ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                 ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                  ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                   ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       length([])
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#             ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       list("a", "b", "c")
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#           ^^ meta.function-call.terraform string.quoted.double.terraform
-#             ^ meta.function-call.terraform punctuation.separator.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^ meta.function-call.terraform string.quoted.double.terraform
-#                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                    ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                     ^^ meta.function-call.terraform string.quoted.double.terraform
-#                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#           ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                    ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                     ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       lookup({a="ay", b="bee"}, "a", "what?")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#             ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#              ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#               ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                   ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                     ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                      ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                       ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                        ^^^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                            ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                             ^ meta.function-call.terraform punctuation.separator.terraform
-#                               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                ^^ meta.function-call.terraform string.quoted.double.terraform
-#                                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                                    ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                     ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#             ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#              ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#               ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                   ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                     ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                      ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                       ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                  ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                    ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                     ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       map("a", "b")
-#     ^^^ meta.function-call.terraform support.function.builtin.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#          ^^ meta.function-call.terraform string.quoted.double.terraform
-#            ^ meta.function-call.terraform punctuation.separator.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^ meta.function-call.terraform string.quoted.double.terraform
-#                 ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#          ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#              ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#               ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       matchkeys(["i-123", "i-abc"], ["us-west", "us-east"], ["us-east"])
-#     ^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                       ^ meta.function-call.terraform punctuation.separator.terraform
-#                         ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                          ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                 ^ meta.function-call.terraform punctuation.separator.terraform
-#                                   ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                                    ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                     ^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                             ^ meta.function-call.terraform punctuation.separator.terraform
-#                                               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                                ^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                                        ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                                         ^ meta.function-call.terraform punctuation.separator.terraform
-#                                                           ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                                                            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                                             ^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                                                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                         ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                          ^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                 ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                   ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                                    ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                     ^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                             ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                ^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                        ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                                         ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                                           ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                                                            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                             ^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                                     ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                                                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       merge({a="b"}, {e="f"})
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#            ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#             ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#              ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                 ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                    ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#                     ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                      ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                       ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                        ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                          ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#            ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#             ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#              ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#               ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                 ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                    ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#                     ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                      ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                       ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                          ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       range(1, 4)
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#            ^ meta.function-call.terraform punctuation.separator.terraform
-#              ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#              ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       reverse([1, 2, 3])
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#              ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                    ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#              ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                 ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                    ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       setintersection(["a", "b"], ["b", "c"])
-#     ^^^^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                    ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                     ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                      ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                       ^^ meta.function-call.terraform string.quoted.double.terraform
-#                         ^ meta.function-call.terraform punctuation.separator.terraform
-#                           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                            ^^ meta.function-call.terraform string.quoted.double.terraform
-#                              ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                               ^ meta.function-call.terraform punctuation.separator.terraform
-#                                 ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                   ^^ meta.function-call.terraform string.quoted.double.terraform
-#                                     ^ meta.function-call.terraform punctuation.separator.terraform
-#                                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                        ^^ meta.function-call.terraform string.quoted.double.terraform
-#                                          ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                    ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                      ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                       ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                         ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                              ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                 ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                   ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                     ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                       ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                        ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                          ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       setproduct(["development"], ["app1", "app2"])
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                 ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                  ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                              ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                               ^ meta.function-call.terraform punctuation.separator.terraform
-#                                 ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                   ^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                        ^ meta.function-call.terraform punctuation.separator.terraform
-#                                          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                           ^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                                ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                                 ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                 ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                              ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                 ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                   ^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                        ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                          ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                           ^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                                 ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       setunion(["a"], ["b"], ["d"])
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^ meta.function-call.terraform string.quoted.double.terraform
-#                  ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                     ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                      ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                       ^^ meta.function-call.terraform string.quoted.double.terraform
-#                         ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                          ^ meta.function-call.terraform punctuation.separator.terraform
-#                            ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                              ^^ meta.function-call.terraform string.quoted.double.terraform
-#                                ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                                 ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                  ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                      ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                       ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                         ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                          ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                            ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                             ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                              ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                                 ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       slice(["a", "b"], 1, 1)
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^ meta.function-call.terraform string.quoted.double.terraform
-#               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                  ^^ meta.function-call.terraform string.quoted.double.terraform
-#                    ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                     ^ meta.function-call.terraform punctuation.separator.terraform
-#                       ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                        ^ meta.function-call.terraform punctuation.separator.terraform
-#                          ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                 ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                    ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                       ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                          ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
       sort(["e", "d"])
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#           ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#            ^^ meta.function-call.terraform string.quoted.double.terraform
-#              ^ meta.function-call.terraform punctuation.separator.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^ meta.function-call.terraform string.quoted.double.terraform
-#                   ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#           ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#            ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                   ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       transpose({a = ["1", "2"], b = ["2", "3"]})
-#     ^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                  ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                    ^ meta.function-call.terraform meta.braces.terraform punctuation.section.brackets.begin.terraform
-#                     ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                      ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                        ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                          ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                           ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                             ^ meta.function-call.terraform meta.braces.terraform punctuation.section.brackets.end.terraform
-#                              ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                                ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                                  ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                                    ^ meta.function-call.terraform meta.braces.terraform punctuation.section.brackets.begin.terraform
-#                                     ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                      ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                                        ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                                          ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                           ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                                             ^ meta.function-call.terraform meta.braces.terraform punctuation.section.brackets.end.terraform
-#                                              ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                  ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                    ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.begin.terraform
+#                     ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                        ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                          ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                           ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                             ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.end.terraform
+#                              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                                ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                                  ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                                    ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.begin.terraform
+#                                     ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                      ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                                        ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                                          ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                           ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                                             ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.end.terraform
+#                                              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       values({a=3, c=2, d=1})
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#             ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#              ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#               ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                  ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                   ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                    ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                     ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                       ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                        ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                         ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                          ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#             ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#              ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#               ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                  ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                   ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                    ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                     ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                       ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                        ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                         ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                          ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       zipmap(["a", "b"], [1, 2])
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^ meta.function-call.terraform string.quoted.double.terraform
-#                ^ meta.function-call.terraform punctuation.separator.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^ meta.function-call.terraform string.quoted.double.terraform
-#                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                      ^ meta.function-call.terraform punctuation.separator.terraform
-#                        ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                         ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                          ^ meta.function-call.terraform punctuation.separator.terraform
-#                            ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                             ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                              ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#             ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                        ^ meta.function-call.arguments.terraform punctuation.section.brackets.begin.terraform
+#                         ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                          ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                            ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.section.brackets.end.terraform
+#                              ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Encoding Functions
 /////
 
       base64decode("SGVsbG8gV29ybGQ=")
-#     ^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       base64encode("Hello World")
-#     ^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       base64gzip("Hello World")
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       csvdecode("a,b,c\n1,2,3\n4,5,6")
-#     ^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       jsondecode("{\"hello\": \"world\"}")
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                        ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                        ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       jsonencode({hello="world"})
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#                 ^^^^^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                      ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                       ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                        ^^^^^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                              ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#                 ^^^^^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                      ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                       ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^^^^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       urlencode("Hello World")
-#     ^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                            ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       yamldecode("true")
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform - constant
-#                 ^^^^ meta.function-call.terraform meta.string.terraform string.quoted.double.terraform constant.language.boolean.true.terraform
-#                     ^ meta.function-call.terraform meta.string.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform - constant
-#                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform - constant
+#                 ^^^^ meta.function-call.arguments.terraform meta.string.terraform string.quoted.double.terraform constant.language.boolean.true.terraform
+#                     ^ meta.function-call.arguments.terraform meta.string.terraform string.quoted.double.terraform punctuation.definition.string.end.terraform - constant
+#                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       yamlencode({a = "b", c = "d"})
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#                 ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                   ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                     ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                      ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                        ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                          ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                            ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                              ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                               ^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#                 ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                   ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                     ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                        ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                          ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                            ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                              ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                               ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Filesystem Functions
 /////
 
       abspath(path.root)
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform variable.language.terraform
-#                 ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                  ^^^^ meta.function-call.terraform variable.other.member.terraform
-#                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#            ^ punctuation.section.parens.begin.terraform
+#             ^^^^ variable.language.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^ variable.other.member.terraform
+#                      ^ punctuation.section.parens.end.terraform
 
       dirname("foo/bar/baz.txt")
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                              ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#            ^ punctuation.section.parens.begin.terraform
+#             ^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#             ^ punctuation.definition.string.begin.terraform
+#                             ^ punctuation.definition.string.end.terraform
+#                              ^ punctuation.section.parens.end.terraform
 
       pathexpand("~/.ssh/id_rsa")
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#               ^ punctuation.section.parens.begin.terraform
+#                ^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#                ^ punctuation.definition.string.begin.terraform
+#                              ^ punctuation.definition.string.end.terraform
+#                               ^ punctuation.section.parens.end.terraform
 
       basename("foo/bar/baz.txt")
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#             ^ punctuation.section.parens.begin.terraform
+#              ^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#              ^ punctuation.definition.string.begin.terraform
+#                              ^ punctuation.definition.string.end.terraform
+#                               ^ punctuation.section.parens.end.terraform
 
       file("${path.module}/hello.txt")
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#           ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#             ^^^^ meta.function-call.terraform meta.interpolation.terraform variable.language.terraform
-#                 ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
-#                  ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
-#                        ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                         ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#           ^^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#             ^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.language.terraform
+#                 ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                  ^^^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.other.member.terraform
+#                        ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                         ^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                    ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       fileexists("${path.module}/hello.txt")
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                   ^^^^ meta.function-call.terraform meta.interpolation.terraform variable.language.terraform
-#                       ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
-#                        ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
-#                              ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                               ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                   ^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.language.terraform
+#                       ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                        ^^^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.other.member.terraform
+#                              ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                               ^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                          ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       fileset(path.module, "files/*.txt")
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform variable.language.terraform
-#                 ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                  ^^^^^^ meta.function-call.terraform variable.other.member.terraform
-#                        ^ meta.function-call.terraform punctuation.separator.terraform
-#                          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                           ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#            ^ punctuation.section.parens.begin.terraform
+#             ^^^^ variable.language.terraform
+#                 ^ punctuation.accessor.dot.terraform
+#                  ^^^^^^ variable.other.member.terraform
+#                        ^ punctuation.separator.terraform
+#                          ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                           ^^^^^^^^^^^^ string.quoted.double.terraform
+#                                       ^ punctuation.section.parens.end.terraform
 
       filebase64("${path.module}/hello.txt")
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                   ^^^^ meta.function-call.terraform meta.interpolation.terraform variable.language.terraform
-#                       ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
-#                        ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
-#                              ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                               ^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                   ^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.language.terraform
+#                       ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                        ^^^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.other.member.terraform
+#                              ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                               ^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                          ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       templatefile("${path.module}/backends.tmpl", {
-#     ^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                     ^^^^ meta.function-call.terraform meta.interpolation.terraform variable.language.terraform
-#                         ^ meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
-#                          ^^^^^^ meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
-#                                ^ meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                                 ^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                                ^ meta.function-call.terraform punctuation.separator.terraform
-#                                                  ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
+#     ^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                     ^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.language.terraform
+#                         ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                          ^^^^^^ meta.function-call.arguments.terraform meta.interpolation.terraform variable.other.member.terraform
+#                                ^ meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                 ^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                                  ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
         port = 8080,
-#       ^^^^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#            ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#              ^^^^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                   ^ meta.function-call.terraform meta.braces.terraform
+#       ^^^^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#            ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#              ^^^^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                  ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                   ^ meta.function-call.arguments.terraform meta.braces.terraform
         ip_addrs = ["10.0.0.1", "10.0.0.2"]
-#       ^^^^^^^^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                  ^ meta.function-call.terraform meta.braces.terraform punctuation.section.brackets.begin.terraform
-#                   ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                    ^^^^^^^^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                             ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                               ^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                ^^^^^^^^^ meta.function-call.terraform meta.braces.terraform string.quoted.double.terraform
-#                                         ^ meta.function-call.terraform meta.braces.terraform punctuation.section.brackets.end.terraform
+#       ^^^^^^^^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform keyword.operator.assignment.terraform
+#                  ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.begin.terraform
+#                   ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^^^^^^^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                             ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                               ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                ^^^^^^^^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
+#                                         ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.end.terraform
       })
-#     ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.braces.end.terraform
+#      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Date & Time Functions
 /////
 
       formatdate("DD MMM YYYY hh:mm ZZZ", "2018-01-02T23:12:01Z")
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                       ^ meta.function-call.terraform punctuation.separator.terraform
-#                                         ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                          ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                       ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                         ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                          ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       timeadd("2017-11-22T00:00:00Z", "10m")
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                                     ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                      ^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                     ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                      ^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                          ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       timestamp()
-#     ^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Hash & Crypto Functions
 /////
 
       base64sha256("hello world")
-#     ^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       base64sha512("hello world")
-#     ^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       bcrypt("hello world")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                         ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       filebase64sha256(file("filename"))
-#     ^^^^^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                     ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                      ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                          ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                           ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                            ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                     ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                      ^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                          ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                           ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                     ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                       ^ - function
 
       filebase64sha512(file("filename"))
-#     ^^^^^^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                     ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                      ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                          ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                           ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                            ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                     ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                     ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                      ^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                          ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                           ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                     ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                       ^ - function
 
       filemd5(file("filename"))
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                            ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       filemd1(file("filename"))
-#     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                 ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                            ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                 ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                  ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                            ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                              ^ - function
 
       filesha256(file("filename"))
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                     ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                      ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                    ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                     ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                 ^ - function
 
       filesha512(file("filename"))
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                     ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                      ^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                    ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                     ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                      ^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                 ^ - function
 
       md5("hello world")
-#     ^^^ meta.function-call.terraform support.function.builtin.terraform
-#        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#          ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#        ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#         ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#          ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       rsadecrypt(filebase64("${path.module}/ciphertext"), file("privatekey.pem"))
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                          ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                           ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                            ^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
-#                              ^^^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform variable.language.terraform
-#                                  ^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
-#                                   ^^^^^^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform variable.other.member.terraform
-#                                         ^ meta.function-call.terraform meta.function-call.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
-#                                          ^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                      ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                                       ^ meta.function-call.terraform punctuation.separator.terraform
-#                                                         ^^^^ meta.function-call.terraform meta.function-call.terraform support.function.builtin.terraform
-#                                                             ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                                                              ^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                                                               ^^^^^^^^^^^^^^^ meta.function-call.terraform meta.function-call.terraform string.quoted.double.terraform
-#                                                                              ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
-#                                                                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                          ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                           ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                            ^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
+#                              ^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.interpolation.terraform variable.language.terraform
+#                                  ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.accessor.dot.terraform
+#                                   ^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.interpolation.terraform variable.other.member.terraform
+#                                         ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform meta.interpolation.terraform punctuation.section.interpolation.end.terraform
+#                                          ^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                      ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                                                       ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                                         ^^^^ meta.function-call.arguments.terraform meta.function-call.identifier.terraform support.function.builtin.terraform
+#                                                             ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                                                              ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                                                               ^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                                                              ^ meta.function-call.arguments.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
+#                                                                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                                                                ^ - function
 
       sha1("hello world")
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#           ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#           ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                       ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       sha256("hello world")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                         ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       sha512("hello world")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                         ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       uuid()
-#     ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#         ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#          ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       uuidv5("dns", "www.terraform.io")
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                 ^ meta.function-call.terraform punctuation.separator.terraform
-#                   ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                    ^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#            ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                 ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                   ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                    ^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                     ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // IP Network Functions
 /////
 
       cidrhost("10.12.127.0/20", 16)
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                              ^ meta.function-call.terraform punctuation.separator.terraform
-#                                ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#              ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#               ^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                              ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                ^^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       cidrnetmask("172.16.0.0/12")
-#     ^^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                 ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                  ^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                 ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
       cidrsubnet("172.16.0.0/12", 4, 2)
-#     ^^^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                 ^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                               ^ meta.function-call.terraform punctuation.separator.terraform
-#                                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                                    ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#               ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                ^ meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                 ^^^^^^^^^^^^^^ meta.function-call.arguments.terraform string.quoted.double.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                 ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                  ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                    ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                     ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 
 /////
 // Type Conversions Functions
 /////
 
       tobool(true)
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^^^^ meta.function-call.terraform constant.language.boolean.true.terraform
-#                ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#           ^ punctuation.section.parens.begin.terraform
+#            ^^^^ constant.language.boolean.true.terraform
+#                ^ punctuation.section.parens.end.terraform
 
       tobool("true")
-#     ^^^^^^^^^^^^^^ meta.function-call.terraform
-#     ^^^^^^ support.function.builtin.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
 #           ^ punctuation.section.parens.begin.terraform
-#            ^^^^^^ string.quoted.double.terraform
+#            ^^^^^^ meta.string.terraform string.quoted.double.terraform
 #            ^ punctuation.definition.string.begin.terraform
 #             ^^^^ constant.language.boolean.true.terraform
 #                 ^ punctuation.definition.string.end.terraform
 #                  ^ punctuation.section.parens.end.terraform
 
       tolist(["a", "b", "c"])
-#     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#             ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#              ^^ meta.function-call.terraform string.quoted.double.terraform
-#                ^ meta.function-call.terraform punctuation.separator.terraform
-#                  ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                   ^^ meta.function-call.terraform string.quoted.double.terraform
-#                     ^ meta.function-call.terraform punctuation.separator.terraform
-#                       ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                        ^^ meta.function-call.terraform string.quoted.double.terraform
-#                          ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#           ^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#           ^ punctuation.section.parens.begin.terraform
+#            ^ punctuation.section.brackets.begin.terraform
+#             ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^ string.quoted.double.terraform
+#                ^ punctuation.separator.terraform
+#                  ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                   ^^ string.quoted.double.terraform
+#                     ^ punctuation.separator.terraform
+#                       ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                        ^^ string.quoted.double.terraform
+#                          ^ punctuation.section.brackets.end.terraform
+#                           ^ punctuation.section.parens.end.terraform
 
       tomap({a = 1, b = 2})
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
-#            ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#              ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                 ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
-#                   ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
-#                     ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                       ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                        ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
-#                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform meta.parens.terraform - meta.brackets
+#           ^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform meta.braces.terraform
+#                         ^ meta.function-call.arguments.terraform meta.parens.terraform - meta.brackets
+#          ^ punctuation.section.parens.begin.terraform
+#           ^ punctuation.section.braces.begin.terraform
+#            ^ meta.mapping.key.terraform string.unquoted.terraform
+#              ^ keyword.operator.assignment.terraform
+#                ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                 ^ punctuation.separator.terraform
+#                   ^ meta.mapping.key.terraform string.unquoted.terraform
+#                     ^ keyword.operator.assignment.terraform
+#                       ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                        ^ punctuation.section.braces.end.terraform
+#                         ^ punctuation.section.parens.end.terraform
 
       tonumber(1)
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#             ^ punctuation.section.parens.begin.terraform
+#              ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#               ^ punctuation.section.parens.end.terraform
 
       toset(["a", "b", "c"])
-#     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^ meta.function-call.terraform string.quoted.double.terraform
-#               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                  ^^ meta.function-call.terraform string.quoted.double.terraform
-#                    ^ meta.function-call.terraform punctuation.separator.terraform
-#                      ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#                       ^^ meta.function-call.terraform string.quoted.double.terraform
-#                         ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
-#                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#          ^ meta.function-call.arguments.terraform meta.parens.terraform - meta.brackets
+#           ^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform meta.brackets.terraform
+#                          ^ meta.function-call.arguments.terraform meta.parens.terraform - meta.brackets
+#          ^ punctuation.section.parens.begin.terraform
+#           ^ punctuation.section.brackets.begin.terraform
+#            ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#             ^^ string.quoted.double.terraform
+#               ^ punctuation.separator.terraform
+#                 ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                  ^^ string.quoted.double.terraform
+#                    ^ punctuation.separator.terraform
+#                      ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#                       ^^ string.quoted.double.terraform
+#                         ^ punctuation.section.brackets.end.terraform
+#                          ^ punctuation.section.parens.end.terraform
 
       tostring("hello")
-#     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#               ^^^^^^ meta.function-call.terraform string.quoted.double.terraform
-#                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
-
+#     ^^^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#             ^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#             ^ punctuation.section.parens.begin.terraform
+#              ^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#                     ^ punctuation.section.parens.end.terraform
 
     provider::terraform::encode_tfvars({
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.function.builtin.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.identifier.terraform
+#                                     ^ meta.function-call.arguments.terraform meta.parens.terraform - meta.braces
+#                                      ^ meta.function-call.arguments.terraform meta.parens.terraform meta.braces.terraform
+#   ^^^^^^^^ variable.namespace.terraform
+#           ^^ punctuation.accessor.double-colon.terraform
+#             ^^^^^^^^^ variable.namespace.terraform
+#                      ^^ punctuation.accessor.double-colon.terraform
+#                        ^^^^^^^^^^^^^ support.function.builtin.terraform
 #                                     ^ punctuation.section.parens.begin.terraform
-#                                      ^ meta.braces.terraform punctuation.section.braces.begin.terraform
+#                                      ^ punctuation.section.braces.begin.terraform
       example = "Hello!"
     })
+#^^^^ meta.function-call.arguments.terraform meta.parens.terraform meta.braces.terraform
+#    ^ meta.function-call.arguments.terraform meta.parens.terraform - meta.braces
+#   ^ punctuation.section.braces.end.terraform
+#    ^ punctuation.section.parens.end.terraform
+
+    my::namespace::func("args")
+#   ^^^^^^^^^^^^^^^^^^^ meta.function-call.identifier.terraform
+#   ^^ variable.namespace.terraform
+#     ^^ punctuation.accessor.double-colon.terraform
+#       ^^^^^^^^^ variable.namespace.terraform
+#                ^^ punctuation.accessor.double-colon.terraform
+#                  ^^^^ variable.function.terraform
+#                      ^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#                      ^ punctuation.section.parens.begin.terraform
+#                       ^^^^^^ meta.string.terraform string.quoted.double.terraform
+#                             ^ punctuation.section.parens.end.terraform
 
 /////////////////////////////////////////////////////////////////////
 // TUPLE FOR-EXPRESSIONS
@@ -2519,10 +2559,10 @@
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ punctuation.section.block.loop.for.terraform
-#                        ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                              ^ meta.function-call.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                        ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                              ^ meta.function-call.arguments.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -2541,15 +2581,15 @@
 #                   ^ punctuation.accessor.dot.terraform
 #                    ^^^ variable.other.member.terraform
 #                        ^ punctuation.section.block.loop.for.terraform
-#                          ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                                ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                                 ^ meta.function-call.terraform
-#                                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                          ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                                 ^ meta.function-call.arguments.terraform
+#                                  ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                    ^ keyword.operator.arithmetic.terraform
-#                                      ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                                            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                                             ^ meta.function-call.terraform
-#                                              ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                      ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                                            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                                             ^ meta.function-call.arguments.terraform
+#                                              ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                               ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -2660,23 +2700,25 @@
 #                            ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                             ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                               ^ keyword.operator.ternary.terraform
-#                                 ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                                     ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                                      ^^^^^^^^ meta.function-call.terraform
-#                                              ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                                               ^^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
-#                                                         ^ meta.function-call.terraform punctuation.separator.terraform
-#                                                           ^^^^^^^^ meta.function-call.terraform
-#                                                                   ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                                                                    ^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
-#                                                                             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                 ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#                                     ^ punctuation.section.parens.begin.terraform
+#                                      ^^^^^^^^ variable.other.readwrite.terraform
+#                                              ^ punctuation.accessor.dot.terraform
+#                                               ^^^^^^^^^^ variable.other.member.terraform
+#                                                         ^ punctuation.separator.terraform
+#                                                           ^^^^^^^^ variable.other.readwrite.terraform
+#                                                                   ^ punctuation.accessor.dot.terraform
+#                                                                    ^^^^^^^^^ variable.other.member.terraform
+#                                                                             ^ punctuation.section.parens.end.terraform
 #                                                                               ^ keyword.operator.ternary.terraform
-#                                                                                 ^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                                                                                     ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                                                                                      ^^^^^^^^ meta.function-call.terraform
-#                                                                                              ^ meta.function-call.terraform punctuation.accessor.dot.terraform
-#                                                                                               ^^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
-#                                                                                                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                                                                                 ^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                                                                                     ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.terraform meta.parens.terraform
+#                                                                                     ^ punctuation.section.parens.begin.terraform
+#                                                                                      ^^^^^^^^ variable.other.readwrite.terraform
+#                                                                                              ^ punctuation.accessor.dot.terraform
+#                                                                                               ^^^^^^^^^^ variable.other.member.terraform
+#                                                                                                         ^ punctuation.section.parens.end.terraform
 #                                                                                                          ^ punctuation.section.parens.end.terraform
     ]
 #^^^^ meta.brackets.terraform
@@ -2747,10 +2789,10 @@
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ punctuation.section.block.loop.for.terraform
-#                        ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                              ^ meta.function-call.terraform
-#                               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                        ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                             ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                              ^ meta.function-call.arguments.terraform
+#                               ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                 ^^ keyword.control.conditional.terraform
 #                                    ^ variable.other.readwrite.terraform
 #                                      ^^ keyword.operator.comparison.terraform
@@ -2857,14 +2899,14 @@
 #                ^ punctuation.accessor.dot.terraform
 #                 ^^^^ variable.other.member.terraform
 #                      ^ punctuation.section.block.loop.for.terraform
-#                        ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#                              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                               ^ meta.function-call.terraform
-#                                ^ meta.function-call.terraform punctuation.separator.terraform
-#                                  ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                                     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#                        ^^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#                              ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                               ^ meta.function-call.arguments.terraform
+#                                ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                  ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                   ^ meta.function-call.arguments.terraform punctuation.separator.terraform
+#                                     ^ meta.function-call.arguments.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                                      ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
 #                                        ^^ punctuation.separator.key-value.terraform
 #                                           ^ variable.other.readwrite.terraform
 #                                            ^^^ keyword.operator.terraform
@@ -2897,10 +2939,10 @@
 #                             ^^ punctuation.separator.key-value.terraform
         upper(l)
 #      ^^^^^^^^^^ meta.braces.terraform
-#       ^^^^^ meta.function-call.terraform support.function.builtin.terraform
-#            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#             ^ meta.function-call.terraform
-#              ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#       ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform
+#            ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#             ^ meta.function-call.arguments.terraform
+#              ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
     }
 # <- meta.braces.terraform
 #^^^^ meta.braces.terraform
@@ -3032,10 +3074,10 @@
 #    ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
 #     ^^^^ variable.declaration.terraform variable.other.readwrite.terraform
 #          ^ keyword.operator.assignment.terraform
-#            ^^^^^^^^ meta.function-call.terraform variable.function.terraform
-#                    ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                     ^^^^^^ meta.function-call.terraform
-#                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
+#            ^^^^^^^^ meta.function-call.identifier.terraform variable.function.terraform
+#                    ^ meta.function-call.arguments.terraform punctuation.section.parens.begin.terraform
+#                     ^^^^^^ meta.function-call.arguments.terraform
+#                           ^ meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
       obj = {
 #    ^^^^^^^ meta.block.terraform - meta.braces
 #           ^^ meta.block.terraform meta.braces.terraform
@@ -3283,14 +3325,14 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 
     policy = jsonencode({
         Version = "2012-10-17"
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform meta.braces.terraform
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.arguments.terraform meta.braces.terraform
 #       ^^^^^^^ meta.mapping.key.terraform string.unquoted.terraform
 #               ^ keyword.operator.assignment.terraform
 #                 ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #                 ^ punctuation.definition.string.begin.terraform
 #                            ^ punctuation.definition.string.end.terraform
         "Statement": [
-#^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform
+#^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.arguments.terraform
 #^^^^^^^ meta.braces.terraform
 #       ^^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json
 #       ^ punctuation.definition.string.begin.json
@@ -3304,7 +3346,7 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
                     "lambda:InvokeAsync"
                 ],
                 "Resource": "arn:aws:lambda:*:*:function:${var.environment}-xxx",
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.terraform meta.mapping.value.json meta.sequence.json
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform meta.function-call.arguments.terraform meta.mapping.value.json meta.sequence.json
 #^^^^^^^^^^^^^^^ meta.mapping.json
 #               ^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json
 #                         ^^ meta.mapping.json
