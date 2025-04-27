@@ -331,9 +331,18 @@ contexts:
         1: keyword.operator.template.trim.right.terraform
         2: punctuation.section.interpolation.end.terraform
       pop: 1
-    - match: \b(?:if|else|endif|for|in|endfor)\b
-      comment: if/else/endif and for/in/endfor directives
-      scope: keyword.control.terraform
+    - match: \bif\b
+      scope: keyword.control.conditional.if.terraform
+    - match: \belse\b
+      scope: keyword.control.conditional.else.terraform
+    - match: \bendif\b
+      scope: keyword.control.conditional.end.terraform
+    - match: \bfor\b
+      scope: keyword.control.loop.for.terraform
+    - match: \bendfor\b
+      scope: keyword.control.loop.end.terraform
+    - match: \bin\b
+      scope: keyword.operator.iteration.in.terraform
     - include: expressions
 
   # String Heredocs
@@ -641,10 +650,8 @@ contexts:
   # pop'd with different characters and objects allow `=>`.
   for_expression_body:
     - match: \bin\b
-      comment: in keyword
-      scope: keyword.control.loop.in.terraform
+      scope: keyword.operator.iteration.in.terraform
     - match: \bif\b
-      comment: if keyword
       scope: keyword.control.conditional.terraform
     - match: '\:'
       scope: punctuation.section.block.loop.for.terraform
