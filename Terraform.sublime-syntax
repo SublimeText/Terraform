@@ -285,22 +285,35 @@ contexts:
     - match: '"'
       scope: punctuation.definition.string.end.terraform
       pop: true
-    - include: string_interpolation
     - match: '{{char_escapes}}'
       comment: Character Escapes
       scope: constant.character.escape.terraform
-    - match: (?=\barn:aws:)
-      push: aws_acl
+    - include: string_interpolation
+    - include: aws_acl
 
   aws_acl:
+    - match: (?=\barn:aws:)
+      push: aws_acl_body
+
+  aws_acl_body:
+    - clear_scopes: 1  # Clear the string.* scope.
     - meta_scope: variable.language.acl.terraform
-    - include: string_interpolation
+    - match: ([$%]\{)(~)?
+      captures:
+        1: punctuation.section.interpolation.begin.terraform
+        2: keyword.operator.template.trim.left.terraform
+      push: acl_interpolation_body
     - match: :|/
       scope: punctuation.separator.sequence.terraform
     - match: \*
       scope: constant.other.wildcard.asterisk.terraform
     - match: (?![\w-])
       pop: true
+
+  acl_interpolation_body:
+    - meta_scope: meta.interpolation.terraform
+    - meta_content_scope: source.terraform
+    - include: string_interpolation_body
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
@@ -313,9 +326,9 @@ contexts:
       push: string_interpolation_body
 
   string_interpolation_body:
+    - clear_scopes: 1  # Clear the string.* scope.
     - meta_scope: meta.interpolation.terraform
     - meta_content_scope: source.terraform
-    - clear_scopes: 1  # Clear the string.* scope.
     - match: (~)?(\})
       captures:
         1: keyword.operator.template.trim.right.terraform
@@ -411,7 +424,7 @@ contexts:
       pop: true
 
   literal_label_body:
-    - meta_scope: string.quoted.double.terraform
+    - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: true
@@ -683,7 +696,7 @@ contexts:
       set: block_body
 
   block_name_body:
-    - meta_scope: string.quoted.double.terraform
+    - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: true
