@@ -4,7 +4,6 @@
 name: JSON (Terraform)
 scope: source.json.terraform
 version: 2
-hidden: true
 
 extends: Packages/JSON/JSON.sublime-syntax
 
