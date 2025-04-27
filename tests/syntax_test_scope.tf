@@ -120,32 +120,36 @@
 /////
 
     444
-# ^ -constant -numeric
-#   ^^^ constant.numeric.integer.terraform
+#  ^ - meta.number - constant
+#   ^^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#      ^ - meta.number - constant
 
 /////
 // Matches zero.
 /////
 
       0
-# ^ -constant -numeric
-#     ^ constant.numeric.integer.terraform
+#    ^ - meta.number - constant
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#      ^ - meta.number - constant
 
 /////
 // Matches one.
 /////
 
       1
-# ^ -constant -numeric
-#     ^ constant.numeric.integer.terraform
+#    ^ - meta.number - constant
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#      ^ - meta.number - constant
 
 /////
 // Matches large integers.
 /////
 
       26345645634561
-# ^ -constant -numeric
-#     ^^^^^^^^^^^^^^ constant.numeric.integer.terraform
+#    ^ - meta.number - constant
+#     ^^^^^^^^^^^^^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#                   ^ - meta.number - constant
 
 /////
 // Ignores integers inside identifiers.
@@ -167,66 +171,59 @@
 /////
 
       1.2
-# ^ -constant -numeric
-#     ^ constant.numeric.float.terraform
+#    ^ - meta.number - constant
+#     ^^^ meta.number.float.decimal.terraform constant.numeric.value.terraform
 #      ^ punctuation.separator.decimal.terraform
-#       ^ constant.numeric.float.terraform
+#        ^ - meta.number - constant
 
 /////
 // Matches large floating-point numbers.
 /////
 
       61.28888888888
-#   ^ -constant -numeric
-#     ^^ constant.numeric.float.terraform
+#    ^ - meta.number - constant
+#     ^^^^^^^^^^^^^^ meta.number.float.decimal.terraform constant.numeric.value.terraform
 #       ^ punctuation.separator.decimal.terraform
-#        ^^^^^^^^^^^ constant.numeric.float.terraform
+#                   ^ - meta.number - constant
 
 /////
 // Matches integers with exponents.
 /////
 
       1e12
-#   ^ -constant -numeric
-#     ^ constant.numeric.float.terraform
-#      ^ punctuation.separator.exponent.terraform
-#       ^^ constant.numeric.float.terraform
+#    ^ - meta.number - constant
+#     ^^^^ meta.number.float.decimal.terraform constant.numeric.value.terraform
+#         ^ - meta.number - constant
 
 /////
 // Matches floats with exponents.
 /////
 
       1.4E12
-#   ^ -constant -numeric
-#     ^ constant.numeric.float.terraform
+#    ^ - meta.number - constant
+#     ^^^^^^ meta.number.float.decimal.terraform constant.numeric.value.terraform
 #      ^ punctuation.separator.decimal.terraform
-#       ^ constant.numeric.float.terraform
-#        ^ punctuation.separator.exponent.terraform
-#         ^^ constant.numeric.float.terraform
+#           ^ - meta.number - constant
 
 /////
 // Matches floats with postive signed exponents.
 /////
 
       1.4e+12
-#   ^ -constant -numeric
-#     ^ constant.numeric.float.terraform
+#    ^ - meta.number - constant
+#     ^^^^^^^ meta.number.float.decimal.terraform constant.numeric.value.terraform
 #      ^ punctuation.separator.decimal.terraform
-#       ^ constant.numeric.float.terraform
-#        ^^ punctuation.separator.exponent.terraform
-#          ^^ constant.numeric.float.terraform
+#            ^ - meta.number - constant
 
 /////
 // Matches floats with negative signed exponents.
 /////
 
       1.4E-12
-#   ^ -constant -numeric
-#     ^ constant.numeric.float.terraform
+#    ^ - meta.number - constant
+#     ^^^^^^^ meta.number.float.decimal.terraform constant.numeric.value.terraform
 #      ^ punctuation.separator.decimal.terraform
-#       ^ constant.numeric.float.terraform
-#        ^^ punctuation.separator.exponent.terraform
-#          ^^ constant.numeric.float.terraform
+#            ^ - meta.number - constant
 
 /////////////////////////////////////////////////////////////////////
 // STRINGS
@@ -395,7 +392,7 @@
 #                ^ meta.interpolation.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
 #                 ^^^^ meta.interpolation.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                      ^ meta.interpolation.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                        ^ meta.interpolation.terraform meta.braces.terraform constant.numeric.integer.terraform
+#                        ^ meta.interpolation.terraform source.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                         ^ meta.interpolation.terraform meta.braces.terraform punctuation.section.braces.end.terraform
 #                          ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                           ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
@@ -409,11 +406,11 @@
 #    ^^^^^^^^^^ string.quoted.double.terraform
 #              ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #                ^ meta.interpolation.terraform punctuation.section.brackets.begin.terraform
-#                 ^ meta.interpolation.terraform constant.numeric.integer.terraform
+#                 ^ meta.interpolation.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.interpolation.terraform punctuation.separator.terraform
-#                    ^ meta.interpolation.terraform constant.numeric.integer.terraform
+#                    ^ meta.interpolation.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                     ^ meta.interpolation.terraform punctuation.separator.terraform
-#                       ^ meta.interpolation.terraform constant.numeric.integer.terraform
+#                       ^ meta.interpolation.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                        ^ meta.interpolation.terraform punctuation.section.brackets.end.terraform
 #                         ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                          ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
@@ -667,10 +664,10 @@
 #          ^^^^^^^^^ meta.function-call.terraform
 #                   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 #                     ^ keyword.operator.comparison.terraform
-#                       ^ constant.numeric.integer.terraform
+#                       ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                         ^ keyword.operator.ternary.terraform
 #                                    ^ punctuation.section.brackets.begin.terraform
-#                                     ^ constant.numeric.integer.terraform
+#                                     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                      ^ punctuation.section.brackets.end.terraform
 #                                        ^ keyword.operator.ternary.terraform
 
@@ -682,11 +679,11 @@
 #   ^^^ meta.function-call.terraform variable.function.terraform
 #      ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #       ^ punctuation.section.brackets.begin.terraform
-#        ^^ constant.numeric.integer.terraform
+#        ^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #          ^ punctuation.separator.terraform
-#            ^^^^ constant.numeric.integer.terraform
+#            ^^^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                ^ punctuation.separator.terraform
-#                  ^ constant.numeric.integer.terraform
+#                  ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                   ^ punctuation.section.brackets.end.terraform
 #                    ^^^ keyword.operator.terraform
 #                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
@@ -702,7 +699,7 @@
     thing[1]
 #       ^ -punctuation
 #        ^ punctuation.section.brackets.begin.terraform
-#         ^ constant.numeric.integer.terraform
+#         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #          ^ punctuation.section.brackets.end.terraform
 #           ^ -punctuation
 
@@ -731,12 +728,12 @@
 
     [1, /* inline */ 2]
 #   ^ punctuation.section.brackets.begin.terraform
-#    ^ constant.numeric.integer.terraform
+#    ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #     ^ punctuation.separator.terraform
 #       ^^ punctuation.definition.comment.terraform
 #       ^^^^^^^^^^^^ comment.block.terraform
 #                 ^^ punctuation.definition.comment.terraform
-#                    ^ constant.numeric.integer.terraform
+#                    ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                     ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -746,10 +743,10 @@
     [
 #   ^ punctuation.section.brackets.begin.terraform
       1,
-#     ^ constant.numeric.integer.terraform
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #      ^ punctuation.separator.terraform
       2
-#     ^ constant.numeric.integer.terraform
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
     ]
 #   ^ punctuation.section.brackets.end.terraform
 
@@ -759,9 +756,9 @@
 
     [ 1 + 2 ]
 #   ^ punctuation.section.brackets.begin.terraform
-#     ^ constant.numeric.integer.terraform
+#     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #       ^ keyword.operator.arithmetic.terraform
-#         ^ constant.numeric.integer.terraform
+#         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #           ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -777,7 +774,7 @@
 #               ^ punctuation.accessor.dot.terraform
 #                ^^^ variable.other.member.terraform
 #                   ^ punctuation.section.brackets.begin.terraform
-#                    ^ constant.numeric.integer.terraform
+#                    ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                     ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -790,16 +787,16 @@
 #            ^ punctuation.section.brackets.begin.terraform
       [ 1, 2],
 #     ^ punctuation.section.brackets.begin.terraform
-#       ^ constant.numeric.integer.terraform
+#       ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #        ^ punctuation.separator.terraform
-#          ^ constant.numeric.integer.terraform
+#          ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #           ^ punctuation.section.brackets.end.terraform
 #            ^ punctuation.separator.terraform
       [ 6, 7]
 #     ^ punctuation.section.brackets.begin.terraform
-#       ^ constant.numeric.integer.terraform
+#       ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #        ^ punctuation.separator.terraform
-#          ^ constant.numeric.integer.terraform
+#          ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #           ^ punctuation.section.brackets.end.terraform
     ]
 #   ^ punctuation.section.brackets.end.terraform
@@ -840,13 +837,13 @@
 #    ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #     ^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #       ^ meta.braces.terraform keyword.operator.assignment.terraform
-#         ^ meta.braces.terraform constant.numeric.integer.terraform
+#         ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #          ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #           ^ punctuation.separator.terraform
 #             ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #              ^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                ^ meta.braces.terraform keyword.operator.assignment.terraform
-#                  ^ meta.braces.terraform constant.numeric.integer.terraform
+#                  ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                   ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #                    ^ punctuation.section.brackets.end.terraform
 
@@ -883,7 +880,7 @@
       age = 52
 #     ^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #         ^ meta.braces.terraform keyword.operator.assignment.terraform
-#           ^^ meta.braces.terraform constant.numeric.integer.terraform
+#           ^^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
     }
 #   ^ meta.braces.terraform punctuation.section.braces.end.terraform
 
@@ -909,9 +906,9 @@
 #   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #     ^^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #          ^ meta.braces.terraform keyword.operator.assignment.terraform
-#            ^ meta.braces.terraform constant.numeric.integer.terraform
+#            ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #              ^ meta.braces.terraform keyword.operator.arithmetic.terraform
-#                ^ meta.braces.terraform constant.numeric.integer.terraform
+#                ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #                   ^ -meta
 
@@ -924,11 +921,11 @@
 #     ^^^^ meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #          ^ meta.braces.terraform keyword.operator.assignment.terraform
 #            ^ meta.braces.terraform punctuation.section.brackets.begin.terraform
-#              ^ meta.braces.terraform constant.numeric.integer.terraform
+#              ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.braces.terraform punctuation.separator.terraform
-#                 ^ meta.braces.terraform constant.numeric.integer.terraform
+#                 ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.braces.terraform punctuation.separator.terraform
-#                    ^ meta.braces.terraform constant.numeric.integer.terraform
+#                    ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                      ^ meta.braces.terraform punctuation.section.brackets.end.terraform
 #                       ^ meta.braces.terraform punctuation.section.braces.end.terraform
 #                        ^ -meta
@@ -968,7 +965,7 @@
           value = 5
 #         ^^^^^ meta.braces.terraform meta.braces.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #               ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                 ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform constant.numeric.integer.terraform
+#                 ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
         }
 #       ^ meta.braces.terraform meta.braces.terraform meta.braces.terraform punctuation.section.braces.end.terraform
       }
@@ -1013,9 +1010,9 @@
     {(1 + 2) = "gggg"}
 #   ^ meta.braces.terraform punctuation.section.braces.begin.terraform
 #    ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.begin.terraform
-#     ^ meta.braces.terraform meta.mapping.key.terraform constant.numeric.integer.terraform
+#     ^ meta.braces.terraform meta.mapping.key.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #       ^ meta.braces.terraform meta.mapping.key.terraform keyword.operator.arithmetic.terraform
-#         ^ meta.braces.terraform meta.mapping.key.terraform constant.numeric.integer.terraform
+#         ^ meta.braces.terraform meta.mapping.key.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #          ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
 #            ^ meta.braces.terraform keyword.operator.assignment.terraform
 #              ^ meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
@@ -1034,7 +1031,7 @@
 #          ^ meta.braces.terraform meta.mapping.key.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #           ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
 #             ^ meta.braces.terraform keyword.operator.assignment.terraform
-#               ^ meta.braces.terraform constant.numeric.integer.terraform
+#               ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                ^ meta.braces.terraform punctuation.section.braces.end.terraform
 
 /////
@@ -1049,7 +1046,7 @@
 #         ^^^^ meta.braces.terraform meta.mapping.key.terraform variable.other.member.terraform
 #             ^ meta.braces.terraform meta.mapping.key.terraform punctuation.section.parens.end.terraform
 #               ^ meta.braces.terraform keyword.operator.assignment.terraform
-#                 ^ meta.braces.terraform constant.numeric.integer.terraform
+#                 ^ meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.braces.terraform punctuation.section.braces.end.terraform
 
 /////////////////////////////////////////////////////////////////////
@@ -1110,7 +1107,7 @@
 #              ^ punctuation.accessor.dot.terraform
 #               ^^^ variable.other.member.terraform
 #                  ^ punctuation.section.brackets.begin.terraform
-#                   ^ constant.numeric.integer.terraform
+#                   ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                    ^ punctuation.section.brackets.end.terraform
 
 /////
@@ -1123,7 +1120,7 @@
 #                           ^ punctuation.accessor.dot.terraform
 #                            ^^^^^^^^^^^^ variable.other.member.terraform
 #                                        ^ punctuation.accessor.dot.terraform
-#                                         ^ constant.numeric.integer.terraform
+#                                         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                          ^ -constant -punctuation -variable
 
 /////////////////////////////////////////////////////////////////////
@@ -1214,13 +1211,13 @@
 #                          ^ meta.function-call.terraform punctuation.accessor.dot.terraform
 #                           ^^^^^^^^^^ meta.function-call.terraform variable.other.member.terraform
 #                                     ^ meta.function-call.terraform punctuation.separator.terraform
-#                                       ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                       ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                        ^ meta.function-call.terraform punctuation.separator.terraform
 #                                          ^^^^^ meta.function-call.terraform
 #                                               ^ meta.function-call.terraform punctuation.accessor.dot.terraform
 #                                                ^^^^^ meta.function-call.terraform variable.other.member.terraform
 #                                                     ^ meta.function-call.terraform keyword.operator.arithmetic.terraform
-#                                                      ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                                      ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                                       ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                                        ^ -meta -function-call -variable
 
@@ -1232,16 +1229,16 @@
 #     ^^^ meta.function-call.terraform variable.function.terraform
 #        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #         ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#          ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#          ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #            ^ meta.function-call.terraform punctuation.separator.terraform
-#              ^^^^ meta.function-call.terraform constant.numeric.integer.terraform
+#              ^^^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                    ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                    ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                      ^^^ meta.function-call.terraform keyword.operator.terraform
 #                         ^ meta.function-call.terraform punctuation.separator.terraform
 #                           ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                            ^^^^^^^^ meta.function-call.terraform constant.numeric.integer.terraform
+#                            ^^^^^^^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                    ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
@@ -1255,7 +1252,7 @@
 #        ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
 #         ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #           ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#             ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#             ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #              ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
 #                ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                  ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
@@ -1275,7 +1272,7 @@
 #             ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
 #              ^^^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform variable.function.terraform
 #                 ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.begin.terraform
-#                  ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform constant.numeric.integer.terraform
+#                  ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                   ^ meta.function-call.terraform meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                    ^ meta.function-call.terraform meta.function-call.terraform punctuation.section.parens.end.terraform
 #                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
@@ -1289,10 +1286,10 @@
 #   ^^^^ meta.function-call.terraform variable.function.terraform
 #       ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
       1,
-#     ^ meta.function-call.terraform constant.numeric.integer.terraform
+#     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #      ^ meta.function-call.terraform punctuation.separator.terraform
       2
-#     ^ meta.function-call.terraform constant.numeric.integer.terraform
+#     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
     )
 #   ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
@@ -1357,63 +1354,62 @@
       abs(23)
 #     ^^^ meta.function-call.terraform support.function.builtin.terraform
 #        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       ceil(5.1)
 #     ^^^^ meta.function-call.terraform support.function.builtin.terraform
 #         ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#          ^^^ meta.function-call.terraform constant.numeric.float.terraform
-#           ^ meta.function-call.terraform constant.numeric.float.terraform punctuation.separator.decimal.terraform
+#          ^^^ meta.function-call.terraform meta.number.float.decimal.terraform constant.numeric.value.terraform
 #             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       floor(5)
 #     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform constant.numeric.integer.terraform
+#           ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       log(50, 10)
 #     ^^^ meta.function-call.terraform support.function.builtin.terraform
 #        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #           ^ meta.function-call.terraform punctuation.separator.terraform
-#             ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       max(12, 54, 3)
 #     ^^^ meta.function-call.terraform support.function.builtin.terraform
 #        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #           ^ meta.function-call.terraform punctuation.separator.terraform
-#             ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       min(12, 54, 3)
 #     ^^^ meta.function-call.terraform support.function.builtin.terraform
 #        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#         ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #           ^ meta.function-call.terraform punctuation.separator.terraform
-#             ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       pow(3, 2)
 #     ^^^ meta.function-call.terraform support.function.builtin.terraform
 #        ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#         ^ meta.function-call.terraform constant.numeric.integer.terraform
+#         ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #          ^ meta.function-call.terraform punctuation.separator.terraform
-#            ^ meta.function-call.terraform constant.numeric.integer.terraform
+#            ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #             ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       signum(-13)
 #     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #            ^ meta.function-call.terraform keyword.operator.arithmetic.terraform
-#             ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#             ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////
@@ -1459,7 +1455,7 @@
       indent(2, "[\n  foo,\n  bar,\n]\n")
 #     ^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #           ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#            ^ meta.function-call.terraform constant.numeric.integer.terraform
+#            ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #             ^ meta.function-call.terraform punctuation.separator.terraform
 #               ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
@@ -1546,9 +1542,9 @@
 #            ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #             ^^^ meta.function-call.terraform string.quoted.double.terraform
 #                ^ meta.function-call.terraform punctuation.separator.terraform
-#                  ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                  ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                     ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       title("hello world")
@@ -1585,7 +1581,7 @@
 #                     ^^^ meta.function-call.terraform string.quoted.double.terraform
 #                        ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                         ^ meta.function-call.terraform punctuation.separator.terraform
-#                           ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                           ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                            ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       coalesce("a", "b")
@@ -1680,7 +1676,7 @@
 #                    ^^ meta.function-call.terraform string.quoted.double.terraform
 #                      ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                       ^ meta.function-call.terraform punctuation.separator.terraform
-#                         ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                         ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                          ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       flatten([[["a", "b"]], ["c"]])
@@ -1718,11 +1714,11 @@
 #          ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
 #           ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #            ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#             ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#             ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #              ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
 #                ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                 ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                  ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#                  ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                   ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
 #                    ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
@@ -1824,20 +1820,20 @@
       range(1, 4)
 #     ^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #          ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#           ^ meta.function-call.terraform constant.numeric.integer.terraform
+#           ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #            ^ meta.function-call.terraform punctuation.separator.terraform
-#              ^ meta.function-call.terraform constant.numeric.integer.terraform
+#              ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       reverse([1, 2, 3])
 #     ^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #            ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #             ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#              ^ meta.function-call.terraform constant.numeric.integer.terraform
+#              ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.function-call.terraform punctuation.separator.terraform
-#                 ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                    ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                    ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
@@ -1908,9 +1904,9 @@
 #                  ^^ meta.function-call.terraform string.quoted.double.terraform
 #                    ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                     ^ meta.function-call.terraform punctuation.separator.terraform
-#                       ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                       ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                        ^ meta.function-call.terraform punctuation.separator.terraform
-#                          ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                          ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
       sort(["e", "d"])
 #     ^^^^ meta.function-call.terraform support.function.builtin.terraform
@@ -1956,15 +1952,15 @@
 #            ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
 #             ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #              ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#               ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#               ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
 #                  ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                   ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                    ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#                    ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                     ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
 #                       ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                        ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                         ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#                         ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                          ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
 #                           ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
@@ -1980,9 +1976,9 @@
 #                     ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                      ^ meta.function-call.terraform punctuation.separator.terraform
 #                        ^ meta.function-call.terraform punctuation.section.brackets.begin.terraform
-#                         ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                         ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                          ^ meta.function-call.terraform punctuation.separator.terraform
-#                            ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                            ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                             ^ meta.function-call.terraform punctuation.section.brackets.end.terraform
 #                              ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
@@ -2161,7 +2157,7 @@
         port = 8080,
 #       ^^^^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #            ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#              ^^^^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#              ^^^^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
 #                   ^ meta.function-call.terraform meta.braces.terraform
         ip_addrs = ["10.0.0.1", "10.0.0.2"]
@@ -2372,7 +2368,7 @@
 #              ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #               ^^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                              ^ meta.function-call.terraform punctuation.separator.terraform
-#                                ^^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                ^^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                  ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       cidrnetmask("172.16.0.0/12")
@@ -2388,9 +2384,9 @@
 #                ^ meta.function-call.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                 ^^^^^^^^^^^^^^ meta.function-call.terraform string.quoted.double.terraform
 #                               ^ meta.function-call.terraform punctuation.separator.terraform
-#                                 ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                 ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                  ^ meta.function-call.terraform punctuation.separator.terraform
-#                                    ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                    ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                     ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
 /////
@@ -2434,18 +2430,18 @@
 #           ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.begin.terraform
 #            ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #              ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#                ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                 ^ meta.function-call.terraform meta.braces.terraform punctuation.separator.terraform
 #                   ^ meta.function-call.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                     ^ meta.function-call.terraform meta.braces.terraform keyword.operator.assignment.terraform
-#                       ^ meta.function-call.terraform meta.braces.terraform constant.numeric.integer.terraform
+#                       ^ meta.function-call.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                        ^ meta.function-call.terraform meta.braces.terraform punctuation.section.braces.end.terraform
 #                         ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       tonumber(1)
 #     ^^^^^^^^ meta.function-call.terraform support.function.builtin.terraform
 #             ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
-#              ^ meta.function-call.terraform constant.numeric.integer.terraform
+#              ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 
       toset(["a", "b", "c"])
@@ -2545,7 +2541,7 @@
 #                         ^ punctuation.accessor.dot.terraform
 #                          ^^^^^^^^^^ variable.other.member.terraform
 #                                    ^ punctuation.section.brackets.begin.terraform
-#                                     ^ constant.numeric.integer.terraform
+#                                     ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                      ^ punctuation.section.brackets.end.terraform
 #                                       ^ punctuation.accessor.dot.terraform
 #                                        ^^^^ variable.other.member.terraform
@@ -2569,7 +2565,7 @@
 #                          ^^^^^^^^^^ variable.other.member.terraform
 #                                    ^ punctuation.section.brackets.end.terraform
 #                                     ^ punctuation.section.brackets.begin.terraform
-#                                      ^ constant.numeric.integer.terraform
+#                                      ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                       ^ punctuation.section.brackets.end.terraform
 #                                        ^ punctuation.accessor.dot.terraform
 #                                         ^^^^ variable.other.member.terraform
@@ -2734,7 +2730,7 @@
 #                                   ^^ keyword.control.conditional.terraform
 #                                      ^ variable.other.readwrite.terraform
 #                                        ^ keyword.operator.comparison.terraform
-#                                          ^ constant.numeric.integer.terraform
+#                                          ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                           ^ punctuation.section.brackets.end.terraform
 
 /////////////////////////////////////////////////////////////////////
@@ -2805,9 +2801,9 @@
 #                              ^ meta.function-call.terraform punctuation.section.parens.begin.terraform
 #                               ^ meta.function-call.terraform
 #                                ^ meta.function-call.terraform punctuation.separator.terraform
-#                                  ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                  ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                   ^ meta.function-call.terraform punctuation.separator.terraform
-#                                     ^ meta.function-call.terraform constant.numeric.integer.terraform
+#                                     ^ meta.function-call.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                                      ^ meta.function-call.terraform punctuation.section.parens.end.terraform
 #                                        ^^ punctuation.separator.key-value.terraform
 #                                           ^ variable.other.readwrite.terraform
@@ -2976,9 +2972,9 @@
 #     ^^^^^ meta.block.terraform variable.declaration.terraform variable.other.readwrite.terraform
 #           ^ meta.block.terraform keyword.operator.assignment.terraform
 #             ^ meta.block.terraform punctuation.section.brackets.begin.terraform
-#              ^ meta.block.terraform constant.numeric.integer.terraform
+#              ^ meta.block.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #               ^ meta.block.terraform punctuation.separator.terraform
-#                 ^ meta.block.terraform constant.numeric.integer.terraform
+#                 ^ meta.block.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ meta.block.terraform punctuation.section.brackets.end.terraform
     }
 #   ^ meta.block.terraform punctuation.section.block.end.terraform
@@ -3178,7 +3174,7 @@
 #                    ^^^^^^^^^^^^^^^^^^^^ entity.name.label.terraform
 #                                        ^ punctuation.accessor.dot.terraform
 #                                         ^^^^^ variable.other.member.terraform
-#                                               ^^^^^^ constant.numeric.integer.terraform
+#                                               ^^^^^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 
 
 resource "aws_iam_role_policy" "attach-inline-policy-1" {

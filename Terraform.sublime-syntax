@@ -230,20 +230,17 @@ contexts:
   # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
   numeric_literals:
-    - match: \b\d+({{exponent}})\d+\b
+    - match: \b\d+{{exponent}}\d+\b
       comment: Integer, no fraction, optional exponent
-      scope: constant.numeric.float.terraform
-      captures:
-        1: punctuation.separator.exponent.terraform
-    - match: \b\d+(\.)\d+(?:({{exponent}})\d+)?\b
+      scope: meta.number.float.decimal.terraform constant.numeric.value.terraform
+    - match: \b\d+(\.)\d+(?:{{exponent}}\d+)?\b
       comment: Integer, fraction, optional exponent
-      scope: constant.numeric.float.terraform
+      scope: meta.number.float.decimal.terraform constant.numeric.value.terraform
       captures:
         1: punctuation.separator.decimal.terraform
-        2: punctuation.separator.exponent.terraform
     - match: \b\d+\b
       comment: Integers
-      scope: constant.numeric.integer.terraform
+      scope: meta.number.integer.decimal.terraform constant.numeric.value.terraform
 
   # Strings:
   #
@@ -536,7 +533,7 @@ contexts:
       pop: 1
     - match: \d+
       comment: Subscript
-      scope: constant.numeric.integer.terraform
+      scope: meta.number.integer.decimal.terraform constant.numeric.value.terraform
       pop: 1
     - match: \*
       comment: Attribute-only splat
