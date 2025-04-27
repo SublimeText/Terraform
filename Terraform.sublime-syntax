@@ -408,7 +408,7 @@ contexts:
   #
   # https://www.terraform.io/docs/cli/import/usage.html
   imports:
-    - match: \s*(terraform)\s*(import)\s*
+    - match: \b(terraform)\s+(import)\b
       comment: Importing resources
       captures:
         1: support.constant.terraform
