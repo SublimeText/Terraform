@@ -172,12 +172,12 @@ contexts:
     - include: named_value_references
 
   named_value_references:
-    - match: '\b({{named_values}})\b'
+    - match: \b(?:{{named_values}})\b
       comment: Special variables available only to Terraform.
       scope: variable.language.terraform
 
   type_keywords:
-    - match: '\b({{terraform_type_keywords}})\b'
+    - match: \b(?:{{terraform_type_keywords}})\b
       comment: Type keywords known to Terraform.
       scope: storage.type.terraform
 
@@ -334,7 +334,7 @@ contexts:
         1: keyword.operator.template.trim.right.terraform
         2: punctuation.section.interpolation.end.terraform
       pop: 1
-    - match: \b(if|else|endif|for|in|endfor)\b
+    - match: \b(?:if|else|endif|for|in|endfor)\b
       comment: if/else/endif and for/in/endfor directives
       scope: keyword.control.terraform
     - include: expressions
