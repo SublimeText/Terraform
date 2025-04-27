@@ -84,36 +84,42 @@ variables:
   #
   # https://developer.hashicorp.com/terraform/language/functions
   builtin_functions: |-
-    \b(?x:
-      # numbers
-       abs|ceil|floor|log|max|min|parseint|pow|signum
-      # string
-      |chomp|endswith|format|formatlist|indent|join|lower|regex|regexall|replace
-      |split|startswith|strcontains|strrev|substr
-      |templatestring|title|trim|trimprefix|trimsuffix|trimspace|upper
-      # collection
-      |alltrue|anytrue|chunklist|coalesce|coalescelist|compact|concat|contains
-      |distinct|element|flatten|index|keys|length|list|lookup
-      |map|matchkeys|merge|one|range|reverse
-      |setintersection|setproduct|setsubtract|setunion|slice|sort|sum
-      |transpose|values|zipmap
-      # encoding
-      |base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|textdecodebase64|textencodebase64|urlencode|yamldecode|yamlencode
-      # filesystem
-      |abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile
-      # date and time
-      |formatdate|plantimestamp|timeadd|timecmp|timestamp
-      # hash and crypto
-      |base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filesha1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5
-      # ip network
-      |cidrhost|cidrnetmask|cidrsubnet|cidrsubnets
-      # type conversion
-      |can|issensitive|nonsensitive|sensitive|tobool|tolist|tomap|tonumber|toset|tostring|try|type
-      # terraform-specific
-      |provider::terraform::(?:encode_tfvars|decode_tfvars|encode_expr)
-      # deprecated/old
-      |filemd1
-    )\b
+    (?x:
+    # numbers
+      abs | ceil | floor | log | max | min | parseint | pow | signum
+    # string
+    | chomp | endswith | format | formatlist | indent | join | lower | regex
+    | regexall | replace | split | startswith | strcontains | strrev | substr
+    | templatestring | title | trim | trimprefix | trimsuffix | trimspace | upper
+    # collection
+    | alltrue | anytrue | chunklist | coalesce | coalescelist | compact | concat
+    | contains | distinct | element | flatten | index | keys | length | list
+    | lookup | map | matchkeys | merge | one | range | reverse | setintersection
+    | setproduct | setsubtract | setunion | slice | sort | sum | transpose
+    | values | zipmap
+    # encoding
+    | base64decode | base64encode | base64gzip | csvdecode | jsondecode
+    | jsonencode | textdecodebase64 | textencodebase64 | urlencode | yamldecode
+    | yamlencode
+    # filesystem
+    | abspath | dirname | pathexpand | basename | file | fileexists | fileset
+    | filebase64 | templatefile
+    # date and time
+    | formatdate | plantimestamp | timeadd | timecmp | timestamp
+    # hash and crypto
+    | base64sha256 | base64sha512 | bcrypt | filebase64sha256
+    | filebase64sha512 | filemd5 | filesha1 | filesha256 | filesha512 | md5
+    | rsadecrypt | sha1 | sha256 | sha512 | uuid | uuidv5
+    # ip network
+    | cidrhost | cidrnetmask | cidrsubnet | cidrsubnets
+    # type conversion
+    | can | issensitive | nonsensitive | sensitive | tobool | tolist | tomap
+    | tonumber | toset | tostring | try | type
+    # terraform-specific
+    | provider::terraform::(?:encode_tfvars | decode_tfvars | encode_expr)
+    # deprecated/old
+    | filemd1
+    )
 
 contexts:
   main:
