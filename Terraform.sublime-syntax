@@ -118,14 +118,14 @@ variables:
 contexts:
   main:
     - include: comments
-    - include: attribute_definition
+    - include: attribute-definition
     - include: imports
     - include: block
     - include: expressions
 
   comments:
-    - include: inline_comments
-    - include: block_comments
+    - include: inline-comments
+    - include: block-comments
 
   # Expressions:
   #
@@ -135,7 +135,7 @@ contexts:
     - include: operators
     - include: brackets
     - include: objects
-    - include: attribute_access
+    - include: attribute-access
     - include: functions
     - include: parens
     - include: identifiers
@@ -149,9 +149,9 @@ contexts:
     - match: \(
       scope: punctuation.section.parens.begin.terraform
       comment: Parens - matched *after* function syntax
-      push: paren_body
+      push: paren-body
 
-  paren_body:
+  paren-body:
     - match: \)
       scope: punctuation.section.parens.end.terraform
       pop: 1
@@ -164,19 +164,19 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
   literals:
-    - include: numeric_literals
-    - include: language_constants
-    - include: string_literals
+    - include: numeric-literals
+    - include: language-constants
+    - include: string-literals
     - include: heredoc
-    - include: type_keywords
-    - include: named_value_references
+    - include: type-keywords
+    - include: named-value-references
 
-  named_value_references:
+  named-value-references:
     - match: \b(?:{{named_values}})\b
       comment: Special variables available only to Terraform.
       scope: variable.language.terraform
 
-  type_keywords:
+  type-keywords:
     - match: \b(?:{{terraform_type_keywords}})\b
       comment: Type keywords known to Terraform.
       scope: storage.type.terraform
@@ -185,13 +185,13 @@ contexts:
   #
   # https://www.terraform.io/docs/language/syntax/configuration.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
-  inline_comments:
+  inline-comments:
     - match: '#|//'
       comment: Inline Comments
       scope: punctuation.definition.comment.terraform
-      push: inline_comment_body
+      push: inline-comment-body
 
-  inline_comment_body:
+  inline-comment-body:
     - meta_scope: comment.line.terraform
     - match: $\n?
       scope: punctuation.definition.comment.terraform
@@ -201,13 +201,13 @@ contexts:
   #
   # https://www.terraform.io/docs/language/syntax/configuration.html#comments
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#comments-and-whitespace
-  block_comments:
+  block-comments:
     - match: /\*
       comment: Block comments
       scope: punctuation.definition.comment.terraform
-      push: block_comments_body
+      push: block-comments-body
 
-  block_comments_body:
+  block-comments-body:
     - meta_scope: comment.block.terraform
     - match: \*/
       scope: punctuation.definition.comment.terraform
@@ -217,7 +217,7 @@ contexts:
   #
   # https://www.terraform.io/docs/language/expressions/types.html#literal-expressions
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
-  language_constants:
+  language-constants:
     - match: \btrue\b
       scope: constant.language.boolean.true.terraform
     - match: \bfalse\b
@@ -229,7 +229,7 @@ contexts:
   #
   # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#numeric-literals
-  numeric_literals:
+  numeric-literals:
     - match: \b\d+{{exponent}}\d+\b
       comment: Integer, no fraction, optional exponent
       scope: meta.number.float.decimal.terraform constant.numeric.value.terraform
@@ -246,7 +246,7 @@ contexts:
   #
   # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
-  string_literals:
+  string-literals:
     - match: (")(true)(")
       scope: meta.string.terraform string.quoted.double.terraform
       captures:
@@ -275,9 +275,9 @@ contexts:
     - match: \"
       comment: Strings
       scope: punctuation.definition.string.begin.terraform
-      push: string_body
+      push: string-body
 
-  string_body:
+  string-body:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
@@ -285,21 +285,21 @@ contexts:
     - match: '{{char_escapes}}'
       comment: Character Escapes
       scope: constant.character.escape.terraform
-    - include: string_interpolation
-    - include: aws_acl
+    - include: string-interpolation
+    - include: aws-acl
 
-  aws_acl:
+  aws-acl:
     - match: (?=\barn:aws:)
-      push: aws_acl_body
+      push: aws-acl-body
 
-  aws_acl_body:
+  aws-acl-body:
     - clear_scopes: 1  # Clear the string.* scope.
     - meta_scope: variable.language.acl.terraform
     - match: ([$%]\{)(~)?
       captures:
         1: punctuation.section.interpolation.begin.terraform
         2: keyword.operator.template.trim.left.terraform
-      push: acl_interpolation_body
+      push: acl-interpolation-body
     - match: :|/
       scope: punctuation.separator.sequence.terraform
     - match: \*
@@ -307,22 +307,22 @@ contexts:
     - match: (?![\w-])
       pop: 1
 
-  acl_interpolation_body:
+  acl-interpolation-body:
     - meta_scope: meta.interpolation.terraform
     - meta_content_scope: source.terraform
-    - include: string_interpolation_body
+    - include: string-interpolation-body
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
-  string_interpolation:
+  string-interpolation:
     - match: ([$%]\{)(~)?
       captures:
         1: punctuation.section.interpolation.begin.terraform
         2: keyword.operator.template.trim.left.terraform
-      push: string_interpolation_body
+      push: string-interpolation-body
 
-  string_interpolation_body:
+  string-interpolation-body:
     - clear_scopes: 1  # Clear the string.* scope.
     - meta_scope: meta.interpolation.terraform
     - meta_content_scope: source.terraform
@@ -354,15 +354,15 @@ contexts:
       captures:
         1: keyword.operator.heredoc.terraform
         2: keyword.control.heredoc.terraform
-      push: heredoc_body
+      push: heredoc-body
 
-  heredoc_body:
+  heredoc-body:
     - meta_content_scope: meta.string.terraform string.unquoted.heredoc.terraform
     - match: ^\s*\2\s*$
       comment: The heredoc token identifier (second capture above).
       scope: keyword.control.heredoc.terraform
       pop: 1
-    - include: string_interpolation
+    - include: string-interpolation
 
   # Operators:
   #
@@ -413,23 +413,23 @@ contexts:
       captures:
         1: support.constant.terraform
         2: keyword.control.import.terraform
-      push: import_body
+      push: import-body
 
-  import_body:
+  import-body:
     - match: \"
       comment: String literal label
       scope: punctuation.definition.string.begin.terraform
-      push: literal_label_body
+      push: literal-label-body
     - match: '{{identifier}}'
       comment: Identifier label
       scope: entity.name.label.terraform
-    - include: numeric_literals
-    - include: attribute_access
+    - include: numeric-literals
+    - include: attribute-access
     - match: $\n?
       comment: Pop at newline
       pop: 1
 
-  literal_label_body:
+  literal-label-body:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
@@ -441,9 +441,9 @@ contexts:
   brackets:
     - match: \[
       scope: punctuation.section.brackets.begin.terraform
-      push: bracket_body
+      push: bracket-body
 
-  bracket_body:
+  bracket-body:
     - match: (\*)?\]
       comment: Full-splat operator
       scope: punctuation.section.brackets.end.terraform
@@ -452,7 +452,7 @@ contexts:
       pop: 1
     - include: comma
     - include: comments
-    - include: tuple_for_expression
+    - include: tuple-for-expression
     - include: expressions
 
   # Objects: collection values
@@ -463,34 +463,34 @@ contexts:
   objects:
     - match: \{
       scope: punctuation.section.braces.begin.terraform
-      push: object_body
+      push: object-body
 
-  object_body:
+  object-body:
     - meta_scope: meta.braces.terraform
     - match: \}
       scope: punctuation.section.braces.end.terraform
       pop: 1
-    - include: object_for_expression
+    - include: object-for-expression
     - include: comments
     - match: (?=({{identifier}}|\".*?\")\s*=)
       push:
-        - object_value
-        - assignment_operator
-        - object_literal_key
+        - object-value
+        - assignment-operator
+        - object-literal-key
     - match: \(
       comment: Computed object key (any expression between parens)
       scope: punctuation.section.parens.begin.terraform
       push:
-        - object_value
-        - assignment_operator
-        - object_computed_key
+        - object-value
+        - assignment-operator
+        - object-computed-key
     - include: Packages/Terraform/JSON (Terraform).sublime-syntax#object-body
 
-  object_computed_key:
+  object-computed-key:
     - meta_scope: meta.mapping.key.terraform
-    - include: paren_body
+    - include: paren-body
 
-  object_literal_key:
+  object-literal-key:
     - match: '{{identifier}}'
       scope: meta.mapping.key.terraform string.unquoted.terraform
       pop: 1
@@ -500,18 +500,18 @@ contexts:
         1: punctuation.definition.string.begin.terraform
         2: punctuation.definition.string.end.terraform
       pop: 1
-    - include: else_pop
+    - include: else-pop
 
-  assignment_operator:
+  assignment-operator:
     - match: =
       scope: keyword.operator.assignment.terraform
       pop: 1
-    - include: else_pop
+    - include: else-pop
 
   # Object key values: pop at comma, newline, and closing-bracket
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
-  object_value:
+  object-value:
     - include: comments
     - include: expressions
     - match: \,
@@ -529,7 +529,7 @@ contexts:
   # Attribute Access: "." Identifier
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-access-operator
-  attribute_access:
+  attribute-access:
     - match: \.
       scope: punctuation.accessor.dot.terraform
       push: member
@@ -548,7 +548,7 @@ contexts:
       comment: Attribute-only splat
       scope: keyword.operator.splat.terraform
       pop: 1
-    - include: else_pop
+    - include: else-pop
 
   # Attribute Definition: Identifier "=" Expression Newline
   #
@@ -556,18 +556,18 @@ contexts:
   # ">", as those are other operators, not attr definitions.
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#attribute-definitions
-  attribute_definition:
+  attribute-definition:
     - match: (?=(\()?({{identifier}})(\))?\s*(\=(?![\=\>])))
       push:
-        - assignment_operator
-        - attribute_key
+        - assignment-operator
+        - attribute-key
 
-  attribute_key:
+  attribute-key:
     - match: \((?={{identifier}}\))
       scope: punctuation.section.parens.begin.terraform
       set:
-        - attribute_key_end
-        - attribute_key
+        - attribute-key-end
+        - attribute-key
     # https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
     - match: for_each\b
       scope: variable.declaration.terraform keyword.control.loop.for.terraform
@@ -580,7 +580,7 @@ contexts:
       scope: variable.declaration.terraform variable.other.readwrite.terraform
       pop: 1
 
-  attribute_key_end:
+  attribute-key-end:
     - match: \)
       scope: punctuation.section.parens.end.terraform
       pop: 1
@@ -596,9 +596,9 @@ contexts:
         1: support.function.builtin.terraform
         2: variable.function.terraform
         3: punctuation.section.parens.begin.terraform
-      push: function_argument_list_body
+      push: function-argument-list-body
 
-  function_argument_list_body:
+  function-argument-list-body:
     - meta_scope: meta.function-call.terraform
     - match: \)
       scope: punctuation.section.parens.end.terraform
@@ -613,17 +613,17 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
   # https://www.terraform.io/docs/language/expressions/for.html
-  tuple_for_expression:
+  tuple-for-expression:
     - match: \bfor\b
       comment: for expression (arrays)
       scope: keyword.control.loop.for.terraform
-      set: tuple_for_expression_body
+      set: tuple-for-expression-body
 
-  tuple_for_expression_body:
+  tuple-for-expression-body:
     - match: \]
       scope: punctuation.section.brackets.end.terraform
       pop: 1
-    - include: for_expression_body
+    - include: for-expression-body
 
   # Object for-Expression:
   #
@@ -631,24 +631,24 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
   # https://www.terraform.io/docs/language/expressions/for.html
-  object_for_expression:
+  object-for-expression:
     - match: \bfor\b
       comment: for expression (arrays)
       scope: keyword.control.loop.for.terraform
-      set: object_for_expression_body
+      set: object-for-expression-body
 
-  object_for_expression_body:
+  object-for-expression-body:
     - match: \}
       scope: punctuation.section.braces.end.terraform
       pop: 1
     - match: \=\>
       scope: punctuation.separator.key-value.terraform
-    - include: for_expression_body
+    - include: for-expression-body
 
   # Shared body syntax for tuple and object for-expressions.
   # They require different `set` blocks because they are
   # pop'd with different characters and objects allow `=>`.
-  for_expression_body:
+  for-expression-body:
     - match: \bin\b
       scope: keyword.operator.iteration.in.terraform
     - match: \bif\b
@@ -679,39 +679,39 @@ contexts:
         7: entity.name.type.aws
         8: punctuation.definition.end.terraform
         9: punctuation.section.block.begin.terraform
-      push: block_body
+      push: block-body
 
     # Generic
     - match: (?:\b({{terraform_known_blocks}})\b|({{identifier}}))(?=[\s\"\-[:word:]]*(\{))
       captures:
         1: keyword.declaration.terraform
         2: entity.name.type.terraform
-      push: block_name
+      push: block-name
 
-  block_name:
+  block-name:
     - meta_scope: meta.type.terraform
     - match: \"
       scope: punctuation.definition.string.begin.terraform
-      push: block_name_body
+      push: block-name-body
     - match: '{{identifier}}'
       scope: entity.name.label.terraform
     - match: \{
       scope: punctuation.section.block.begin.terraform
-      set: block_body
+      set: block-body
 
-  block_name_body:
+  block-name-body:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
 
-  block_body:
+  block-body:
     - meta_scope: meta.block.terraform
     - match: \}
       scope: punctuation.section.block.end.terraform
       pop: 1
     - include: main
 
-  else_pop:
+  else-pop:
     - match: (?=\S)
       pop: 1
