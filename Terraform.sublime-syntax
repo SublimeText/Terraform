@@ -83,37 +83,43 @@ variables:
   # Built-In Functions
   #
   # https://developer.hashicorp.com/terraform/language/functions
-  predeclared_funcs: |-
-    \b(?x:
-      # numbers
-       abs|ceil|floor|log|max|min|parseint|pow|signum
-      # string
-      |chomp|endswith|format|formatlist|indent|join|lower|regex|regexall|replace
-      |split|startswith|strcontains|strrev|substr
-      |templatestring|title|trim|trimprefix|trimsuffix|trimspace|upper
-      # collection
-      |alltrue|anytrue|chunklist|coalesce|coalescelist|compact|concat|contains
-      |distinct|element|flatten|index|keys|length|list|lookup
-      |map|matchkeys|merge|one|range|reverse
-      |setintersection|setproduct|setsubtract|setunion|slice|sort|sum
-      |transpose|values|zipmap
-      # encoding
-      |base64decode|base64encode|base64gzip|csvdecode|jsondecode|jsonencode|textdecodebase64|textencodebase64|urlencode|yamldecode|yamlencode
-      # filesystem
-      |abspath|dirname|pathexpand|basename|file|fileexists|fileset|filebase64|templatefile
-      # date and time
-      |formatdate|plantimestamp|timeadd|timecmp|timestamp
-      # hash and crypto
-      |base64sha256|base64sha512|bcrypt|filebase64sha256|filebase64sha512|filemd5|filesha1|filesha256|filesha512|md5|rsadecrypt|sha1|sha256|sha512|uuid|uuidv5
-      # ip network
-      |cidrhost|cidrnetmask|cidrsubnet|cidrsubnets
-      # type conversion
-      |can|issensitive|nonsensitive|sensitive|tobool|tolist|tomap|tonumber|toset|tostring|try|type
-      # terraform-specific
-      |provider::terraform::(?:encode_tfvars|decode_tfvars|encode_expr)
-      # deprecated/old
-      |filemd1
-    )\b
+  builtin_functions: |-
+    (?x:
+    # numbers
+      abs | ceil | floor | log | max | min | parseint | pow | signum
+    # string
+    | chomp | endswith | format | formatlist | indent | join | lower | regex
+    | regexall | replace | split | startswith | strcontains | strrev | substr
+    | templatestring | title | trim | trimprefix | trimsuffix | trimspace | upper
+    # collection
+    | alltrue | anytrue | chunklist | coalesce | coalescelist | compact | concat
+    | contains | distinct | element | flatten | index | keys | length | list
+    | lookup | map | matchkeys | merge | one | range | reverse | setintersection
+    | setproduct | setsubtract | setunion | slice | sort | sum | transpose
+    | values | zipmap
+    # encoding
+    | base64decode | base64encode | base64gzip | csvdecode | jsondecode
+    | jsonencode | textdecodebase64 | textencodebase64 | urlencode | yamldecode
+    | yamlencode
+    # filesystem
+    | abspath | dirname | pathexpand | basename | file | fileexists | fileset
+    | filebase64 | templatefile
+    # date and time
+    | formatdate | plantimestamp | timeadd | timecmp | timestamp
+    # hash and crypto
+    | base64sha256 | base64sha512 | bcrypt | filebase64sha256
+    | filebase64sha512 | filemd5 | filesha1 | filesha256 | filesha512 | md5
+    | rsadecrypt | sha1 | sha256 | sha512 | uuid | uuidv5
+    # ip network
+    | cidrhost | cidrnetmask | cidrsubnet | cidrsubnets
+    # type conversion
+    | can | issensitive | nonsensitive | sensitive | tobool | tolist | tomap
+    | tonumber | toset | tostring | try | type
+    # terraform-specific
+    | provider::terraform::(?:encode_tfvars | decode_tfvars | encode_expr)
+    # deprecated/old
+    | filemd1
+    )
 
 contexts:
   main:
@@ -593,16 +599,32 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#functions-and-function-calls
   # https://www.terraform.io/docs/language/expressions/function-calls.html
   functions:
-    - match: (?:({{predeclared_funcs}})|\b({{identifier}})\b)(\()
-      comment: Built-in function calls
-      captures:
-        1: support.function.builtin.terraform
-        2: variable.function.terraform
-        3: punctuation.section.parens.begin.terraform
-      push: function-argument-list-body
+    - match: (?={{builtin_functions}}\()
+      push: builtin-function-name
+    - match: (?=(?:{{identifier}}::)*{{identifier}}\()
+      push: other-function-name
+
+  builtin-function-name:
+    - meta_content_scope: meta.function-call.identifier.terraform
+    - include: function-argument-list
+    - include: namespaces
+    - match: '{{identifier}}'
+      scope: support.function.builtin.terraform
+
+  other-function-name:
+    - meta_content_scope: meta.function-call.identifier.terraform
+    - include: function-argument-list
+    - include: namespaces
+    - match: '{{identifier}}'
+      scope: variable.function.terraform
+
+  function-argument-list:
+    - match: \(
+      scope: punctuation.section.parens.begin.terraform
+      set: function-argument-list-body
 
   function-argument-list-body:
-    - meta_scope: meta.function-call.terraform
+    - meta_scope: meta.function-call.arguments.terraform meta.parens.terraform
     - match: \)
       scope: punctuation.section.parens.end.terraform
       pop: 1
@@ -663,6 +685,12 @@ contexts:
     - include: expressions
     - include: comments
     - include: comma
+
+  namespaces:
+    - match: ({{identifier}})(::)
+      captures:
+        1: variable.namespace.terraform
+        2: punctuation.accessor.double-colon.terraform
 
   identifiers:
     - match: '{{identifier}}'
