@@ -3001,10 +3001,10 @@
 #                                           ^^ meta.block.terraform - meta.type
 #   ^^^^^^^^ keyword.declaration.terraform
 #            ^ punctuation.definition.begin.terraform
-#             ^^^^^^^^^^^^^^^^^^ support.type.aws
+#             ^^^^^^^^^^^^^^^^^^ support.type.terraform
 #                               ^ punctuation.definition.end.terraform
 #                                 ^ punctuation.definition.begin.terraform
-#                                  ^^^^^^^ entity.name.type.aws
+#                                  ^^^^^^^ entity.name.type.terraform
 #                                         ^ punctuation.definition.end.terraform
 #                                           ^ punctuation.section.block.begin.terraform
       name = "example"
