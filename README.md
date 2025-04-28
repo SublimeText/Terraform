@@ -10,9 +10,9 @@
 ### Using Package Control
 
 1. Install [Package Control][], if needed.
-2. Open the palette by pressing
-    <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (Win, Linux) or
-    <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (OS X).
+2. Open the palette by pressing:
+    - Windows, Linux: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+    - MacOS: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 3. Select _Package Control: Install Package_.
 4. Select _Terraform_.
 
