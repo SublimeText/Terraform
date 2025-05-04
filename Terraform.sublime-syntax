@@ -4,7 +4,8 @@
 # https://www.terraform.io/docs/language/index.html
 #
 # As well as the HCL Native Syntax Spec:
-# https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md
+# https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md
+# (previously https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md)
 #
 # For documentation on the .subline-syntax format:
 # https://www.sublimetext.com/docs/syntax.html
