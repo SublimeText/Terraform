@@ -77,14 +77,17 @@ variables:
   #
   # data: https://developer.hashicorp.com/terraform/language/data-sources
   # ephemeral: https://developer.hashicorp.com/terraform/language/resources/ephemeral
-  # locals: https://developer.hashicorp.com/terraform/language/values/locals
+  # resource: https://developer.hashicorp.com/terraform/language/resources/syntax
+  terraform_typed_and_named_blocks: (?:data|ephemeral|resource)
   # module: https://developer.hashicorp.com/terraform/language/modules/syntax
   # output: https://developer.hashicorp.com/terraform/language/values/outputs
   # provider: https://developer.hashicorp.com/terraform/language/providers/configuration
-  # resource: https://developer.hashicorp.com/terraform/language/resources/syntax
-  # terraform: https://developer.hashicorp.com/terraform/language/terraform#terraform-block-syntax
   # variable: https://developer.hashicorp.com/terraform/language/values/variables
-  terraform_known_blocks: (?:data|ephemeral|locals|module|output|provider|resource|terraform|variable)
+  terraform_named_blocks: (?:module|output|provider|variable)
+  # locals: https://developer.hashicorp.com/terraform/language/values/locals
+  # terraform: https://developer.hashicorp.com/terraform/language/terraform#terraform-block-syntax
+  # (Currently unused because they do not have special behavior implemented.)
+  terraform_other_blocks: (?:locals|terraform)
 
   # Terraform built-in type keywords
   #
@@ -690,38 +693,39 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   blocks:
-    - include: resource-blocks
-    - include: generic-known-blocks
+    - include: typed-and-named-blocks
+    - include: named-blocks
+    - include: generic-blocks
 
-  resource-blocks:
+  typed-and-named-blocks:
     # Special case for two-label resources,
     # where the first denotes the type and the second the name.
-    - match: (?=\bresource(\s+{{label}}){2}\s*\{)
+    - match: (?=\b{{terraform_typed_and_named_blocks}}(\s+{{label}}){2}\s*\{)
       push:
         - body
         - block-name-label
         - block-type-label
-        - resource-declaration
+        - block-declaration
 
-  generic-known-blocks:
-    - match: (?=\b({{terraform_known_blocks}}|{{identifier}})(\s+{{label}})*\s*\{)
+  named-blocks:
+    # Special case for two-label resources,
+    # where the first denotes the type and the second the name.
+    - match: (?=\b{{terraform_named_blocks}}\s+{{label}}\s*\{)
+      push:
+        - body
+        - block-name-label
+        - block-declaration
+
+  generic-blocks:
+    - match: (?=\b({{identifier}})(\s+{{label}})*\s*\{)
       push:
         - body
         - generic-block-labels
-        - generic-block-declaration
+        - block-declaration
 
-  resource-declaration:
-    - match: \bresource\b
-      scope: keyword.declaration.terraform
-      pop: 1
-    - include: else-pop
-
-  generic-block-declaration:
-    - match: \b{{terraform_known_blocks}}\b
-      scope: keyword.declaration.terraform
-      pop: 1
+  block-declaration:
     - match: \b{{identifier}}\b
-      scope: entity.name.type.terraform
+      scope: keyword.declaration.terraform
       pop: 1
     - include: else-pop
 
