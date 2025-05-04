@@ -548,7 +548,7 @@
 #      ^^ meta.interpolation.terraform punctuation.section.interpolation.begin.terraform
 #         ^^^ keyword.control.loop.for.terraform
 #      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.terraform
-#                  ^^ keyword.operator.iteration.in.terraform
+#                  ^^ keyword.control.loop.in.terraform
 #                     ^^^ meta.interpolation.terraform variable.language.terraform
 #                        ^ meta.interpolation.terraform punctuation.accessor.dot.terraform
 #                         ^^^^^ meta.interpolation.terraform variable.other.member.terraform

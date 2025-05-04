@@ -349,7 +349,7 @@ contexts:
     - match: \bendfor\b
       scope: keyword.control.loop.end.terraform
     - match: \bin\b
-      scope: keyword.operator.iteration.in.terraform
+      scope: keyword.control.loop.in.terraform
     - include: expressions
 
   # String Heredocs
