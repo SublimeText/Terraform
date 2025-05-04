@@ -254,31 +254,6 @@ contexts:
   # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   string-literals:
-    - match: (")(true)(")
-      scope: meta.string.terraform string.quoted.double.terraform
-      captures:
-        1: punctuation.definition.string.begin.terraform
-        2: constant.language.boolean.true.terraform
-        3: punctuation.definition.string.end.terraform
-    - match: (")(false)(")
-      scope: meta.string.terraform string.quoted.double.terraform
-      captures:
-        1: punctuation.definition.string.begin.terraform
-        2: constant.language.boolean.false.terraform
-        3: punctuation.definition.string.end.terraform
-    - match: (")(none|null)(")
-      scope: meta.string.terraform string.quoted.double.terraform
-      captures:
-        1: punctuation.definition.string.begin.terraform
-        2: constant.language.null.terraform
-        3: punctuation.definition.string.end.terraform
-    - match: (")(-?)(\d+)(")
-      scope: meta.string.terraform string.quoted.double.terraform
-      captures:
-        1: punctuation.definition.string.begin.terraform
-        2: keyword.operator.arithmetic.terraform
-        3: meta.number.integer.terraform constant.numeric.value.terraform
-        4: punctuation.definition.string.end.terraform
     - match: \"
       comment: Strings
       scope: punctuation.definition.string.begin.terraform
