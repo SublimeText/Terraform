@@ -127,7 +127,7 @@ contexts:
     - include: comments
     - include: attribute-definition
     - include: imports
-    - include: block
+    - include: blocks
     - include: expressions
 
   comments:
@@ -675,7 +675,7 @@ contexts:
   # Blocks: Identifier (StringLit|Identifier)* "{" Newline Body "}" Newline;
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
-  block:
+  blocks:
     # Special case heuristic for the AWS and friends two-term resources
     - match: (\b(resource)\s+((")({{identifier}})("))\s+((")({{identifier}})(")))\s*(\{)
       captures:
