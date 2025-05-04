@@ -2996,22 +2996,24 @@
 
     resource "aws_security_group" "example" {
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.terraform
-#                                          ^ - meta.type - meta.block meta.block
-#                                           ^^ meta.block.terraform - meta.type
 #   ^^^^^^^^ keyword.declaration.terraform
-#            ^ punctuation.definition.begin.terraform
+#            ^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#            ^ punctuation.definition.string.begin.terraform
 #             ^^^^^^^^^^^^^^^^^^ support.type.terraform
-#                               ^ punctuation.definition.end.terraform
-#                                 ^ punctuation.definition.begin.terraform
+#                               ^ punctuation.definition.string.end.terraform
+#                                 ^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#                                 ^ punctuation.definition.string.begin.terraform
 #                                  ^^^^^^^ entity.name.type.terraform
-#                                         ^ punctuation.definition.end.terraform
-#                                           ^ punctuation.section.block.begin.terraform
+#                                         ^ punctuation.definition.string.end.terraform
+#                                           ^ meta.block.terraform punctuation.section.block.begin.terraform
+
       name = "example"
-#    ^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#     ^^^^^^^^^^^^^^^^ meta.block.terraform
 #     ^^^^ variable.declaration.terraform variable.other.readwrite.terraform
 #          ^ keyword.operator.assignment.terraform
-#            ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
-#             ^^^^^^^^ string.quoted.double.terraform
+#            ^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#            ^ punctuation.definition.string.begin.terraform
+#                    ^ punctuation.definition.string.end.terraform
 
       dynamic "ingress" {
 #     ^^^^^^^^^^^^^^^^^ meta.block.terraform meta.type.terraform - meta.block meta.block
