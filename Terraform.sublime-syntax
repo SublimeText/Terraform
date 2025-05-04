@@ -57,10 +57,21 @@ variables:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   char_escapes: \\[nrt"\\]|\\u(\h{8}|\h{4})
 
+  # String literals (basically static and single-line strings)
+  # for usage in look-aheads.
+  #
+  # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#template-expressions
+  string_literal: '"(?:[^"]|{{char_escapes}})*"'
+
+  # A block label
+  #
+  # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#structural-elements
+  label: (?:{{identifier}}|{{string_literal}})
+
   # Terraform Named Values
   #
   # https://www.terraform.io/docs/language/expressions/references.html
-  named_values: var|local|module|data|path|terraform|each|count|self
+  named_values: (?:var|local|module|data|path|terraform|each|count|self)
 
   # Block types that are known to Terraform.
   #
@@ -73,13 +84,13 @@ variables:
   # resource: https://developer.hashicorp.com/terraform/language/resources/syntax
   # terraform: https://developer.hashicorp.com/terraform/language/terraform#terraform-block-syntax
   # variable: https://developer.hashicorp.com/terraform/language/values/variables
-  terraform_known_blocks: data|ephemeral|locals|module|output|provider|resource|terraform|variable
+  terraform_known_blocks: (?:data|ephemeral|locals|module|output|provider|resource|terraform|variable)
 
   # Terraform built-in type keywords
   #
   # https://www.terraform.io/docs/language/expressions/type-constraints.html#primitive-types
   # https://www.terraform.io/docs/language/expressions/type-constraints.html#dynamic-types-the-quot-any-quot-constraint
-  terraform_type_keywords: any|string|number|bool
+  terraform_type_keywords: (?:any|string|number|bool)
 
   # Built-In Functions
   #
@@ -180,12 +191,12 @@ contexts:
     - include: named-value-references
 
   named-value-references:
-    - match: \b(?:{{named_values}})\b
+    - match: \b{{named_values}}\b
       comment: Special variables available only to Terraform.
       scope: variable.language.terraform
 
   type-keywords:
-    - match: \b(?:{{terraform_type_keywords}})\b
+    - match: \b{{terraform_type_keywords}}\b
       comment: Type keywords known to Terraform.
       scope: storage.type.terraform
 
@@ -265,11 +276,14 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
+    - include: character-escapes
+    - include: string-interpolation
+    - include: aws-acl
+
+  character-escapes:
     - match: '{{char_escapes}}'
       comment: Character Escapes
       scope: constant.character.escape.terraform
-    - include: string-interpolation
-    - include: aws-acl
 
   aws-acl:
     - match: (?=\barn:aws:)
@@ -676,51 +690,101 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#structural-elements
   blocks:
-    # Special case heuristic for the AWS and friends two-term resources
-    - match: (\b(resource)\s+((")({{identifier}})("))\s+((")({{identifier}})(")))\s*(\{)
-      captures:
-        1: meta.type.terraform
-        2: keyword.declaration.terraform
-        3: meta.string.terraform string.quoted.double.terraform
-        4: punctuation.definition.string.begin.terraform
-        5: support.type.terraform
-        6: punctuation.definition.string.end.terraform
-        7: meta.string.terraform string.quoted.double.terraform
-        8: punctuation.definition.string.begin.terraform
-        9: entity.name.type.terraform
-        10: punctuation.definition.string.end.terraform
-        11: meta.block.terraform punctuation.section.block.begin.terraform
-      push: block-body
-    # Generic
-    - match: (?:\b({{terraform_known_blocks}})\b|({{identifier}}))(?=[-\s\w"]*\{)
-      scope: meta.type.terraform
-      captures:
-        1: keyword.declaration.terraform
-        2: entity.name.type.terraform
-      push: block-name
+    - include: resource-blocks
+    - include: generic-known-blocks
 
-  block-name:
-    - meta_content_scope: meta.type.terraform
+  resource-blocks:
+    # Special case for two-label resources,
+    # where the first denotes the type and the second the name.
+    - match: (?=\bresource(\s+{{label}}){2}\s*\{)
+      push:
+        - body
+        - block-name-label
+        - block-type-label
+        - resource-declaration
+
+  generic-known-blocks:
+    - match: (?=\b({{terraform_known_blocks}}|{{identifier}})(\s+{{label}})*\s*\{)
+      push:
+        - body
+        - generic-block-labels
+        - generic-block-declaration
+
+  resource-declaration:
+    - match: \bresource\b
+      scope: keyword.declaration.terraform
+      pop: 1
+    - include: else-pop
+
+  generic-block-declaration:
+    - match: \b{{terraform_known_blocks}}\b
+      scope: keyword.declaration.terraform
+      pop: 1
+    - match: \b{{identifier}}\b
+      scope: entity.name.type.terraform
+      pop: 1
+    - include: else-pop
+
+  block-type-label:
     - match: \"
       scope: punctuation.definition.string.begin.terraform
-      push: block-name-body
+      set: block-type-label-body
     - match: '{{identifier}}'
-      scope: entity.name.label.terraform
-    - match: \s*(\{)
-      captures:
-        1: meta.block.terraform punctuation.section.block.begin.terraform
-      set: block-body
+      scope: support.type.terraform
+      pop: 1
+    - include: else-pop
 
-  block-name-body:
-    - meta_scope: meta.string.terraform string.quoted.double.terraform
+  block-type-label-body:
+    - meta_scope: meta.string.terraform support.type.terraform
+    - include: character-escapes
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
 
-  block-body:
+  block-name-label:
+    - match: \"
+      scope: punctuation.definition.string.begin.terraform
+      set: block-name-label-body
+    - match: '{{identifier}}'
+      scope: entity.name.label.terraform
+      pop: 1
+    - include: else-pop
+
+  block-name-label-body:
+    - meta_scope: meta.string.terraform entity.name.label.terraform
+    - include: character-escapes
+    - match: \"
+      scope: punctuation.definition.string.end.terraform
+      pop: 1
+
+  generic-block-labels:
+    # Labels probably have a meaning, but we don't know which,
+    # so we just scope them as (un-)quoted strings.
+    - match: \"
+      scope: punctuation.definition.string.begin.terraform
+      push: generic-block-label-body
+    - match: '{{identifier}}'
+      scope: string.unquoted.double.terraform
+    - include: else-pop
+
+  generic-block-label-body:
+    - meta_scope: meta.string.terraform string.quoted.double.terraform
+    - include: character-escapes
+    - match: \"
+      scope: punctuation.definition.string.end.terraform
+      pop: 1
+
+  body:
     - meta_content_scope: meta.block.terraform
+    - match: \{
+      scope: punctuation.section.block.begin.terraform
+      set: body-body
+    - include: else-pop
+
+  body-body:
+    - meta_scope: meta.block.body.terraform
     - match: \}
-      scope: meta.block.terraform punctuation.section.block.end.terraform
+      scope: punctuation.section.block.end.terraform
       pop: 1
     - include: main
 
