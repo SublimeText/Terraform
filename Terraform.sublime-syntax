@@ -141,6 +141,29 @@ variables:
     | filemd1
     )
 
+  # IPs and CIDR
+  ## IPv6 pattern stolen lovingly from https://github.com/tijn/hosts.tmLanguage,
+  ## where Michael Lyons adapted them from David M. Szydek https://stackoverflow.com/a/17871737.
+  zero_to_32: (?:3[0-2]|[12][0-9]|[0-9])
+  zero_to_128: (?:12[0-8]|1[01][0-9]|[1-9][0-9]|[0-9])
+  zero_to_255: (?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9][0-9])|(?:[1-9][0-9])|[0-9])
+  ipv4: (?:(?:{{zero_to_255}}\.){3}{{zero_to_255}})
+  ipv6: |-
+    (?xi:
+      (?:::(?:ffff(?::0{1,4}){0,1}:){0,1}{{ipv4}})          # ::255.255.255.255  ::ffff:255.255.255.255  ::ffff:0:255.255.255.255 (IPv4-mapped IPv6 addresses and IPv4-translated addresses)
+      |(?:(?:[0-9a-f]{1,4}:){1,4}:{{ipv4}})                 # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33                       (IPv4-Embedded IPv6 Address)
+      |(?:fe80:(?::[0-9a-f]{1,4}){0,4}%[0-9a-z]{1,})        # fe80::7:8%eth0     fe80::7:8%1                                      (link-local IPv6 addresses with zone index)
+      |(?:(?:[0-9a-f]{1,4}:){7,7}    [0-9a-f]{1,4})         # 1:2:3:4:5:6:7:8
+      |   (?:[0-9a-f]{1,4}:      (?::[0-9a-f]{1,4}){1,6})   # 1::3:4:5:6:7:8     1::3:4:5:6:7:8   1::8
+      |(?:(?:[0-9a-f]{1,4}:){1,2}(?::[0-9a-f]{1,4}){1,5})   # 1::4:5:6:7:8       1:2::4:5:6:7:8   1:2::8
+      |(?:(?:[0-9a-f]{1,4}:){1,3}(?::[0-9a-f]{1,4}){1,4})   # 1::5:6:7:8         1:2:3::5:6:7:8   1:2:3::8
+      |(?:(?:[0-9a-f]{1,4}:){1,4}(?::[0-9a-f]{1,4}){1,3})   # 1::6:7:8           1:2:3:4::6:7:8   1:2:3:4::8
+      |(?:(?:[0-9a-f]{1,4}:){1,5}(?::[0-9a-f]{1,4}){1,2})   # 1::7:8             1:2:3:4:5::7:8   1:2:3:4:5::8
+      |(?:(?:[0-9a-f]{1,4}:){1,6}   :[0-9a-f]{1,4})         # 1::8               1:2:3:4:5:6::8   1:2:3:4:5:6::8
+      |(?:(?:[0-9a-f]{1,4}:){1,7}   :)                      # 1::                                 1:2:3:4:5:6:7::
+      |(?::(?:(?::[0-9a-f]{1,4}){1,7}|:))                   # ::2:3:4:5:6:7:8    ::2:3:4:5:6:7:8  ::8       ::
+    )
+
 contexts:
   main:
     - include: comments
@@ -291,6 +314,8 @@ contexts:
     - include: character-escapes
     - include: string-interpolation
     - include: aws-acl
+    - include: ip-addresses-with-cidr-at-start
+    - include: ipv6-square-bracket-at-start
 
   character-escapes:
     - match: '{{char_escapes}}'
@@ -325,6 +350,43 @@ contexts:
     - meta_scope: meta.interpolation.terraform
     - meta_content_scope: source.terraform
     - include: string-interpolation-body
+
+  ipv4-at-start:
+    - match: \G{{ipv4}}\b
+      scope: meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+
+  ipv6-at-start:
+    - match: \G{{ipv6}}
+      scope: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+
+  ipv6-square-bracket-at-start:
+    - match: \G(\[){{ipv6}}(\])
+      scope: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+      captures:
+        1: punctuation.definition.constant.begin.terraform
+        2: punctuation.definition.constant.end.terraform
+
+  ip-addresses-at-start:
+    - include: ipv6-at-start
+    - include: ipv4-at-start
+
+  ipv4-with-cidr-at-start:
+    - match: \G({{ipv4}})(?:(/)({{zero_to_32}}))?\b
+      captures:
+        1: meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+        2: punctuation.separator.sequence.terraform
+        3: constant.other.range.terraform
+
+  ipv6-with-cidr-at-start:
+    - match: \G({{ipv6}})(?:(/)({{zero_to_128}})\b)?
+      captures:
+        1: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+        2: punctuation.separator.sequence.terraform
+        3: constant.other.range.terraform
+
+  ip-addresses-with-cidr-at-start:
+    - include: ipv6-with-cidr-at-start
+    - include: ipv4-with-cidr-at-start
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
