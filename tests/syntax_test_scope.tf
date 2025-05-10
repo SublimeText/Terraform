@@ -2957,7 +2957,7 @@
 ////
 
     thing  {}
-#   ^^^^^^^ meta.block.terraform
+#   ^^^^^^^ meta.block.head.terraform
 #   ^^^^^ keyword.declaration.terraform
 #          ^^ meta.block.body.terraform
 #          ^ punctuation.section.block.begin.terraform
@@ -2968,7 +2968,7 @@
 /////
 
     thing "label1"   "label2\"" {}
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^ keyword.declaration.terraform
 #         ^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #         ^ punctuation.definition.string.begin.terraform
@@ -2986,7 +2986,7 @@
 /////
 
     thing thing1 thing2 thing3 {}
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^ keyword.declaration.terraform
 #         ^^^^^^ string.unquoted.double.terraform
 #                ^^^^^^ string.unquoted.double.terraform
@@ -3000,7 +3000,7 @@
 /////
 
     resource "aws_security_group" "example" {
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^^^ keyword.declaration.terraform
 #            ^^^^^^^^^^^^^^^^^^^^ meta.string.terraform support.type.terraform
 #            ^ punctuation.definition.string.begin.terraform
@@ -3019,7 +3019,8 @@
 #                    ^ punctuation.definition.string.end.terraform
 
       dynamic "ingress" {
-#     ^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.block.terraform - meta.block meta.block meta.block
+#^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform - meta.block meta.block meta.block
+#     ^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.block.head.terraform
 #     ^^^^^^^ keyword.declaration.terraform
 #             ^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #             ^ punctuation.definition.string.begin.terraform
@@ -3033,7 +3034,7 @@
 #                     ^ punctuation.accessor.dot.terraform
 #                      ^^^^^^^^^^^^^ variable.other.member.terraform
         content {
-#       ^^^^^^^ meta.block.body.terraform meta.block.body.terraform meta.block.terraform
+#       ^^^^^^^ meta.block.body.terraform meta.block.body.terraform meta.block.head.terraform
 #              ^ meta.block.body.terraform meta.block.body.terraform - meta.type
 #               ^^ meta.block.body.terraform meta.block.body.terraform meta.block.body.terraform - meta.type
 #       ^^^^^^^ keyword.declaration.terraform
@@ -3068,7 +3069,7 @@
 /////
 
     thing label1 {
-#   ^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^ keyword.declaration.terraform
 #         ^^^^^^ string.unquoted.double.terraform
 #                ^ meta.block.body.terraform punctuation.section.block.begin.terraform
@@ -3163,7 +3164,7 @@
 /////////////////////////////////////////////////////////////////////
 
     resource "type" "name" {}
-#   ^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^^^ keyword.declaration.terraform
 #            ^^^^^^ meta.string.terraform support.type.terraform
 #            ^ punctuation.definition.string.begin.terraform
@@ -3176,7 +3177,7 @@
 #                           ^ punctuation.section.block.end.terraform
 
     ephemeral "type" "name" {}
-#   ^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^^^^ keyword.declaration.terraform
 #             ^^^^^^ meta.string.terraform support.type.terraform
 #             ^ punctuation.definition.string.begin.terraform
@@ -3189,7 +3190,7 @@
 #                            ^ punctuation.section.block.end.terraform
 
     data "type" name {}
-#   ^^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^ keyword.declaration.terraform
 #        ^^^^^^ meta.string.terraform support.type.terraform
 #        ^ punctuation.definition.string.begin.terraform
@@ -3200,7 +3201,7 @@
 #                     ^ punctuation.section.block.end.terraform
 
     provider "name" {}
-#   ^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^^^ keyword.declaration.terraform
 #            ^^^^^^ meta.string.terraform entity.name.label.terraform
 #            ^ punctuation.definition.string.begin.terraform
@@ -3210,7 +3211,7 @@
 #                    ^ punctuation.section.block.end.terraform
 
     module name {}
-#   ^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^ keyword.declaration.terraform
 #          ^^^^ entity.name.label.terraform
 #               ^^ meta.block.body.terraform
@@ -3218,7 +3219,7 @@
 #                ^ punctuation.section.block.end.terraform
 
     variable "name" {}
-#   ^^^^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^^^ keyword.declaration.terraform
 #            ^^^^^^ meta.string.terraform entity.name.label.terraform
 #            ^ punctuation.definition.string.begin.terraform
@@ -3228,7 +3229,7 @@
 #                    ^ punctuation.section.block.end.terraform
 
     output "name"{}
-#   ^^^^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^ keyword.declaration.terraform
 #          ^^^^^^ meta.string.terraform entity.name.label.terraform
 #          ^ punctuation.definition.string.begin.terraform
@@ -3238,14 +3239,14 @@
 #                 ^ punctuation.section.block.end.terraform
 
     locals {}
-#   ^^^^^^^ meta.block.terraform
+#   ^^^^^^^ meta.block.head.terraform
 #   ^^^^^^ keyword.declaration.terraform
 #          ^^ meta.block.body.terraform
 #          ^ punctuation.section.block.begin.terraform
 #           ^ punctuation.section.block.end.terraform
 
     terraform {}
-#   ^^^^^^^^^^ meta.block.terraform
+#   ^^^^^^^^^^ meta.block.head.terraform
 #   ^^^^^^^^^ keyword.declaration.terraform
 #             ^^ meta.block.body.terraform
 #             ^ punctuation.section.block.begin.terraform

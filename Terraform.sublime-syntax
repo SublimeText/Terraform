@@ -779,7 +779,7 @@ contexts:
     - include: character-escapes
 
   body:
-    - meta_content_scope: meta.block.terraform
+    - meta_content_scope: meta.block.head.terraform
     - match: \{
       scope: punctuation.section.block.begin.terraform
       set: body-body
