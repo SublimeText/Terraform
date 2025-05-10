@@ -279,6 +279,9 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
+    - match: \n
+      scope: invalid.illegal.unclosed-string.terraform
+      pop: 1
     - include: character-escapes
     - include: string-interpolation
     - include: aws-acl

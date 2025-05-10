@@ -256,6 +256,14 @@
 #                                     ^^^^^^^^^^ constant.character.escape.terraform
 #                                               ^ punctuation.definition.string.end.terraform
 
+/////
+// Unclosed strings
+/////
+
+  "
+# ^ meta.string.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#  ^ invalid.illegal.unclosed-string.terraform
+
 /////////////////////////////////////////////////////////////////////
 // Identifiers
 /////////////////////////////////////////////////////////////////////
