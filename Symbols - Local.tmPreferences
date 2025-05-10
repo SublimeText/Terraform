@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
    <key>name</key>
-   <string>Symbol List</string>
+   <string>Local Symbol List</string>
    <key>scope</key>
    <string>
       meta.block.head.terraform
@@ -12,12 +12,10 @@
    <dict>
       <key>showInSymbolList</key>
       <integer>1</integer>
-      <key>showInIndexedSymbolList</key>
-      <integer>1</integer>
       <key>symbolTransformation</key>
       <string>
-        <!-- Removes trailing whitespace and opening bracket from symbol. -->
-        <![CDATA[/\s*{$//]]>
+         <!-- Removes trailing whitespace from symbol. -->
+         <![CDATA[/\s*$//]]>
       </string>
    </dict>
 </dict>
