@@ -739,7 +739,8 @@ contexts:
     - include: else-pop
 
   block-type-label-body:
-    - meta_scope: meta.string.terraform support.type.terraform
+    - meta_scope: meta.string.terraform
+    - meta_content_scope: support.type.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
@@ -755,7 +756,8 @@ contexts:
     - include: else-pop
 
   block-name-label-body:
-    - meta_scope: meta.string.terraform entity.name.label.terraform
+    - meta_scope: meta.string.terraform
+    - meta_content_scope: entity.name.label.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
