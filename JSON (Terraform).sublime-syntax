@@ -15,3 +15,7 @@ contexts:
     - meta_prepend: true
     - include: Packages/Terraform/Terraform.sublime-syntax#string-interpolation
     - include: Packages/Terraform/Terraform.sublime-syntax#aws-acl
+
+  line-comments:
+    - meta_append: true
+    - include: Packages/Terraform/Terraform.sublime-syntax#inline-comments

@@ -3394,6 +3394,8 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                 ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #                 ^ punctuation.definition.string.begin.terraform
 #                            ^ punctuation.definition.string.end.terraform
+        # comment
+#       ^^^^^^^^^^ comment.line.terraform
         "Statement": [
 #^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform
 #^^^^^^^ meta.braces.terraform
@@ -3403,6 +3405,8 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                  ^^ meta.braces.terraform
 #                  ^ punctuation.separator.key-value.json
 #                    ^ meta.mapping.value.json meta.sequence.json punctuation.section.sequence.begin.json
+            # comment
+#           ^^^^^^^^^^ comment.line.terraform
             {
                 "Action": [
                     "lambda:InvokeFunction",
