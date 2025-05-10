@@ -724,7 +724,7 @@ contexts:
         - block-declaration
 
   block-declaration:
-    - match: \b{{identifier}}\b
+    - match: '{{identifier}}'
       scope: keyword.declaration.terraform
       pop: 1
     - include: else-pop
@@ -740,10 +740,10 @@ contexts:
 
   block-type-label-body:
     - meta_scope: meta.string.terraform support.type.terraform
-    - include: character-escapes
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
+    - include: character-escapes
 
   block-name-label:
     - match: \"
@@ -756,10 +756,10 @@ contexts:
 
   block-name-label-body:
     - meta_scope: meta.string.terraform entity.name.label.terraform
-    - include: character-escapes
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
+    - include: character-escapes
 
   generic-block-labels:
     # Labels probably have a meaning, but we don't know which,
@@ -773,10 +773,10 @@ contexts:
 
   generic-block-label-body:
     - meta_scope: meta.string.terraform string.quoted.double.terraform
-    - include: character-escapes
     - match: \"
       scope: punctuation.definition.string.end.terraform
       pop: 1
+    - include: character-escapes
 
   body:
     - meta_content_scope: meta.block.terraform
