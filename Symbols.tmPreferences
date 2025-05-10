@@ -6,7 +6,7 @@
    <string>Symbol List</string>
    <key>scope</key>
    <string>
-      meta.type.terraform
+      meta.block.head.terraform
    </string>
    <key>settings</key>
    <dict>
