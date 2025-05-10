@@ -160,6 +160,7 @@ contexts:
     - include: functions
     - include: parens
     - include: identifiers
+    - include: illegal-strays
 
   comma:
     - match: \,
@@ -517,7 +518,6 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
   object-value:
     - include: comments
-    - include: expressions
     - match: \,
       comment: Pop scope on comma.
       scope: punctuation.separator.terraform
@@ -529,6 +529,7 @@ contexts:
       comment: Lookahead (don't consume) and pop scope on a bracket.
       scope: punctuation.section.braces.end.terraform
       pop: 1
+    - include: expressions
 
   # Attribute Access: "." Identifier
   #
@@ -691,6 +692,10 @@ contexts:
   identifiers:
     - match: '{{identifier}}'
       scope: variable.other.readwrite.terraform
+
+  illegal-strays:
+    - match: '[\])}]'
+      scope: invalid.illegal.stray.python
 
   # Blocks: Identifier (StringLit|Identifier)* "{" Newline Body "}" Newline;
   #
