@@ -3441,10 +3441,10 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 }
 
 ]
-# <- invalid.illegal.stray.python
+# <- invalid.illegal.stray.terraform
 
 }
-# <- invalid.illegal.stray.python
+# <- invalid.illegal.stray.terraform
 
 )
-# <- invalid.illegal.stray.python
+# <- invalid.illegal.stray.terraform
