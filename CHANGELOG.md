@@ -4,41 +4,92 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## v2.0.0 - 2025-05-11
+
+The package has been adopted by the SublimeText GitHub org and now lives at
+<https://github.com/SublimeText/Terraform/> for the community to maintain.
+This is accompanied by many changes
+to bring the syntax definition up to current standards.
 
 ### Added
 
-- Declare hyphens as sub-word separators.
-- Special highlighting for `for_each` and `count` meta arguments.
-- Highlighting of more special language variables: `each`, `count` and `self`.
+- Declare hyphens as sub-word separators. (@FichteFoll, #60)
+- Special highlighting for `for_each` and `count` meta arguments (`keyword.control`). (@FichteFoll, #59)
+- Highlighting of more special language variables: `each`, `count` and `self`. (@FichteFoll, #58)
+- Highlighting for `ephemeral` blocks. (@TerminalFi, #70)
+- A separate syntax definition for `terraform plan` output (@michaelblyons, #51, #68)
+- Special highlighting for AWS ACL resource references in strings. (@michaelblyons, @deathaxe, #69, #76)
+- Support JSON-style objects. (@michaelblyons, #54, #71)
+- Scope-based folding rules. (@deathaxe, #81)
+- Consistent indentation rules. (@deathaxe, #82)
+- Highlight unclosed strings and stray closing brackets as illegal. (@FichteFoll, #91)
 
 ### Changed
 
-- Switch to Syntax version 2. This breaks compatibility with ST builds before 4000!
-- Adapt and improve many scope names to standards that have been established
-  over the past years for the default packages,
-  including:
-  * String interpolation meta scopes and punctuation
-  * Keywords (declarations and `in` inside a `for` expression)
-  * Attribute access punctuation
-  * Punctuation scopes in `for` expressions
-- Updated the built-in function list for highlighting.
+- Switched to syntax version 2.
+  This breaks compatibility with ST builds before 4000,
+  but the previous version can still be installed on older builds.
+  (@FichteFoll, #62)
+- Adapted and improved many scope names to standards that have been established
+  over the past years for the default packages:
+  * String interpolation meta scopes and punctuation (@FichteFoll, #58)
+  * Keywords (@FichteFoll, @deathaxe, #58, #78, #86)
+  * Attribute access punctuation (@FichteFoll, #58)
+  * Punctuation scopes in `for` expressions (@FichteFoll, #58)
+  * Blocks, including indexing for "name" labels
+    (@michaelblyons, @FichteFoll, #69, #87)
+  * Operators (@michaelblyons, #66)
+  * Numbers (@deathaxe, #77)
+  * Brackets (@deathaxe, #80)
+  * Function calls (@deathaxe, #83)
+- Updated the built-in function list for highlighting. (@FichteFoll, #59)
+- Renamed many contexts and resolved various anonymous contexts
+  for better extensibility. (@deathaxe, #75, #79)
 
 ### Removed
 
-- Various files targetting older ST versions,
+- Removed various files targeting older ST versions,
   notably the old `.tmLanguage` syntax definition.
+  This breaks compatibility with ST 2,
+  but the previous version can still be installed on older builds.
+  (@FichteFoll, #63)
 
 ### Fixed
 
-- Improved matching of identifiers by adding a scope and properly recognizing hyphens.
-- Support identifiers starting with an underscore character (#43).
+- Improved matching of identifiers by adding a scope and properly recognizing hyphens. (@FichteFoll, #60)
+- Support identifiers starting with an underscore character (@FichteFoll, #43, #64).
 
 ---
 
+## v1.3.1 - 2024-02-03
+
+### Added
+
+- `.nomad` files are also recognized by the Terraform syntax. (@Quenty, #55)
+
+## v1.3.0 - 2024-01-18
+
+### Changed
+
+- Separate HCL syntax into its own file and report it as `source.hcl` (rather than `source.terraform`). (@rchl, #56)
+- Update links to official docs on terraform.io. (@totoroot, #53)
+
+## v1.2.0 - 2021-06-21
+
+### Changed
+
+- Split the tfvars handling into a separate syntax file. (@rchl, #49) <br>
+  This improves interoperability with terraform-ls, e.g. via LSP.
+
+## v1.1.0 - 2021-05-17
+
+### Fixed
+
+- Removed quotes around variable types in snippets. (@notnmeyer, #42)
+
 ## v1.0.0 - 2020-01-20
 
-A huge thanks to @patrickrgaffney for this amazing contribution. [#39](https://github.com/alexlouden/Terraform.tmLanguage/pull/39)
+A huge thanks to @patrickrgaffney for this amazing contribution. (#39)
 
 ### Added
 
@@ -267,11 +318,11 @@ Initial release.
 [indices]: https://www.terraform.io/docs/configuration/expressions.html#indices-and-attributes
 [named-values]: https://www.terraform.io/docs/configuration/expressions.html#references-to-named-values
 [old-splat]: https://www.terraform.io/docs/configuration/expressions.html#legacy-attribute-only-splat-expressions
-[scopes]: https://www.sublimetext.com/docs/3/scope_naming.html
+[scopes]: https://www.sublimetext.com/docs/scope_naming.html
 [splat]: https://www.terraform.io/docs/configuration/expressions.html#splat-expressions
 [string-templates]: https://www.terraform.io/docs/configuration/expressions.html#string-literals
 [strings]: https://www.terraform.io/docs/configuration/expressions.html#string-literals
-[subl-format]: https://www.sublimetext.com/docs/3/syntax.html
-[tests]: https://www.sublimetext.com/docs/3/syntax.html#testing
+[subl-format]: https://www.sublimetext.com/docs/syntax.html
+[tests]: https://www.sublimetext.com/docs/syntax.html#testing
 [types]: https://www.terraform.io/docs/configuration/types.html
 [uom-suffixes]: https://github.com/hashicorp/terraform/issues/3287#issuecomment-241560576
