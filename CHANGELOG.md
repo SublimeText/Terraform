@@ -19,7 +19,7 @@ to bring the syntax definition up to current standards.
 - Highlighting for `ephemeral` blocks. (@TerminalFi, #70)
 - A separate syntax definition for `terraform plan` output (@michaelblyons, #51, #68)
 - Special highlighting for AWS ACL resource references in strings. (@michaelblyons, @deathaxe, #69, #76)
-- Support JSON-style objects. (@michaelblyons, #54, #71)
+- Support JSON-style objects (requires ST 4180). (@michaelblyons, #54, #71)
 - Scope-based folding rules. (@deathaxe, #81)
 - Consistent indentation rules. (@deathaxe, #82)
 - Highlight unclosed strings and stray closing brackets as illegal. (@FichteFoll, #91)
