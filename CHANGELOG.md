@@ -22,7 +22,7 @@ to bring the syntax definition up to current standards.
 - Support JSON-style objects. (@michaelblyons, #54, #71)
 - Scope-based folding rules. (@deathaxe, #81)
 - Consistent indentation rules. (@deathaxe, #82)
-- Highlight unclosed strings and stray closing brackets as illegel. (@FichteFoll, #91)
+- Highlight unclosed strings and stray closing brackets as illegal. (@FichteFoll, #91)
 
 ### Changed
 
@@ -48,7 +48,7 @@ to bring the syntax definition up to current standards.
 
 ### Removed
 
-- Removed various files targetting older ST versions,
+- Removed various files targeting older ST versions,
   notably the old `.tmLanguage` syntax definition.
   This breaks compatibility with ST 2,
   but the previous version can still be installed on older builds.
