@@ -695,7 +695,7 @@ contexts:
 
   illegal-strays:
     - match: '[\])}]'
-      scope: invalid.illegal.stray.python
+      scope: invalid.illegal.stray.terraform
 
   # Blocks: Identifier (StringLit|Identifier)* "{" Newline Body "}" Newline;
   #
