@@ -4,32 +4,47 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## v2.0.0 - 2025-05-11
 
 The package has been adopted by the SublimeText GitHub org and now lives at
 <https://github.com/SublimeText/Terraform/> for the community to maintain.
-
-All following changes are courtesy of @FichteFoll. (#58 - #64)
+This is accompanied by many changes
+to bring the syntax definition up to current standards.
 
 ### Added
 
-- Declare hyphens as sub-word separators.
-- Special highlighting for `for_each` and `count` meta arguments (`keyword.control`).
-- Highlighting of more special language variables: `each`, `count` and `self`.
+- Declare hyphens as sub-word separators. (@FichteFoll, #60)
+- Special highlighting for `for_each` and `count` meta arguments (`keyword.control`). (@FichteFoll, #59)
+- Highlighting of more special language variables: `each`, `count` and `self`. (@FichteFoll, #58)
+- Highlighting for `ephemeral` blocks. (@TerminalFi, #70)
+- A separate syntax definition for `terraform plan` output (@michaelblyons, #51, #68)
+- Special highlighting for AWS ACL resource references in strings. (@michaelblyons, @deathaxe, #69, #76)
+- Support JSON-style objects. (@michaelblyons, #54, #71)
+- Scope-based folding rules. (@deathaxe, #81)
+- Consistent indentation rules. (@deathaxe, #82)
+- Highlight unclosed strings and stray closing brackets as illegel. (@FichteFoll, #91)
 
 ### Changed
 
 - Switched to syntax version 2.
   This breaks compatibility with ST builds before 4000,
   but the previous version can still be installed on older builds.
+  (@FichteFoll, #62)
 - Adapted and improved many scope names to standards that have been established
-  over the past years for the default packages,
-  including:
-  * String interpolation meta scopes and punctuation
-  * Keywords (declarations and `in` inside a `for` expression)
-  * Attribute access punctuation
-  * Punctuation scopes in `for` expressions
-- Updated the built-in function list for highlighting.
+  over the past years for the default packages:
+  * String interpolation meta scopes and punctuation (@FichteFoll, #58)
+  * Keywords (@FichteFoll, @deathaxe, #58, #78, #86)
+  * Attribute access punctuation (@FichteFoll, #58)
+  * Punctuation scopes in `for` expressions (@FichteFoll, #58)
+  * Blocks, including indexing for "name" labels
+    (@michaelblyons, @FichteFoll, #69, #87)
+  * Operators (@michaelblyons, #66)
+  * Numbers (@deathaxe, #77)
+  * Brackets (@deathaxe, #80)
+  * Function calls (@deathaxe, #83)
+- Updated the built-in function list for highlighting. (@FichteFoll, #59)
+- Renamed many contexts and resolved various anonymous contexts
+  for better extensibility. (@deathaxe, #75, #79)
 
 ### Removed
 
@@ -37,11 +52,12 @@ All following changes are courtesy of @FichteFoll. (#58 - #64)
   notably the old `.tmLanguage` syntax definition.
   This breaks compatibility with ST 2,
   but the previous version can still be installed on older builds.
+  (@FichteFoll, #63)
 
 ### Fixed
 
-- Improved matching of identifiers by adding a scope and properly recognizing hyphens.
-- Support identifiers starting with an underscore character (#43, #64).
+- Improved matching of identifiers by adding a scope and properly recognizing hyphens. (@FichteFoll, #60)
+- Support identifiers starting with an underscore character (@FichteFoll, #43, #64).
 
 ---
 
