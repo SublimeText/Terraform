@@ -63,6 +63,11 @@ variables:
   # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#template-expressions
   string_literal: '"(?:[^"]|{{char_escapes}})*"'
 
+  # Template literals
+  #
+  # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#template-literals
+  template_literal: '([$]{2}|[%]{2})\{'
+
   # A block label
   #
   # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#structural-elements
@@ -292,6 +297,11 @@ contexts:
       comment: Character Escapes
       scope: constant.character.escape.terraform
 
+  template-literals:
+    - match: '{{template_literal}}'
+      comment: Template Literal
+      scope: constant.character.escape.terraform
+
   aws-acl:
     - match: (?=\barn:aws:)
       push: aws-acl-body
@@ -320,6 +330,7 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#templates
   string-interpolation:
+    - include: template-literals
     - match: ([$%]\{)(~)?
       captures:
         1: punctuation.section.interpolation.begin.terraform
