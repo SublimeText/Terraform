@@ -66,7 +66,7 @@ variables:
   # Template literals
   #
   # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#template-literals
-  template_literal: '([$]{2}|[%]{2})\{'
+  template_literal: '(?:\$\$|%%)\{'
 
   # A block label
   #
