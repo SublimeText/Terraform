@@ -572,6 +572,30 @@
 #                                                     ^ - string - punctuation
 
 /////////////////////////////////////////////////////////////////////
+// TEMPLATE LITERALS
+/////////////////////////////////////////////////////////////////////
+
+/////
+// Template literal using `$` character
+/////
+
+      "some $${interpolation} string"
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#           ^^^ constant.character.escape.terraform
+#                                   ^ punctuation.definition.string.end.terraform
+
+/////
+// Template literal using `%` character
+/////
+
+      "some %%{interpolation} string"
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#           ^^^ constant.character.escape.terraform
+#                                   ^ punctuation.definition.string.end.terraform
+
+/////////////////////////////////////////////////////////////////////
 // Operators
 /////////////////////////////////////////////////////////////////////
 
