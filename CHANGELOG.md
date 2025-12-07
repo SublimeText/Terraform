@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.0.1 - 2025-12-07
+
+- Fix indexed symbol scope selector leaking into other languages. (@FichteFoll, #99)
+- Add support for template literal escape sequence. (@yagizmunger, #97, #98)
+
+---
+
 ## v2.0.0 - 2025-05-11
 
 The package has been adopted by the SublimeText GitHub org and now lives at
