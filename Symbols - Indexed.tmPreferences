@@ -6,7 +6,7 @@
    <string>Local Symbol List</string>
    <key>scope</key>
    <string>
-      entity.name.label
+      entity.name.label.terraform
    </string>
    <key>settings</key>
    <dict>
