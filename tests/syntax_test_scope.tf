@@ -3551,6 +3551,20 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                                                                         ^ punctuation.section.interpolation.end.terraform
 #                                                                              ^ string.quoted.double.json  punctuation.definition.string.end.json - variable
 #                                                                               ^ punctuation.separator.sequence.json
+
+                "IP": "1.2.3.4",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.parens.terraform meta.mapping.value.json meta.sequence.json
+#^^^^^^^^^^^^^^^ meta.mapping.json
+#               ^^^^ meta.mapping.key.json string.quoted.double.json
+#               ^ punctuation.definition.string.begin.json
+#                  ^ punctuation.definition.string.end.json
+#                   ^^ meta.mapping.json
+#                   ^ punctuation.separator.key-value.json
+#                     ^^^^^^^^^ meta.mapping.value.json meta.string.terraform string.quoted.double.terraform
+#                     ^ punctuation.definition.string.begin.terraform
+#                      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+#                             ^ punctuation.definition.string.end.terraform
+#                              ^ meta.mapping.json punctuation.separator.sequence.json
                 "Effect": "Allow"
             }
         ]
