@@ -271,15 +271,22 @@
 #     ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #     ^ punctuation.definition.string.begin.terraform
 #      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
-#             ^ punctuation.separator.sequence.terraform
+#             ^ punctuation.separator.terraform
 #              ^^ constant.other.range.terraform
 #                ^ punctuation.definition.string.end.terraform
+
+      "1.2.3.4:8080"
+#     ^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+#             ^ punctuation.separator.terraform
+#              ^^^^ constant.other.port.terraform
+#                  ^ punctuation.definition.string.end.terraform
 
       "1.2.3.4/33"
 #     ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #     ^ punctuation.definition.string.begin.terraform
-#      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
-#             ^^^ - constant - punctuation
+#      ^^^^^^^^^^ - constant - punctuation
 #                ^ punctuation.definition.string.end.terraform
 
       "256.2.3.4"
@@ -297,20 +304,50 @@
 #      ^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
 #                     ^ punctuation.definition.string.end.terraform
 
+      "1:2:3:4:5:6:7:8:8080"
+#     ^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^^ - constant - punctuation
+#                          ^ punctuation.definition.string.end.terraform
+
       "1:2:3:4:5:6:7:8/128"
 #     ^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #     ^ punctuation.definition.string.begin.terraform
 #      ^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
-#                     ^ punctuation.separator.sequence.terraform
+#                     ^ punctuation.separator.terraform
 #                      ^^^ constant.other.range.terraform
 #                         ^ punctuation.definition.string.end.terraform
 
       "1:2:3:4:5:6:7:8/129"
 #     ^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #     ^ punctuation.definition.string.begin.terraform
-#      ^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
-#                     ^^^^ - constant - punctuation
+#      ^^^^^^^^^^^^^^^^^^^ - constant - punctuation
 #                         ^ punctuation.definition.string.end.terraform
+
+      "[1:2:3:4:5:6:7:8]/128"
+#     ^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+#      ^ punctuation.definition.constant.begin.terraform
+#                      ^ punctuation.definition.constant.end.terraform
+#                       ^ punctuation.separator.terraform
+#                        ^^^ constant.other.range.terraform
+#                           ^ punctuation.definition.string.end.terraform
+
+      "[1:2:3:4:5:6:7:8]:8080"
+#     ^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+#      ^ punctuation.definition.constant.begin.terraform
+#                      ^ punctuation.definition.constant.end.terraform
+#                       ^ punctuation.separator.terraform
+#                        ^^^^ constant.other.port.terraform
+#                            ^ punctuation.definition.string.end.terraform
+
+      "[1:2:3:4:5:6:7:8]/129"
+#     ^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^^^ - constant - punctuation
 
 /////
 // Unclosed strings

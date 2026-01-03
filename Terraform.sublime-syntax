@@ -147,6 +147,7 @@ variables:
   zero_to_32: (?:3[0-2]|[12][0-9]|[0-9])
   zero_to_128: (?:12[0-8]|1[01][0-9]|[1-9][0-9]|[0-9])
   zero_to_255: (?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9][0-9])|(?:[1-9][0-9])|[0-9])
+  zero_to_65535: (?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])
   ipv4: (?:(?:{{zero_to_255}}\.){3}{{zero_to_255}})
   ipv6: |-
     (?xi:
@@ -298,6 +299,7 @@ contexts:
   # https://www.terraform.io/docs/language/expressions/types.html
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#template-expressions
   string-literals:
+    - include: ip-address-strings
     - match: \"
       comment: Strings
       scope: punctuation.definition.string.begin.terraform
@@ -351,42 +353,37 @@ contexts:
     - meta_content_scope: source.terraform
     - include: string-interpolation-body
 
-  ipv4-at-start:
-    - match: \G{{ipv4}}\b
-      scope: meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
-
-  ipv6-at-start:
-    - match: \G{{ipv6}}
-      scope: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
-
-  ipv6-square-bracket-at-start:
-    - match: \G(\[){{ipv6}}(\])
-      scope: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+  ip-address-strings:
+    - match: (")({{ipv6}})(?:(/)({{zero_to_128}}))?(")
+      scope: meta.string.terraform string.quoted.double.terraform
       captures:
-        1: punctuation.definition.constant.begin.terraform
-        2: punctuation.definition.constant.end.terraform
-
-  ip-addresses-at-start:
-    - include: ipv6-at-start
-    - include: ipv4-at-start
-
-  ipv4-with-cidr-at-start:
-    - match: \G({{ipv4}})(?:(/)({{zero_to_32}}))?\b
+        1: punctuation.definition.string.begin.terraform
+        2: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+        3: punctuation.separator.terraform
+        4: constant.other.range.terraform
+        5: punctuation.definition.string.end.terraform
+    - match: (")((\[){{ipv6}}(\]))(?:(/)({{zero_to_128}})|(:)({{zero_to_65535}}))?(")
+      scope: meta.string.terraform string.quoted.double.terraform
       captures:
-        1: meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
-        2: punctuation.separator.sequence.terraform
-        3: constant.other.range.terraform
-
-  ipv6-with-cidr-at-start:
-    - match: \G({{ipv6}})(?:(/)({{zero_to_128}})\b)?
+        1: punctuation.definition.string.begin.terraform
+        2: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+        3: punctuation.definition.constant.begin.terraform
+        4: punctuation.definition.constant.end.terraform
+        5: punctuation.separator.terraform
+        6: constant.other.range.terraform
+        7: punctuation.separator.terraform
+        8: constant.other.port.terraform
+        9: punctuation.definition.string.end.terraform
+    - match: (")({{ipv4}})(?:(/)({{zero_to_32}})|(:)({{zero_to_65535}}))?(")
+      scope: meta.string.terraform string.quoted.double.terraform
       captures:
-        1: meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
-        2: punctuation.separator.sequence.terraform
-        3: constant.other.range.terraform
-
-  ip-addresses-with-cidr-at-start:
-    - include: ipv6-with-cidr-at-start
-    - include: ipv4-with-cidr-at-start
+        1: punctuation.definition.string.begin.terraform
+        2: meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+        3: punctuation.separator.terraform
+        4: constant.other.range.terraform
+        5: punctuation.separator.terraform
+        6: constant.other.port.terraform
+        7: punctuation.definition.string.end.terraform
 
   # String Interpolation: ("${" | "${~") Expression ("}" | "~}"
   #
