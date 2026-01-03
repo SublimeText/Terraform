@@ -11,6 +11,8 @@ file_extensions:
   - tf.plan
 
 contexts:
+  prototype:
+    - include: comments
 
   main:
     - include: comments
@@ -23,6 +25,15 @@ contexts:
       push:
         - meta_scope: comment.line.number-sign.terraform
         - include: pop-eol
+
+  annotations:
+    - meta_include_prototype: false
+    - match: ->
+      scope: keyword.operator.assignment.terraform
+    - match: \(known after apply\)$
+      scope: comment.block.terraform
+    - match: \bnull$
+      scope: constant.language.null.terraform
 
   diffs:
     - match: ^\+/-
@@ -40,37 +51,38 @@ contexts:
     - match: ^-
       scope: punctuation.definition.deleted.diff
       push: line-deleted
-
-  annotations:
-    - match: ->
-      scope: keyword.operator.assignment.terraform
-    - match: \(known after apply\)$
-      scope: comment.block.terraform
-    - match: \bnull$
-      scope: constant.language.null.terraform
+    - match: \[$\n?
+      push: closing-bracket
+    - match: \{$\n?
+      push: closing-brace
 
   line-deleted:
     - meta_scope: markup.deleted.diff
+    - include: pop-eol-bracket-deleted
     - include: pop-eol
     - include: annotations
 
   line-inserted:
     - meta_scope: markup.inserted.diff
+    - include: pop-eol-bracket-inserted
     - include: pop-eol
     - include: annotations
 
   line-changed:
     - meta_scope: markup.changed.updated-in-place.diff
+    - include: pop-eol-bracket-changed
     - include: pop-eol
     - include: annotations
 
   line-created-then-destroyed:
     - meta_scope: markup.changed.created-then-destroyed.diff
+    - include: pop-eol-bracket-changed
     - include: pop-eol
     - include: annotations
 
   line-destroyed-then-created:
     - meta_scope: markup.changed.destroyed-then-created.diff
+    - include: pop-eol-bracket-changed
     - include: pop-eol
     - include: annotations
 
@@ -78,6 +90,67 @@ contexts:
     - meta_scope: comment.line.diff
     - include: pop-eol
     - include: annotations
+
+  closing-bracket:
+    - match: ^(?=\s*\])
+      pop: 1
+    - include: diffs
+
+  closing-brace:
+    - match: ^\s*\}
+      pop: 1
+    - include: diffs
+
+  pop-eol-bracket-deleted:
+    - match: \[$\n?
+      set: closing-bracket-deleted
+    - match: \{$\n?
+      set: closing-brace-deleted
+
+  closing-bracket-deleted:
+    - match: ^(?=\s*\])
+      set: line-deleted
+    - include: diffs
+
+  closing-brace-deleted:
+    - match: ^\s*\}
+      scope: markup.deleted.diff
+      pop: 1
+    - include: diffs
+
+  pop-eol-bracket-inserted:
+    - match: \[$\n?
+      set: closing-bracket-inserted
+    - match: \{$\n?
+      set: closing-brace-inserted
+
+  closing-bracket-inserted:
+    - match: ^(?=\s*\])
+      set: line-inserted
+    - include: diffs
+
+  closing-brace-inserted:
+    - match: ^(?=\s*\})
+      set: line-inserted
+    - include: diffs
+
+  pop-eol-bracket-changed:
+    - match: \[$\n?
+      set: closing-bracket-changed
+    - match: \{$\n?
+      set: closing-brace-changed
+
+  closing-bracket-changed:
+    - match: ^\s*\]
+      scope: markup.changed.diff
+      pop: 1
+    - include: diffs
+
+  closing-brace-changed:
+    - match: ^\s*\}
+      scope: markup.changed.diff
+      pop: 1
+    - include: diffs
 
   summary:
     - match: ^(?=Plan:[ ]\d)
