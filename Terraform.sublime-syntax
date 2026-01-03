@@ -316,8 +316,6 @@ contexts:
     - include: character-escapes
     - include: string-interpolation
     - include: aws-acl
-    - include: ip-addresses-with-cidr-at-start
-    - include: ipv6-square-bracket-at-start
 
   character-escapes:
     - match: '{{char_escapes}}'
