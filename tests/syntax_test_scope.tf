@@ -256,6 +256,109 @@
 #                                     ^^^^^^^^^^ constant.character.escape.terraform
 #                                               ^ punctuation.definition.string.end.terraform
 
+
+/////
+// Matches IPs and CIDR
+/////
+
+      "1.2.3.4"
+#     ^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+#             ^ punctuation.definition.string.end.terraform
+
+      "1.2.3.4/32"
+#     ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+#             ^ punctuation.separator.terraform
+#              ^^ constant.other.range.terraform
+#                ^ punctuation.definition.string.end.terraform
+
+      "1.2.3.4:8080"
+#     ^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+#             ^ punctuation.separator.terraform
+#              ^^^^ constant.other.port.terraform
+#                  ^ punctuation.definition.string.end.terraform
+
+      "1.2.3.4/33"
+#     ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^ - constant - punctuation
+#                ^ punctuation.definition.string.end.terraform
+
+      "256.2.3.4"
+#     ^^^^^^^^^^^ - constant
+
+      "::1"
+#     ^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+#         ^ punctuation.definition.string.end.terraform
+
+      "deed"
+#     ^^^^^^ meta.string.terraform string.quoted.double.terraform - constant
+#     ^ punctuation.definition.string.begin.terraform
+#          ^ punctuation.definition.string.end.terraform
+
+      "deed:10:10"
+#     ^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform - constant
+#     ^ punctuation.definition.string.begin.terraform
+#                ^ punctuation.definition.string.end.terraform
+
+      "1:2:3:4:5:6:7:8"
+#     ^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+#                     ^ punctuation.definition.string.end.terraform
+
+      "1:2:3:4:5:6:7:8:8080"
+#     ^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^^ - constant - punctuation
+#                          ^ punctuation.definition.string.end.terraform
+
+      "1:2:3:4:5:6:7:8/128"
+#     ^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+#                     ^ punctuation.separator.terraform
+#                      ^^^ constant.other.range.terraform
+#                         ^ punctuation.definition.string.end.terraform
+
+      "1:2:3:4:5:6:7:8/129"
+#     ^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^ - constant - punctuation
+#                         ^ punctuation.definition.string.end.terraform
+
+      "[1:2:3:4:5:6:7:8]/128"
+#     ^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+#      ^ punctuation.definition.constant.begin.terraform
+#                      ^ punctuation.definition.constant.end.terraform
+#                       ^ punctuation.separator.terraform
+#                        ^^^ constant.other.range.terraform
+#                           ^ punctuation.definition.string.end.terraform
+
+      "[1:2:3:4:5:6:7:8]:8080"
+#     ^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
+#      ^ punctuation.definition.constant.begin.terraform
+#                      ^ punctuation.definition.constant.end.terraform
+#                       ^ punctuation.separator.terraform
+#                        ^^^^ constant.other.port.terraform
+#                            ^ punctuation.definition.string.end.terraform
+
+      "[1:2:3:4:5:6:7:8]/129"
+#     ^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
+#     ^ punctuation.definition.string.begin.terraform
+#      ^^^^^^^^^^^^^^^^^^^^^ - constant - punctuation
+
 /////
 // Unclosed strings
 /////
@@ -3458,6 +3561,20 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                                                                         ^ punctuation.section.interpolation.end.terraform
 #                                                                              ^ string.quoted.double.json  punctuation.definition.string.end.json - variable
 #                                                                               ^ punctuation.separator.sequence.json
+
+                "IP": "1.2.3.4",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.parens.terraform meta.mapping.value.json meta.sequence.json
+#^^^^^^^^^^^^^^^ meta.mapping.json
+#               ^^^^ meta.mapping.key.json string.quoted.double.json
+#               ^ punctuation.definition.string.begin.json
+#                  ^ punctuation.definition.string.end.json
+#                   ^^ meta.mapping.json
+#                   ^ punctuation.separator.key-value.json
+#                     ^^^^^^^^^ meta.mapping.value.json meta.string.terraform string.quoted.double.terraform
+#                     ^ punctuation.definition.string.begin.terraform
+#                      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
+#                             ^ punctuation.definition.string.end.terraform
+#                              ^ meta.mapping.json punctuation.separator.sequence.json
                 "Effect": "Allow"
             }
         ]
