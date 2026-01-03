@@ -15,7 +15,7 @@ Terraform will perform the following actions:
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.destroyed-then-created.diff
 #^^ punctuation.definition.changed.diff
 +       allow_overwrite = (known after apply)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff - markup markup
 #                         ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
 !       fqdn            = "autodiscover.example.com" -> (known after apply)
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.changed.updated-in-place.diff
@@ -32,13 +32,13 @@ Terraform will perform the following actions:
         # (4 unchanged attributes hidden)
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - markup
     }
-# ^^^^ - markup
+#^^^^ markup.changed.diff
 
   # aws_route53_record_cname_lyncdiscover_example_com will be destroyed
 -   resource "aws_route53_record" "cname_lyncdiscover_example_com_old" {
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
 -       fqdn    = "lyncdiscover.example.com" -> null
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff - markup markup
 #                                            ^^ keyword.operator.assignment.terraform
 #                                               ^^^^ constant.language.null.terraform
 -       id      = "ABCDEABCDEABCDEA_lyncdiscover_CNAME" -> null
@@ -50,15 +50,19 @@ Terraform will perform the following actions:
 -           "webdir.online.lync.com.",
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.deleted.diff
         ] -> null
+#^^^^^^^^^^^^^^^^ markup.deleted.diff - markup markup
+#         ^^ keyword.operator.assignment.terraform
+#            ^^^^ constant.language.null.terraform
 -       ttl     = 7200 -> null
 -       type    = "CNAME" -> null
 -       zone_id = "ABCDEABCDEABCDEA" -> null
     }
+#^^^^ markup.deleted.diff - markup markup
 
   # aws_route53_record_cname_lyncdiscover_example_com will be created
 +   resource "aws_route53_record" "cname_lyncdiscover_example_com_new" {
 +       fqdn    = (known after apply)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff - markup markup
 #                 ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
 +       id      = (known after apply)
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
@@ -68,12 +72,13 @@ Terraform will perform the following actions:
 #                 ^^^^^^^^^^^^^^^^^^^ comment.block.terraform
 +       records = [
 +           "webdir.online.lync.com.",
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.inserted.diff - markup markup
         ]
 +       ttl     = 7200
 +       type    = "CNAME"
 +       zone_id = "ABCDEABCDEABCDEA"
     }
+#^^^^ markup.inserted.diff - markup markup
 
   # aws_route53_record_zone_example_com will be updated in-place
 !   resource "aws_route53_record" "cname_autodiscover_example_com" {
@@ -84,12 +89,16 @@ Terraform will perform the following actions:
         id            = "ABCDEABCDEABCDEA"
         name          = "example.com"
         tags          = {
+#^^^^^^^^^^^^^^^^^^^^^^^^ - markup
             "Provisioner" = "Terraform"
             "System"      = "example"
             "Workspace"   = "production"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - markup
         }
+#^^^^^^^^ - markup
         # (3 unchanged attributes hidden)
     }
+#^^^^ markup.changed.diff - markup markup
 
 Plan: 2 to add, 1 to change, 2 to destroy.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.summary.terraform
