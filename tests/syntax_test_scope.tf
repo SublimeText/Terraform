@@ -298,6 +298,11 @@
 #      ^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v6.terraform
 #         ^ punctuation.definition.string.end.terraform
 
+      "deed"
+#     ^^^^^^ meta.string.terraform string.quoted.double.terraform - constant
+#     ^ punctuation.definition.string.begin.terraform
+#          ^ punctuation.definition.string.end.terraform
+
       "1:2:3:4:5:6:7:8"
 #     ^^^^^^^^^^^^^^^^^ meta.string.terraform string.quoted.double.terraform
 #     ^ punctuation.definition.string.begin.terraform
