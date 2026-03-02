@@ -30,9 +30,9 @@ contexts:
     - meta_include_prototype: false
     - match: ->
       scope: keyword.operator.assignment.terraform
-    - match: \(known after apply\)$
+    - match: \(known after apply\)
       scope: comment.block.terraform
-    - match: \bnull$
+    - match: \bnull\b
       scope: constant.language.null.terraform
 
   diffs:
