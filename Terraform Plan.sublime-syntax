@@ -52,37 +52,37 @@ contexts:
       scope: punctuation.definition.deleted.diff
       push: line-deleted
     - match: \[$\n?
-      push: closing-bracket
+      push: bracket-body
     - match: \{$\n?
-      push: closing-brace
+      push: brace-body
 
   line-deleted:
     - meta_scope: markup.deleted.diff
-    - include: pop-eol-bracket-deleted
+    - include: line-deleted.hanging-eol-brackets
     - include: pop-eol
     - include: annotations
 
   line-inserted:
     - meta_scope: markup.inserted.diff
-    - include: pop-eol-bracket-inserted
+    - include: line-inserted.hanging-eol-brackets
     - include: pop-eol
     - include: annotations
 
   line-changed:
     - meta_scope: markup.changed.updated-in-place.diff
-    - include: pop-eol-bracket-changed
+    - include: line-changed.hanging-eol-brackets
     - include: pop-eol
     - include: annotations
 
   line-created-then-destroyed:
     - meta_scope: markup.changed.created-then-destroyed.diff
-    - include: pop-eol-bracket-changed
+    - include: line-changed.hanging-eol-brackets
     - include: pop-eol
     - include: annotations
 
   line-destroyed-then-created:
     - meta_scope: markup.changed.destroyed-then-created.diff
-    - include: pop-eol-bracket-changed
+    - include: line-changed.hanging-eol-brackets
     - include: pop-eol
     - include: annotations
 
@@ -91,62 +91,62 @@ contexts:
     - include: pop-eol
     - include: annotations
 
-  closing-bracket:
+  bracket-body:
     - match: ^(?=\s*\])
       pop: 1
     - include: diffs
 
-  closing-brace:
+  brace-body:
     - match: ^\s*\}
       pop: 1
     - include: diffs
 
-  pop-eol-bracket-deleted:
+  line-deleted.hanging-eol-brackets:
     - match: \[$\n?
-      set: closing-bracket-deleted
+      set: line-deleted.bracket-body
     - match: \{$\n?
-      set: closing-brace-deleted
+      set: line-deleted.brace-body
 
-  closing-bracket-deleted:
+  line-deleted.bracket-body:
     - match: ^(?=\s*\])
       set: line-deleted
     - include: diffs
 
-  closing-brace-deleted:
+  line-deleted.brace-body:
     - match: ^\s*\}
       scope: markup.deleted.diff
       pop: 1
     - include: diffs
 
-  pop-eol-bracket-inserted:
+  line-inserted.hanging-eol-brackets:
     - match: \[$\n?
-      set: closing-bracket-inserted
+      set: line-inserted.bracket-body
     - match: \{$\n?
-      set: closing-brace-inserted
+      set: line-inserted.brace-body
 
-  closing-bracket-inserted:
+  line-inserted.bracket-body:
     - match: ^(?=\s*\])
       set: line-inserted
     - include: diffs
 
-  closing-brace-inserted:
+  line-inserted.brace-body:
     - match: ^(?=\s*\})
       set: line-inserted
     - include: diffs
 
-  pop-eol-bracket-changed:
+  line-changed.hanging-eol-brackets:
     - match: \[$\n?
-      set: closing-bracket-changed
+      set: line-changed.bracket-body
     - match: \{$\n?
-      set: closing-brace-changed
+      set: line-changed.brace-body
 
-  closing-bracket-changed:
+  line-changed.bracket-body:
     - match: ^\s*\]
       scope: markup.changed.diff
       pop: 1
     - include: diffs
 
-  closing-brace-changed:
+  line-changed.brace-body:
     - match: ^\s*\}
       scope: markup.changed.diff
       pop: 1
