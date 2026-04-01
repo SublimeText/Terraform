@@ -23,5 +23,8 @@ extends: Terraform.sublime-syntax
 #
 # - ".tfvars": variables definitions file
 #   https://www.terraform.io/docs/configuration/variables.html#variable-definitions-tfvars-files
+# - ".tfbackend": backend configuration file
+#   https://developer.hashicorp.com/terraform/language/backend#file
 file_extensions:
   - tfvars
+  - tfbackend
