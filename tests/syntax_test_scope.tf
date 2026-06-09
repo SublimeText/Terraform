@@ -241,6 +241,17 @@
 #                 ^ - punctuation - string
 
 /////
+// Does not include comments.
+/////
+
+      "a string // with double-slash"
+#   ^ - punctuation - string
+#     ^ punctuation.definition.string.begin.terraform
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.terraform - comment
+#                                   ^ punctuation.definition.string.end.terraform
+#                                    ^ - punctuation - string
+
+/////
 // Matches character escapes.
 /////
 
@@ -1306,6 +1317,31 @@
 #                         ^ punctuation.accessor.dot.terraform
 #                          ^^^^^^^^^^^^ variable.other.member.terraform
 
+/////
+// Parenthesized assignment
+/////
+
+      attribute = (
+#     ^^^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#               ^ keyword.operator.assignment.terraform
+#                 ^^ meta.parens.terraform
+#                 ^ punctuation.section.parens.begin.terraform
+            local.var1 != ""
+                  ? local.var1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.parens.terraform
+#                 ^ keyword.operator.ternary.terraform
+#                   ^^^^^ variable.language.terraform
+#                        ^ punctuation.accessor.dot.terraform
+#                         ^^^^ variable.other.member.terraform
+                  // A comment
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.parens.terraform
+#                 ^^^^^^^^^^^^^ comment.line.terraform
+#                 ^^ punctuation.definition.comment.terraform
+#                             ^ punctuation.definition.comment.terraform
+                  : uuidv4()
+      )
+#^^^^^^ meta.parens.terraform
+#     ^ punctuation.section.parens.end.terraform
 
 /////
 // Meta-arguments
