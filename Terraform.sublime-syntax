@@ -166,8 +166,10 @@ variables:
     )
 
 contexts:
-  main:
+  prototype:
     - include: comments
+
+  main:
     - include: attribute-definition
     - include: imports
     - include: blocks
@@ -306,6 +308,7 @@ contexts:
       push: string-body
 
   string-body:
+    - meta_include_prototype: false
     - meta_scope: meta.string.terraform string.quoted.double.terraform
     - match: \"
       scope: punctuation.definition.string.end.terraform
@@ -524,7 +527,6 @@ contexts:
         1: keyword.operator.splat.terraform
       pop: 1
     - include: comma
-    - include: comments
     - include: tuple-for-expression
     - include: expressions
 
@@ -544,7 +546,6 @@ contexts:
       scope: punctuation.section.braces.end.terraform
       pop: 1
     - include: object-for-expression
-    - include: comments
     - match: (?=({{identifier}}|\".*?\")\s*=)
       push:
         - object-value
@@ -585,7 +586,6 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
   object-value:
-    - include: comments
     - match: \,
       comment: Pop scope on comma.
       scope: punctuation.separator.terraform
@@ -608,7 +608,6 @@ contexts:
       push: member
 
   member:
-    - include: comments
     - match: '{{identifier}}'
       comment: Attribute access
       scope: variable.other.member.terraform
@@ -693,7 +692,6 @@ contexts:
     - match: \)
       scope: punctuation.section.parens.end.terraform
       pop: 1
-    - include: comments
     - include: expressions
     - include: comma
 
@@ -748,7 +746,6 @@ contexts:
     - match: '\:'
       scope: punctuation.section.block.loop.for.terraform
     - include: expressions
-    - include: comments
     - include: comma
 
   namespaces:
