@@ -335,6 +335,7 @@ contexts:
       push: aws-acl-body
 
   aws-acl-body:
+    - meta_include_prototype: false
     - clear_scopes: 1  # Clear the string.* scope.
     - meta_scope: variable.language.acl.terraform
     - match: ([$%]\{)(~)?
@@ -432,6 +433,7 @@ contexts:
       push: heredoc-body
 
   heredoc-body:
+    - meta_include_prototype: false
     - meta_content_scope: meta.string.terraform string.unquoted.heredoc.terraform
     - match: ^\s*\2\s*$
       comment: The heredoc token identifier (second capture above).
@@ -812,6 +814,7 @@ contexts:
     - include: else-pop
 
   block-type-label-body:
+    - meta_include_prototype: false
     - meta_scope: meta.string.terraform
     - meta_content_scope: support.type.terraform
     - match: \"
@@ -829,6 +832,7 @@ contexts:
     - include: else-pop
 
   block-name-label-body:
+    - meta_include_prototype: false
     - meta_scope: meta.string.terraform
     - meta_content_scope: entity.name.label.terraform
     - match: \"

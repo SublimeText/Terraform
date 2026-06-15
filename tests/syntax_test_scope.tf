@@ -3549,6 +3549,21 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                                                           ^ punctuation.section.interpolation.end.terraform
 #                                                                ^ string.quoted.double.terraform punctuation.definition.string.end.terraform - variable
 
+    res_arn = "arn:aws:s3:::*/*"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform - comment
+#   ^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform
+#           ^ keyword.operator.assignment.terraform
+#             ^^^^^^^^^^^^^^^^^^ meta.string.terraform
+#             ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
+#              ^^^^^^^^^^^^^^^^ variable.language.acl.terraform
+#                 ^ punctuation.separator.sequence.terraform
+#                     ^ punctuation.separator.sequence.terraform
+#                        ^^^ punctuation.separator.sequence.terraform
+#                           ^ constant.other.wildcard.asterisk.terraform
+#                            ^ punctuation.separator.sequence.terraform
+#                             ^ constant.other.wildcard.asterisk.terraform
+#                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
+
     policy = jsonencode({
         Version = "2012-10-17"
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.braces.terraform
