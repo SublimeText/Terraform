@@ -585,7 +585,7 @@ contexts:
 
   object-key-separator:
     - match: =(?![=>])
-      scope: keyword.operator.assignment.terraform
+      scope: punctuation.separator.key-value.terraform
       pop: 1
     - match: ':(?!:)'
       scope: punctuation.separator.key-value.terraform
