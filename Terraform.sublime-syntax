@@ -534,47 +534,64 @@ contexts:
 
   # Objects: collection values
   #
-  #   Allows keys as identifiers, strings, and computed values wrapped in parens.
+  #   objectelem = (Identifier | Expression) ("=" | ":") Expression;
   #
-  # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
+  #   Keys may be identifiers, strings or arbitrary expressions
+  #   (for example traversals such as `aws.alias` or parenthesised expressions).
+  #   Both `=` and `:` separate a key from its value.
+  #
+  # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#collection-values
   objects:
     - match: \{
       scope: punctuation.section.braces.begin.terraform
-      push: object-body
+      push: object-begin
+
+  # A for expression is only allowed as the first token of an object.
+  # https://github.com/hashicorp/hcl/blob/main/hclsyntax/parser.go (parseObjectCons)
+  object-begin:
+    - meta_scope: meta.braces.terraform
+    - match: \}
+      scope: punctuation.section.braces.end.terraform
+      pop: 1
+    - include: object-for-expression
+    - match: (?=\S)
+      set: object-body
 
   object-body:
     - meta_scope: meta.braces.terraform
     - match: \}
       scope: punctuation.section.braces.end.terraform
       pop: 1
-    - include: object-for-expression
-    - match: (?=({{identifier}}|\".*?\")\s*=)
+    - match: (?=\S)
       push:
         - object-value
-        - assignment-operator
-        - object-literal-key
-    - match: \(
-      comment: Computed object key (any expression between parens)
-      scope: punctuation.section.parens.begin.terraform
-      push:
-        - object-value
-        - assignment-operator
-        - object-computed-key
-    - include: Packages/Terraform/JSON (Terraform).sublime-syntax#object-body
+        - object-key-separator
+        - object-key
 
-  object-computed-key:
-    - meta_scope: meta.mapping.key.terraform meta.parens.terraform
-    - include: paren-body
-
-  object-literal-key:
-    - match: '{{identifier}}'
-      scope: meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+  # `:(?!:)` keeps `provider::ns::fn()` keys intact.
+  object-key:
+    - meta_scope: meta.mapping.key.terraform
+    - match: '{{identifier}}(?=\s*(?:=(?![=>])|:(?!:)))'
+      scope: meta.string.terraform string.unquoted.terraform
       pop: 1
-    - match: (\").*?(\")
-      scope: meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
-      captures:
-        1: punctuation.definition.string.begin.terraform
-        2: punctuation.definition.string.end.terraform
+    - match: ''
+      set: object-key-expression
+
+  object-key-expression:
+    - meta_scope: meta.mapping.key.terraform
+    - match: (?=\s*(?:=(?![=>])|:(?!:)|[,}]|#|//|$))
+      pop: 1
+    - include: expressions
+
+  object-key-separator:
+    - match: =(?![=>])
+      scope: keyword.operator.assignment.terraform
+      pop: 1
+    - match: ':(?!:)'
+      scope: punctuation.separator.key-value.terraform
+      pop: 1
+    # A key without separator must not swallow the next line.
+    - match: (?=$)
       pop: 1
     - include: else-pop
 
@@ -723,7 +740,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
   # https://www.terraform.io/docs/language/expressions/for.html
   object-for-expression:
-    - match: \bfor\b
+    - match: \bfor(?!{{ID_Continue}})
       comment: for expression (arrays)
       scope: keyword.control.loop.for.terraform
       set: object-for-expression-body
