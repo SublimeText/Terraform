@@ -1173,7 +1173,7 @@
 
     {(1 + 2) = "gggg"}
 #   ^ meta.braces.terraform - meta.parens
-#    ^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform
+#    ^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform - meta.string - string
 #           ^^^^^^^^^^ meta.braces.terraform - meta.parens
 #   ^ punctuation.section.braces.begin.terraform
 #    ^ punctuation.section.parens.begin.terraform
@@ -1191,7 +1191,7 @@
 
     {(func()) = 1}
 #   ^ meta.braces.terraform - meta.parens
-#    ^^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform
+#    ^^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform - meta.string - string
 #            ^^^^^ meta.braces.terraform - meta.parens
 #   ^ punctuation.section.braces.begin.terraform
 #    ^ punctuation.section.parens.begin.terraform
@@ -1209,7 +1209,7 @@
 
     {(var.path) = 1}
 #   ^ meta.braces.terraform - meta.parens
-#    ^^^^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform
+#    ^^^^^^^^^^ meta.braces.terraform meta.mapping.key.terraform meta.parens.terraform - meta.string - string
 #              ^^^^^ meta.braces.terraform - meta.parens
 #   ^ punctuation.section.braces.begin.terraform
 #    ^ punctuation.section.parens.begin.terraform
@@ -1220,6 +1220,247 @@
 #               ^ keyword.operator.assignment.terraform
 #                 ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 #                  ^ punctuation.section.braces.end.terraform
+
+/////
+// #95
+// Allows traversals as keys (provider aliases).
+/////
+
+module "x" {
+  providers = {
+    aws                 = aws.test
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - invalid
+#   ^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#                       ^ keyword.operator.assignment.terraform
+#                         ^^^ variable.other.readwrite.terraform
+    aws.secrets-manager = aws.secrets-manager
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.braces.terraform - invalid
+#   ^^^^^^^^^^^^^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#   ^^^ variable.other.readwrite.terraform
+#      ^ punctuation.accessor.dot.terraform
+#       ^^^^^^^^^^^^^^^ variable.other.member.terraform
+#                      ^ - meta.mapping
+#                       ^ keyword.operator.assignment.terraform
+#                         ^^^ variable.other.readwrite.terraform - meta.mapping
+#                            ^ punctuation.accessor.dot.terraform
+#                             ^^^^^^^^^^^^^^^ variable.other.member.terraform
+  }
+}
+
+/////
+// #95
+// Allows traversals as keys in locals.
+/////
+
+locals {
+  foo = {
+    bar.fizz = "buzz"
+#^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.braces.terraform - invalid
+#   ^^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#   ^^^ variable.other.readwrite.terraform
+#      ^ punctuation.accessor.dot.terraform
+#       ^^^^ variable.other.member.terraform
+#            ^ keyword.operator.assignment.terraform
+#              ^^^^^^ meta.string.terraform string.quoted.double.terraform - meta.mapping
+  }
+}
+
+/////
+// #95
+// Allows colons as key/value separator.
+/////
+
+module "y" {
+  providers = {
+    aws.parent : aws.test_1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.braces.terraform - invalid - json
+#   ^^^^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#   ^^^ variable.other.readwrite.terraform
+#       ^^^^^^ variable.other.member.terraform
+#              ^ punctuation.separator.key-value.terraform
+#                ^^^ variable.other.readwrite.terraform
+#                    ^^^^^^ variable.other.member.terraform
+    aws.child : aws.test_2
+#^^^^^^^^^^^^^^^^^^^^^^^^^ - invalid - json
+#   ^^^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#             ^ punctuation.separator.key-value.terraform
+  }
+}
+
+/////
+// Allows colons with identifier and string keys.
+/////
+
+    { foo: 1, "bar": var.x }
+#   ^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid - json
+#     ^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#        ^ punctuation.separator.key-value.terraform
+#          ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+#           ^ punctuation.separator.terraform
+#             ^^^^^ meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
+#                  ^ punctuation.separator.key-value.terraform
+#                    ^^^ variable.language.terraform
+#                        ^ variable.other.member.terraform
+
+/////
+// Allows nested HCL in values after a colon.
+/////
+
+    { "a": { b = [1, var.y] } }
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid - json
+#     ^^^ meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
+#        ^ punctuation.separator.key-value.terraform
+#          ^^^^^^^^^^^^^^^^^^ meta.braces.terraform meta.braces.terraform
+#            ^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#              ^ keyword.operator.assignment.terraform
+#                ^^^^^^^^^^ meta.brackets.terraform
+#                    ^^^ variable.language.terraform
+
+/////
+// Allows escapes and interpolation in string keys.
+/////
+
+    { "a\"b" = 1, "${x}" = 2 }
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid - json
+#     ^^^^^^ meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
+#       ^^ meta.mapping.key.terraform constant.character.escape.terraform
+#            ^ keyword.operator.assignment.terraform
+#                  ^^^^ meta.mapping.key.terraform meta.interpolation.terraform
+#                        ^ keyword.operator.assignment.terraform
+
+/////
+// Allows function calls as keys without parens.
+/////
+
+    { upper("x") = 1 }
+#   ^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid
+#     ^^^^^^^^^^ meta.mapping.key.terraform
+#     ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform - meta.string - string
+#          ^^^^^ meta.function-call.arguments.terraform
+#                ^ keyword.operator.assignment.terraform
+
+/////
+// Allows provider functions as keys.
+/////
+
+    { provider::terraform::encode_tfvars({}) = 1 }
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#     ^^^^^^^^ variable.namespace.terraform
+#             ^^ punctuation.accessor.double-colon.terraform
+#               ^^^^^^^^^ variable.namespace.terraform
+#                          ^^^^^^^^^^^^^ support.function.builtin.terraform
+#                                            ^ keyword.operator.assignment.terraform
+#                                              ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform - meta.mapping
+
+/////
+// Allows computed keys and numbers as keys, and colons after them.
+/////
+
+    { (var.k): 1, 1 = "a", c: upper("x") }
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid - json
+#     ^^^^^^^ meta.mapping.key.terraform meta.parens.terraform - meta.string - string
+#            ^ punctuation.separator.key-value.terraform
+#                 ^ meta.mapping.key.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform - meta.string - string
+#                   ^ keyword.operator.assignment.terraform
+#                          ^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#                           ^ punctuation.separator.key-value.terraform
+#                             ^^^^^ meta.function-call.identifier.terraform support.function.builtin.terraform - meta.mapping
+
+/////
+// Treats `for` as a key when it is not the first element.
+/////
+
+    {
+      a = 1
+#     ^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+      for = 2
+#     ^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform - keyword
+#         ^ keyword.operator.assignment.terraform
+    }
+
+/////
+// Allows comments before a for expression.
+/////
+
+    { # comment
+#     ^^^^^^^^^ meta.braces.terraform comment.line.terraform
+      for k, v in var.m : k => v
+#     ^^^ meta.braces.terraform keyword.control.loop.for.terraform
+#              ^^ keyword.operator.iteration.in.terraform
+#                           ^^ punctuation.separator.key-value.terraform
+    }
+#   ^ meta.braces.terraform punctuation.section.braces.end.terraform
+
+/////
+// #95
+// Ends elements at the newline after a trailing comment.
+/////
+
+    {
+      aws = aws.test # default
+#     ^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#                    ^^^^^^^^^ comment.line.terraform
+      aws.secrets-manager = aws.secrets-manager
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid - comment
+#     ^^^^^^^^^^^^^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#                         ^ keyword.operator.assignment.terraform
+#                           ^^^ variable.other.readwrite.terraform - meta.mapping
+    }
+
+/////
+// Does not swallow the next line after a key without separator.
+/////
+
+    {
+      aws.foo
+#     ^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#     ^^^ variable.other.readwrite.terraform
+#        ^ punctuation.accessor.dot.terraform
+#         ^^^ variable.other.member.terraform
+      b = 2
+#     ^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#       ^ keyword.operator.assignment.terraform
+#         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+    }
+
+    {
+      aws.foo # note
+#     ^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#            ^ - meta.mapping
+#             ^^^^^^ comment.line.terraform - meta.mapping
+      b = 2
+#     ^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#       ^ keyword.operator.assignment.terraform
+#         ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+    }
+
+/////
+// Allows block comments between value and comma.
+/////
+
+    { a = 1 /* c */, b = 2 }
+#   ^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid
+#           ^^^^^^^ comment.block.terraform
+#                  ^ punctuation.separator.terraform
+#                    ^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#                      ^ keyword.operator.assignment.terraform
+#                        ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+
+/////
+// Ends elements at the newline after a trailing `//` comment.
+/////
+
+    {
+      aws = aws.test // default
+#     ^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#                    ^^^^^^^^^^ comment.line.terraform
+      aws.secrets-manager = aws.secrets-manager
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid - comment
+#     ^^^^^^^^^^^^^^^^^^^ meta.mapping.key.terraform - meta.string - string
+#                         ^ keyword.operator.assignment.terraform
+#                           ^^^ variable.other.readwrite.terraform - meta.mapping
+    }
 
 /////////////////////////////////////////////////////////////////////
 // Attribute Access
@@ -3575,14 +3816,13 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
         # comment
 #       ^^^^^^^^^^ comment.line.terraform
         "Statement": [
-#^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform
-#^^^^^^^ meta.braces.terraform
-#       ^^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json
-#       ^ punctuation.definition.string.begin.json
-#                 ^ punctuation.definition.string.end.json
-#                  ^^ meta.braces.terraform
-#                  ^ punctuation.separator.key-value.json
-#                    ^ meta.mapping.value.json meta.sequence.json punctuation.section.sequence.begin.json
+#^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.braces.terraform
+#       ^^^^^^^^^^^ meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
+#       ^ punctuation.definition.string.begin.terraform
+#                 ^ punctuation.definition.string.end.terraform
+#                  ^^ - meta.mapping - meta.brackets
+#                  ^ punctuation.separator.key-value.terraform
+#                    ^ meta.brackets.terraform punctuation.section.brackets.begin.terraform
             # comment
 #           ^^^^^^^^^^ comment.line.terraform
             {
@@ -3591,18 +3831,17 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
                     "lambda:InvokeAsync"
                 ],
                 "Resource": "arn:aws:lambda:*:*:function:${var.environment}-xxx",
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.mapping.value.json meta.sequence.json
-#^^^^^^^^^^^^^^^ meta.mapping.json
-#               ^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json
-#                         ^^ meta.mapping.json
-#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.string.json - meta.interpolation
-#                                                        ^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.string.json meta.interpolation.terraform - string
-#                                                                          ^^^^^ meta.mapping.value.json meta.string.json - meta.interpolation
-#                                                                               ^ meta.mapping.json
-#               ^ punctuation.definition.string.begin.json
-#                        ^ punctuation.definition.string.end.json
-#                         ^ punctuation.separator.key-value.json
-#                           ^ string.quoted.double.json punctuation.definition.string.begin.json - variable
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.braces.terraform meta.brackets.terraform meta.braces.terraform
+#               ^^^^^^^^^^ meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
+#                         ^^ - meta.mapping - meta.string
+#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.terraform - meta.mapping - meta.interpolation
+#                                                        ^^^^^^^^^^^^^^^^^^ meta.string.terraform meta.interpolation.terraform - string
+#                                                                          ^^^^^ meta.string.terraform - meta.interpolation
+#                                                                               ^ - meta.string
+#               ^ punctuation.definition.string.begin.terraform
+#                        ^ punctuation.definition.string.end.terraform
+#                         ^ punctuation.separator.key-value.terraform
+#                           ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform - variable
 #                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ variable.language.acl.terraform
 #                                                        ^^ punctuation.section.interpolation.begin.terraform
 #                                                          ^^^^^^^^^^^^^^^ source.terraform source.terraform
@@ -3610,22 +3849,21 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                                                             ^ punctuation.accessor.dot.terraform
 #                                                              ^^^^^^^^^^^ variable.other.member.terraform
 #                                                                         ^ punctuation.section.interpolation.end.terraform
-#                                                                              ^ string.quoted.double.json  punctuation.definition.string.end.json - variable
-#                                                                               ^ punctuation.separator.sequence.json
+#                                                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform - variable
+#                                                                               ^ punctuation.separator.terraform
 
                 "IP": "1.2.3.4",
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.parens.terraform meta.mapping.value.json meta.sequence.json
-#^^^^^^^^^^^^^^^ meta.mapping.json
-#               ^^^^ meta.mapping.key.json string.quoted.double.json
-#               ^ punctuation.definition.string.begin.json
-#                  ^ punctuation.definition.string.end.json
-#                   ^^ meta.mapping.json
-#                   ^ punctuation.separator.key-value.json
-#                     ^^^^^^^^^ meta.mapping.value.json meta.string.terraform string.quoted.double.terraform
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.parens.terraform meta.braces.terraform meta.brackets.terraform meta.braces.terraform
+#               ^^^^ meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
+#               ^ punctuation.definition.string.begin.terraform
+#                  ^ punctuation.definition.string.end.terraform
+#                   ^^ - meta.mapping - meta.string
+#                   ^ punctuation.separator.key-value.terraform
+#                     ^^^^^^^^^ meta.string.terraform string.quoted.double.terraform - meta.mapping
 #                     ^ punctuation.definition.string.begin.terraform
 #                      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
 #                             ^ punctuation.definition.string.end.terraform
-#                              ^ meta.mapping.json punctuation.separator.sequence.json
+#                              ^ punctuation.separator.terraform
                 "Effect": "Allow"
             }
         ]
