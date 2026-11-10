@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.1.0 - 2026-11-10
+
+- Parse object elements natively instead of falling back to the JSON syntax.
+  Valid keys such as `aws.secrets-manager`, `foo: 1` or `"a": var.x`
+  are no longer highlighted as illegal.
+  (@FichteFoll, #95, #107)
+- Scope objects as `meta.mapping` with `meta.mapping.key` and `meta.mapping.value`
+  instead of `meta.braces`. (@FichteFoll, #107)
+- Scope `=` and `:` between object keys and values
+  as `punctuation.separator.key-value`. (@FichteFoll, #107)
+- Scope all commas as `punctuation.separator.sequence`. (@FichteFoll, #107)
+- Remove string interpolation and comments from the `tfstate` syntax. (@FichteFoll, #107)
+- Fix folding of object braces. (@FichteFoll, #107)
+- Fix keywords being highlighted at the start of hyphenated identifiers
+  such as `true-ish` or `var-x`. (@FichteFoll, #108)
+
+---
+
 ## v2.0.3 - 2026-06-15
 
 - Fix comments injected in AWS ACLs. (@michaelblyons, #105, #106)
