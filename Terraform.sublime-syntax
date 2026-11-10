@@ -568,8 +568,12 @@ contexts:
         - object-key-separator
         - object-key
 
+  # Keys and values clear the object's `meta.mapping` scope,
+  # so that they are siblings of it like in the JSON syntax.
+  #
   # `:(?!:)` keeps `provider::ns::fn()` keys intact.
   object-key:
+    - clear_scopes: 1
     - meta_scope: meta.mapping.key.terraform
     - match: '{{identifier}}(?=\s*(?:=(?![=>])|:(?!:)))'
       scope: meta.string.terraform string.unquoted.terraform
@@ -578,6 +582,7 @@ contexts:
       set: object-key-expression
 
   object-key-expression:
+    - clear_scopes: 1
     - meta_scope: meta.mapping.key.terraform
     - match: (?=\s*(?:=(?![=>])|:(?!:)|[,}]|#|//|$))
       pop: 1
@@ -605,18 +610,39 @@ contexts:
   #
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#collection-values
   object-value:
+    - include: object-element-end
+    - match: (?=\S)
+      set: [object-value-end, object-value-body]
+
+  # The value ends before trailing whitespace,
+  # a trailing line comment
+  # or a trailing single-line block comment,
+  # which stay outside of its scope.
+  object-value-body:
+    # Without the prototype, the lookahead wins over a comment
+    # that starts directly after the value (`1# c`).
+    - meta_include_prototype: false
+    - clear_scopes: 1
+    - meta_scope: meta.mapping.value.terraform
+    - match: (?=\s*(?:/\*(?:[^*]|\*(?!/))*\*/\s*)*(?:[,}]|#|//|$))
+      pop: 1
+    - include: comments
+    - include: expressions
+
+  # A trailing line comment consumes the newline,
+  # so the next element ends the previous one as well.
+  object-value-end:
+    - include: object-element-end
+    - include: else-pop
+
+  object-element-end:
     - match: \,
-      comment: Pop scope on comma.
       scope: punctuation.separator.sequence.terraform
       pop: 1
     - match: $\n?
-      comment: Pop scope on EOL.
       pop: 1
     - match: (?=\})
-      comment: Lookahead (don't consume) and pop scope on a bracket.
-      scope: punctuation.section.braces.end.terraform
       pop: 1
-    - include: expressions
 
   # Attribute Access: "." Identifier
   #
