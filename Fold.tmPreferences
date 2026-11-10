@@ -12,9 +12,9 @@
             <!-- Basic Brackets -->
             <dict>
                 <key>begin</key>
-                <string>punctuation.section.baces.begin</string>
+                <string>punctuation.section.braces.begin</string>
                 <key>end</key>
-                <string>punctuation.section.baces.end</string>
+                <string>punctuation.section.braces.end</string>
                 <key>excludeTrailingNewlines</key>
                 <false/>
             </dict>
