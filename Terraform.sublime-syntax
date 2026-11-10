@@ -194,9 +194,9 @@ contexts:
     - include: illegal-strays
 
   comma:
-    - match: \,
+    - match: ','
       comment: Commas - used in certain expressions
-      scope: punctuation.separator.terraform
+      scope: punctuation.separator.sequence.terraform
 
   parens:
     - match: \(
