@@ -607,7 +607,7 @@ contexts:
   object-value:
     - match: \,
       comment: Pop scope on comma.
-      scope: punctuation.separator.terraform
+      scope: punctuation.separator.sequence.terraform
       pop: 1
     - match: $\n?
       comment: Pop scope on EOL.

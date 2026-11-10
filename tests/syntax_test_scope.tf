@@ -1052,7 +1052,7 @@
 #         ^ punctuation.separator.key-value.terraform
 #           ^ string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #            ^^^^^ string.quoted.double.terraform
-#                 ^ punctuation.separator.terraform
+#                 ^ punctuation.separator.sequence.terraform
 #                   ^^^ meta.mapping.key.terraform string.unquoted.terraform
 #                           ^ punctuation.section.braces.end.terraform
 
@@ -1106,7 +1106,7 @@
 #               ^ meta.braces.terraform meta.function-call.arguments.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                ^^ meta.braces.terraform meta.function-call.arguments.terraform string.quoted.double.terraform
 #                  ^ meta.braces.terraform meta.function-call.arguments.terraform punctuation.section.parens.end.terraform
-#                   ^ meta.braces.terraform punctuation.separator.terraform
+#                   ^ meta.braces.terraform punctuation.separator.sequence.terraform
     }
 #   ^ meta.braces.terraform punctuation.section.braces.end.terraform
 
@@ -1296,7 +1296,7 @@ module "y" {
 #     ^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
 #        ^ punctuation.separator.key-value.terraform
 #          ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#           ^ punctuation.separator.terraform
+#           ^ punctuation.separator.sequence.terraform
 #             ^^^^^ meta.mapping.key.terraform meta.string.terraform string.quoted.double.terraform
 #                  ^ punctuation.separator.key-value.terraform
 #                    ^^^ variable.language.terraform
@@ -1442,7 +1442,7 @@ module "y" {
     { a = 1 /* c */, b = 2 }
 #   ^^^^^^^^^^^^^^^^^^^^^^^^ meta.braces.terraform - invalid
 #           ^^^^^^^ comment.block.terraform
-#                  ^ punctuation.separator.terraform
+#                  ^ punctuation.separator.sequence.terraform
 #                    ^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
 #                      ^ punctuation.separator.key-value.terraform
 #                        ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
@@ -1691,7 +1691,7 @@ module "y" {
 #         ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #           ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #             ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                  ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                    ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
@@ -2155,7 +2155,7 @@ module "y" {
 #           ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #            ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #             ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                 ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                  ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
@@ -2190,7 +2190,7 @@ module "y" {
 #              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #               ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                ^^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
-#                   ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                   ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                     ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                      ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                       ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
@@ -2373,7 +2373,7 @@ module "y" {
 #                          ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                           ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
 #                             ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.end.terraform
-#                              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                                ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                                  ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                                    ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.section.brackets.begin.terraform
@@ -2393,11 +2393,11 @@ module "y" {
 #             ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #              ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #               ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                  ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                   ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                    ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                     ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                     ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                       ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                        ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                         ^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
@@ -2495,7 +2495,7 @@ module "y" {
 #                   ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                     ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
 #                      ^^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform
-#                        ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                        ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                          ^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #                            ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #                              ^ meta.function-call.arguments.terraform meta.braces.terraform string.quoted.double.terraform punctuation.definition.string.begin.terraform
@@ -2606,7 +2606,7 @@ module "y" {
 #       ^^^^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
 #            ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.key-value.terraform
 #              ^^^^ meta.function-call.arguments.terraform meta.braces.terraform meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                  ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.terraform
+#                  ^ meta.function-call.arguments.terraform meta.braces.terraform punctuation.separator.sequence.terraform
 #                   ^ meta.function-call.arguments.terraform meta.braces.terraform
         ip_addrs = ["10.0.0.1", "10.0.0.2"]
 #       ^^^^^^^^ meta.function-call.arguments.terraform meta.braces.terraform meta.mapping.key.terraform string.unquoted.terraform
@@ -2883,7 +2883,7 @@ module "y" {
 #            ^ meta.mapping.key.terraform string.unquoted.terraform
 #              ^ punctuation.separator.key-value.terraform
 #                ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
-#                 ^ punctuation.separator.terraform
+#                 ^ punctuation.separator.sequence.terraform
 #                   ^ meta.mapping.key.terraform string.unquoted.terraform
 #                     ^ punctuation.separator.key-value.terraform
 #                       ^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
@@ -3850,7 +3850,7 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                                                              ^^^^^^^^^^^ variable.other.member.terraform
 #                                                                         ^ punctuation.section.interpolation.end.terraform
 #                                                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform - variable
-#                                                                               ^ punctuation.separator.terraform
+#                                                                               ^ punctuation.separator.sequence.terraform
 
                 "IP": "1.2.3.4",
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.body.terraform meta.function-call.arguments.terraform meta.parens.terraform meta.braces.terraform meta.brackets.terraform meta.braces.terraform
@@ -3863,7 +3863,7 @@ resource "aws_iam_role_policy" "attach-inline-policy-1" {
 #                     ^ punctuation.definition.string.begin.terraform
 #                      ^^^^^^^ meta.number.integer.other.terraform constant.numeric.ip-address.v4.terraform
 #                             ^ punctuation.definition.string.end.terraform
-#                              ^ punctuation.separator.terraform
+#                              ^ punctuation.separator.sequence.terraform
                 "Effect": "Allow"
             }
         ]
