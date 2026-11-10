@@ -111,6 +111,20 @@
 #   ^^^^ constant.language.null.terraform
 #         ^ - constant
 
+/////
+// #107
+// Treats identifiers starting with `true`, `false` and `null` as identifiers.
+/////
+
+    true-ish
+#   ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    false-x
+#   ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    null-x
+#   ^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
 /////////////////////////////////////////////////////////////////////
 // INTEGER CONSTANTS
 /////////////////////////////////////////////////////////////////////
@@ -627,6 +641,29 @@
 #                                             ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                                               ^ - string - punctuation
+
+/////
+// #107
+// Treats identifiers starting with template directive keywords as identifiers.
+/////
+
+    "${if-x}"
+#      ^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${for-x}"
+#      ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${in-x}"
+#      ^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${else-x}"
+#      ^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${endif-x}"
+#      ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${endfor-x}"
+#      ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
 
 /////
 // Matches if/else/endif directives.
@@ -1749,6 +1786,17 @@ module "y" {
 #                                        ^ punctuation.section.parens.end.terraform
 
 /////
+// #107
+// Treats attribute names starting with `count` and `for_each` as attribute names.
+/////
+
+    count-x = 1
+#   ^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform - constant - keyword - storage
+
+    for_each-x = 1
+#   ^^^^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
 // Populate an attribute from a variable value
 /////
 
@@ -1895,6 +1943,16 @@ module "y" {
 #                                   ^^^ keyword.operator.terraform
 #                                      ^ punctuation.section.braces.end.terraform
 #                                       ^ punctuation.section.parens.end.terraform
+
+/////
+// #107
+// Treats identifiers starting with `for` as object keys.
+/////
+
+    { for-each = 1 }
+#   ^^^^^^^^^^^^^^^^ meta.mapping - keyword.control
+#     ^^^^^^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#              ^ punctuation.separator.key-value.terraform
 
 /////
 // Allow tuple for-expressions.
@@ -3328,6 +3386,20 @@ module "y" {
 #    ^ - meta.brackets
 
 /////
+// #107
+// Treats identifiers starting with `for`, `in` and `if` in tuples as identifiers.
+/////
+
+    [for-x]
+#    ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    [for v in in-list: v]
+#             ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    [for v in l: v if-x]
+#                  ^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
 // Match if-conditionals on right-side.
 /////
 
@@ -3814,6 +3886,20 @@ module "y" {
 #             ^ punctuation.section.block.begin.terraform
 #              ^ punctuation.section.block.end.terraform
 
+/////
+// #107
+// Treats identifiers starting with named values as identifiers.
+/////
+
+    var-x
+#   ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    local-x
+#   ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    each-x
+#   ^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
 /////////////////////////////////////////////////////////////////////
 // TERRAFORM TYPE KEYWORDS
 /////////////////////////////////////////////////////////////////////
@@ -3829,6 +3915,17 @@ module "y" {
 
     bool
 #   ^^^^ storage.type.terraform
+
+/////
+// #107
+// Treats identifiers starting with type keywords as identifiers.
+/////
+
+    string-x
+#   ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    any-x
+#   ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
 
 /////////////////////////////////////////////////////////////////////
 // HEREDOCS
@@ -3912,6 +4009,15 @@ module "y" {
 #                                        ^ punctuation.accessor.dot.terraform
 #                                         ^^^^^ variable.other.member.terraform
 #                                               ^^^^^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
+
+/////
+// #107
+// Treats `import-x` after `terraform` as an identifier.
+/////
+
+    terraform import-x a.b c
+#   ^^^^^^^^^ variable.language.terraform
+#             ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
 
 
 resource "aws_iam_role_policy" "attach-inline-policy-1" {

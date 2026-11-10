@@ -38,6 +38,8 @@ variables:
   ID_Start: '[\p{ID_Start}_]'
   ID_Continue: '[\p{ID_Continue}-]'
   identifier: (?:{{ID_Start}}{{ID_Continue}}*)
+  # `\b` would accept a keyword followed by `-`, which continues an identifier.
+  break: (?!{{ID_Continue}})
 
   # Exponent: "e" or "E" followed by an optional sign
   #
@@ -226,12 +228,12 @@ contexts:
     - include: named-value-references
 
   named-value-references:
-    - match: \b{{named_values}}\b
+    - match: \b{{named_values}}{{break}}
       comment: Special variables available only to Terraform.
       scope: variable.language.terraform
 
   type-keywords:
-    - match: \b{{terraform_type_keywords}}\b
+    - match: \b{{terraform_type_keywords}}{{break}}
       comment: Type keywords known to Terraform.
       scope: storage.type.terraform
 
@@ -272,11 +274,11 @@ contexts:
   # https://www.terraform.io/docs/language/expressions/types.html#literal-expressions
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#literal-values
   language-constants:
-    - match: \btrue\b
+    - match: \btrue{{break}}
       scope: constant.language.boolean.true.terraform
-    - match: \bfalse\b
+    - match: \bfalse{{break}}
       scope: constant.language.boolean.false.terraform
-    - match: \bnull\b
+    - match: \bnull{{break}}
       scope: constant.language.null.terraform
 
   # Numbers: Integers, fractions and exponents
@@ -407,17 +409,17 @@ contexts:
         1: keyword.operator.template.trim.right.terraform
         2: punctuation.section.interpolation.end.terraform
       pop: 1
-    - match: \bif\b
+    - match: \bif{{break}}
       scope: keyword.control.conditional.if.terraform
-    - match: \belse\b
+    - match: \belse{{break}}
       scope: keyword.control.conditional.else.terraform
-    - match: \bendif\b
+    - match: \bendif{{break}}
       scope: keyword.control.conditional.end.terraform
-    - match: \bfor\b
+    - match: \bfor{{break}}
       scope: keyword.control.loop.for.terraform
-    - match: \bendfor\b
+    - match: \bendfor{{break}}
       scope: keyword.control.loop.end.terraform
-    - match: \bin\b
+    - match: \bin{{break}}
       scope: keyword.control.loop.in.terraform
     - include: expressions
 
@@ -485,7 +487,7 @@ contexts:
   #
   # https://www.terraform.io/docs/cli/import/usage.html
   imports:
-    - match: \b(terraform)\s+(import)\b
+    - match: \b(terraform)\s+(import){{break}}
       comment: Importing resources
       captures:
         1: support.constant.terraform
@@ -686,11 +688,11 @@ contexts:
         - attribute-key-end
         - attribute-key
     # https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
-    - match: for_each\b
+    - match: for_each{{break}}
       scope: variable.declaration.terraform keyword.control.loop.for.terraform
       pop: 1
     # https://developer.hashicorp.com/terraform/language/meta-arguments/count
-    - match: count\b
+    - match: count{{break}}
       scope: variable.declaration.terraform keyword.control.conditional.terraform
       pop: 1
     - match: '{{identifier}}'
@@ -747,7 +749,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
   # https://www.terraform.io/docs/language/expressions/for.html
   tuple-for-expression:
-    - match: \bfor\b
+    - match: \bfor{{break}}
       comment: for expression (arrays)
       scope: keyword.control.loop.for.terraform
       set: tuple-for-expression-body
@@ -766,7 +768,7 @@ contexts:
   # https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md#for-expressions
   # https://www.terraform.io/docs/language/expressions/for.html
   object-for-expression:
-    - match: \bfor\b
+    - match: \bfor{{break}}
       comment: for expression (arrays)
       scope: keyword.control.loop.for.terraform
       set: object-for-expression-body
@@ -784,9 +786,9 @@ contexts:
   # They require different `set` blocks because they are
   # pop'd with different characters and objects allow `=>`.
   for-expression-body:
-    - match: \bin\b
+    - match: \bin{{break}}
       scope: keyword.operator.iteration.in.terraform
-    - match: \bif\b
+    - match: \bif{{break}}
       scope: keyword.control.conditional.terraform
     - match: '\:'
       scope: punctuation.section.block.loop.for.terraform
