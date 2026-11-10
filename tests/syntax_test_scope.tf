@@ -111,6 +111,33 @@
 #   ^^^^ constant.language.null.terraform
 #         ^ - constant
 
+/////
+// #107
+// Treats identifiers starting with `true`, `false` and `null` as identifiers.
+/////
+
+    true-ish
+#   ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    false-x
+#   ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    null-x
+#   ^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
+// Treats identifiers ending with `true`, `false` and `null` as identifiers.
+/////
+
+    xtrue
+#   ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    x_false
+#   ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    x-null
+#   ^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
 /////////////////////////////////////////////////////////////////////
 // INTEGER CONSTANTS
 /////////////////////////////////////////////////////////////////////
@@ -627,6 +654,38 @@
 #                                             ^ meta.interpolation.terraform punctuation.section.interpolation.end.terraform
 #                                              ^ string.quoted.double.terraform punctuation.definition.string.end.terraform
 #                                               ^ - string - punctuation
+
+/////
+// #107
+// Treats identifiers starting with template directive keywords as identifiers.
+/////
+
+    "${if-x}"
+#      ^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${for-x}"
+#      ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${in-x}"
+#      ^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${else-x}"
+#      ^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${endif-x}"
+#      ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    "${endfor-x}"
+#      ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
+// Treats identifiers ending with template directive keywords as identifiers.
+/////
+
+    "${xif} %{ if x-endif }${a_in}%{ endif }"
+#      ^^^ variable.other.readwrite.terraform - keyword
+#                 ^^^^^^^ variable.other.readwrite.terraform - keyword
+#                            ^^^^ variable.other.readwrite.terraform - keyword
 
 /////
 // Matches if/else/endif directives.
@@ -1749,6 +1808,17 @@ module "y" {
 #                                        ^ punctuation.section.parens.end.terraform
 
 /////
+// #107
+// Treats attribute names starting with `count` and `for_each` as attribute names.
+/////
+
+    count-x = 1
+#   ^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform - constant - keyword - storage
+
+    for_each-x = 1
+#   ^^^^^^^^^^ variable.declaration.terraform variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
 // Populate an attribute from a variable value
 /////
 
@@ -1895,6 +1965,30 @@ module "y" {
 #                                   ^^^ keyword.operator.terraform
 #                                      ^ punctuation.section.braces.end.terraform
 #                                       ^ punctuation.section.parens.end.terraform
+
+/////
+// #107
+// Treats identifiers starting with `for` as object keys.
+/////
+
+    { for-each = 1 }
+#   ^^^^^^^^^^^^^^^^ meta.mapping - keyword.control
+#     ^^^^^^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#              ^ punctuation.separator.key-value.terraform
+
+/////
+// Treats identifiers ending with `for` as object keys.
+/////
+
+    { waitfor: 1 }
+#   ^^^^^^^^^^^^^^ meta.mapping - keyword.control
+#     ^^^^^^^ meta.mapping.key.terraform meta.string.terraform string.unquoted.terraform
+#            ^ punctuation.separator.key-value.terraform
+#              ^ meta.number.integer.decimal.terraform
+#                ^ punctuation.section.braces.end.terraform
+
+    { k = xfor }
+#         ^^^^ variable.other.readwrite.terraform - keyword
 
 /////
 // Allow tuple for-expressions.
@@ -3328,6 +3422,33 @@ module "y" {
 #    ^ - meta.brackets
 
 /////
+// #107
+// Treats identifiers starting with `for`, `in` and `if` in tuples as identifiers.
+/////
+
+    [for-x]
+#    ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    [for v in in-list: v]
+#             ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    [for v in l: v if-x]
+#                  ^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
+// Treats identifiers ending with `for`, `in` and `if` in tuples as identifiers.
+/////
+
+    [xfor, a-in, b_if]
+#    ^^^^ variable.other.readwrite.terraform - keyword
+#          ^^^^ variable.other.readwrite.terraform - keyword
+#                ^^^^ variable.other.readwrite.terraform - keyword
+
+    [for x in y : x-if if x_in]
+#                 ^^^^ variable.other.readwrite.terraform - keyword
+#                         ^^^^ variable.other.readwrite.terraform - keyword
+
+/////
 // Match if-conditionals on right-side.
 /////
 
@@ -3660,6 +3781,19 @@ module "y" {
 #   ^ meta.block.body.terraform punctuation.section.block.end.terraform
 #    ^ - meta - block
 
+/////
+// Treats identifiers ending with known block types as generic blocks.
+/////
+
+    xdata "a" "b" {}
+#   ^^^^^ keyword.declaration.terraform
+#         ^^^ string.quoted.double.terraform - support
+#             ^^^ string.quoted.double.terraform - entity
+
+    my-module "a" {}
+#   ^^^^^^^^^ keyword.declaration.terraform
+#             ^^^ string.quoted.double.terraform - entity
+
 /////////////////////////////////////////////////////////////////////
 // TERRAFORM NAMED VALUES
 /////////////////////////////////////////////////////////////////////
@@ -3814,6 +3948,30 @@ module "y" {
 #             ^ punctuation.section.block.begin.terraform
 #              ^ punctuation.section.block.end.terraform
 
+/////
+// #107
+// Treats identifiers starting with named values as identifiers.
+/////
+
+    var-x
+#   ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    local-x
+#   ^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    each-x
+#   ^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
+// Treats identifiers ending with named values as identifiers.
+/////
+
+    xvar
+#   ^^^^ variable.other.readwrite.terraform - variable.language
+
+    _count
+#   ^^^^^^ variable.other.readwrite.terraform - variable.language
+
 /////////////////////////////////////////////////////////////////////
 // TERRAFORM TYPE KEYWORDS
 /////////////////////////////////////////////////////////////////////
@@ -3829,6 +3987,24 @@ module "y" {
 
     bool
 #   ^^^^ storage.type.terraform
+
+/////
+// #107
+// Treats identifiers starting with type keywords as identifiers.
+/////
+
+    string-x
+#   ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+    any-x
+#   ^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
+// Treats identifiers ending with type keywords as identifiers.
+/////
+
+    x-string
+#   ^^^^^^^^ variable.other.readwrite.terraform - storage
 
 /////////////////////////////////////////////////////////////////////
 // HEREDOCS
@@ -3913,6 +4089,22 @@ module "y" {
 #                                         ^^^^^ variable.other.member.terraform
 #                                               ^^^^^^ meta.number.integer.decimal.terraform constant.numeric.value.terraform
 
+/////
+// #107
+// Treats `import-x` after `terraform` as an identifier.
+/////
+
+    terraform import-x a.b c
+#   ^^^^^^^^^ variable.language.terraform
+#             ^^^^^^^^ variable.other.readwrite.terraform - constant - keyword - storage
+
+/////
+// Treats `xterraform import` as identifiers.
+/////
+
+    xterraform import a.b c
+#   ^^^^^^^^^^ variable.other.readwrite.terraform - support
+#              ^^^^^^ variable.other.readwrite.terraform - keyword
 
 resource "aws_iam_role_policy" "attach-inline-policy-1" {
     name = "xxx"
