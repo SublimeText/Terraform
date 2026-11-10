@@ -549,7 +549,7 @@ contexts:
   # A for expression is only allowed as the first token of an object.
   # https://github.com/hashicorp/hcl/blob/main/hclsyntax/parser.go (parseObjectCons)
   object-begin:
-    - meta_scope: meta.braces.terraform
+    - meta_scope: meta.mapping.terraform
     - match: \}
       scope: punctuation.section.braces.end.terraform
       pop: 1
@@ -558,7 +558,7 @@ contexts:
       set: object-body
 
   object-body:
-    - meta_scope: meta.braces.terraform
+    - meta_scope: meta.mapping.terraform
     - match: \}
       scope: punctuation.section.braces.end.terraform
       pop: 1
@@ -746,9 +746,9 @@ contexts:
       set: object-for-expression-body
 
   object-for-expression-body:
-    - meta_content_scope: meta.braces.terraform
+    - meta_content_scope: meta.mapping.terraform
     - match: \}
-      scope: meta.braces.terraform punctuation.section.braces.end.terraform
+      scope: meta.mapping.terraform punctuation.section.braces.end.terraform
       pop: 1
     - match: \=\>
       scope: punctuation.separator.key-value.terraform
