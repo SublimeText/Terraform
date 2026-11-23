@@ -556,7 +556,7 @@ contexts:
   # https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md#collection-values
   objects:
     - match: \{
-      scope: punctuation.section.braces.begin.terraform
+      scope: punctuation.section.mapping.begin.terraform
       push: object-begin
 
   # A for expression is only allowed as the first token of an object.
@@ -564,7 +564,7 @@ contexts:
   object-begin:
     - meta_scope: meta.mapping.terraform
     - match: \}
-      scope: punctuation.section.braces.end.terraform
+      scope: punctuation.section.mapping.end.terraform
       pop: 1
     - include: object-for-expression
     - match: (?=\S)
@@ -573,7 +573,7 @@ contexts:
   object-body:
     - meta_scope: meta.mapping.terraform
     - match: \}
-      scope: punctuation.section.braces.end.terraform
+      scope: punctuation.section.mapping.end.terraform
       pop: 1
     - match: (?=\S)
       push:
@@ -787,7 +787,7 @@ contexts:
   object-for-expression-body:
     - meta_content_scope: meta.mapping.terraform
     - match: \}
-      scope: meta.mapping.terraform punctuation.section.braces.end.terraform
+      scope: meta.mapping.terraform punctuation.section.mapping.end.terraform
       pop: 1
     - match: \=\>
       scope: punctuation.separator.key-value.terraform
